@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pertemuan 13 — Yurisdiksi Internasional & Transnational Cybercrime | Etika Hukum Cyber</title>
+<style>
+/* ===== [SHARED:CSS] — jangan ubah blok ini antar pertemuan, kecuali --accent ===== */
+:root{
+  --accent:#4338ca; --accent-soft:#e0e7ff; --accent-ink:#312e81;
+  --bg:#f6f7f4; --card:#ffffff; --ink:#1c2321; --muted:#5b6762; --line:#dfe4e0;
+  --ok:#15803d; --ok-soft:#dcfce7; --bad:#b91c1c; --bad-soft:#fee2e2; --warn:#b45309; --warn-soft:#fef3c7;
+  --radius:14px; --shadow:0 1px 2px rgba(20,30,25,.06),0 6px 20px rgba(20,30,25,.06);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16.5px}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;letter-spacing:-.01em}
+h2{font-size:1.55rem} h3{font-size:1.15rem} p{margin:.6em 0}
+a{color:var(--accent)}
+button{font:inherit;cursor:pointer}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(246,247,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-weight:700;font-size:.95rem;white-space:nowrap}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
+.progress{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress>i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+.pct{font-size:.85rem;font-weight:700;min-width:42px;text-align:right}
+.tbtn{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 12px;font-size:.82rem;font-weight:600}
+.tbtn[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.layout{max-width:1180px;margin:0 auto;padding:24px 20px 80px;display:grid;grid-template-columns:230px 1fr;gap:28px}
+nav.agenda{position:sticky;top:76px;align-self:start;max-height:calc(100vh - 96px);overflow:auto}
+nav.agenda h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+nav.agenda a{display:block;text-decoration:none;color:var(--ink);padding:8px 10px;border-radius:10px;font-size:.88rem;border-left:3px solid transparent}
+nav.agenda a span{display:block;font-size:.72rem;color:var(--muted)}
+nav.agenda a:hover{background:var(--card)}
+nav.agenda a.active{background:var(--accent-soft);border-left-color:var(--accent);font-weight:600}
+.hero{background:linear-gradient(135deg,var(--accent-ink),var(--accent));color:#fff;border-radius:22px;padding:34px 34px 28px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border-radius:99px;padding:3px 12px;font-size:.78rem;font-weight:600;letter-spacing:.04em}
+.hero h1{font-size:2.05rem;margin:.5em 0 .3em}
+.hero p{max-width:62ch;opacity:.92}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:18px}
+.meta div{background:rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;font-size:.84rem}
+.meta b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;opacity:.75}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:16px 0;box-shadow:var(--shadow)}
+.seg{margin:34px 0}
+.seg-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.seg-head .num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.seg-head h2{margin:0;flex:1;min-width:200px}
+.chip{display:inline-block;background:var(--accent-soft);color:var(--accent-ink);border-radius:99px;padding:3px 11px;font-size:.76rem;font-weight:700}
+.chip.act{background:#ede9fe;color:#5b21b6}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);color:var(--accent-ink);border-radius:0 12px 12px 0;padding:12px 16px;margin:14px 0}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft);color:#78350f}
+.callout.law{border-color:#1d4ed8;background:#dbeafe;color:#1e3a8a}
+.callout b.t{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfdfc}
+.mini h3{margin-bottom:.3em}
+table.t{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
+table.t th,table.t td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+table.t th{background:var(--accent-soft);color:var(--accent-ink)}
+.tablewrap{overflow-x:auto}
+details.acc{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:#fff}
+details.acc summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details.acc summary::after{content:"+";font-weight:700;color:var(--accent)}
+details.acc[open] summary::after{content:"–"}
+details.acc>div{padding:0 16px 14px}
+/* interactive widgets */
+.w{border:2px solid var(--accent);border-radius:var(--radius);padding:20px 22px;margin:18px 0;background:#fff;position:relative}
+.w>.w-label{position:absolute;top:-12px;left:16px;background:var(--accent);color:#fff;border-radius:99px;font-size:.72rem;font-weight:700;padding:2px 12px;letter-spacing:.05em;text-transform:uppercase}
+.w.done{border-color:var(--ok)} .w.done>.w-label{background:var(--ok)}
+.w h3{margin-top:.2em}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 18px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.opts{display:grid;gap:8px;margin:12px 0}
+.opt{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px}
+.opt:hover{border-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--warn-soft);color:#78350f;font-size:.93rem;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--ok-soft);color:#14532d}
+.flash{perspective:900px;max-width:520px;margin:12px auto}
+.flash-in{position:relative;min-height:190px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.flash.flip .flash-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:22px;display:grid;place-items:center;text-align:center;font-size:1.05rem}
+.face.f{background:var(--accent);color:#fff;font-weight:700;font-size:1.25rem}
+.face.b{background:var(--accent-soft);color:var(--accent-ink);transform:rotateY(180deg)}
+.fc-ctl{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.cls-pool,.cls-bins{display:grid;gap:10px}
+.cls-bins{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:14px}
+.cls-item{border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;text-align:left}
+.cls-item.pick{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.cls-item.right{border-color:var(--ok);background:var(--ok-soft)}
+.cls-item.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.bin{border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:110px;cursor:pointer;background:#fcfdfc}
+.bin:hover{border-color:var(--accent)}
+.bin h4{font-size:.9rem;margin:0 0 8px;color:var(--accent-ink)}
+.bin .cls-item{margin-bottom:6px;font-size:.88rem;cursor:pointer}
+.scn-text{font-size:1.02rem}
+.scn-end{border-radius:12px;padding:14px 16px;background:var(--accent-soft);color:var(--accent-ink);margin-top:10px}
+textarea{width:100%;min-height:96px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;resize:vertical}
+textarea:focus,.opt:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+.score{font-size:1.4rem;font-weight:800;color:var(--accent)}
+.ckl label{display:flex;gap:10px;align-items:flex-start;padding:7px 4px;cursor:pointer}
+.ckl input{margin-top:.38em;accent-color:var(--accent)}
+.bars .bar{margin:8px 0}
+.bars .bar>div{height:26px;border-radius:8px;background:var(--accent-soft);position:relative;overflow:hidden}
+.bars .bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);opacity:.85;width:0;transition:width .5s}
+.bars .bar span{position:absolute;left:10px;top:2px;font-size:.84rem;font-weight:600;color:#0b1f1c;z-index:1}
+.refs li{margin:.5em 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 0 10px}
+@media(max-width:860px){.layout{grid-template-columns:1fr}nav.agenda{display:none}.hero h1{font-size:1.6rem}.brand small{display:none}}
+@media print{.topbar,nav.agenda{display:none!important}.layout{display:block}.card,.w{box-shadow:none;break-inside:avoid}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* ===== [/SHARED:CSS] ===== */
+/* ===== [SHARED:VIZ-CSS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+/* hero hidup */
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 88% 15%,rgba(255,255,255,.22),transparent 42%),radial-gradient(circle at 8% 95%,rgba(255,255,255,.12),transparent 40%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:linear-gradient(115deg,transparent 30%,#000);mask-image:linear-gradient(115deg,transparent 30%,#000);animation:v-grid 22s linear infinite}
+.hero>*{position:relative;z-index:1}
+@keyframes v-grid{to{background-position:36px 36px}}
+/* reveal saat scroll */
+.reveal-on .seg{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal-on .seg.in{opacity:1;transform:none}
+.seg-head .num{box-shadow:0 0 0 5px var(--accent-soft)}
+
+/* ---------- STAGE (flow) ---------- */
+.v-stage{position:relative;aspect-ratio:2/1;min-height:300px;border-radius:16px;overflow:hidden;color:#e8eefc;
+  background:#0a1120;background-image:radial-gradient(ellipse at 50% -10%,#1b2d57 0,transparent 62%),linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:auto,30px 30px,30px 30px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 10px 30px rgba(10,17,32,.28)}
+.v-lines{position:absolute;inset:0;width:100%;height:100%}
+.v-lines line{stroke:rgba(255,255,255,.16);stroke-width:1.5;stroke-dasharray:4 5;vector-effect:non-scaling-stroke;transition:stroke .4s}
+.v-lines line.on{stroke:#7dd3fc;stroke-width:2.5;stroke-dasharray:6 6;animation:v-dash 1s linear infinite}
+.v-lines line.on.bad{stroke:#fb7185}
+@keyframes v-dash{to{stroke-dashoffset:-24}}
+.v-actor{position:absolute;transform:translate(-50%,-50%);width:104px;text-align:center;z-index:2}
+.v-ico{width:60px;height:60px;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;font-size:29px;background:#16213b;border:2px solid #3a4a70;transition:border-color .4s,box-shadow .4s,background .4s,transform .3s}
+.v-name{font-size:.74rem;font-weight:700;line-height:1.15;text-shadow:0 1px 3px #000}
+.v-badge{display:inline-block;margin-top:3px;font-size:.64rem;font-weight:700;padding:1px 8px;border-radius:99px;background:rgba(255,255,255,.12);color:#e8eefc;min-height:0;transition:background .3s}
+.v-badge:empty{display:none}
+.v-actor.r-attacker .v-ico{border-color:#fb7185;background:#2a1220}
+.v-actor.r-victim .v-ico{border-color:#38bdf8}
+.v-actor.s-safe .v-ico{border-color:#4ade80;box-shadow:0 0 20px #4ade8070}
+.v-actor.s-safe .v-badge{background:#14532d}
+.v-actor.s-warn .v-ico{border-color:#fbbf24;box-shadow:0 0 22px #fbbf2480;animation:v-pulse 1.4s infinite}
+.v-actor.s-warn .v-badge{background:#78350f}
+.v-actor.s-danger .v-ico{border-color:#f43f5e;background:#3a1020;box-shadow:0 0 26px #f43f5e90;animation:v-shake .5s 2,v-pulse 1.4s .5s infinite}
+.v-actor.s-danger .v-badge{background:#881337}
+.v-actor.s-lock .v-ico{border-color:#a78bfa;background:#231a45;box-shadow:0 0 22px #a78bfa80}
+.v-actor.s-lock .v-badge{background:#4c1d95}
+.v-actor.s-active .v-ico{border-color:#7dd3fc;box-shadow:0 0 22px #7dd3fc80;transform:scale(1.08)}
+@keyframes v-pulse{50%{box-shadow:0 0 34px currentColor}}
+@keyframes v-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.v-packet{position:absolute;transform:translate(-50%,-50%);font-size:22px;z-index:3;pointer-events:none;
+  transition:left var(--dur,1000ms) cubic-bezier(.5,0,.3,1),top var(--dur,1000ms) cubic-bezier(.5,0,.3,1),opacity .3s;filter:drop-shadow(0 0 7px rgba(125,211,252,.9))}
+.v-plabel{position:absolute;left:50%;top:-20px;transform:translateX(-50%);white-space:nowrap;font-size:.64rem;font-weight:700;background:#0b1220;border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:1px 6px;color:#e8eefc}
+.v-zone{position:absolute;border:1.5px dashed rgba(255,255,255,.22);border-radius:14px;z-index:1;font-size:.64rem;color:rgba(255,255,255,.55);padding:3px 9px;pointer-events:none}
+.v-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 8px}
+.v-ctl .btn{padding:7px 14px}
+.v-ctl select{font:inherit;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#fff}
+.v-rail{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px}
+.v-rail button{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.78rem;font-weight:600;color:var(--muted)}
+.v-rail button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.v-rail button.seen{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+.v-cap{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:12px 16px;background:#fcfdfc;min-height:96px}
+.v-cap .v-num{font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.v-cap h4{margin:.1em 0 .25em;font-size:1.05rem}
+.v-cap p{margin:.3em 0}
+.v-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.v-chip{border-radius:10px;padding:5px 10px;font-size:.82rem;line-height:1.4}
+.v-chip.law{background:#dbeafe;color:#1e3a8a}
+.v-chip.tip{background:var(--ok-soft);color:#14532d}
+.v-chip.risk{background:var(--bad-soft);color:#7f1d1d}
+.v-outcome{margin-top:10px;border-radius:12px;padding:12px 16px;background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+
+/* ---------- EXPLORER ---------- */
+.v-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:10px;margin:12px 0}
+.v-tile{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:14px 10px;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+.v-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--accent)}
+.v-tile .ic{font-size:2rem;display:block;margin-bottom:4px}
+.v-tile b{display:block;font-size:.9rem;line-height:1.2}
+.v-tile small{color:var(--muted);font-size:.72rem}
+.v-tile.sel{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 0 3px var(--accent-soft)}
+.v-tile.seen::after{content:"✓";position:absolute;top:6px;right:9px;color:var(--ok);font-weight:800}
+.v-detail{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fcfdfc;animation:v-in .35s}
+@keyframes v-in{from{opacity:0;transform:translateY(8px)}}
+.v-detail h3{display:flex;align-items:center;gap:10px}
+.v-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.v-tabs button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.8rem;font-weight:600}
+.v-tabs button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.v-pane ul,.v-pane ol{margin:.3em 0 .3em 1.2em;padding:0}
+.v-pane li{margin:.3em 0}
+.v-sub{margin-top:12px}
+
+/* ---------- MOCK (layar HP / email / web / post) ---------- */
+.v-mockwrap{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:18px;align-items:start}
+.v-phone{background:#0f172a;border-radius:30px;padding:10px;box-shadow:0 14px 34px rgba(15,23,42,.3);max-width:360px;width:100%;margin:0 auto}
+.v-screen{background:#f3f4f6;border-radius:22px;overflow:hidden;min-height:380px;display:flex;flex-direction:column;font-size:.9rem}
+.v-bar{background:#0f766e;color:#fff;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.v-bar .av{width:34px;height:34px;border-radius:50%;background:#ffffff33;display:grid;place-items:center;font-size:1.1rem}
+.v-bar b{display:block;font-size:.9rem;line-height:1.1}.v-bar small{opacity:.8;font-size:.7rem}
+.v-msgs{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1;background:#e5ded5}
+.v-msg{max-width:84%;padding:8px 11px;border-radius:12px;background:#fff;box-shadow:0 1px 1px rgba(0,0,0,.12);line-height:1.45}
+.v-msg.me{align-self:flex-end;background:#d9fdd3}
+.v-msg time{display:block;text-align:right;font-size:.62rem;color:#6b7280;margin-top:2px}
+.v-screen.email,.v-screen.web,.v-screen.post{background:#fff}
+.v-screen.email .v-bar{background:#334155}.v-screen.web .v-bar{background:#e5e7eb;color:#111827}.v-screen.post .v-bar{background:#1d4ed8}
+.v-url{background:#fff;border:1px solid #d1d5db;border-radius:99px;padding:5px 12px;flex:1;font-size:.76rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.v-body{padding:14px 16px;flex:1}.v-body p{margin:.55em 0}
+.v-meta{padding:8px 16px;border-bottom:1px solid #e5e7eb;font-size:.78rem;color:#4b5563}
+.v-meta b{color:#111827}
+.v-cta{display:inline-block;background:#2563eb;color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;margin-top:6px}
+.v-stats{padding:8px 16px;border-top:1px solid #e5e7eb;font-size:.78rem;color:#6b7280}
+.v-hot{cursor:pointer;border-radius:4px;transition:background .2s,box-shadow .2s;border-bottom:2px dotted transparent}
+.v-hint .v-hot{border-bottom-color:#f59e0b;animation:v-blink 1.4s infinite}
+@keyframes v-blink{50%{background:#fde68a}}
+.v-hot:hover{background:#fde68a}
+.v-hot.found{background:#fecaca;box-shadow:0 0 0 2px #ef4444;border-radius:4px;animation:none}
+.v-hot.decoy{background:#dcfce7;box-shadow:0 0 0 2px #22c55e;animation:none}
+.v-finds{display:grid;gap:8px}
+.v-find{border-left:4px solid var(--bad);background:var(--bad-soft);border-radius:0 10px 10px 0;padding:8px 12px;font-size:.88rem;animation:v-in .3s}
+.v-find.ok{border-color:var(--ok);background:var(--ok-soft)}
+.v-find b{display:block}
+.v-prog{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+.v-prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+
+/* ---------- TIMELINE ---------- */
+.v-tl{position:relative;margin:14px 0 6px;overflow-x:auto;padding:22px 6px 10px}
+.v-tl-track{display:flex;gap:0;min-width:max-content;position:relative}
+.v-tl-track::before{content:"";position:absolute;left:30px;right:30px;top:15px;height:4px;background:var(--line);border-radius:4px}
+.v-tl-pt{width:128px;text-align:center;position:relative;background:none;border:0;padding:0 4px}
+.v-tl-pt .dot{width:34px;height:34px;margin:0 auto 6px;border-radius:50%;background:#fff;border:3px solid var(--line);display:grid;place-items:center;position:relative;z-index:1;transition:all .25s;font-size:1rem}
+.v-tl-pt .when{display:block;font-weight:800;font-size:.8rem;color:var(--accent-ink)}
+.v-tl-pt .tt{display:block;font-size:.74rem;color:var(--muted);line-height:1.25}
+.v-tl-pt.seen .dot{border-color:var(--accent)}
+.v-tl-pt.on .dot{background:var(--accent);border-color:var(--accent);transform:scale(1.25);box-shadow:0 0 0 6px var(--accent-soft)}
+
+/* ---------- SPECTRUM ---------- */
+.v-spec-lbl{display:flex;justify-content:space-between;font-weight:700;font-size:.9rem}
+.v-spec input[type=range]{width:100%;accent-color:var(--accent);margin:10px 0 4px;height:28px}
+.v-spec-bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.v-spec-bars .bar{height:14px;background:var(--line);border-radius:99px;overflow:hidden}
+.v-spec-bars .bar i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.v-spec-bars .bar.r i{background:#ea580c}
+
+/* ---------- ORDER ---------- */
+.v-ord{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.v-ord h4{margin:0 0 6px;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.v-ord .col{display:grid;gap:6px;align-content:start;min-height:80px}
+.v-ord .it{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:.9rem}
+.v-ord .it:hover{border-color:var(--accent)}
+.v-ord .it.right{border-color:var(--ok);background:var(--ok-soft)}.v-ord .it.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.v-ord .it i{font-style:normal;font-weight:800;color:var(--accent);margin-right:6px}
+@media(max-width:760px){.v-mockwrap,.v-ord{grid-template-columns:1fr}.v-stage{min-height:340px;aspect-ratio:1.25/1}.v-actor{width:84px}.v-ico{width:50px;height:50px;font-size:24px}}
+@media print{.reveal-on .seg{opacity:1!important;transform:none!important}}
+@media(prefers-reduced-motion:reduce){.hero::after,.v-actor .v-ico,.v-lines line.on,.v-hint .v-hot{animation:none!important}.reveal-on .seg{opacity:1;transform:none}}
+/* ===== [/SHARED:VIZ-CSS] ===== */
+
+</style>
+</head>
+<body>
+
+<header class="topbar"><div class="topbar-in">
+  <div class="brand">Etika Hukum Cyber<small>Pertemuan 13 dari 16</small></div>
+  <div class="progress" title="Progres aktivitas"><i id="pbar"></i></div>
+  <div class="pct" id="ppct">0%</div>
+</div></header>
+
+<div class="layout">
+<nav class="agenda" id="agenda" aria-label="Agenda"><h4>Agenda</h4></nav>
+
+<main>
+<section class="hero">
+  <span class="tag">PERTEMUAN 13 · MINGGU 13</span>
+  <h1>Yurisdiksi Internasional & Transnational Cybercrime</h1>
+  <p>Internet tidak mengenal batas negara, tetapi polisi dan hakim terikat batas negaranya. Hari ini kamu belajar siapa yang berwenang bila pelaku ada di satu negara, server di negara lain, dan korban di negara ketiga, serta bagaimana negara-negara bekerja sama lewat Budapest Convention, bantuan hukum timbal balik, ekstradisi, dan INTERPOL.</p>
+  <div class="meta">
+    <div><b>Program Studi</b>Bisnis Digital</div>
+    <div><b>Dosen</b>Ibnu Amri Thaher</div>
+    <div><b>Waktu</b>100 menit · Teori</div>
+    <div><b>Metode</b>Kuliah & Studi Kasus</div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Capaian pertemuan ini</h3>
+  <p><span class="chip">CPMK-3</span> <span class="chip">CPMK-4</span> Menganalisis kejahatan siber dan tata kelola/kerja sama penegakan hukum siber, termasuk dimensi lintas negara.</p>
+  <p><b>Kemampuan akhir:</b> memahami batas yurisdiksi internasional dalam kejahatan siber lintas negara.</p>
+  <p><b>Indikator penilaian:</b> pemahaman kompleksitas penegakan hukum siber lintas negara.</p>
+  <p>Setelah sesi ini kamu mampu: (1) menjelaskan lima prinsip yurisdiksi (teritorial, nasionalitas aktif, nasionalitas pasif, universal, efek); (2) menentukan negara-negara yang berpotensi berwenang dalam skenario pelaku-server-korban di tiga negara; (3) membedakan fungsi Budapest Convention, MLA, ekstradisi, dan INTERPOL; (4) menjelaskan mengapa penegakan hukum lintas negara lambat dan rumit; (5) menjelaskan secara umum jangkauan ekstrateritorial UU ITE.</p>
+</section>
+
+<!-- SEGMEN 1 -->
+<section class="seg" id="s1" data-title="Pembuka & Pemantik" data-min="0–10" data-dur="10">
+  <div class="seg-head"><div class="num">1</div><h2>Pembuka & Pemantik: Siapa yang Berwenang?</h2></div>
+
+  <div class="w" data-widget="poll" id="poll1"><span class="w-label">Pemantik · Polling</span></div>
+
+  <div class="card">
+    <h3>Mengapa kejahatan siber sulit ditangani satu negara?</h3>
+    <div class="grid2">
+      <div class="mini"><h3>Kejahatan tanpa batas</h3><p>Satu serangan bisa melibatkan pelaku di satu negara, server perantara di beberapa negara, dan korban di banyak negara sekaligus.</p></div>
+      <div class="mini"><h3>Penegakan hukum bernegara</h3><p>Polisi, jaksa, dan hakim hanya bekerja dalam wilayah kedaulatan negaranya. Menyita server atau menangkap orang di negara lain tanpa izin dapat melanggar kedaulatan negara itu.</p></div>
+      <div class="mini"><h3>Bukti cepat hilang</h3><p>Log dan data bisa terhapus dalam hitungan hari atau jam, sementara permintaan resmi antarnegara bisa memakan waktu berbulan-bulan.</p></div>
+    </div>
+    <div class="callout"><b class="t">Pertanyaan inti hari ini</b>Ada dua pertanyaan berbeda: (1) <b>siapa yang berwenang</b> mengadili (yurisdiksi), dan (2) <b>bagaimana cara</b> mengambil bukti atau membawa pelaku dari luar negeri (kerja sama internasional).</div>
+  </div>
+</section>
+
+<!-- SEGMEN 2 -->
+<section class="seg" id="s2" data-title="Prinsip Yurisdiksi" data-min="10–30" data-dur="20">
+  <div class="seg-head"><div class="num">2</div><h2>Konsep Inti: Prinsip-Prinsip Yurisdiksi</h2></div>
+
+  <div class="card">
+    <h3>Apa itu yurisdiksi?</h3>
+    <p><b>Yurisdiksi</b> adalah kewenangan suatu negara untuk mengatur perilaku, mengadili perkara, dan menegakkan putusan. Dalam hukum internasional, dasar kewenangan itu harus punya <em>hubungan yang sah</em> antara negara dan perkara: lokasi perbuatan, kewarganegaraan pelaku atau korban, atau kepentingan negara yang terancam.</p>
+    <p>Ada tiga lapis: <b>yurisdiksi preskriptif</b> (membuat aturan), <b>yurisdiksi adjudikatif</b> (mengadili), dan <b>yurisdiksi eksekutif</b> (menangkap, menyita, memaksa). Lapis ketiga paling terbatas oleh batas wilayah: negara umumnya tidak boleh menjalankan penegakan di wilayah negara lain tanpa persetujuan.</p>
+  </div>
+
+  <div class="card">
+    <h3>Lima prinsip yurisdiksi</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Prinsip</th><th>Dasar kewenangan</th><th>Contoh siber (skenario fiktif)</th></tr>
+      <tr><td><b>Teritorial</b></td><td>Perbuatan atau akibatnya terjadi di wilayah negara (termasuk server yang berada di wilayah itu)</td><td>Peretas membobol server milik perusahaan yang berlokasi di Jakarta: Indonesia berwenang.</td></tr>
+      <tr><td><b>Nasionalitas aktif</b></td><td>Pelaku adalah warga negara kita, di mana pun ia berbuat</td><td>WNI yang tinggal di luar negeri membuat penipuan daring ke korban di negara lain: Indonesia dapat mengklaim kewenangan atas WNI itu.</td></tr>
+      <tr><td><b>Nasionalitas pasif</b></td><td>Korban adalah warga negara kita</td><td>Pelaku asing menipu mahasiswa Indonesia lewat situs luar negeri: Indonesia dapat berkepentingan karena korbannya WNI.</td></tr>
+      <tr><td><b>Universal</b></td><td>Kejahatan sangat berat yang menjadi perhatian seluruh umat manusia, sehingga negara mana pun boleh mengadili</td><td>Dalam hukum internasional, contoh klasiknya bajak laut, genosida, dan kejahatan kemanusiaan. Penerapannya pada kejahatan siber biasa <b>sangat terbatas</b>.</td></tr>
+      <tr><td><b>Efek (<i>effects doctrine</i>) / perlindungan</b></td><td>Perbuatan di luar negeri menimbulkan akibat nyata di wilayah kita atau mengancam kepentingan vital negara</td><td>Serangan dari luar negeri yang melumpuhkan layanan perbankan di Indonesia: akibatnya terjadi di Indonesia.</td></tr>
+    </table></div>
+    <div class="callout warn"><b class="t">Hati-hati</b>Prinsip efek bisa berlebihan bila semua negara memakainya: pelaku bisa dituntut di banyak negara sekaligus hanya karena situsnya "bisa diakses" dari sana. Karena itu pengadilan biasanya menuntut ada akibat yang <em>nyata dan substansial</em>, bukan sekadar situs dapat dibuka.</div>
+    <details class="acc"><summary>Yurisdiksi konkuren dan "forum shopping"</summary><div>
+      <p>Satu perkara siber sering membuka kewenangan <b>beberapa negara sekaligus</b> (konkuren). Akibatnya: (1) rebutan perkara, (2) risiko pelaku diadili dua kali, atau sebaliknya (3) tidak ada negara yang mau menangani karena biaya besar. Praktiknya, negara berkonsultasi dan biasanya yang paling kuat bukti serta paling dirugikan yang melanjutkan. Prinsip <i>ne bis in idem</i> (tidak dihukum dua kali untuk perbuatan yang sama) berlaku di banyak sistem, tetapi cakupannya antarnegara berbeda-beda.</p></div></details>
+    <details class="acc"><summary>Kasus klasik: Lotus (Mahkamah Internasional Permanen, 1927)</summary><div>
+      <p>Putusan ini sering dikutip sebagai titik awal pembahasan batas yurisdiksi negara dalam hukum internasional (tabrakan kapal di laut lepas yang melibatkan kapal Prancis dan Turki). Intinya yang sering dikutip: negara bebas memperluas wilayah hukumnya kecuali ada larangan hukum internasional, tetapi tidak boleh melaksanakan kekuasaan paksa di wilayah negara lain. Detail ratio decidendi akan diperdalam bila kamu mengambil mata kuliah hukum internasional.</p></div></details>
+  </div>
+
+  <div class="w" data-widget="flash" id="flash1"><span class="w-label">Kartu istilah · Flashcard</span></div>
+</section>
+
+<!-- SEGMEN 3 -->
+<section class="seg" id="s3" data-title="Aktivitas: Peta A-B-C" data-min="30–50" data-dur="20">
+  <div class="seg-head"><div class="num">3</div><h2>Aktivitas: Peta "Pelaku di A, Server di B, Korban di C"</h2><span class="chip act">Aktivitas</span></div>
+
+  <p>Bagian 1: klik satu kartu situasi, lalu klik prinsip yurisdiksi yang paling utama menjadi dasarnya. Tekan <b>Periksa</b> bila semua terisi.</p>
+  <div class="w" data-widget="classify" id="cls1"><span class="w-label">Klasifikasi · Prinsip yurisdiksi</span></div>
+
+  <div class="card">
+    <h3>Peta tiga negara (skenario fiktif)</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Posisi</th><th>Negara</th><th>Dasar yang mungkin dipakai</th><th>Keterbatasan</th></tr>
+      <tr><td><b>Pelaku</b></td><td>A</td><td>Teritorial (perbuatan dilakukan di sana); nasionalitas aktif bila pelaku warga negara A</td><td>Hukum A mungkin belum melarang perbuatan itu (tidak ada <i>dual criminality</i>)</td></tr>
+      <tr><td><b>Server</b></td><td>B</td><td>Teritorial (data dan sistem berada di wilayah B)</td><td>B mungkin tak berminat karena korban dan pelaku bukan warganya; perusahaan hosting tunduk hukum B</td></tr>
+      <tr><td><b>Korban</b></td><td>C</td><td>Efek; nasionalitas pasif bila korban warga C</td><td>C tidak punya kuasa memaksa di A atau B tanpa kerja sama</td></tr>
+    </table></div>
+    <div class="callout"><b class="t">Kunci pemahaman</b>Negara yang <b>paling dirugikan</b> (C) belum tentu negara yang <b>paling mampu bertindak</b> (A atau B). Itulah sebabnya kerja sama internasional menjadi inti penegakan hukum siber.</div>
+  </div>
+
+  <div class="w" data-widget="scenario" id="scn1"><span class="w-label">Simulasi · Skenario fiktif lintas negara</span></div>
+</section>
+
+<!-- SEGMEN 4 -->
+<section class="seg" id="s4" data-title="Instrumen Kerja Sama" data-min="50–70" data-dur="20">
+  <div class="seg-head"><div class="num">4</div><h2>Instrumen Kerja Sama Internasional</h2></div>
+
+  <div class="card">
+    <h3>Budapest Convention (2001) dan Second Additional Protocol (2022)</h3>
+    <p><b>Convention on Cybercrime</b> dari Council of Europe (Dewan Eropa) dibuka untuk penandatanganan di Budapest pada <b>23 November 2001</b> dan berlaku sejak 2004. Meski dibuat di Eropa, konvensi ini <b>terbuka bagi negara non-Eropa</b> dan banyak negara dari berbagai benua menjadi pihak. Fungsinya sebagai kerangka umum agar hukum dan kerja sama antarnegara selaras.</p>
+    <div class="grid2">
+      <div class="mini"><h3>1. Hukum pidana materiil</h3><p>Negara pihak sepakat mengkriminalisasi perbuatan seperti akses ilegal, intersepsi ilegal, gangguan data dan sistem, penyalahgunaan perangkat, pemalsuan dan penipuan terkait komputer, konten eksploitasi anak, dan pelanggaran hak cipta tertentu.</p></div>
+      <div class="mini"><h3>2. Hukum acara</h3><p>Kewenangan menyelidik: perintah pengamanan (<i>preservation</i>) data yang cepat, perintah penyerahan data, penggeledahan dan penyitaan data komputer, serta pengumpulan data waktu nyata.</p></div>
+      <div class="mini"><h3>3. Kerja sama internasional</h3><p>Ketentuan tentang ekstradisi, bantuan hukum timbal balik, dan <b>jaringan kontak 24/7</b> yang siaga setiap saat untuk permintaan cepat antarnegara.</p></div>
+    </div>
+    <p><b>Second Additional Protocol (2022)</b> tentang kerja sama yang diperkuat dan pengungkapan bukti elektronik dibuka untuk penandatanganan pada <b>12 Mei 2022</b>. Secara ringkas, ia menambah alat yang lebih cepat, antara lain permintaan langsung ke penyedia layanan di negara lain untuk informasi pelanggan, bantuan darurat, tim investigasi bersama, dan sidang video.</p>
+    <div class="callout law"><b class="t">Status Indonesia</b>Sepengetahuan penyusun materi, Indonesia bukan pihak Budapest Convention. Karena status ini dapat berubah, <b>verifikasi dosen</b> lewat situs resmi Council of Europe (Treaty Office) sebelum kelas. Hukum nasional Indonesia (UU ITE) dibuat dengan banyak kemiripan konsep tanpa menjadi pihak konvensi.</div>
+  </div>
+
+  <div class="card">
+    <h3>Perangkat kerja sama: siapa mengerjakan apa?</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Instrumen</th><th>Untuk apa</th><th>Ciri penting</th></tr>
+      <tr><td><b>MLA</b> (<i>Mutual Legal Assistance</i>, bantuan timbal balik dalam masalah pidana)</td><td>Meminta negara lain mengumpulkan atau menyerahkan <b>bukti</b> (data pelanggan, log, hasil penggeledahan)</td><td>Resmi, lewat otoritas pusat (di Indonesia diatur UU No. 1 Tahun 2006); akurat tetapi lambat</td></tr>
+      <tr><td><b>Ekstradisi</b></td><td>Menyerahkan <b>orang</b> (tersangka atau terpidana) ke negara yang memintanya</td><td>Diatur perjanjian/hukum nasional (di Indonesia UU No. 1 Tahun 1979); syarat umum <i>dual criminality</i> (perbuatan pidana di kedua negara), <i>specialty</i> (hanya diadili untuk perkara yang diminta), dan sebagian negara tidak menyerahkan warganya sendiri</td></tr>
+      <tr><td><b>INTERPOL</b></td><td>Pertukaran informasi polisi-ke-polisi dan penerbitan notifikasi (mis. <i>Red Notice</i>)</td><td>Bukan "polisi dunia" yang menangkap. Red Notice adalah permintaan kepada negara anggota untuk membantu menemukan dan menahan sementara; bukan surat penangkapan internasional</td></tr>
+      <tr><td><b>Jaringan 24/7</b></td><td>Permintaan cepat: pengamanan data sementara, bantuan teknis</td><td>Informal-cepat; biasanya dilanjutkan dengan MLA resmi untuk memakai data sebagai bukti</td></tr>
+      <tr><td><b>Kerja sama regional (ASEAN)</b></td><td>Koordinasi di kawasan, mis. perjanjian MLA ASEAN (2004) dan deklarasi ASEAN tentang kejahatan siber (2017)</td><td>Lebih longgar daripada konvensi mengikat khusus siber; detail untuk diverifikasi dosen</td></tr>
+    </table></div>
+    <details class="acc"><summary>UN Convention against Cybercrime (diadopsi Majelis Umum PBB, Desember 2024)</summary><div>
+      <p>Konvensi PBB ini adalah perjanjian pertama bertaraf global khusus kejahatan siber di bawah PBB. Cakupannya mencakup kriminalisasi, pengumpulan bukti elektronik, dan kerja sama internasional. Karena dirundingkan oleh hampir semua negara, ia berpotensi memperluas partisipasi dibanding Budapest, tetapi juga menuai kritik dari kelompok HAM tentang perlindungan hak asasi dan cakupan "kejahatan" yang luas.</p>
+      <p><b>Untuk diverifikasi dosen:</b> tanggal penandatanganan, jumlah pihak, status ratifikasi Indonesia, dan apakah sudah berlaku.</p></div></details>
+    <details class="acc"><summary>Mengapa kerja sama sering lambat? (hambatan praktis)</summary><div>
+      <ul><li><b>Birokrasi MLA</b>: permintaan melewati beberapa otoritas dan terjemahan.</li>
+      <li><b>Perbedaan hukum</b>: perbuatan pidana di A belum tentu pidana di B.</li>
+      <li><b>Kedaulatan & politik</b>: negara enggan menyerahkan warga atau data.</li>
+      <li><b>Teknologi</b>: enkripsi, VPN, <i>cloud</i> yang menyimpan data tersebar di banyak negara.</li>
+      <li><b>Hak asasi & privasi</b>: bukti elektronik berisi data pribadi sehingga ada syarat perlindungan.</li></ul></div></details>
+  </div>
+
+  <div class="w" data-widget="classify" id="cls2"><span class="w-label">Klasifikasi · Instrumen kerja sama</span></div>
+  <div class="w" data-widget="flash" id="flash2"><span class="w-label">Kartu istilah · Instrumen</span></div>
+  <div class="w" data-widget="explorer" id="instrumenInternasionalExplorer"><span class="w-label">Jelajahi · Instrumen Hukum Internasional</span></div>
+  <div class="w" data-widget="timeline" id="kerjasamaTimeline"><span class="w-label">Timeline · Perkembangan Hukum Siber Internasional</span></div>
+</section>
+
+<!-- SEGMEN 5 -->
+<section class="seg" id="s5" data-title="Studi Kasus & UU ITE" data-min="70–88" data-dur="18">
+  <div class="seg-head"><div class="num">5</div><h2>Studi Kasus & Pasal 2 UU ITE</h2><span class="chip act">Diskusi</span></div>
+
+  <div class="card">
+    <h3>Jangkauan ekstrateritorial UU ITE</h3>
+    <p>UU ITE tidak hanya berlaku bagi perbuatan di dalam Indonesia. Pasal 2 UU ITE pada intinya menyatakan bahwa undang-undang berlaku bagi setiap orang yang melakukan perbuatan hukum yang diatur dalam UU itu, <b>baik di wilayah Indonesia maupun di luar wilayah Indonesia</b>, yang memiliki akibat hukum di Indonesia dan/atau di luar Indonesia dan <b>merugikan kepentingan Indonesia</b>.</p>
+    <div class="callout law"><b class="t">Dasar hukum (verifikasi dosen)</b>Rumusan Pasal 2 mungkin berubah secara redaksional sejak UU 11/2008, UU 19/2016, dan UU 1/2024. Baca teks resmi terbaru sebelum mengutip kata per kata. Pasal-pasal pidana tentang akses ilegal dan sejenisnya berlaku bersama KUHP; KUHP baru (UU No. 1 Tahun 2023) juga memuat ketentuan tentang ruang berlaku hukum pidana, yang perlu dicek status pemberlakuannya.</div>
+    <p>Dalam kerangka lima prinsip tadi, rumusan ini terutama mencerminkan <b>prinsip efek/perlindungan kepentingan nasional</b>, selain prinsip teritorial. Namun, <b>berwenang mengadili</b> tidak sama dengan <b>mampu menghadirkan pelaku</b>: jika pelaku di luar negeri, Indonesia tetap perlu ekstradisi atau MLA.</p>
+  </div>
+
+  <div class="card">
+    <h3>Studi kasus 1: "Love Bug" (ILOVEYOU), 2000</h3>
+    <p>Pada Mei 2000, <i>worm</i> email bernama ILOVEYOU (Love Bug) menyebar cepat dan merusak sistem di banyak negara. Pelacakan mengarah ke seorang mahasiswa di Filipina. Pada saat itu Filipina belum memiliki hukum yang secara spesifik melarang peretasan, sehingga tuntutan terhadapnya akhirnya gugur. Filipina kemudian mengesahkan undang-undang perdagangan elektronik yang memuat ketentuan pidana siber.</p>
+    <p><b>Pelajaran:</b> korban tersebar di banyak negara, tetapi tanpa hukum pidana di negara pelaku, penegakan terhambat (masalah <i>dual criminality</i>). Hal ini menjadi salah satu alasan dorongan harmonisasi hukum, termasuk lewat Budapest Convention. <small>(Detail tahun dan nama undang-undang untuk diverifikasi dosen dari sumber primer.)</small></p>
+  </div>
+
+  <div class="card">
+    <h3>Studi kasus 2 (skenario fiktif): Toko daring "NusaMart"</h3>
+    <p>Kelompok peretas yang anggotanya berada di Negara A menyusup ke server Negara B tempat toko daring Indonesia "NusaMart" menyimpan database pelanggan, lalu menjual data tersebut ke forum gelap. Sebagian besar korban adalah WNI. Perusahaan hosting di B menyatakan hanya akan menyerahkan data bila ada perintah pengadilan B.</p>
+    <ul>
+      <li>Negara mana yang berwenang menurut tiap prinsip yurisdiksi?</li>
+      <li>Langkah apa yang paling dulu dilakukan untuk menyelamatkan bukti?</li>
+      <li>Apa yang terjadi jika hukum A tidak melarang jual-beli data pribadi?</li>
+      <li>Dari sisi bisnis: apa yang perlu disiapkan NusaMart agar bukti tetap utuh dan kerja sama dengan aparat cepat?</li>
+    </ul>
+  </div>
+
+  <div class="w" data-widget="flow" id="ekstradisiFlow"><span class="w-label">Animasi · Alur Ekstradisi & MLA Cybercrime Lintas Negara</span></div>
+  <div class="w" data-widget="checklist" id="chk1"><span class="w-label">Daftar periksa · Analisis kasus lintas negara</span></div>
+  <div class="w" data-widget="reflect" id="ref1"><span class="w-label">Refleksi tertulis</span></div>
+</section>
+
+<!-- SEGMEN 6 -->
+<section class="seg" id="s6" data-title="Kuis & Penutup" data-min="88–100" data-dur="12">
+  <div class="seg-head"><div class="num">6</div><h2>Kuis Penutup & Rangkuman</h2><span class="chip act">Evaluasi</span></div>
+  <div class="w" data-widget="quiz" id="quiz1"><span class="w-label">Kuis penutup</span></div>
+
+  <div class="card">
+    <h3>Rangkuman 1 menit</h3>
+    <ul>
+      <li>Lima prinsip yurisdiksi: teritorial, nasionalitas aktif, nasionalitas pasif, universal, dan efek.</li>
+      <li>Satu kasus siber sering membuka kewenangan banyak negara sekaligus; wewenang mengadili belum berarti bisa menghadirkan pelaku atau bukti.</li>
+      <li>Budapest Convention (2001) menyelaraskan hukum dan mempercepat kerja sama; Protokol II (2022) menambah alat bukti elektronik.</li>
+      <li>MLA untuk bukti, ekstradisi untuk orang, INTERPOL untuk pertukaran informasi polisi.</li>
+      <li>UU ITE berlaku ekstrateritorial dengan syarat akibat dan kepentingan Indonesia, tetapi tetap bergantung pada kerja sama internasional.</li>
+    </ul>
+    <h3>Tugas mandiri minggu depan</h3>
+    <p>Baca ringkasan tata kelola siber (Pertemuan 14). Sebagai persiapan, cari <b>satu</b> berita kejahatan siber lintas negara yang diumumkan aparat penegak hukum, dan tulis 5–8 kalimat: negara mana yang terlibat, prinsip yurisdiksi apa yang mungkin dipakai, dan instrumen kerja sama apa yang disebut.</p>
+  </div>
+
+  <div class="card refs">
+    <h3>Referensi</h3>
+    <ol>
+      <li>Council of Europe. (2001). <i>Convention on Cybercrime</i> (ETS No. 185). Budapest.</li>
+      <li>Schmitt, M. N. (Ed.). (2017). <i>Tallinn Manual 2.0 on the International Law Applicable to Cyber Operations</i>. Cambridge University Press.</li>
+      <li>Brenner, S. W. (2010). <i>Cybercrime: Criminal Threats from Cyberspace</i>. Praeger.</li>
+      <li>Republik Indonesia. (2024). <i>UU No. 1 Tahun 2024 tentang Perubahan Kedua atas UU No. 11 Tahun 2008 tentang ITE</i>.</li>
+      <li><b>Tambahan:</b> Council of Europe. (2022). <i>Second Additional Protocol to the Convention on Cybercrime on enhanced co-operation and disclosure of electronic evidence</i> (CETS No. 224).</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (1979). <i>UU No. 1 Tahun 1979 tentang Ekstradisi</i>.</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (2006). <i>UU No. 1 Tahun 2006 tentang Bantuan Timbal Balik dalam Masalah Pidana</i>.</li>
+      <li><b>Tambahan:</b> Perserikatan Bangsa-Bangsa. (2024). <i>United Nations Convention against Cybercrime</i> (resolusi Majelis Umum, Desember 2024).</li>
+      <li><b>Tambahan:</b> Permanent Court of International Justice. (1927). <i>S.S. "Lotus" (France v. Turkey)</i>.</li>
+    </ol>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Cek sebelum kelas: (1) bunyi terkini Pasal 2 UU ITE setelah UU 1/2024; (2) status pemberlakuan KUHP baru (UU 1/2023) dan ketentuan ruang berlaku pidana; (3) status Indonesia terhadap Budapest Convention dan Protokol II; (4) status tanda tangan, ratifikasi, dan berlakunya UN Convention against Cybercrime; (5) detail kasus Love Bug dan UU Filipina; (6) rincian instrumen ASEAN dan status ratifikasi Indonesia.</div>
+  </div>
+</section>
+
+<footer>Etika Hukum Cyber · Bisnis Digital · Pertemuan 13 · Materi ini untuk tujuan pendidikan.</footer>
+</main>
+</div>
+
+
+<!-- ===================== DATA HALAMAN ===================== -->
+<script>
+const PAGE = {
+  id: "p13",
+
+  poll1: {
+    q: "Seorang peretas di Negara A membobol server di Negara B dan mencuri data pelanggan sebuah toko daring Indonesia. Menurutmu, negara mana yang paling berhak mengadilinya?",
+    opts: [
+      {t:"Hanya Negara A, tempat pelaku berada", why:"Negara A memang punya dasar kuat (teritorial pelaku), tetapi bukan satu-satunya. Negara lain juga bisa berwenang."},
+      {t:"Hanya Negara B, tempat server berada", why:"B punya dasar teritorial karena sistem berada di wilayahnya, tetapi B bukan satu-satunya yang punya kepentingan."},
+      {t:"Indonesia, karena korbannya orang Indonesia", why:"Indonesia berpotensi punya dasar lewat prinsip efek atau nasionalitas pasif. Namun menangkap pelaku di A tetap perlu kerja sama."},
+      {t:"Beberapa negara sekaligus, tergantung dasar yang dipakai", why:"Paling mendekati praktik: yurisdiksi konkuren. Pertanyaan sebenarnya berpindah dari 'siapa berwenang' ke 'siapa yang paling mampu bertindak dan bagaimana bekerja sama'."}
+    ]
+  },
+
+  flash1: {
+    title: "Uji istilah yurisdiksi (klik kartu untuk membalik)",
+    cards: [
+      {f:"Yurisdiksi", b:"Kewenangan negara untuk mengatur, mengadili, dan menegakkan hukum atas suatu perkara."},
+      {f:"Prinsip teritorial", b:"Negara berwenang atas perbuatan atau akibat yang terjadi di wilayahnya."},
+      {f:"Nasionalitas aktif", b:"Negara berwenang atas warga negaranya yang berbuat di mana pun."},
+      {f:"Nasionalitas pasif", b:"Negara berwenang karena korbannya adalah warga negaranya."},
+      {f:"Prinsip universal", b:"Negara mana pun boleh mengadili kejahatan yang sangat berat bagi kemanusiaan; penerapan pada siber sangat terbatas."},
+      {f:"Prinsip efek", b:"Negara berwenang bila perbuatan di luar negeri menimbulkan akibat nyata di wilayahnya atau merugikan kepentingan vitalnya."},
+      {f:"Yurisdiksi konkuren", b:"Beberapa negara sekaligus punya dasar kewenangan atas perkara yang sama."},
+      {f:"Dual criminality", b:"Perbuatan harus merupakan tindak pidana di kedua negara (syarat umum ekstradisi dan sering untuk MLA)."}
+    ]
+  },
+
+  cls1: {
+    title: "Prinsip yurisdiksi apa yang paling utama menjadi dasarnya? (skenario fiktif)",
+    bins: ["Teritorial", "Nasionalitas aktif", "Nasionalitas pasif", "Efek / perlindungan"],
+    items: [
+      {t:"Peretas membobol server perusahaan yang fisiknya berada di wilayah negara kita.", a:0, why:"Sistem yang diserang berada di wilayah negara: dasar teritorial."},
+      {t:"Seorang WNI yang tinggal di luar negeri menjalankan penipuan investasi daring ke korban di negara lain.", a:1, why:"Yang dipakai adalah kewarganegaraan pelaku, di mana pun ia berbuat."},
+      {t:"Penipu berkewarganegaraan asing menipu mahasiswa Indonesia lewat situs yang diselenggarakan di luar negeri.", a:2, why:"Dasar kepentingan adalah kewarganegaraan korban."},
+      {t:"Serangan dari luar negeri melumpuhkan sistem pembayaran nasional sehingga transaksi di Indonesia berhenti.", a:3, why:"Akibat nyata terjadi di wilayah dan merugikan kepentingan negara."},
+      {t:"Pelaku yang berada di dalam negeri mengirim malware ke komputer korban di luar negeri.", a:0, why:"Perbuatan dilakukan di wilayah negara pelaku: teritorial (sering disebut teritorial subjektif)."},
+      {t:"Warga negara kita yang bekerja di luar negeri menyebarkan data pribadi rekan kerja asing dan dituntut oleh negara asalnya.", a:1, why:"Negara asal menuntut berdasarkan kewarganegaraan pelaku."}
+    ]
+  },
+
+  scn1: {
+    title: "Skenario fiktif: pelaku di A, server di B, korban di C (Indonesia)",
+    start: "n0",
+    nodes: {
+      n0: {text:"Perusahaan e-commerce Indonesia (korban, Negara C) menemukan data 200.000 pelanggannya bocor. Penelusuran awal: serangan berasal dari alamat IP di Negara A, data disimpan di server sewaan di Negara B. Polisi Indonesia ingin segera bertindak. Langkah pertama yang paling masuk akal…",
+        choices:[{t:"Meminta tim siber Indonesia langsung masuk ke server di B untuk menyalin data", to:"n1"},{t:"Mengamankan bukti di sisi sendiri, lalu meminta B mengamankan data sementara lewat jalur kontak cepat (mis. jaringan 24/7 atau INTERPOL)", to:"n2"},{t:"Menunggu sampai pelaku diketahui identitasnya secara pasti baru menghubungi negara lain", to:"n3"}]},
+      n1: {end:true, text:"Hasil: akses langsung ke server di B tanpa izin dapat dianggap melanggar kedaulatan B dan bisa membuat bukti ditolak atau memicu masalah diplomatik. Yurisdiksi eksekutif Indonesia berhenti di perbatasan.",
+        lens:"Kedaulatan: negara tidak boleh melakukan penegakan paksa di wilayah negara lain tanpa persetujuan. Gunakan MLA atau mekanisme kerja sama resmi."},
+      n2: {end:true, text:"Hasil: bukti sementara terjaga, lalu permintaan resmi (MLA) disusun untuk pengambilalihan data. Bila A menahan pelaku, Indonesia dapat mengajukan ekstradisi atau meminta A mengadilinya (dasar nasionalitas atau teritorial pelaku). Prosesnya masih lambat, tetapi bukti tidak hilang.",
+        lens:"Inilah pola ideal: cepat-informal untuk menyelamatkan bukti, lalu resmi untuk menggunakannya di pengadilan. Dasar Indonesia: prinsip efek dan/atau nasionalitas pasif; dasar A: teritorial pelaku; dasar B: teritorial server."},
+      n3: {end:true, text:"Hasil: log di server B ternyata dihapus otomatis setelah 30 hari, sehingga jejak pelaku hilang sebelum permintaan resmi tiba. Kasus macet karena bukti tidak ada.",
+        lens:"Bukti elektronik cepat hilang, karena itu permintaan pengamanan sementara harus dikirim sedini mungkin. Menunggu kepastian justru merugikan."}
+    }
+  },
+
+  cls2: {
+    title: "Instrumen mana untuk kebutuhan apa?",
+    bins: ["Mendapatkan BUKTI/data", "Membawa ORANG (pelaku)", "Koordinasi CEPAT antarpolisi"],
+    items: [
+      {t:"Permintaan resmi ke negara lain untuk menyerahkan log akses server dan data pelanggan (MLA)", a:0, why:"MLA dipakai untuk mengumpulkan atau menyerahkan bukti."},
+      {t:"Permintaan menyerahkan tersangka peretas yang ditahan di luar negeri (ekstradisi)", a:1, why:"Ekstradisi menyangkut orang."},
+      {t:"Kontak jaringan 24/7 untuk meminta pembekuan sementara data sebelum terhapus", a:2, why:"Jaringan 24/7 adalah jalur cepat, lalu dilanjutkan MLA."},
+      {t:"Protokol Kedua Budapest: penyedia layanan di negara lain diminta langsung mengungkap informasi pelanggan", a:0, why:"Alat baru untuk mendapatkan data pelanggan secara lebih cepat."},
+      {t:"Penerbitan Red Notice oleh INTERPOL untuk mencari buronan siber", a:1, why:"Red Notice berkaitan dengan pencarian dan penahanan sementara orang, bukan surat penangkapan internasional."},
+      {t:"Pertukaran informasi intelijen kriminal antara polisi Indonesia dan polisi negara lain lewat INTERPOL", a:2, why:"Fungsi inti INTERPOL: kanal komunikasi polisi antarnegara."}
+    ]
+  },
+
+  flash2: {
+    title: "Uji istilah instrumen kerja sama",
+    cards: [
+      {f:"Budapest Convention (2001)", b:"Konvensi Dewan Eropa tentang kejahatan siber: menyelaraskan hukum pidana, hukum acara, dan kerja sama internasional; terbuka bagi non-Eropa."},
+      {f:"Second Additional Protocol (2022)", b:"Tambahan Budapest untuk bukti elektronik: permintaan langsung ke penyedia, bantuan darurat, tim investigasi bersama."},
+      {f:"MLA", b:"Bantuan timbal balik dalam masalah pidana: negara membantu mengumpulkan dan menyerahkan bukti."},
+      {f:"Ekstradisi", b:"Penyerahan tersangka/terpidana ke negara peminta; syarat umum: dual criminality dan specialty."},
+      {f:"Red Notice INTERPOL", b:"Permintaan kepada negara anggota untuk menemukan dan menahan sementara seseorang; bukan surat penangkapan internasional."},
+      {f:"Jaringan 24/7", b:"Titik kontak yang siaga terus-menerus untuk permintaan cepat, mis. pengamanan data sementara."},
+      {f:"UN Convention against Cybercrime", b:"Konvensi global pertama khusus kejahatan siber di bawah PBB; diadopsi Majelis Umum PBB Desember 2024 (status terbaru: verifikasi dosen)."},
+      {f:"Pasal 2 UU ITE", b:"Berlaku juga bagi perbuatan di luar wilayah Indonesia bila berakibat hukum dan merugikan kepentingan Indonesia (verifikasi dosen)."}
+    ]
+  },
+
+  chk1: {
+    title: "Checklist analisis kasus lintas negara: centang saat kamu sudah memikirkannya",
+    items: [
+      "Di mana pelaku berada, dan apa kewarganegaraannya?",
+      "Di mana server atau data korban disimpan secara fisik?",
+      "Di mana korban berada, dan apa kewarganegaraannya?",
+      "Prinsip yurisdiksi apa yang menjadi dasar tiap negara?",
+      "Apakah perbuatan itu pidana di semua negara yang terlibat (dual criminality)?",
+      "Bukti apa yang perlu diamankan segera, dan lewat jalur apa (24/7, MLA)?",
+      "Apakah perlu ekstradisi, dan apakah negara pelaku bisa menyerahkan warganya?",
+      "Apa risiko hak asasi atau privasi dalam proses pertukaran data?"
+    ],
+    doneMsg: "Daftar periksa lengkap. Kamu siap menganalisis kasus A-B-C secara sistematis."
+  },
+
+  ref1: {
+    title: "Tulis 3–5 kalimat",
+    prompt: "Untuk skenario NusaMart (peretas di Negara A, server di B, korban WNI di Indonesia): pilih dua negara yang paling realistis memimpin penanganan, jelaskan prinsip yurisdiksi yang mereka pakai, dan sebutkan satu hambatan terbesar dalam kerja samanya.",
+    hint: "Tulisan tersimpan otomatis di perangkat ini. Gunakan tombol Salin untuk mengumpulkan ke dosen."
+  },
+
+  quiz1: {
+    title: "Kuis penutup (9 soal)",
+    items: [
+      {q:"Negara menuntut warga negaranya yang melakukan kejahatan siber di luar negeri. Dasarnya adalah prinsip…", o:["Teritorial","Nasionalitas aktif","Nasionalitas pasif","Universal"], a:1, why:"Nasionalitas aktif memakai kewarganegaraan pelaku."},
+      {q:"Negara mengklaim kewenangan karena korban serangan siber adalah warganya. Ini prinsip…", o:["Nasionalitas pasif","Teritorial subjektif","Universal","Nasionalitas aktif"], a:0, why:"Nasionalitas pasif melihat kewarganegaraan korban."},
+      {q:"Mengapa prinsip universal jarang dipakai untuk kejahatan siber biasa seperti penipuan daring?", o:["Karena internet melarangnya","Karena prinsip ini umumnya untuk kejahatan sangat berat (mis. genosida, bajak laut)","Karena hanya berlaku di Eropa","Karena tidak ada korban"], a:1, why:"Prinsip universal dicadangkan bagi kejahatan yang menyangkut seluruh umat manusia."},
+      {q:"Budapest Convention (2001) paling tepat digambarkan sebagai…", o:["Aturan hukum yang mengikat semua negara PBB otomatis","Perjanjian Dewan Eropa tentang kejahatan siber yang terbuka bagi negara non-Eropa","Undang-undang Uni Eropa tentang data pribadi","Perjanjian ekstradisi bilateral"], a:1, why:"Konvensi Dewan Eropa, terbuka bagi negara lain, mengikat negara yang menjadi pihaknya."},
+      {q:"Untuk memperoleh log server di luar negeri secara resmi sebagai bukti, jalur utama yang dipakai adalah…", o:["Red Notice","Ekstradisi","MLA (bantuan timbal balik dalam masalah pidana)","Deklarasi ASEAN"], a:2, why:"MLA adalah instrumen bukti; ekstradisi untuk orang."},
+      {q:"Pernyataan yang benar tentang Red Notice INTERPOL adalah…", o:["Surat penangkapan internasional yang mengikat semua negara","Permintaan kepada negara anggota untuk membantu menemukan dan menahan sementara seseorang","Putusan pengadilan internasional","Sanksi ekonomi terhadap pelaku siber"], a:1, why:"Red Notice bukan surat penangkapan internasional."},
+      {q:"Syarat 'dual criminality' berarti…", o:["Pelaku harus dua orang","Perbuatan harus pidana di negara peminta dan negara diminta","Dua negara mengadili bersamaan","Kasus diadili dua kali"], a:1, why:"Kalau perbuatan tidak dianggap pidana di negara diminta, ekstradisi/MLA bisa ditolak."},
+      {q:"Pasal 2 UU ITE menunjukkan bahwa UU ITE…", o:["Hanya berlaku bagi perbuatan di dalam Indonesia","Dapat berlaku juga bagi perbuatan di luar Indonesia yang berakibat hukum dan merugikan kepentingan Indonesia","Berlaku bagi semua kejahatan siber di dunia","Menggantikan Budapest Convention"], a:1, why:"Jangkauan ekstrateritorial dengan syarat akibat dan kepentingan Indonesia (verifikasi dosen bunyi terbaru)."},
+      {q:"Dalam skenario A-B-C, mengapa berwenang mengadili belum menjamin kasus selesai?", o:["Karena pelaku selalu kebal","Karena penegakan paksa (menangkap, menyita) terbatas di wilayah negara sehingga perlu kerja sama","Karena hukum internasional melarang semua penuntutan","Karena server tidak punya lokasi"], a:1, why:"Yurisdiksi eksekutif dibatasi kedaulatan wilayah; itu sebabnya MLA, ekstradisi, dan kerja sama polisi dibutuhkan."}
+    ]
+  },
+
+  kerjasamaTimeline: {
+    title: "Garis Waktu Perkembangan Hukum Siber Internasional",
+    events: [
+      {
+        when: "1989",
+        icon: "🏛️",
+        title: "G8 Mulai Membahas Cybercrime",
+        text: "Negara-negara G8 mulai mendiskusikan kejahatan yang melibatkan komputer dalam forum internasional. Ini adalah cikal bakal kesadaran bahwa kejahatan siber memerlukan koordinasi lintas negara. Belum ada instrumen mengikat; masih berupa diskusi diplomatik awal yang meletakkan fondasi bagi kerja sama formal berikutnya. Pihak yang terlibat: Amerika Serikat, Inggris, Prancis, Jerman, Italia, Kanada, Jepang, dan kemudian Rusia.",
+        law: "Belum ada instrumen mengikat; tahap diskusi diplomatik G8."
+      },
+      {
+        when: "2001",
+        icon: "📜",
+        title: "Budapest Convention Ditandatangani",
+        text: "Pada 23 November 2001, Convention on Cybercrime (Budapest Convention) dibuka untuk penandatanganan di Budapest oleh Dewan Eropa. Ini adalah instrumen hukum internasional pertama yang khusus mengatur kejahatan siber: mencakup kriminalisasi (4 kategori), hukum acara, dan kerja sama antarnegara. Terbuka bagi negara non-Eropa. Pihak yang terlibat: negara-negara Dewan Eropa dan beberapa negara mitra. Dampak: standar global pertama sebagai acuan harmonisasi hukum siber.",
+        law: "Convention on Cybercrime (ETS No. 185), Dewan Eropa, 23 November 2001."
+      },
+      {
+        when: "2004",
+        icon: "✅",
+        title: "Budapest Convention Berlaku Efektif",
+        text: "Setelah memenuhi jumlah ratifikasi minimum, Budapest Convention mulai berlaku pada 1 Juli 2004. Negara pihak mulai menyelaraskan hukum pidana siber nasional dan membangun jaringan kontak 24/7 untuk permintaan cepat antarnegara. Pihak yang terlibat: negara-negara yang telah meratifikasi (kebanyakan Eropa plus beberapa negara non-Eropa awal). Dampak: kerja sama penegakan hukum siber lintas negara menjadi lebih terstruktur.",
+        law: "Berlaku sejak 1 Juli 2004; mengikat negara-negara yang telah meratifikasi."
+      },
+      {
+        when: "2013",
+        icon: "🖥️",
+        title: "Protokol Tambahan Budapest: Xenofobia Online",
+        text: "Protokol Tambahan Budapest Convention tentang kriminalisasi tindakan rasis dan xenofobik melalui sistem komputer berlaku bagi negara pihaknya. Mewajibkan negara pihak mengkriminalisasi penyebaran kebencian dan ancaman berbasis ras/etnis secara daring. Pihak yang terlibat: negara-negara Dewan Eropa yang meratifikasi. Kontroversi: sejumlah negara (termasuk AS) tidak meratifikasi karena berbenturan dengan prinsip kebebasan berbicara. (Verifikasi dosen: tanggal pasti berlakunya Protokol ini.)",
+        law: "Additional Protocol to the Convention on Cybercrime (ETS No. 189); (Verifikasi dosen: tanggal berlaku dan negara pihak terbaru)."
+      },
+      {
+        when: "2019",
+        icon: "🌏",
+        title: "PBB Mulai Negosiasi Konvensi Siber Global",
+        text: "Majelis Umum PBB membentuk Ad Hoc Committee untuk merundingkan konvensi siber di bawah PBB. Proses berlangsung panjang karena perbedaan mendasar antara negara-negara Barat (menekankan HAM dan privasi) dengan kelompok negara lain (mengutamakan keamanan negara dan kedaulatan digital). Pihak yang terlibat: hampir seluruh 193 anggota PBB. Dampak: membuka jalan bagi instrumen global yang lebih inklusif dari Budapest Convention.",
+        law: "Resolusi Majelis Umum PBB A/RES/74/247 (2019)."
+      },
+      {
+        when: "2021",
+        icon: "🤝",
+        title: "ASEAN Cybersecurity Cooperation Strategy",
+        text: "ASEAN menyepakati ASEAN Cybersecurity Cooperation Strategy 2021-2025 untuk memperkuat kerja sama keamanan siber di kawasan Asia Tenggara. Mencakup berbagi informasi ancaman siber, pengembangan kapasitas, dan respons insiden bersama. Pihak yang terlibat: 10 negara anggota ASEAN termasuk Indonesia. Dampak: meningkatkan koordinasi regional, meski belum setara kekuatan perjanjian mengikat. (Verifikasi dosen: dokumen lengkap dan status implementasi.)",
+        law: "ASEAN Cybersecurity Cooperation Strategy 2021-2025; (Verifikasi dosen: dokumen ASEAN resmi)."
+      },
+      {
+        when: "2024",
+        icon: "🌐",
+        title: "UN Convention against Cybercrime Disepakati",
+        text: "Majelis Umum PBB mengadopsi United Nations Convention against Cybercrime pada Desember 2024 — perjanjian global pertama khusus kejahatan siber di bawah PBB. Berpotensi menjangkau lebih banyak negara dibanding Budapest Convention. Pihak yang terlibat: proses disetujui mayoritas negara anggota PBB. Namun menuai kritik dari lebih dari 100 organisasi HAM atas kekhawatiran privasi dan potensi penyalahgunaan untuk membungkam perbedaan pendapat. (Verifikasi dosen: status penandatanganan, jumlah pihak, dan kapan mulai berlaku.)",
+        law: "Resolusi Majelis Umum PBB, Desember 2024; (Verifikasi dosen: nomor resolusi, status ratifikasi, dan tanggal berlaku.)"
+      }
+    ]
+  },
+
+  ekstradisiFlow: {
+    title: "Animasi Alur Permintaan Ekstradisi & MLA untuk Kasus Cybercrime Lintas Negara",
+    sub: "Ikuti 5 langkah proses kerja sama penegakan hukum internasional: dari terjadinya kejahatan hingga proses hukum di pengadilan.",
+    actors: [
+      {id:"negB", icon:"🏛️", name:"Negara Peminta (Korban)", x:15, y:45, role:"victim", badge:""},
+      {id:"negA", icon:"🏴", name:"Negara Diminta (Pelaku)", x:82, y:45, role:"neutral", badge:""},
+      {id:"interpol", icon:"🔵", name:"INTERPOL", x:50, y:18, role:"neutral", badge:""},
+      {id:"pelaku", icon:"👤", name:"Pelaku Cybercrime", x:82, y:78, role:"attacker", badge:""},
+      {id:"pengadilan", icon:"⚖️", name:"Pengadilan", x:50, y:78, role:"neutral", badge:""}
+    ],
+    zones: [
+      {x:2, y:22, w:33, h:58, label:"Negara B — Korban"},
+      {x:65, y:22, w:33, h:58, label:"Negara A — Pelaku"}
+    ],
+    steps: [
+      {
+        title: "Cybercrime Terjadi",
+        short: "Kejahatan terjadi",
+        text: "Pelaku di Negara A melancarkan serangan siber — mencuri data atau melakukan penipuan daring — dan menimbulkan kerugian pada korban di Negara B. Yurisdiksi tumpang tindih: Negara A berwenang karena perbuatan dilakukan di sana (teritorial), sedangkan Negara B berwenang karena korbannya warganya atau akibat terjadi di sana (nasionalitas pasif/efek).",
+        from: "pelaku", to: "negB",
+        packet: "💥",
+        label: "Serangan siber",
+        set: {pelaku: ["danger","Aktif"], negB: ["warn","Korban"]},
+        risk: "Bukti digital cepat hilang — segera amankan log dan data sebelum terhapus.",
+        law: "Pasal 2 UU ITE: berlaku ekstrateritorial bila merugikan kepentingan Indonesia."
+      },
+      {
+        title: "Permintaan MLA untuk Bukti Digital",
+        short: "MLA dikirim",
+        text: "Negara B mengirim permintaan Mutual Legal Assistance (MLA) secara resmi ke Negara A melalui otoritas pusat masing-masing negara. Permintaan mencakup: log akses server, data pelanggan, rekaman komunikasi, dan identitas pemilik akun. MLA adalah jalur resmi untuk mendapatkan bukti yang dapat diterima di pengadilan. Prosesnya bisa memakan waktu berbulan-bulan. Sambil menunggu, Negara B dapat meminta pengamanan data sementara (preservation) lewat jaringan 24/7.",
+        from: "negB", to: "negA",
+        packet: "📋",
+        label: "Permintaan MLA",
+        set: {negB: ["active","Mengirim MLA"], negA: ["warn","Menerima MLA"]},
+        tip: "Ajukan preservation request (jaringan 24/7) sesegera mungkin sebelum MLA resmi diproses.",
+        law: "Di Indonesia diatur UU No. 1 Tahun 2006 tentang Bantuan Timbal Balik dalam Masalah Pidana."
+      },
+      {
+        title: "INTERPOL Menerbitkan Red Notice",
+        short: "Red Notice INTERPOL",
+        text: "Jika pelaku diketahui identitasnya namun melarikan diri, Negara B meminta INTERPOL menerbitkan Red Notice. Red Notice adalah permintaan kepada 196 negara anggota INTERPOL untuk membantu menemukan dan menahan sementara buronan. Penting: Red Notice BUKAN surat penangkapan internasional. Negara anggota tidak wajib menahan — tergantung hukum nasionalnya. INTERPOL hanya fasilitator, bukan polisi dunia.",
+        from: "negB", to: "interpol",
+        packet: "🔴",
+        label: "Red Notice",
+        set: {interpol: ["active","Red Notice"], negA: ["warn","Waspada"], pelaku: ["danger","Diburu"]},
+        risk: "Red Notice bukan surat penangkapan otomatis — negara anggota tidak wajib menindaklanjuti.",
+        law: "INTERPOL Rules on the Processing of Data; tidak menggantikan kewenangan hukum nasional masing-masing negara anggota."
+      },
+      {
+        title: "Negosiasi Ekstradisi",
+        short: "Negosiasi ekstradisi",
+        text: "Negara B mengajukan permintaan ekstradisi resmi ke Negara A untuk menyerahkan pelaku. Bergantung pada: (1) ada tidaknya perjanjian ekstradisi bilateral; (2) dual criminality — perbuatan harus pidana di kedua negara; (3) beberapa negara tidak menyerahkan warga negaranya sendiri. (Verifikasi dosen: Indonesia memiliki perjanjian ekstradisi dengan negara mana saja — per informasi penyusun antara lain Australia, Malaysia, Filipina, Thailand, Korea Selatan; cek sumber primer untuk daftar dan status terbaru.)",
+        from: "negB", to: "negA",
+        packet: "🤝",
+        label: "Permintaan ekstradisi",
+        set: {negB: ["active","Meminta"], negA: ["warn","Mempertimbangkan"], pelaku: ["warn","Ditahan?"]},
+        risk: "Tanpa perjanjian bilateral, negara bisa menolak ekstradisi atas dasar kedaulatan.",
+        law: "Di Indonesia diatur UU No. 1 Tahun 1979 tentang Ekstradisi; syarat utama: dual criminality dan specialty. Budapest Convention Bab III mengatur kerangka kerja sama."
+      },
+      {
+        title: "Proses Hukum di Negara yang Berwenang",
+        short: "Proses hukum",
+        text: "Setelah pelaku diserahkan atau diadili di negaranya, proses hukum berjalan di pengadilan negara yang berwenang. Negara dengan bukti paling kuat dan kerugian terbesar biasanya memimpin penuntutan. Prinsip specialty: pelaku hanya diadili untuk perkara yang menjadi dasar permintaan ekstradisi, tidak boleh diperluas seenaknya. Putusan memberi keadilan bagi korban di Negara B dan menjadi preseden untuk kerja sama serupa.",
+        from: ["negA","negB"], to: "pengadilan",
+        packet: "⚖️",
+        label: "Penyerahan kasus",
+        set: {pelaku: ["lock","Diadili"], pengadilan: ["safe","Bersidang"], negB: ["safe","Keadilan"], negA: ["safe","Patuh"]},
+        tip: "Negara dengan bukti terkuat dan kerugian terbesar biasanya memimpin penuntutan.",
+        law: "Budapest Convention Bab III (Pasal 23-35): kerja sama internasional — ekstradisi dan bantuan timbal balik."
+      }
+    ],
+    outcome: "Proses ekstradisi dan MLA lengkap bisa memakan waktu 1-3 tahun. Kunci keberhasilan: perjanjian bilateral yang kuat, harmonisasi hukum (dual criminality terpenuhi), dan pengamanan bukti digital sejak dini."
+  },
+
+  instrumenInternasionalExplorer: {
+    title: "Jelajahi Instrumen Hukum Internasional Cybercrime",
+    intro: "Klik setiap kartu untuk memahami instrumen hukum internasional yang mengatur kejahatan siber lintas negara.",
+    items: [
+      {
+        id: "budapest",
+        icon: "📜",
+        name: "Budapest Convention",
+        tag: "Perjanjian Dewan Eropa 2001",
+        summary: "Convention on Cybercrime (Budapest Convention) adalah instrumen hukum internasional pertama yang secara khusus mengatur kejahatan siber. Dibuat oleh Dewan Eropa, dibuka untuk penandatanganan pada 23 November 2001 di Budapest, dan terbuka bagi negara non-Eropa. Menjadi standar global de facto untuk harmonisasi hukum siber antarnegara.",
+        how: [
+          "Kategori 1 — Kerahasiaan, integritas, ketersediaan sistem: akses ilegal, intersepsi ilegal, gangguan data, gangguan sistem, penyalahgunaan perangkat",
+          "Kategori 2 — Kejahatan terkait komputer: pemalsuan dan penipuan komputer",
+          "Kategori 3 — Kejahatan terkait konten: materi eksploitasi seksual anak",
+          "Kategori 4 — Pelanggaran terkait hak cipta dan hak terkait",
+          "Hukum acara: perintah pengamanan data (preservation), perintah penyerahan data, penggeledahan dan penyitaan sistem, pengumpulan data lalu lintas real-time",
+          "Kerja sama internasional: ekstradisi, MLA, jaringan kontak 24/7 siaga setiap saat"
+        ],
+        ex: "Kasus Love Bug (2000) menunjukkan dampak ketiadaan harmonisasi: pelaku di Filipina tidak bisa dituntut karena Filipina belum memiliki hukum yang melarang perbuatan itu. Budapest Convention mendorong semua negara pihak mengkriminalisasi perbuatan serupa agar syarat dual criminality terpenuhi dalam kerja sama.",
+        impact: "Lebih dari 60 negara telah meratifikasi atau mengaksesi Budapest Convention (Verifikasi dosen: jumlah terbaru di situs Treaty Office Dewan Eropa). Posisi Indonesia: sepengetahuan penyusun, Indonesia bukan pihak Budapest Convention, namun UU ITE memiliki banyak kemiripan konsep. (Verifikasi dosen: status resmi dan apakah ada proses aksesi yang sedang berjalan.)",
+        law: [
+          "ETS No. 185, Dewan Eropa, dibuka 23 November 2001, berlaku 1 Juli 2004",
+          "Second Additional Protocol (CETS No. 224, 2022): memperkuat kerja sama dan pengungkapan bukti elektronik lintas batas"
+        ],
+        prev: [
+          "Negara pihak wajib mengkriminalisasi 4 kategori kejahatan siber dalam hukum nasionalnya",
+          "Negara pihak wajib membangun jaringan kontak 24/7 untuk permintaan darurat antarnegara",
+          "Negara non-pihak dapat mengajukan aksesi melalui Sekretaris Jenderal Dewan Eropa"
+        ]
+      },
+      {
+        id: "mla",
+        icon: "📋",
+        name: "Mutual Legal Assistance (MLA)",
+        tag: "Bantuan Timbal Balik Pidana",
+        summary: "Mutual Legal Assistance (MLA) atau Bantuan Timbal Balik dalam Masalah Pidana adalah mekanisme resmi antarnegara untuk saling membantu dalam pengumpulan, pertukaran bukti, dan tindakan hukum lainnya dalam penuntutan pidana. MLA adalah instrumen utama untuk mendapatkan bukti digital dari luar negeri secara resmi dan dapat diterima di pengadilan.",
+        how: [
+          "Negara peminta mengajukan permintaan resmi tertulis kepada otoritas pusat negara diminta",
+          "Permintaan mencakup: deskripsi perkara, jenis bukti yang dibutuhkan, dasar hukum, dan jaminan penggunaan",
+          "Otoritas pusat negara diminta meneruskan ke aparat penegak hukum dan pengadilan setempat",
+          "Jenis bantuan yang bisa diminta: penyerahan dokumen dan data elektronik, log server, penangkapan atau penahanan sementara tersangka, pembekuan atau penyitaan aset kejahatan, pengambilan keterangan saksi",
+          "Hasil diserahkan kembali ke negara peminta melalui jalur diplomatik atau otoritas pusat"
+        ],
+        ex: "Dalam kasus cybercrime: Indonesia dapat meminta log akses server dari perusahaan cloud di negara lain lewat MLA bilateral. Sebaliknya, negara lain dapat meminta rekaman transaksi digital dari Indonesia. MLA sering didahului permintaan preservation (pengamanan sementara) melalui jaringan 24/7 yang lebih cepat.",
+        impact: "Kelemahan MLA: prosesnya lambat (bisa berbulan-bulan), birokrasi panjang, memerlukan terjemahan dokumen resmi, dan bergantung pada ada tidaknya perjanjian bilateral. Namun bukti yang diperoleh melalui MLA memiliki dasar hukum kuat dan dapat diterima di pengadilan.",
+        law: [
+          "Di Indonesia diatur UU No. 1 Tahun 2006 tentang Bantuan Timbal Balik dalam Masalah Pidana",
+          "Perjanjian MLA bilateral Indonesia dengan berbagai negara (Verifikasi dosen: daftar dan status terbaru)",
+          "Perjanjian MLA ASEAN (2004) di tingkat kawasan Asia Tenggara"
+        ],
+        prev: [
+          "Segera ajukan permintaan pengamanan data (preservation request) sebelum log server dihapus — ini lebih cepat dari MLA penuh",
+          "Gunakan jaringan 24/7 Budapest Convention untuk permintaan cepat, lalu lanjutkan dengan MLA resmi",
+          "Pastikan syarat dual criminality terpenuhi agar permintaan tidak ditolak oleh negara diminta"
+        ]
+      },
+      {
+        id: "interpol",
+        icon: "🔵",
+        name: "INTERPOL & Red Notice",
+        tag: "Organisasi Polisi Internasional",
+        summary: "INTERPOL (International Criminal Police Organization) adalah organisasi yang memfasilitasi kerja sama kepolisian antarnegara, beranggotakan 196 negara. INTERPOL BUKAN polisi dunia yang punya kewenangan menangkap — ia adalah kanal komunikasi dan basis data bersama bagi kepolisian negara-negara anggota.",
+        how: [
+          "INTERPOL menyediakan basis data kriminal yang dapat diakses polisi seluruh dunia (I-24/7 secure network)",
+          "Red Notice: permintaan kepada negara anggota untuk menemukan dan menahan sementara buronan internasional",
+          "Orange Notice: peringatan tentang ancaman, senjata, atau bahan berbahaya",
+          "Purple Notice: informasi tentang modus operandi kejahatan untuk berbagi intelijen",
+          "INTERPOL Cybercrime Directorate berkoordinasi dengan kepolisian negara anggota untuk memburu pelaku siber transnasional",
+          "Operasi terkoordinasi (mis. Operation HAECHI) membongkar jaringan penipuan daring lintas negara"
+        ],
+        ex: "Contoh penerapan: pelaku ransomware yang bersembunyi di suatu negara dapat diinformasikan lewat Red Notice sehingga polisi setempat mengetahui keberadaannya dan dapat menahan sementara sambil menunggu proses ekstradisi dari negara yang memintanya.",
+        impact: "Batasan INTERPOL: (1) tidak punya polisi sendiri — hanya fasilitator; (2) negara anggota tidak wajib menindaklanjuti Red Notice; (3) INTERPOL dilarang terlibat dalam kasus bermotif politik, militer, agama, atau rasial; (4) ada risiko penyalahgunaan Red Notice oleh pemerintah otoriter untuk memburu aktivis dan jurnalis.",
+        law: [
+          "INTERPOL Constitution dan Rules on the Processing of Data",
+          "Red Notice bukan surat penangkapan internasional — tidak mengikat secara hukum",
+          "Negara anggota bertindak berdasarkan hukum nasional masing-masing setelah menerima Red Notice"
+        ],
+        prev: [
+          "Laporkan kasus ke INTERPOL National Central Bureau (NCB) di negara masing-masing",
+          "Verifikasi Red Notice yang valid lewat kanal resmi — hindari informasi dari sumber tidak resmi",
+          "Pahami batasan: INTERPOL hanya fasilitator, bukan pelaksana penangkapan; tindak lanjut tergantung hukum dan kemauan negara setempat"
+        ]
+      },
+      {
+        id: "unconvention",
+        icon: "🌐",
+        name: "UN Convention against Cybercrime 2024",
+        tag: "Konvensi PBB Global",
+        summary: "United Nations Convention against Cybercrime adalah perjanjian pertama tingkat global khusus kejahatan siber di bawah PBB, diadopsi oleh Majelis Umum PBB pada Desember 2024. Proses negosiasinya berlangsung panjang sejak 2019 karena perbedaan mendasar antara negara-negara Barat yang memprioritaskan HAM dan privasi, dengan kelompok negara lain yang lebih mengutamakan keamanan negara.",
+        how: [
+          "Kriminalisasi: mewajibkan negara pihak mengkriminalisasi kejahatan siber inti seperti akses ilegal, intersepsi, gangguan data dan sistem",
+          "Bukti elektronik: mengatur pengumpulan, pengamanan, dan pertukaran bukti digital antarnegara",
+          "Kerja sama internasional: mekanisme MLA dan ekstradisi yang disesuaikan untuk kasus siber",
+          "Cakupan lebih luas dari Budapest: berpotensi menjangkau negara-negara berkembang yang belum meratifikasi Budapest Convention",
+          "Kontroversi: cakupan kejahatan yang luas dinilai dapat digunakan membatasi kebebasan berekspresi dan privasi digital"
+        ],
+        ex: "Lebih dari 100 organisasi masyarakat sipil dan perusahaan teknologi menyatakan keprihatinan bahwa konvensi ini dapat digunakan negara otoriter untuk mengkriminalisasi jurnalis, aktivis, dan peneliti keamanan siber atas nama penanganan kejahatan siber.",
+        impact: "Potensi dampak positif: harmonisasi hukum siber global yang lebih inklusif dan partisipasi lebih banyak negara dibanding Budapest Convention. Dampak negatif yang dikhawatirkan: risiko penyalahgunaan untuk surveillance dan penindasan perbedaan pendapat. (Verifikasi dosen: status ratifikasi, kapan berlaku, dan posisi serta rencana Indonesia.)",
+        law: [
+          "Resolusi Majelis Umum PBB, Desember 2024 (Verifikasi dosen: nomor resolusi lengkap)",
+          "Proses aksesi dan ratifikasi masih berjalan (Verifikasi dosen: status terbaru dan negara pihak)",
+          "Hubungan dengan Budapest Convention: bukan pengganti, melainkan instrumen tambahan yang lebih universal"
+        ],
+        prev: [
+          "Ikuti perkembangan ratifikasi dan implementasi di negara-negara kunci termasuk Indonesia",
+          "Pantau perkembangan aturan pelaksanaan yang akan mempengaruhi praktik penegakan hukum",
+          "Perhatikan safeguards HAM yang dibangun ke dalam konvensi dan bagaimana implementasinya"
+        ]
+      }
+    ]
+  }
+};
+</script>
+
+<!-- ===== [SHARED:JS] — jangan ubah blok ini antar pertemuan ===== -->
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const K=PAGE.id+":";
+const store={get(k,d){try{const v=localStorage.getItem(K+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(K+k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const widgets=$$(".w[data-widget]"); const done=new Set(store.get("done",[]));
+function markDone(id){done.add(id);store.set("done",[...done]);const el=$("#"+id);if(el)el.classList.add("done");updateProgress()}
+function updateProgress(){const p=widgets.length?Math.round(done.size/widgets.length*100):0;$("#pbar").style.width=p+"%";$("#ppct").textContent=p+"%"}
+const body=(el)=>{const d=document.createElement("div");d.className="wb";el.appendChild(d);return d};
+
+/* ---------- Poll ---------- */
+function poll(el,c){const b=body(el);const saved=store.get(el.id,null);
+  b.innerHTML=`<h3>${esc(c.q)}</h3><div class="opts"></div><div class="fb"></div>`;
+  const o=$(".opts",b),fb=$(".fb",b);
+  c.opts.forEach((x,i)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=x.t;bt.onclick=()=>pick(i);o.appendChild(bt)});
+  function pick(i){$$(".opt",o).forEach((e,j)=>e.classList.toggle("sel",i===j));fb.className="fb show ok";fb.innerHTML="<b>Insight:</b> "+esc(c.opts[i].why);store.set(el.id,i);markDone(el.id)}
+  if(saved!==null)pick(saved)}
+
+/* ---------- Checklist ---------- */
+function checklist(el,c){const b=body(el);const st=store.get(el.id,[]);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="ckl"></div><div class="fb"></div>`;
+  const box=$(".ckl",b),fb=$(".fb",b);
+  c.items.forEach((t,i)=>{const l=document.createElement("label");l.innerHTML=`<input type="checkbox"><span>${esc(t)}</span>`;const cb=$("input",l);cb.checked=st.includes(i);cb.onchange=chk;box.appendChild(l)});
+  function chk(){const v=$$("input",box).map((x,i)=>x.checked?i:-1).filter(i=>i>=0);store.set(el.id,v);if(v.length===c.items.length){fb.className="fb show ok";fb.textContent=c.doneMsg||"Selesai.";markDone(el.id)}else fb.className="fb"}
+  chk()}
+
+/* ---------- Flashcards ---------- */
+function flash(el,c){const b=body(el);let i=0;const known=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="flash"><div class="flash-in"><div class="face f"></div><div class="face b"></div></div></div>
+  <div class="fc-ctl"><button class="btn ghost" data-a="prev">‹ Sebelumnya</button><span class="cnt"></span><button class="btn ghost" data-a="next">Berikutnya ›</button><button class="btn" data-a="know">Saya paham ✓</button></div>`;
+  const fl=$(".flash",b);
+  function draw(){const x=c.cards[i];$(".f",b).textContent=x.f;$(".b",b).textContent=x.b;fl.classList.remove("flip");$(".cnt",b).textContent=`${i+1}/${c.cards.length} · paham ${known.size}`}
+  fl.onclick=()=>fl.classList.toggle("flip");
+  b.onclick=e=>{const a=e.target.dataset.a;if(!a)return;if(a==="next")i=(i+1)%c.cards.length;if(a==="prev")i=(i-1+c.cards.length)%c.cards.length;if(a==="know"){known.add(i);store.set(el.id,[...known]);if(known.size===c.cards.length)markDone(el.id);i=(i+1)%c.cards.length}draw()};
+  draw();if(known.size===c.cards.length)markDone(el.id)}
+
+/* ---------- Classify ---------- */
+function classify(el,c){const b=body(el);let pick=null;const asg={};
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="cls-pool"></div><div class="cls-bins"></div>
+  <p><button class="btn" data-a="chk">Periksa</button> <button class="btn ghost" data-a="rst">Ulangi</button> <span class="score"></span></p><div class="fb"></div>`;
+  const pool=$(".cls-pool",b),bins=$(".cls-bins",b),fb=$(".fb",b);
+  c.bins.forEach((n,bi)=>{const d=document.createElement("div");d.className="bin";d.tabIndex=0;d.dataset.b=bi;d.innerHTML=`<h4>${esc(n)}</h4>`;bins.appendChild(d)});
+  function render(){pool.innerHTML="";$$(".bin .cls-item",bins).forEach(e=>e.remove());
+    c.items.forEach((x,i)=>{const e=document.createElement("button");e.className="cls-item";e.textContent=x.t;e.dataset.i=i;
+      if(pick===i)e.classList.add("pick");
+      if(asg[i]!==undefined)$$(".bin",bins)[asg[i]].appendChild(e);else pool.appendChild(e)})}
+  b.onclick=e=>{const it=e.target.closest(".cls-item");const bin=e.target.closest(".bin");const a=e.target.dataset.a;
+    if(a==="rst"){for(const k in asg)delete asg[k];pick=null;fb.className="fb";$(".score",b).textContent="";render();return}
+    if(a==="chk"){if(Object.keys(asg).length<c.items.length){fb.className="fb show";fb.textContent="Tempatkan semua kartu terlebih dahulu.";return}
+      let s=0,html="<ul>";c.items.forEach((x,i)=>{const ok=asg[i]===x.a;if(ok)s++;html+=`<li>${ok?"✓":"✗"} <b>${esc(x.t)}</b> → <em>${esc(c.bins[x.a])}</em>. ${esc(x.why)}</li>`});html+="</ul>";
+      $$(".cls-item",b).forEach(el2=>{el2.classList.add(asg[el2.dataset.i]===c.items[el2.dataset.i].a?"right":"wrong")});
+      $(".score",b).textContent=`Skor ${s}/${c.items.length}`;fb.className="fb show ok";fb.innerHTML=html;markDone(el.id);return}
+    if(it&&(pool.contains(it)||bins.contains(it))){const i=+it.dataset.i;if(asg[i]!==undefined&&!bin){delete asg[i]}pick=i;render();return}
+    if(bin&&pick!==null){asg[pick]=+bin.dataset.b;pick=null;render()}};
+  render()}
+
+/* ---------- Scenario ---------- */
+function scenario(el,c){const b=body(el);
+  function show(id){const n=c.nodes[id];
+    b.innerHTML=`<h3>${esc(c.title)}</h3><p class="scn-text">${esc(n.text)}</p>`;
+    if(n.end){b.insertAdjacentHTML("beforeend",`<div class="scn-end"><b>Tinjauan 3 kacamata:</b> ${esc(n.lens)}</div><p><button class="btn ghost">Coba jalur lain</button></p>`);$(".btn",b).onclick=()=>show(c.start);markDone(el.id)}
+    else{const o=document.createElement("div");o.className="opts";n.choices.forEach(ch=>{const x=document.createElement("button");x.className="opt";x.textContent=ch.t;x.onclick=()=>show(ch.to);o.appendChild(x)});b.appendChild(o)}}
+  show(c.start)}
+
+/* ---------- Reflection ---------- */
+function reflect(el,c){const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt)}</p><textarea placeholder="Tulis di sini…"></textarea><p><small>${esc(c.hint||"")}</small></p><p><button class="btn" data-a="cp">Salin jawaban</button> <span class="cnt"></span></p>`;
+  const ta=$("textarea",b);ta.value=store.get(el.id,"");
+  const upd=()=>{const n=ta.value.trim().split(/\s+/).filter(Boolean).length;$(".cnt",b).textContent=n+" kata";if(n>=15)markDone(el.id)};
+  ta.oninput=()=>{store.set(el.id,ta.value);upd()};
+  $("[data-a=cp]",b).onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText(ta.value).then(()=>{e.target.textContent="Tersalin ✓";setTimeout(()=>e.target.textContent="Salin jawaban",1500)})};
+  upd()}
+
+/* ---------- Quiz ---------- */
+function quiz(el,c){const b=body(el);const ans=[];let i=0;
+  function show(){if(i>=c.items.length)return fin();const x=c.items[i];
+    b.innerHTML=`<h3>${esc(c.title)} · ${i+1}/${c.items.length}</h3><p><b>${esc(x.q)}</b></p><div class="opts"></div><div class="fb"></div><p><button class="btn" disabled>Lanjut ›</button></p>`;
+    const o=$(".opts",b),fb=$(".fb",b),nx=$(".btn",b);
+    x.o.forEach((t,j)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=t;bt.onclick=()=>{if(ans[i]!==undefined)return;ans[i]=j;$$(".opt",o).forEach((e,k)=>{if(k===x.a)e.classList.add("right");else if(k===j)e.classList.add("wrong")});fb.className="fb show "+(j===x.a?"ok":"");fb.innerHTML=(j===x.a?"<b>Benar.</b> ":"<b>Belum tepat.</b> ")+esc(x.why);nx.disabled=false;nx.textContent=i===c.items.length-1?"Lihat skor":"Lanjut ›"};o.appendChild(bt)});
+    nx.onclick=()=>{i++;show()}}
+  function fin(){const s=c.items.filter((x,k)=>ans[k]===x.a).length;const p=Math.round(s/c.items.length*100);
+    store.set(el.id+":score",p);
+    b.innerHTML=`<h3>Hasil kuis</h3><p class="score">${s}/${c.items.length} (${p}%)</p><p>${p>=80?"Sangat baik. Pemahamanmu kuat.":p>=60?"Cukup. Ulas butir yang salah.":"Perlu ulang. Baca kembali segmen 2–4."}</p><p><button class="btn ghost">Ulangi kuis</button></p>`;
+    $(".btn",b).onclick=()=>{ans.length=0;i=0;show()};markDone(el.id)}
+  show()}
+
+const R={poll,checklist,flash,classify,scenario,reflect,quiz};
+window.EHC={$,$$,store,esc,markDone,body};
+widgets.forEach(el=>{const t=el.dataset.widget;if(R[t]&&PAGE[el.id])R[t](el,PAGE[el.id]);if(done.has(el.id))el.classList.add("done")});
+updateProgress();
+
+/* ---------- Agenda & scrollspy ---------- */
+const ag=$("#agenda");const segs=$$(".seg");
+segs.forEach((s,i)=>{const a=document.createElement("a");a.href="#"+s.id;a.innerHTML=`${esc(s.dataset.title)}`;ag.appendChild(a)});
+const links=$$("a",ag);
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}})},{rootMargin:"-30% 0px -60% 0px"});
+segs.forEach(s=>io.observe(s));
+
+})();
+</script>
+<!-- ===== [/SHARED:JS] ===== -->
+<script>
+/* ===== [SHARED:VIZ-JS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+(function(){
+"use strict";
+const E=window.EHC; if(!E){return}
+const {$,$$,store,esc,markDone,body}=E;
+const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+const arr=x=>x==null?[]:Array.isArray(x)?x:[x];
+const list=(a,tag="ul")=>`<${tag}>${arr(a).map(x=>`<li>${esc(x)}</li>`).join("")}</${tag}>`;
+
+/* =============== FLOW: animasi alur proses antar aktor =============== */
+/* cfg: {title, sub, actors:[{id,icon,name,x,y,role,state,badge}], zones:[{x,y,w,h,label}],
+         steps:[{title,text,from,to,packet,label,count,bad,set:{id:'safe|warn|danger|lock|active'|['danger','teks']},law,tip,risk}], outcome} */
+function flow(el,c,opt){
+  opt=opt||{};const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title||"")}</h3>${c.sub?`<p>${esc(c.sub)}</p>`:""}
+  <div class="v-stage"><svg class="v-lines" viewBox="0 0 100 100" preserveAspectRatio="none"></svg><div class="v-layer"></div></div>
+  <div class="v-ctl"><button class="btn ghost" data-a="rs" title="Ulang dari awal">Ulang</button><button class="btn ghost" data-a="pv">‹ Mundur</button><button class="btn" data-a="pl">Putar otomatis</button><button class="btn ghost" data-a="nx">Lanjut ›</button>
+  <label>Kecepatan <select data-a="sp"><option value="1.6">Lambat</option><option value="1" selected>Normal</option><option value="0.6">Cepat</option></select></label></div>
+  <div class="v-rail"></div><div class="v-cap" aria-live="polite"></div>`;
+  const stage=$(".v-stage",b),svg=$(".v-lines",b),layer=$(".v-layer",b),rail=$(".v-rail",b),cap=$(".v-cap",b),play=$("[data-a=pl]",b);
+  const A={},pos={};
+  (c.zones||[]).forEach(z=>{const d=document.createElement("div");d.className="v-zone";d.style.cssText=`left:${z.x}%;top:${z.y}%;width:${z.w}%;height:${z.h}%`;d.textContent=z.label||"";layer.appendChild(d)});
+  c.actors.forEach(a=>{pos[a.id]=a;const d=document.createElement("div");d.className="v-actor r-"+(a.role||"neutral");d.style.cssText=`left:${a.x}%;top:${a.y}%`;
+    d.innerHTML=`<div class="v-ico">${a.icon}</div><div class="v-name">${esc(a.name)}</div><div class="v-badge"></div>`;layer.appendChild(d);A[a.id]=d});
+  const seenPairs=new Set(),L={};
+  c.steps.forEach(s=>arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const k=f+">"+t;if(f===t||seenPairs.has(k))return;seenPairs.add(k);
+    const ln=document.createElementNS("http://www.w3.org/2000/svg","line");ln.setAttribute("x1",pos[f].x);ln.setAttribute("y1",pos[f].y);ln.setAttribute("x2",pos[t].x);ln.setAttribute("y2",pos[t].y);svg.appendChild(ln);L[k]=ln})));
+  c.steps.forEach((s,i)=>{const r=document.createElement("button");r.textContent=`${i+1}. ${s.short||s.title}`;r.onclick=()=>{halt();go(i,true)};rail.appendChild(r)});
+  let cur=-1,tm=[],auto=false,max=-1,sp=1;
+  const T=(fn,ms)=>{const id=setTimeout(fn,ms);tm.push(id);return id};
+  const clr=()=>{tm.forEach(clearTimeout);tm=[];$$(".v-packet",layer).forEach(p=>p.remove())};
+  function states(i){
+    c.actors.forEach(a=>setSt(a.id,a.state||"",a.badge||""));
+    for(let k=0;k<=i;k++){const st=c.steps[k].set||{};for(const id in st){const v=st[id];Array.isArray(v)?setSt(id,v[0],v[1]||""):setSt(id,v,"")}}}
+  function setSt(id,s,badge){const d=A[id];if(!d)return;d.className=d.className.replace(/\bs-\w+/g,"").trim();if(s)d.classList.add("s-"+s);$(".v-badge",d).textContent=badge}
+  function fire(s){
+    const dur=reduce?1:900*sp,n=s.count||1;let d=0;
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{ if(f===t)return;
+      for(let k=0;k<n;k++){T(()=>{const a=pos[f],z=pos[t],p=document.createElement("div");p.className="v-packet";p.style.cssText=`left:${a.x}%;top:${a.y}%;--dur:${dur}ms`;
+        p.innerHTML=(s.packet||"✉️")+(s.label&&k===0?`<span class="v-plabel">${esc(s.label)}</span>`:"");layer.appendChild(p);void p.offsetWidth;
+        p.style.left=z.x+"%";p.style.top=z.y+"%";T(()=>{p.style.opacity=0;T(()=>p.remove(),320)},dur)},d+k*240*sp)}
+      d+=90*sp}));
+    return dur+(n-1)*240*sp+d}
+  function go(i,animate){
+    if(i<0||i>=c.steps.length)return;clr();cur=i;max=Math.max(max,i);const s=c.steps[i];
+    states(i-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const l=L[f+">"+t];if(l){l.classList.add("on");if(s.bad)l.classList.add("bad")}}));
+    arr(s.from).forEach(f=>{A[f]&&A[f].classList.add("s-active")});
+    const after=animate?fire(s):0;
+    T(()=>{states(i);arr(s.from).forEach(f=>{});},animate?Math.min(after,1100*sp):0);
+    $$("button",rail).forEach((r,k)=>{r.classList.toggle("on",k===i);r.classList.toggle("seen",k<i||k<=max&&k!==i)});
+    cap.innerHTML=`<span class="v-num">Langkah ${i+1} / ${c.steps.length}</span><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p>`
+      +((s.law||s.tip||s.risk)?`<div class="v-chips">${s.risk?`<span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span>`:""}${s.law?`<span class="v-chip law"><b>Dasar hukum</b>${esc(s.law)}</span>`:""}${s.tip?`<span class="v-chip tip"><b>Tips</b>${esc(s.tip)}</span>`:""}</div>`:"")
+      +(i===c.steps.length-1&&c.outcome?`<div class="v-outcome">${esc(c.outcome)}</div>`:"");
+    if(i===c.steps.length-1&&!opt.silent)markDone(el.id);
+    return after}
+  function halt(){auto=false;play.textContent="Putar otomatis"}
+  function step(){if(!auto)return;if(cur>=c.steps.length-1){halt();return}const after=go(cur+1,true);T(step,after+2600*sp)}
+  b.addEventListener("click",e=>{const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==="rs"){halt();clr();cur=-1;states(-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));$$("button",rail).forEach(r=>r.className="");cap.innerHTML="<span class=\"v-num\">Siap</span><h4>Tekan “Putar otomatis” atau “Lanjut”</h4><p>Setiap langkah menampilkan apa yang terjadi, dasar hukumnya, dan cara memutus rantainya.</p>"}
+    if(a==="nx"){halt();go(Math.min(cur+1,c.steps.length-1),true)}
+    if(a==="pv"){halt();go(Math.max(cur-1,0),false)}
+    if(a==="pl"){if(auto){halt();return}auto=true;play.textContent="Jeda";if(cur>=c.steps.length-1){cur=-1}step()}
+  });
+  $("[data-a=sp]",b).onchange=e=>{sp=+e.target.value};
+  b.querySelector("[data-a=rs]").click();
+}
+
+/* =============== EXPLORER: peta jenis / konsep dengan detail =============== */
+/* cfg: {title, intro, items:[{id,icon,name,tag,summary,how[],ex,impact,law,prev[],flow:'kunciFlow'}]} */
+function explorer(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3>${c.intro?`<p>${esc(c.intro)}</p>`:""}<div class="v-grid"></div><div class="v-detail-wrap"><p class="v-hintp"><em>Klik salah satu kartu untuk membuka penjelasan, contoh, dasar hukum, dan cara pencegahannya.</em></p></div>`;
+  const grid=$(".v-grid",b),wrap=$(".v-detail-wrap",b);
+  c.items.forEach((it,i)=>{const t=document.createElement("button");t.className="v-tile"+(seen.has(i)?" seen":"");t.innerHTML=`<span class="ic">${it.icon}</span><b>${esc(it.name)}</b><small>${esc(it.tag||"")}</small>`;t.onclick=()=>open(i);grid.appendChild(t)});
+  function open(i,tab){const it=c.items[i];seen.add(i);store.set(el.id,[...seen]);
+    $$(".v-tile",grid).forEach((t,k)=>{t.classList.toggle("sel",k===i);if(seen.has(k))t.classList.add("seen")});
+    const tabs=[["ap","Apa itu",true],["how","Cara kerja",it.how],["ex","Contoh",it.ex],["im","Dampak",it.impact],["law","Dasar hukum",it.law],["pv","Pencegahan",it.prev]].filter(x=>x[2]);
+    tab=tab||"ap";
+    const pane={ap:()=>`<p>${esc(it.summary)}</p>`,how:()=>list(it.how,"ol"),ex:()=>Array.isArray(it.ex)?list(it.ex):`<p>${esc(it.ex)}</p>`,im:()=>Array.isArray(it.impact)?list(it.impact):`<p>${esc(it.impact)}</p>`,law:()=>Array.isArray(it.law)?list(it.law):`<p>${esc(it.law)}</p>`,pv:()=>list(it.prev)};
+    wrap.innerHTML=`<div class="v-detail"><h3><span style="font-size:1.8rem">${it.icon}</span>${esc(it.name)}</h3><div class="v-tabs">${tabs.map(t=>`<button data-t="${t[0]}" class="${t[0]===tab?"on":""}">${t[1]}</button>`).join("")}</div><div class="v-pane">${pane[tab]()}</div>${it.flow&&PAGE[it.flow]?`<div class="v-sub"><button class="btn" data-f="1">Lihat animasi prosesnya</button><div class="v-flowbox"></div></div>`:""}</div>`;
+    wrap.onclick=e=>{const t=e.target.dataset.t;if(t){open(i,t)}if(e.target.dataset.f){e.target.style.display="none";flow($(".v-flowbox",wrap),PAGE[it.flow],{silent:true})}};
+    if(seen.size===c.items.length)markDone(el.id)}
+  if(seen.size===c.items.length)markDone(el.id)
+}
+
+/* =============== MOCK: layar HP / email / web / postingan dengan titik klik =============== */
+/* cfg: {title, kind:'chat|email|web|post', header:{name,sub,avatar,from,to,subject,url}, messages:[{from,time,parts}], cta, stats,
+         hotspots:[{id,label,why,decoy}], instruct}
+   parts: array string | {t:'teks', h:'idHotspot'} */
+function mock(el,c){
+  const b=body(el);const found=new Set(store.get(el.id,[]));const real=c.hotspots.filter(h=>!h.decoy);const H={};c.hotspots.forEach(h=>H[h.id]=h);
+  const P=parts=>arr(parts).map(p=>typeof p==="string"?esc(p):`<span class="v-hot" data-h="${p.h}" tabindex="0" role="button">${esc(p.t)}</span>`).join("");
+  const h=c.header||{};let inner="";
+  if(c.kind==="email"){inner=`<div class="v-bar"><span>✉️</span><b>Kotak masuk</b></div><div class="v-meta"><div><b>Dari:</b> ${P(h.from)}</div><div><b>Kepada:</b> ${P(h.to)}</div><div><b>Subjek:</b> ${P(h.subject)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="web"){inner=`<div class="v-bar"><span>🔒</span><div class="v-url">${P(h.url)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="post"){inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}</div><div class="v-stats">${esc(c.stats||"")}</div>`}
+  else{inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-msgs">${c.messages.map(m=>`<div class="v-msg ${m.from==="me"?"me":""}">${P(m.parts)}${m.time?`<time>${esc(m.time)}</time>`:""}</div>`).join("")}</div>`}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.instruct||"Klik bagian yang menurutmu mencurigakan. Hati-hati: ada juga bagian yang tampak janggal tetapi wajar.")}</p>
+  <div class="v-mockwrap"><div class="v-phone"><div class="v-screen ${c.kind||"chat"}">${inner}</div></div>
+  <div><div class="v-spec-lbl"><span>Tanda bahaya ditemukan</span><span class="cnt"></span></div><div class="v-prog"><i></i></div><p><button class="btn ghost" data-a="hint">Tampilkan petunjuk</button> <button class="btn ghost" data-a="reset">Ulangi</button></p><div class="v-finds"></div></div></div>`;
+  const scr=$(".v-phone",b),fin=$(".v-finds",b);
+  function upd(){const n=[...found].filter(id=>!H[id].decoy).length;$(".cnt",b).textContent=`${n} / ${real.length}`;$(".v-prog i",b).style.width=(n/real.length*100)+"%";if(n===real.length)markDone(el.id)}
+  function mark(id){const hs=H[id];if(!hs)return;found.add(id);store.set(el.id,[...found]);$$(`[data-h="${id}"]`,b).forEach(x=>x.classList.add(hs.decoy?"decoy":"found"));
+    if(!$(`[data-f="${id}"]`,fin)){const d=document.createElement("div");d.className="v-find"+(hs.decoy?" ok":"");d.dataset.f=id;d.innerHTML=`<b>${hs.decoy?"Ini wajar":"Tanda bahaya: "+esc(hs.label)}</b>${esc(hs.why)}`;fin.appendChild(d)}upd()}
+  b.addEventListener("click",e=>{const x=e.target.closest(".v-hot");if(x){mark(x.dataset.h);return}if(e.target.dataset.a==="hint"){scr.classList.toggle("v-hint")}if(e.target.dataset.a==="reset"){found.clear();store.set(el.id,[]);$$(".v-hot",b).forEach(x=>x.classList.remove("found","decoy"));fin.innerHTML="";scr.classList.remove("v-hint");upd()}});
+  b.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList.contains("v-hot"))mark(e.target.dataset.h)});
+  found.forEach(id=>mark(id));upd();
+}
+
+/* =============== TIMELINE =============== */
+/* cfg: {title, events:[{when,title,text,icon,law}]} */
+function timeline(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));let cur=0;
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="v-tl"><div class="v-tl-track"></div></div><div class="v-cap"></div><p><button class="btn ghost" data-a="p">‹ Sebelumnya</button> <button class="btn" data-a="n">Berikutnya ›</button></p>`;
+  const tr=$(".v-tl-track",b),cap=$(".v-cap",b);
+  c.events.forEach((ev,i)=>{const p=document.createElement("button");p.className="v-tl-pt";p.innerHTML=`<span class="dot">${ev.icon||"•"}</span><span class="when">${esc(ev.when)}</span><span class="tt">${esc(ev.title)}</span>`;p.onclick=()=>show(i);tr.appendChild(p)});
+  function show(i){cur=i;seen.add(i);store.set(el.id,[...seen]);const ev=c.events[i];
+    $$(".v-tl-pt",tr).forEach((p,k)=>{p.classList.toggle("on",k===i);p.classList.toggle("seen",seen.has(k))});
+    const pt=$(".v-tl-pt",tr)[i],sc=tr.parentElement;if(pt&&sc&&sc.scrollTo){sc.scrollTo({left:pt.getBoundingClientRect().left-sc.getBoundingClientRect().left+sc.scrollLeft-sc.clientWidth/2+pt.offsetWidth/2,behavior:reduce?"auto":"smooth"})}
+    cap.innerHTML=`<span class="v-num">${esc(ev.when)}</span><h4>${esc(ev.title)}</h4><p>${esc(ev.text)}</p>${ev.law?`<div class="v-chips"><span class="v-chip law"><b>Dasar hukum</b>${esc(ev.law)}</span></div>`:""}`;
+    if(seen.size===c.events.length)markDone(el.id)}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="n")show(Math.min(cur+1,c.events.length-1));if(a==="p")show(Math.max(cur-1,0))});
+  show(0);
+}
+
+/* =============== SPECTRUM: geser untuk melihat trade-off =============== */
+/* cfg: {title, prompt, left, right, stops:[{at,label,text,risk}]} */
+function spectrum(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"")}</p><div class="v-spec"><div class="v-spec-lbl"><span>‹ ${esc(c.left)}</span><span>${esc(c.right)} ›</span></div><input type="range" min="0" max="100" value="50" aria-label="${esc(c.title)}">
+  <div class="v-spec-bars"><div><small>${esc(c.left)}</small><div class="bar"><i></i></div></div><div><small>${esc(c.right)}</small><div class="bar r"><i></i></div></div></div></div><div class="v-cap"></div>`;
+  const rg=$("input",b),cap=$(".v-cap",b),bl=$(".bar i",b),br=$(".bar.r i",b);
+  function upd(){const v=+rg.value;bl.style.width=(100-v)+"%";br.style.width=v+"%";
+    let best=0,d=1e9;c.stops.forEach((s,i)=>{const x=Math.abs(s.at-v);if(x<d){d=x;best=i}});const s=c.stops[best];
+    cap.innerHTML=`<span class="v-num">${esc(s.label)}</span><p>${esc(s.text)}</p>${s.risk?`<div class="v-chips"><span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span></div>`:""}`;
+    seen.add(best);store.set(el.id,[...seen]);if(seen.size>=Math.min(3,c.stops.length))markDone(el.id)}
+  rg.oninput=upd;upd();
+}
+
+/* =============== ORDER: urutkan langkah =============== */
+/* cfg: {title, prompt, items:[{t,why}]} dalam urutan benar */
+function order(el,c){
+  const b=body(el);const n=c.items.length;
+  const idx=c.items.map((_,i)=>i);const sh=idx.map((_,i)=>idx[(i*3+2)%n]).filter((v,i,a)=>a.indexOf(v)===i);idx.forEach(i=>{if(!sh.includes(i))sh.push(i)});
+  let pool=sh.slice(),ans=[];if(pool.every((v,i)=>v===i)){pool.reverse()}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"Klik langkah satu per satu sesuai urutan yang benar. Klik langkah di kolom jawaban untuk membatalkannya.")}</p><div class="v-ord"><div><h4>Langkah acak</h4><div class="col pool"></div></div><div><h4>Urutan kamu</h4><div class="col ans"></div></div></div><p><button class="btn" data-a="chk" disabled>Periksa urutan</button> <button class="btn ghost" data-a="rst">Ulangi</button></p><div class="fb"></div>`;
+  const P=$(".pool",b),Aw=$(".ans",b),chk=$("[data-a=chk]",b),fb=$(".fb",b);
+  function draw(res){P.innerHTML="";Aw.innerHTML="";pool.forEach(i=>{const x=document.createElement("button");x.className="it";x.textContent=c.items[i].t;x.onclick=()=>{ans.push(i);pool=pool.filter(v=>v!==i);fb.className="fb";draw()};P.appendChild(x)});
+    ans.forEach((i,k)=>{const x=document.createElement("button");x.className="it"+(res?(i===k?" right":" wrong"):"");x.innerHTML=`<i>${k+1}</i>`+esc(c.items[i].t);x.onclick=()=>{if(res)return;ans=ans.filter(v=>v!==i);pool.push(i);draw()};Aw.appendChild(x)});
+    chk.disabled=pool.length>0}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="rst"){pool=sh.slice();ans=[];fb.className="fb";draw()}
+    if(a==="chk"){const ok=ans.filter((v,k)=>v===k).length;draw(true);fb.className="fb show"+(ok===n?" ok":"");fb.innerHTML=`<b>${ok}/${n} posisi tepat.</b><ol>${c.items.map(x=>`<li>${esc(x.t)}${x.why?`: ${esc(x.why)}`:""}</li>`).join("")}</ol>`;markDone(el.id)}});
+  draw();
+}
+
+/* ---------- registrasi ---------- */
+const V={flow,explorer,mock,timeline,spectrum,order};
+$$(".w[data-widget]").forEach(el=>{const t=el.dataset.widget;if(V[t]&&PAGE[el.id])V[t](el,PAGE[el.id])});
+/* reveal on scroll */
+if(!reduce&&"IntersectionObserver" in window){document.documentElement.classList.add("reveal-on");
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{rootMargin:"0px 0px -8% 0px"});
+  $$(".seg").forEach(s=>io.observe(s));
+  setTimeout(()=>$$(".seg").forEach(s=>s.classList.add("in")),2500)}
+})();
+/* ===== [/SHARED:VIZ-JS] ===== */
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pertemuan 10 — Hukum E-Commerce & Transaksi Elektronik | Etika Hukum Cyber</title>
+<style>
+/* ===== [SHARED:CSS] — jangan ubah blok ini antar pertemuan, kecuali --accent ===== */
+:root{
+  --accent:#be123c; --accent-soft:#ffe4e6; --accent-ink:#881337;
+  --bg:#f6f7f4; --card:#ffffff; --ink:#1c2321; --muted:#5b6762; --line:#dfe4e0;
+  --ok:#15803d; --ok-soft:#dcfce7; --bad:#b91c1c; --bad-soft:#fee2e2; --warn:#b45309; --warn-soft:#fef3c7;
+  --radius:14px; --shadow:0 1px 2px rgba(20,30,25,.06),0 6px 20px rgba(20,30,25,.06);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16.5px}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;letter-spacing:-.01em}
+h2{font-size:1.55rem} h3{font-size:1.15rem} p{margin:.6em 0}
+a{color:var(--accent)}
+button{font:inherit;cursor:pointer}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(246,247,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-weight:700;font-size:.95rem;white-space:nowrap}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
+.progress{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress>i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+.pct{font-size:.85rem;font-weight:700;min-width:42px;text-align:right}
+.tbtn{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 12px;font-size:.82rem;font-weight:600}
+.tbtn[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.layout{max-width:1180px;margin:0 auto;padding:24px 20px 80px;display:grid;grid-template-columns:230px 1fr;gap:28px}
+nav.agenda{position:sticky;top:76px;align-self:start;max-height:calc(100vh - 96px);overflow:auto}
+nav.agenda h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+nav.agenda a{display:block;text-decoration:none;color:var(--ink);padding:8px 10px;border-radius:10px;font-size:.88rem;border-left:3px solid transparent}
+nav.agenda a span{display:block;font-size:.72rem;color:var(--muted)}
+nav.agenda a:hover{background:var(--card)}
+nav.agenda a.active{background:var(--accent-soft);border-left-color:var(--accent);font-weight:600}
+.hero{background:linear-gradient(135deg,var(--accent-ink),var(--accent));color:#fff;border-radius:22px;padding:34px 34px 28px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border-radius:99px;padding:3px 12px;font-size:.78rem;font-weight:600;letter-spacing:.04em}
+.hero h1{font-size:2.05rem;margin:.5em 0 .3em}
+.hero p{max-width:62ch;opacity:.92}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:18px}
+.meta div{background:rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;font-size:.84rem}
+.meta b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;opacity:.75}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:16px 0;box-shadow:var(--shadow)}
+.seg{margin:34px 0}
+.seg-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.seg-head .num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.seg-head h2{margin:0;flex:1;min-width:200px}
+.chip{display:inline-block;background:var(--accent-soft);color:var(--accent-ink);border-radius:99px;padding:3px 11px;font-size:.76rem;font-weight:700}
+.chip.act{background:#ede9fe;color:#5b21b6}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);color:var(--accent-ink);border-radius:0 12px 12px 0;padding:12px 16px;margin:14px 0}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft);color:#78350f}
+.callout.law{border-color:#1d4ed8;background:#dbeafe;color:#1e3a8a}
+.callout b.t{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfdfc}
+.mini h3{margin-bottom:.3em}
+table.t{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
+table.t th,table.t td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+table.t th{background:var(--accent-soft);color:var(--accent-ink)}
+.tablewrap{overflow-x:auto}
+details.acc{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:#fff}
+details.acc summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details.acc summary::after{content:"+";font-weight:700;color:var(--accent)}
+details.acc[open] summary::after{content:"–"}
+details.acc>div{padding:0 16px 14px}
+/* interactive widgets */
+.w{border:2px solid var(--accent);border-radius:var(--radius);padding:20px 22px;margin:18px 0;background:#fff;position:relative}
+.w>.w-label{position:absolute;top:-12px;left:16px;background:var(--accent);color:#fff;border-radius:99px;font-size:.72rem;font-weight:700;padding:2px 12px;letter-spacing:.05em;text-transform:uppercase}
+.w.done{border-color:var(--ok)} .w.done>.w-label{background:var(--ok)}
+.w h3{margin-top:.2em}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 18px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.opts{display:grid;gap:8px;margin:12px 0}
+.opt{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px}
+.opt:hover{border-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--warn-soft);color:#78350f;font-size:.93rem;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--ok-soft);color:#14532d}
+.flash{perspective:900px;max-width:520px;margin:12px auto}
+.flash-in{position:relative;min-height:190px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.flash.flip .flash-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:22px;display:grid;place-items:center;text-align:center;font-size:1.05rem}
+.face.f{background:var(--accent);color:#fff;font-weight:700;font-size:1.25rem}
+.face.b{background:var(--accent-soft);color:var(--accent-ink);transform:rotateY(180deg)}
+.fc-ctl{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.cls-pool,.cls-bins{display:grid;gap:10px}
+.cls-bins{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:14px}
+.cls-item{border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;text-align:left}
+.cls-item.pick{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.cls-item.right{border-color:var(--ok);background:var(--ok-soft)}
+.cls-item.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.bin{border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:110px;cursor:pointer;background:#fcfdfc}
+.bin:hover{border-color:var(--accent)}
+.bin h4{font-size:.9rem;margin:0 0 8px;color:var(--accent-ink)}
+.bin .cls-item{margin-bottom:6px;font-size:.88rem;cursor:pointer}
+.scn-text{font-size:1.02rem}
+.scn-end{border-radius:12px;padding:14px 16px;background:var(--accent-soft);color:var(--accent-ink);margin-top:10px}
+textarea{width:100%;min-height:96px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;resize:vertical}
+textarea:focus,.opt:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+.score{font-size:1.4rem;font-weight:800;color:var(--accent)}
+.ckl label{display:flex;gap:10px;align-items:flex-start;padding:7px 4px;cursor:pointer}
+.ckl input{margin-top:.38em;accent-color:var(--accent)}
+.bars .bar{margin:8px 0}
+.bars .bar>div{height:26px;border-radius:8px;background:var(--accent-soft);position:relative;overflow:hidden}
+.bars .bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);opacity:.85;width:0;transition:width .5s}
+.bars .bar span{position:absolute;left:10px;top:2px;font-size:.84rem;font-weight:600;color:#0b1f1c;z-index:1}
+.refs li{margin:.5em 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 0 10px}
+@media(max-width:860px){.layout{grid-template-columns:1fr}nav.agenda{display:none}.hero h1{font-size:1.6rem}.brand small{display:none}}
+@media print{.topbar,nav.agenda{display:none!important}.layout{display:block}.card,.w{box-shadow:none;break-inside:avoid}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* ===== [/SHARED:CSS] ===== */
+/* ===== [SHARED:VIZ-CSS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+/* hero hidup */
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 88% 15%,rgba(255,255,255,.22),transparent 42%),radial-gradient(circle at 8% 95%,rgba(255,255,255,.12),transparent 40%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:linear-gradient(115deg,transparent 30%,#000);mask-image:linear-gradient(115deg,transparent 30%,#000);animation:v-grid 22s linear infinite}
+.hero>*{position:relative;z-index:1}
+@keyframes v-grid{to{background-position:36px 36px}}
+/* reveal saat scroll */
+.reveal-on .seg{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal-on .seg.in{opacity:1;transform:none}
+.seg-head .num{box-shadow:0 0 0 5px var(--accent-soft)}
+
+/* ---------- STAGE (flow) ---------- */
+.v-stage{position:relative;aspect-ratio:2/1;min-height:300px;border-radius:16px;overflow:hidden;color:#e8eefc;
+  background:#0a1120;background-image:radial-gradient(ellipse at 50% -10%,#1b2d57 0,transparent 62%),linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:auto,30px 30px,30px 30px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 10px 30px rgba(10,17,32,.28)}
+.v-lines{position:absolute;inset:0;width:100%;height:100%}
+.v-lines line{stroke:rgba(255,255,255,.16);stroke-width:1.5;stroke-dasharray:4 5;vector-effect:non-scaling-stroke;transition:stroke .4s}
+.v-lines line.on{stroke:#7dd3fc;stroke-width:2.5;stroke-dasharray:6 6;animation:v-dash 1s linear infinite}
+.v-lines line.on.bad{stroke:#fb7185}
+@keyframes v-dash{to{stroke-dashoffset:-24}}
+.v-actor{position:absolute;transform:translate(-50%,-50%);width:104px;text-align:center;z-index:2}
+.v-ico{width:60px;height:60px;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;font-size:29px;background:#16213b;border:2px solid #3a4a70;transition:border-color .4s,box-shadow .4s,background .4s,transform .3s}
+.v-name{font-size:.74rem;font-weight:700;line-height:1.15;text-shadow:0 1px 3px #000}
+.v-badge{display:inline-block;margin-top:3px;font-size:.64rem;font-weight:700;padding:1px 8px;border-radius:99px;background:rgba(255,255,255,.12);color:#e8eefc;min-height:0;transition:background .3s}
+.v-badge:empty{display:none}
+.v-actor.r-attacker .v-ico{border-color:#fb7185;background:#2a1220}
+.v-actor.r-victim .v-ico{border-color:#38bdf8}
+.v-actor.s-safe .v-ico{border-color:#4ade80;box-shadow:0 0 20px #4ade8070}
+.v-actor.s-safe .v-badge{background:#14532d}
+.v-actor.s-warn .v-ico{border-color:#fbbf24;box-shadow:0 0 22px #fbbf2480;animation:v-pulse 1.4s infinite}
+.v-actor.s-warn .v-badge{background:#78350f}
+.v-actor.s-danger .v-ico{border-color:#f43f5e;background:#3a1020;box-shadow:0 0 26px #f43f5e90;animation:v-shake .5s 2,v-pulse 1.4s .5s infinite}
+.v-actor.s-danger .v-badge{background:#881337}
+.v-actor.s-lock .v-ico{border-color:#a78bfa;background:#231a45;box-shadow:0 0 22px #a78bfa80}
+.v-actor.s-lock .v-badge{background:#4c1d95}
+.v-actor.s-active .v-ico{border-color:#7dd3fc;box-shadow:0 0 22px #7dd3fc80;transform:scale(1.08)}
+@keyframes v-pulse{50%{box-shadow:0 0 34px currentColor}}
+@keyframes v-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.v-packet{position:absolute;transform:translate(-50%,-50%);font-size:22px;z-index:3;pointer-events:none;
+  transition:left var(--dur,1000ms) cubic-bezier(.5,0,.3,1),top var(--dur,1000ms) cubic-bezier(.5,0,.3,1),opacity .3s;filter:drop-shadow(0 0 7px rgba(125,211,252,.9))}
+.v-plabel{position:absolute;left:50%;top:-20px;transform:translateX(-50%);white-space:nowrap;font-size:.64rem;font-weight:700;background:#0b1220;border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:1px 6px;color:#e8eefc}
+.v-zone{position:absolute;border:1.5px dashed rgba(255,255,255,.22);border-radius:14px;z-index:1;font-size:.64rem;color:rgba(255,255,255,.55);padding:3px 9px;pointer-events:none}
+.v-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 8px}
+.v-ctl .btn{padding:7px 14px}
+.v-ctl select{font:inherit;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#fff}
+.v-rail{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px}
+.v-rail button{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.78rem;font-weight:600;color:var(--muted)}
+.v-rail button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.v-rail button.seen{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+.v-cap{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:12px 16px;background:#fcfdfc;min-height:96px}
+.v-cap .v-num{font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.v-cap h4{margin:.1em 0 .25em;font-size:1.05rem}
+.v-cap p{margin:.3em 0}
+.v-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.v-chip{border-radius:10px;padding:5px 10px;font-size:.82rem;line-height:1.4}
+.v-chip.law{background:#dbeafe;color:#1e3a8a}
+.v-chip.tip{background:var(--ok-soft);color:#14532d}
+.v-chip.risk{background:var(--bad-soft);color:#7f1d1d}
+.v-outcome{margin-top:10px;border-radius:12px;padding:12px 16px;background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+
+/* ---------- EXPLORER ---------- */
+.v-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:10px;margin:12px 0}
+.v-tile{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:14px 10px;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+.v-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--accent)}
+.v-tile .ic{font-size:2rem;display:block;margin-bottom:4px}
+.v-tile b{display:block;font-size:.9rem;line-height:1.2}
+.v-tile small{color:var(--muted);font-size:.72rem}
+.v-tile.sel{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 0 3px var(--accent-soft)}
+.v-tile.seen::after{content:"✓";position:absolute;top:6px;right:9px;color:var(--ok);font-weight:800}
+.v-detail{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fcfdfc;animation:v-in .35s}
+@keyframes v-in{from{opacity:0;transform:translateY(8px)}}
+.v-detail h3{display:flex;align-items:center;gap:10px}
+.v-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.v-tabs button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.8rem;font-weight:600}
+.v-tabs button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.v-pane ul,.v-pane ol{margin:.3em 0 .3em 1.2em;padding:0}
+.v-pane li{margin:.3em 0}
+.v-sub{margin-top:12px}
+
+/* ---------- MOCK (layar HP / email / web / post) ---------- */
+.v-mockwrap{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:18px;align-items:start}
+.v-phone{background:#0f172a;border-radius:30px;padding:10px;box-shadow:0 14px 34px rgba(15,23,42,.3);max-width:360px;width:100%;margin:0 auto}
+.v-screen{background:#f3f4f6;border-radius:22px;overflow:hidden;min-height:380px;display:flex;flex-direction:column;font-size:.9rem}
+.v-bar{background:#0f766e;color:#fff;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.v-bar .av{width:34px;height:34px;border-radius:50%;background:#ffffff33;display:grid;place-items:center;font-size:1.1rem}
+.v-bar b{display:block;font-size:.9rem;line-height:1.1}.v-bar small{opacity:.8;font-size:.7rem}
+.v-msgs{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1;background:#e5ded5}
+.v-msg{max-width:84%;padding:8px 11px;border-radius:12px;background:#fff;box-shadow:0 1px 1px rgba(0,0,0,.12);line-height:1.45}
+.v-msg.me{align-self:flex-end;background:#d9fdd3}
+.v-msg time{display:block;text-align:right;font-size:.62rem;color:#6b7280;margin-top:2px}
+.v-screen.email,.v-screen.web,.v-screen.post{background:#fff}
+.v-screen.email .v-bar{background:#334155}.v-screen.web .v-bar{background:#e5e7eb;color:#111827}.v-screen.post .v-bar{background:#1d4ed8}
+.v-url{background:#fff;border:1px solid #d1d5db;border-radius:99px;padding:5px 12px;flex:1;font-size:.76rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.v-body{padding:14px 16px;flex:1}.v-body p{margin:.55em 0}
+.v-meta{padding:8px 16px;border-bottom:1px solid #e5e7eb;font-size:.78rem;color:#4b5563}
+.v-meta b{color:#111827}
+.v-cta{display:inline-block;background:#2563eb;color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;margin-top:6px}
+.v-stats{padding:8px 16px;border-top:1px solid #e5e7eb;font-size:.78rem;color:#6b7280}
+.v-hot{cursor:pointer;border-radius:4px;transition:background .2s,box-shadow .2s;border-bottom:2px dotted transparent}
+.v-hint .v-hot{border-bottom-color:#f59e0b;animation:v-blink 1.4s infinite}
+@keyframes v-blink{50%{background:#fde68a}}
+.v-hot:hover{background:#fde68a}
+.v-hot.found{background:#fecaca;box-shadow:0 0 0 2px #ef4444;border-radius:4px;animation:none}
+.v-hot.decoy{background:#dcfce7;box-shadow:0 0 0 2px #22c55e;animation:none}
+.v-finds{display:grid;gap:8px}
+.v-find{border-left:4px solid var(--bad);background:var(--bad-soft);border-radius:0 10px 10px 0;padding:8px 12px;font-size:.88rem;animation:v-in .3s}
+.v-find.ok{border-color:var(--ok);background:var(--ok-soft)}
+.v-find b{display:block}
+.v-prog{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+.v-prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+
+/* ---------- TIMELINE ---------- */
+.v-tl{position:relative;margin:14px 0 6px;overflow-x:auto;padding:22px 6px 10px}
+.v-tl-track{display:flex;gap:0;min-width:max-content;position:relative}
+.v-tl-track::before{content:"";position:absolute;left:30px;right:30px;top:15px;height:4px;background:var(--line);border-radius:4px}
+.v-tl-pt{width:128px;text-align:center;position:relative;background:none;border:0;padding:0 4px}
+.v-tl-pt .dot{width:34px;height:34px;margin:0 auto 6px;border-radius:50%;background:#fff;border:3px solid var(--line);display:grid;place-items:center;position:relative;z-index:1;transition:all .25s;font-size:1rem}
+.v-tl-pt .when{display:block;font-weight:800;font-size:.8rem;color:var(--accent-ink)}
+.v-tl-pt .tt{display:block;font-size:.74rem;color:var(--muted);line-height:1.25}
+.v-tl-pt.seen .dot{border-color:var(--accent)}
+.v-tl-pt.on .dot{background:var(--accent);border-color:var(--accent);transform:scale(1.25);box-shadow:0 0 0 6px var(--accent-soft)}
+
+/* ---------- SPECTRUM ---------- */
+.v-spec-lbl{display:flex;justify-content:space-between;font-weight:700;font-size:.9rem}
+.v-spec input[type=range]{width:100%;accent-color:var(--accent);margin:10px 0 4px;height:28px}
+.v-spec-bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.v-spec-bars .bar{height:14px;background:var(--line);border-radius:99px;overflow:hidden}
+.v-spec-bars .bar i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.v-spec-bars .bar.r i{background:#ea580c}
+
+/* ---------- ORDER ---------- */
+.v-ord{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.v-ord h4{margin:0 0 6px;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.v-ord .col{display:grid;gap:6px;align-content:start;min-height:80px}
+.v-ord .it{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:.9rem}
+.v-ord .it:hover{border-color:var(--accent)}
+.v-ord .it.right{border-color:var(--ok);background:var(--ok-soft)}.v-ord .it.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.v-ord .it i{font-style:normal;font-weight:800;color:var(--accent);margin-right:6px}
+@media(max-width:760px){.v-mockwrap,.v-ord{grid-template-columns:1fr}.v-stage{min-height:340px;aspect-ratio:1.25/1}.v-actor{width:84px}.v-ico{width:50px;height:50px;font-size:24px}}
+@media print{.reveal-on .seg{opacity:1!important;transform:none!important}}
+@media(prefers-reduced-motion:reduce){.hero::after,.v-actor .v-ico,.v-lines line.on,.v-hint .v-hot{animation:none!important}.reveal-on .seg{opacity:1;transform:none}}
+/* ===== [/SHARED:VIZ-CSS] ===== */
+
+</style>
+</head>
+<body>
+
+<header class="topbar"><div class="topbar-in">
+  <div class="brand">Etika Hukum Cyber<small>Pertemuan 10 dari 16</small></div>
+  <div class="progress" title="Progres aktivitas"><i id="pbar"></i></div>
+  <div class="pct" id="ppct">0%</div>
+</div></header>
+
+<div class="layout">
+<nav class="agenda" id="agenda" aria-label="Agenda"><h4>Agenda</h4></nav>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <span class="tag">PERTEMUAN 10 · MINGGU 10</span>
+  <h1>Hukum E-Commerce & Transaksi Elektronik</h1>
+  <p>Apakah "klik setuju" itu sama mengikatnya dengan tanda tangan basah? Hari ini kamu memeriksa keabsahan kontrak elektronik, memahami peran Penyelenggara Sistem Elektronik (PSE), membedakan tanda tangan elektronik, dan menilai kekuatan bukti elektronik.</p>
+  <div class="meta">
+    <div><b>Program Studi</b>Bisnis Digital</div>
+    <div><b>Dosen</b>Ibnu Amri Thaher</div>
+    <div><b>Waktu</b>100 menit · Teori & Aktivitas</div>
+    <div><b>Metode</b>Kuliah & Interaktif</div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Capaian pertemuan ini</h3>
+  <p><span class="chip">CPMK-3</span> Menganalisis aspek hukum transaksi dan kejahatan siber serta menerapkannya pada kasus bisnis digital.</p>
+  <p><b>Kemampuan akhir:</b> memahami kerangka hukum transaksi elektronik dan tanda tangan digital.</p>
+  <p><b>Indikator penilaian:</b> pemahaman keabsahan bukti elektronik dalam hukum.</p>
+  <p>Pengalaman belajar: memeriksa syarat keabsahan dokumen dan transaksi elektronik. Setelah sesi ini kamu mampu: (1) menguji kontrak elektronik dengan empat syarat sah perjanjian; (2) membedakan tanda tangan elektronik tersertifikasi dan tidak tersertifikasi; (3) menjelaskan PSE publik/privat dan kewajiban pendaftarannya secara umum; (4) menilai kekuatan alat bukti elektronik pada kasus toko online fiktif.</p>
+</section>
+
+<!-- ===================== SEGMEN 1 ===================== -->
+<section class="seg" id="s1" data-title="Pembuka & Pemantik" data-min="0–10" data-dur="10">
+  <div class="seg-head"><div class="num">1</div><h2>Pembuka & Pemantik: Bolehkah Mengikat Hanya dengan Klik?</h2></div>
+
+  <div class="w" data-widget="poll" id="poll1"><span class="w-label">Pemantik · Polling</span></div>
+
+  <div class="card">
+    <h3>Peta hari ini</h3>
+    <div class="grid2">
+      <div class="mini"><h3>1. Kontrak elektronik</h3><p>Kapan "klik setuju" dan pertukaran chat dianggap kesepakatan yang sah dan mengikat.</p></div>
+      <div class="mini"><h3>2. Tanda tangan elektronik</h3><p>Apa bedanya tanda tangan digital bersertifikat dengan gambar tanda tangan yang ditempel.</p></div>
+      <div class="mini"><h3>3. PSE & bukti elektronik</h3><p>Siapa penyelenggara sistem, apa kewajibannya, dan apakah tangkapan layar diterima sebagai bukti.</p></div>
+    </div>
+    <div class="callout law"><b class="t">Dasar hukum yang akan sering muncul</b>UU ITE (UU 11/2008, diubah UU 19/2016 dan UU 1/2024), PP 71/2019 tentang Penyelenggaraan Sistem dan Transaksi Elektronik (PSTE), PP 80/2019 tentang Perdagangan Melalui Sistem Elektronik (PMSE), dan KUH Perdata tentang perjanjian.</div>
+  </div>
+</section>
+
+<!-- ===================== SEGMEN 2 ===================== -->
+<section class="seg" id="s2" data-title="Keabsahan Kontrak Elektronik" data-min="10–30" data-dur="20">
+  <div class="seg-head"><div class="num">2</div><h2>Keabsahan Kontrak Elektronik dan "Klik Setuju"</h2></div>
+
+  <div class="card">
+    <h3>Prinsip dasar: perjanjian tidak harus di atas kertas</h3>
+    <p>Dalam hukum perdata Indonesia, perjanjian pada dasarnya sah selama memenuhi syarat sah perjanjian dalam KUH Perdata (umumnya dirujuk sebagai Pasal 1320). UU ITE menegaskan bahwa transaksi elektronik yang dituangkan dalam <b>kontrak elektronik</b> mengikat para pihak. Jadi medium (kertas atau layar) bukan penentu utama; yang menentukan adalah apakah syarat sahnya terpenuhi.</p>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Syarat sah</th><th>Isi</th><th>Terapan pada kontrak elektronik</th><th>Jika tidak terpenuhi</th></tr>
+      <tr><td><b>1. Sepakat</b> (subjektif)</td><td>Para pihak setuju secara bebas, tanpa paksaan, penipuan, atau kekhilafan</td><td>Apakah pengguna benar-benar tahu apa yang disetujui? Tombol "setuju" yang tersembunyi atau sudah tercentang bisa dipersoalkan</td><td>Dapat dibatalkan</td></tr>
+      <tr><td><b>2. Cakap</b> (subjektif)</td><td>Pihak sudah dewasa menurut hukum dan tidak di bawah pengampuan</td><td>Anak di bawah umur membeli item game atau top-up dengan kartu orang tua</td><td>Dapat dibatalkan</td></tr>
+      <tr><td><b>3. Hal tertentu</b> (objektif)</td><td>Objek perjanjian jelas dan dapat ditentukan</td><td>Deskripsi barang, harga, jumlah, dan waktu kirim di halaman produk harus jelas</td><td>Batal demi hukum</td></tr>
+      <tr><td><b>4. Sebab yang halal</b> (objektif)</td><td>Tujuan tidak melanggar hukum, kesusilaan, atau ketertiban umum</td><td>Jual-beli barang ilegal atau data pribadi curian lewat marketplace</td><td>Batal demi hukum</td></tr>
+    </table></div>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Nomor pasal KUH Perdata (Pasal 1320 untuk syarat sah; Pasal 1338 tentang kekuatan mengikat perjanjian) dan konsekuensi "dapat dibatalkan" vs "batal demi hukum" mohon dicek ulang pada naskah resmi sebelum ditayangkan.</div>
+  </div>
+
+  <div class="card">
+    <h3>Bagaimana UU ITE memandang kontrak elektronik?</h3>
+    <ul>
+      <li><b>Transaksi elektronik</b> yang dituangkan dalam kontrak elektronik mengikat para pihak (ketentuan UU ITE tentang kekuatan mengikat kontrak elektronik).</li>
+      <li>Transaksi dianggap terjadi pada saat <b>penawaran diterima</b> melalui persetujuan elektronik (ketentuan UU ITE tentang kapan transaksi terjadi).</li>
+      <li>Pelaku usaha yang menawarkan produk lewat sistem elektronik wajib menyediakan <b>informasi yang lengkap dan benar</b> mengenai syarat kontrak, produsen, dan produk.</li>
+      <li>Pihak boleh memilih hukum yang berlaku dan forum penyelesaian sengketa (hukum pilihan), tetapi tetap tunduk pada batas kepatutan.</li>
+    </ul>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Nomor pasal UU ITE terkait kontrak elektronik (kekuatan mengikat, saat terjadinya transaksi, informasi lengkap dan benar, pilihan hukum) perlu dicek terhadap versi terbaru setelah UU 1/2024. Slide sengaja memakai bunyi umum, bukan nomor.</div>
+
+    <h3>Bentuk "klik setuju" yang sering ditemui</h3>
+    <div class="grid2">
+      <div class="mini"><h3>Clickwrap</h3><p>Pengguna harus aktif mencentang atau menekan "Saya setuju" sebelum lanjut. Umumnya kuat sebagai bukti persetujuan, terutama bila tersimpan log waktu dan akun.</p></div>
+      <div class="mini"><h3>Browsewrap</h3><p>Syarat hanya tertaut kecil di bawah halaman; pengguna dianggap setuju hanya karena memakai situs. Lebih rawan digugat karena persetujuan tidak jelas.</p></div>
+      <div class="mini"><h3>Perjanjian lewat chat/email</h3><p>Penawaran dan penerimaan lewat WhatsApp, DM, atau email. Bisa sah bila isinya jelas, tetapi bukti dan identitas para pihak lebih rapuh.</p></div>
+    </div>
+    <details class="acc"><summary>Klausula baku: syarat sepihak dalam aplikasi</summary><div>
+      <p>Banyak aplikasi memakai syarat dan ketentuan yang disusun sepihak oleh pelaku usaha dan tidak bisa ditawar (klausula baku). UU Perlindungan Konsumen (UU 8/1999) melarang klausula baku tertentu, misalnya yang menyatakan pelaku usaha bebas dari tanggung jawab atau yang membuat konsumen tunduk pada aturan baru secara sepihak. Klausula seperti itu dapat dinyatakan batal demi hukum.</p>
+      <p><small>Verifikasi dosen: nomor pasal larangan klausula baku dalam UU Perlindungan Konsumen.</small></p></div></details>
+    <details class="acc"><summary>Dokumen yang tidak bisa sekadar elektronik</summary><div>
+      <p>UU ITE mengecualikan beberapa jenis dokumen yang menurut undang-undang harus dibuat tertulis atau dalam bentuk akta notaris/akta PPAT (misalnya surat-surat tertentu dan akta pertanahan). Untuk jual-beli rumah, misalnya, kamu tetap memerlukan akta yang dibuat pejabat berwenang, bukan sekadar klik setuju. Detail pengecualian dibahas umum saja di kelas ini.</p></div></details>
+  </div>
+
+  <h3>Simulasi: "Klik Setuju" pada aplikasi langganan</h3>
+  <div class="w" data-widget="scenario" id="scn1"><span class="w-label">Simulasi · Klik setuju</span></div>
+
+  <div class="w" data-widget="flash" id="flash1"><span class="w-label">Kartu istilah · Kontrak elektronik</span></div>
+  <div class="w" data-widget="flow" id="transaksiFlow"><span class="w-label">Animasi · Alur Transaksi Elektronik</span></div>
+</section>
+
+<!-- ===================== SEGMEN 3 ===================== -->
+<section class="seg" id="s3" data-title="Tanda Tangan Elektronik & Bukti" data-min="30–50" data-dur="20">
+  <div class="seg-head"><div class="num">3</div><h2>Tanda Tangan Elektronik dan Alat Bukti Elektronik</h2></div>
+
+  <div class="card">
+    <h3>Tanda tangan elektronik (TTE) vs tanda tangan digital</h3>
+    <p><b>Tanda tangan elektronik</b> adalah istilah hukum yang luas: tanda berupa informasi elektronik yang melekat pada dokumen elektronik dan dipakai sebagai alat verifikasi dan autentikasi. <b>Tanda tangan digital</b> adalah salah satu teknik yang memakai kriptografi (pasangan kunci privat dan kunci publik). UNCITRAL Model Law on Electronic Signatures (2001) menerapkan prinsip <b>kesetaraan fungsional</b> dan <b>netral teknologi</b>: tanda tangan elektronik tidak boleh ditolak hanya karena bentuknya elektronik, asalkan menjalankan fungsi yang sama dengan tanda tangan basah.</p>
+    <div class="callout"><b class="t">Tiga fungsi yang diharapkan</b><b>Autentikasi</b> (siapa penanda tangan), <b>integritas</b> (dokumen tidak berubah sejak ditandatangani), dan <b>nirsangkal</b> (penanda tangan sulit menyangkal sudah menandatangani).</div>
+    <div class="tablewrap"><table class="t">
+      <tr><th></th><th>TTE tersertifikasi</th><th>TTE tidak tersertifikasi</th></tr>
+      <tr><td><b>Pembuatan</b></td><td>Memakai jasa Penyelenggara Sertifikasi Elektronik (PSrE) yang diakui di Indonesia</td><td>Tanpa jasa PSrE: misalnya klik setuju + OTP, tanda tangan di layar, atau pemindaian</td></tr>
+      <tr><td><b>Bukti identitas</b></td><td>Didukung sertifikat elektronik yang mengikat identitas ke kunci publik</td><td>Bergantung log sistem, akun, dan bukti pendukung lain</td></tr>
+      <tr><td><b>Kekuatan pembuktian</b></td><td>Kuat dan lebih mudah dibuktikan</td><td>Tetap bisa sah, namun pembuktian lebih berat</td></tr>
+      <tr><td><b>Cocok untuk</b></td><td>Dokumen bernilai tinggi: kontrak kerja sama, perizinan, dokumen resmi</td><td>Transaksi sehari-hari bernilai kecil: syarat dan ketentuan aplikasi, persetujuan sederhana</td></tr>
+    </table></div>
+    <div class="callout law"><b class="t">Dasar hukum (umum)</b>UU ITE mengatur bahwa TTE memiliki kekuatan hukum dan akibat hukum yang sah bila memenuhi persyaratan tertentu, antara lain data pembuatan TTE hanya terkait pada penanda tangan, berada dalam kuasanya saat penandatanganan, dan setiap perubahan setelahnya dapat diketahui. PP 71/2019 membedakan TTE tersertifikasi dan tidak tersertifikasi.</div>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Nomor pasal UU ITE tentang TTE (kekuatan hukum dan persyaratannya), serta pasal PP 71/2019 tentang klasifikasi dan kewajiban PSrE. Juga cek ketentuan bea meterai (UU 10/2020) untuk dokumen perdata elektronik bila ingin dibahas.</div>
+  </div>
+
+  <div class="card">
+    <h3>Alat bukti elektronik: apakah tangkapan layar dianggap sah?</h3>
+    <p>UU ITE menyatakan bahwa <b>informasi elektronik, dokumen elektronik, dan hasil cetaknya</b> merupakan alat bukti hukum yang sah, dan memperluas jenis alat bukti dalam hukum acara yang berlaku di Indonesia. Namun "sah dijadikan bukti" tidak otomatis berarti "dipercaya hakim". Dokumen elektronik dinilai dari <b>keutuhan, keaslian, dan dapat dipertanggungjawabkannya</b>.</p>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Bukti elektronik</th><th>Kelemahan umum</th><th>Cara memperkuat</th></tr>
+      <tr><td>Tangkapan layar chat</td><td>Mudah diedit; tidak tampak metadata</td><td>Simpan chat asli, nomor lawan bicara, tanggal; bila perlu ekspor percakapan dan siapkan perangkat untuk diperiksa</td></tr>
+      <tr><td>Email</td><td>Tidak tahu apakah header asli</td><td>Simpan email beserta header; pakai alamat resmi perusahaan</td></tr>
+      <tr><td>Bukti transfer</td><td>Bukti bisa palsu</td><td>Simpan mutasi rekening resmi dari bank</td></tr>
+      <tr><td>Dokumen bertanda tangan digital bersertifikat</td><td>Relatif rendah</td><td>Verifikasi sertifikat dan simpan salinan asli</td></tr>
+    </table></div>
+    <details class="acc"><summary>Siapa yang menilai dan bagaimana bila diperdebatkan?</summary><div>
+      <p>Hakim menilai bukti dalam persidangan. Bila keaslian diragukan, para pihak dapat meminta pemeriksaan oleh ahli forensik digital. Karena itu, kebiasaan baik dalam bisnis: simpan bukti di sumber asli (bukan hanya tangkapan layar), catat tanggal, dan jangan mengubah file bukti.</p></div></details>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Nomor pasal UU ITE tentang alat bukti (disebut umum "Pasal 5") dan tentang syarat dokumen elektronik dipandang setara tertulis/asli. Cek juga apakah ada pengecualian dan putusan Mahkamah Konstitusi terkait perolehan bukti elektronik yang perlu disebut.</div>
+  </div>
+
+  <div class="w" data-widget="classify" id="cls1"><span class="w-label">Aktivitas · Jenis tanda tangan</span></div>
+  <div class="w" data-widget="flash" id="flash2"><span class="w-label">Kartu istilah · TTE & bukti</span></div>
+  <div class="w" data-widget="explorer" id="tteExplorer"><span class="w-label">Jelajahi · Jenis Tanda Tangan Elektronik</span></div>
+</section>
+
+<!-- ===================== SEGMEN 4 ===================== -->
+<section class="seg" id="s4" data-title="PSE & Perdagangan Elektronik" data-min="50–65" data-dur="15">
+  <div class="seg-head"><div class="num">4</div><h2>Penyelenggara Sistem Elektronik (PSE) dan PMSE</h2><span class="chip act">Aktivitas</span></div>
+
+  <div class="card">
+    <h3>Apa itu PSE?</h3>
+    <p>Penyelenggara Sistem Elektronik (PSE) adalah orang, badan usaha, atau instansi yang menyediakan, mengelola, dan/atau mengoperasikan sistem elektronik untuk keperluan sendiri maupun pihak lain. Contoh: marketplace, aplikasi dompet digital, media sosial, situs toko online, aplikasi pemerintah. PP 71/2019 membagi PSE ke dalam dua lingkup.</p>
+    <div class="tablewrap"><table class="t">
+      <tr><th></th><th>PSE Lingkup Publik</th><th>PSE Lingkup Privat</th></tr>
+      <tr><td><b>Penyelenggara</b></td><td>Instansi negara atau institusi yang ditunjuk instansi</td><td>Orang, badan usaha, dan masyarakat (termasuk marketplace, fintech, media sosial)</td></tr>
+      <tr><td><b>Contoh</b></td><td>Layanan administrasi pemerintah</td><td>Marketplace swasta, aplikasi pesan, toko online</td></tr>
+      <tr><td><b>Pendaftaran</b></td><td>Diatur khusus bagi instansi</td><td>Wajib mendaftar pada kementerian yang membidangi komunikasi dan digital (Kominfo, kini Komdigi) sebelum sistem digunakan pengguna</td></tr>
+      <tr><td><b>Pengaturan teknis</b></td><td>PP 71/2019 dan peraturan instansi</td><td>PP 71/2019 dan Permenkominfo 5/2020 (PSE Lingkup Privat)</td></tr>
+    </table></div>
+    <div class="callout law"><b class="t">Kewajiban umum PSE (garis besar)</b>Menyelenggarakan sistem yang andal dan aman; bertanggung jawab atas operasi sistem; melindungi data pribadi; menyediakan informasi dan akses sesuai ketentuan; serta patuh pada kewajiban pendaftaran dan pelaporan. Pelanggaran dapat dikenai sanksi administratif, termasuk pemutusan akses.</div>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Nomor pasal dan rincian kewajiban dalam PP 71/2019 dan Permenkominfo 5/2020 (beserta perubahannya), nama kementerian terbaru (Kominfo menjadi Komdigi), jalur pendaftaran, dan tahapan sanksi. Cek juga apakah ada penyesuaian lewat UU 1/2024.</div>
+    <details class="acc"><summary>Contoh ilustrasi: pemblokiran platform yang belum mendaftar (2022)</summary><div>
+      <p>Pada pertengahan 2022 pemerintah memberi tenggat pendaftaran PSE privat, lalu memblokir akses sementara terhadap sejumlah platform yang belum terdaftar; sebagian dibuka kembali setelah mendaftar. Pelajaran bagi bisnis digital: kepatuhan administrasi memengaruhi keberlangsungan layanan. <small>(Verifikasi dosen: tanggal, daftar platform, dan perkembangan terbaru.)</small></p></div></details>
+  </div>
+
+  <div class="card">
+    <h3>PMSE: perdagangan melalui sistem elektronik</h3>
+    <p>PP 80/2019 mengatur perdagangan yang transaksinya dilakukan melalui rangkaian perangkat dan prosedur elektronik. Para pelakunya secara umum: <b>pedagang</b> (menawarkan barang/jasa), <b>penyelenggara PMSE</b> (menyediakan sarana, misalnya marketplace), dan <b>konsumen</b>. Pedagang wajib menyediakan identitas dan informasi yang benar tentang barang, harga, dan syarat; marketplace punya kewajiban terkait data pedagang dan penanganan pengaduan.</p>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Pembagian peran, kewajiban identitas pedagang, dan ketentuan pengaduan/tanggung jawab marketplace menurut PP 80/2019 (dan perubahannya) perlu dicek sebelum dipakai sebagai bahan ujian.</div>
+  </div>
+
+  <div class="w" data-widget="classify" id="cls2"><span class="w-label">Aktivitas · Klasifikasi PSE</span></div>
+  <div class="w" data-widget="checklist" id="cek1"><span class="w-label">Daftar periksa · Toko online sah</span></div>
+</section>
+
+<!-- ===================== SEGMEN 5 ===================== -->
+<section class="seg" id="s5" data-title="Studi Kasus: Toko Online Fiktif" data-min="65–85" data-dur="20">
+  <div class="seg-head"><div class="num">5</div><h2>Studi Kasus: Toko Online Fiktif</h2><span class="chip act">Studi kasus</span></div>
+
+  <div class="card">
+    <h3>Skenario fiktif: "SepatuKilat.id"</h3>
+    <p><b>(Skenario fiktif.)</b> Rina memesan sepatu lari seharga Rp450.000 dari akun Instagram "SepatuKilat.id". Penjual mengirim detail via DM, Rina transfer ke rekening atas nama perorangan, lalu mengirim bukti transfer. Setelah itu pesan Rina hanya dibaca, barang tidak dikirim, dan akun dihapus dua hari kemudian.</p>
+    <div class="grid2">
+      <div class="mini"><h3>Pertanyaan perdata</h3><p>Apakah ada kontrak? (Penawaran lewat DM + transfer = kesepakatan; objek jelas.) Penjual melanggar kewajiban menyerahkan barang: wanprestasi.</p></div>
+      <div class="mini"><h3>Pertanyaan pidana</h3><p>Penjual dapat diduga melakukan penipuan dan penyebaran berita bohong yang merugikan konsumen dalam transaksi elektronik. Itu ranah penegak hukum.</p></div>
+      <div class="mini"><h3>Pertanyaan bukti</h3><p>Apa yang dimiliki Rina: tangkapan layar DM, bukti transfer, mutasi rekening, tautan profil, nomor rekening penerima.</p></div>
+      <div class="mini"><h3>Pertanyaan platform</h3><p>Instagram sebagai PSE privat: dapat dimintai bantuan melalui fitur laporan, tetapi penjual bukan PSE; ia pedagang yang memakai platform.</p></div>
+    </div>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Pasal-pasal yang biasa dirujuk: ketentuan UU ITE tentang berita bohong yang merugikan konsumen dalam transaksi elektronik, ketentuan penipuan dalam KUHP (KUHP lama dan KUHP baru UU 1/2023 yang berlaku sejak 2026), serta UU Perlindungan Konsumen. Periksa nomor pasal dan perubahan akibat UU 1/2024.</div>
+  </div>
+
+  <div class="w" data-widget="scenario" id="scn2"><span class="w-label">Simulasi · Menangani toko fiktif</span></div>
+  <div class="w" data-widget="mock" id="ecommerceMock"><span class="w-label">Simulasi · Analisis Halaman Checkout</span></div>
+  <div class="w" data-widget="reflect" id="ref1"><span class="w-label">Refleksi tertulis</span></div>
+</section>
+
+<!-- ===================== SEGMEN 6 ===================== -->
+<section class="seg" id="s6" data-title="Kuis & Penutup" data-min="85–100" data-dur="15">
+  <div class="seg-head"><div class="num">6</div><h2>Kuis Penutup & Rangkuman</h2><span class="chip act">Evaluasi</span></div>
+  <div class="w" data-widget="quiz" id="quiz1"><span class="w-label">Kuis penutup</span></div>
+
+  <div class="card">
+    <h3>Rangkuman 1 menit</h3>
+    <ul>
+      <li>Kontrak elektronik sah dan mengikat bila memenuhi syarat sah perjanjian: sepakat, cakap, hal tertentu, sebab yang halal.</li>
+      <li>Klik setuju dapat menjadi persetujuan yang sah bila jelas, aktif, dan terdokumentasi; browsewrap lebih rawan.</li>
+      <li>TTE bisa tersertifikasi (lewat PSrE) atau tidak; keduanya dapat sah, tetapi kekuatan pembuktiannya berbeda.</li>
+      <li>PSE publik/privat; PSE privat wajib mendaftar. PMSE mengatur pedagang, penyelenggara, dan konsumen.</li>
+      <li>Bukti elektronik sah, tetapi nilai bukti ditentukan keaslian dan keutuhannya. Simpan bukti dari sumber asli.</li>
+    </ul>
+    <h3>Tugas mandiri minggu depan</h3>
+    <p>Pilih satu aplikasi atau toko online yang kamu pakai. Baca syarat dan ketentuannya, lalu tulis 150–200 kata: (a) bagaimana bentuk persetujuannya (clickwrap/browsewrap), (b) satu klausula yang menurutmu merugikan pengguna, (c) apakah platform tampak sebagai PSE terdaftar (cari informasinya). Setelah itu, pertemuan berikutnya membahas hukum dan etika kecerdasan buatan (AI).</p>
+  </div>
+
+  <div class="card refs">
+    <h3>Referensi</h3>
+    <ol>
+      <li>Makarim, E. (2020). <i>Pengantar Hukum Informatika dan Elektronika</i>. Rajawali Pers.</li>
+      <li>Republik Indonesia. <i>UU No. 11 Tahun 2008 tentang Informasi dan Transaksi Elektronik</i>, sebagaimana diubah dengan UU No. 19 Tahun 2016 dan UU No. 1 Tahun 2024 (perubahan kedua).</li>
+      <li>Republik Indonesia. (2019). <i>Peraturan Pemerintah No. 71 Tahun 2019 tentang Penyelenggaraan Sistem dan Transaksi Elektronik</i>.</li>
+      <li>Republik Indonesia. (2019). <i>Peraturan Pemerintah No. 80 Tahun 2019 tentang Perdagangan Melalui Sistem Elektronik</i>.</li>
+      <li>Kitab Undang-Undang Hukum Perdata (<i>Burgerlijk Wetboek</i>), ketentuan tentang perikatan dan syarat sah perjanjian (Pasal 1320).</li>
+      <li><b>Tambahan:</b> UNCITRAL. (2001). <i>UNCITRAL Model Law on Electronic Signatures with Guide to Enactment</i>. United Nations.</li>
+      <li><b>Tambahan:</b> Menteri Komunikasi dan Informatika. (2020). <i>Permenkominfo No. 5 Tahun 2020 tentang Penyelenggara Sistem Elektronik Lingkup Privat</i> (dan perubahannya).</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (1999). <i>UU No. 8 Tahun 1999 tentang Perlindungan Konsumen</i>.</li>
+      <li><b>Tambahan:</b> UNCITRAL. (1996). <i>UNCITRAL Model Law on Electronic Commerce</i>. United Nations.</li>
+    </ol>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Ketentuan di bidang ini cepat berubah (UU ITE telah dua kali diubah; KUHP baru berlaku; nama kementerian berganti dari Kominfo ke Komdigi; peraturan turunan PP 71/2019 dan Permenkominfo 5/2020 dapat direvisi). Seluruh nomor pasal pada halaman ini sengaja ditulis umum, mohon dicek pada naskah resmi terbaru (JDIH) sebelum dijadikan bahan ujian.</div>
+  </div>
+</section>
+
+<footer>Etika Hukum Cyber · Bisnis Digital · Pertemuan 10 · Materi ini untuk tujuan pendidikan dan bukan nasihat hukum.</footer>
+</main>
+</div>
+
+
+<!-- ===================== DATA HALAMAN (hanya blok ini yang berubah antar pertemuan) ===================== -->
+<script>
+const PAGE = {
+  id: "p10",
+
+  poll1: {
+    q: "Kamu memesan jaket lewat DM Instagram: penjual menyebut harga dan stok, kamu membalas 'oke, saya transfer', lalu kamu membayar. Penjual membatalkan sepihak karena harga naik. Apakah ada perjanjian yang mengikat?",
+    opts: [
+      {t:"Tidak ada, karena tidak ada kontrak tertulis dan tanda tangan", why:"Keliru. Perjanjian tidak harus di atas kertas; penawaran dan penerimaan lewat chat dapat membentuk kesepakatan bila syarat sahnya terpenuhi."},
+      {t:"Ada, asalkan syarat sah perjanjian terpenuhi dan bisa dibuktikan", why:"Tepat. Persoalan sebenarnya adalah syarat sah dan pembuktian: apa yang disepakati, siapa para pihak, dan apakah bukti chat dan transfer bisa dipercaya."},
+      {t:"Ada, tetapi hanya bila memakai tanda tangan digital bersertifikat", why:"Belum tepat. Tanda tangan bersertifikat memperkuat bukti pada dokumen penting, tetapi bukan syarat bagi semua transaksi elektronik."},
+      {t:"Tidak ada, karena Instagram bukan marketplace resmi", why:"Keliru. Platform tempat transaksi terjadi tidak otomatis menentukan sah-tidaknya perjanjian. Yang dinilai adalah kesepakatan dan syaratnya."}
+    ]
+  },
+
+  scn1: {
+    title: "Kamu mendaftar aplikasi streaming. Layar menampilkan kotak 'Saya setuju dengan Syarat & Ketentuan (42 halaman)' yang sudah tercentang, tombol 'Mulai' besar, dan percobaan gratis 7 hari yang otomatis menjadi langganan berbayar. Kamu…",
+    start: "n0",
+    nodes: {
+      n0: {text:"Kamu sedang terburu-buru dan ingin segera menonton. Apa yang kamu lakukan?",
+        choices:[{t:"Langsung menekan 'Mulai' tanpa membaca", to:"n1"},{t:"Menghapus centang, membaca bagian biaya dan pembatalan, lalu memutuskan", to:"n2"},{t:"Menutup aplikasi karena syaratnya terlalu panjang", to:"n3"}]},
+      n1: {end:true, text:"Hasil: kamu terikat pada syarat langganan otomatis. Secara umum, klik setuju yang tercatat dapat dianggap persetujuan, tetapi centang yang sudah terisi dan tombol dominan membuat pertanyaan 'apakah sepakat benar-benar bebas dan sadar?' muncul bila terjadi sengketa.",
+        lens:"Syarat sah: sepakat itu diuji dari kejelasan informasi. Pelaku usaha: wajib menyediakan informasi syarat kontrak yang lengkap dan benar. Etika desain: menyembunyikan biaya atau memakai centang otomatis disebut dark pattern dan merugikan pengguna."},
+      n2: {end:true, text:"Hasil: kamu memberi persetujuan yang sadar dan aktif. Bila kemudian ada sengketa biaya, kamu punya posisi lebih kuat karena tahu isi syarat dan dapat menunjukkan bahwa kamu telah membaca bagian penting.",
+        lens:"Syarat sah: kesepakatan lebih kokoh. Pelaku usaha: terlindungi karena persetujuan jelas. Etika: pengguna berpartisipasi aktif. Simpan juga tangkapan layar syarat saat mendaftar sebagai bukti."},
+      n3: {end:true, text:"Hasil: tidak ada perjanjian terbentuk, jadi tidak ada kewajiban. Tetapi kamu kehilangan layanan dan tidak belajar membandingkan syarat dengan aplikasi lain.",
+        lens:"Syarat sah: tanpa persetujuan, tidak ada kesepakatan. Pelaku usaha: kehilangan pengguna karena syarat tidak ramah. Etika: sikap kritis terhadap syarat sepihak itu baik; sampaikan kritik lewat ulasan atau pengaduan konsumen."}
+    }
+  },
+
+  flash1: {
+    title: "Uji istilah kontrak elektronik (klik kartu untuk membalik)",
+    cards: [
+      {f:"Kontrak elektronik", b:"Perjanjian para pihak yang dibuat melalui sistem elektronik."},
+      {f:"Kesepakatan (sepakat)", b:"Syarat sah subjektif: para pihak setuju bebas dari paksaan, penipuan, dan kekhilafan."},
+      {f:"Kecakapan", b:"Syarat sah subjektif: pihak sudah dewasa menurut hukum dan tidak di bawah pengampuan."},
+      {f:"Hal tertentu", b:"Syarat sah objektif: objek perjanjian jelas dan dapat ditentukan."},
+      {f:"Sebab yang halal", b:"Syarat sah objektif: tujuan perjanjian tidak melanggar hukum, kesusilaan, atau ketertiban umum."},
+      {f:"Clickwrap vs browsewrap", b:"Clickwrap: pengguna aktif menekan setuju. Browsewrap: dianggap setuju hanya karena memakai situs; lebih rawan dipersoalkan."},
+      {f:"Klausula baku", b:"Syarat yang disusun sepihak oleh pelaku usaha dan tidak bisa ditawar; sebagian dilarang UU Perlindungan Konsumen."},
+      {f:"Wanprestasi", b:"Ingkar janji: salah satu pihak tidak memenuhi kewajiban dalam perjanjian."}
+    ]
+  },
+
+  transaksiFlow: {
+    title: "Alur Transaksi Elektronik yang Sah",
+    sub: "Tekan ▶ untuk melihat tiap langkah transaksi e-commerce, dasar hukumnya, dan apa yang terjadi jika langkah ini bermasalah.",
+    actors: [
+      {id:"pembeli",  icon:"🛒", name:"Pembeli",                  x:12, y:48},
+      {id:"platform", icon:"🏪", name:"Platform E-Commerce (PSE)", x:50, y:18},
+      {id:"gateway",  icon:"💳", name:"Payment Gateway",           x:50, y:80},
+      {id:"bank",     icon:"🏦", name:"Bank / Dompet Digital",     x:82, y:80},
+      {id:"penjual",  icon:"📦", name:"Penjual",                   x:88, y:48}
+    ],
+    steps: [
+      {
+        title: "Pembeli memilih produk dan checkout",
+        short: "Checkout",
+        text: "Pembeli memilih produk, melihat deskripsi, harga, dan ongkir. Informasi produk harus jelas dan lengkap agar syarat 'hal tertentu' terpenuhi: objek perjanjian (barang, harga, jumlah) harus dapat ditentukan sejak awal.",
+        from: "pembeli", to: "platform", packet: "🛒", label: "Checkout",
+        set: {pembeli:"active", platform:"active"},
+        law: "KUH Perdata Pasal 1320 syarat ke-3: hal tertentu — objek perjanjian harus jelas (Verifikasi dosen: nomor pasal)",
+        tip: "Simpan tangkapan layar halaman produk sebagai bukti harga dan deskripsi yang dijanjikan penjual"
+      },
+      {
+        title: "Platform menampilkan kontrak dan Syarat & Ketentuan",
+        short: "S&K Ditampilkan",
+        text: "Platform wajib menampilkan syarat dan ketentuan yang dapat dibaca sebelum pembayaran. Pengguna harus aktif menekan 'Setuju' (clickwrap) agar syarat 'sepakat' terpenuhi secara bebas dan sadar — bukan hanya centang otomatis.",
+        from: "platform", to: "pembeli", packet: "📄", label: "Kontrak/S&K",
+        set: {platform:"active", pembeli:"warn"},
+        law: "KUH Perdata Pasal 1320 syarat ke-1: sepakat bebas dari paksaan dan penipuan (Verifikasi dosen: nomor pasal); UU ITE: pelaku usaha wajib menyediakan informasi syarat kontrak yang lengkap dan benar (Verifikasi dosen: nomor pasal); PP 71/2019: PSE wajib menyelenggarakan sistem yang bertanggung jawab (Verifikasi dosen: nomor pasal)",
+        risk: "Centang otomatis atau tombol tersembunyi (dark pattern) dapat melemahkan bukti kesepakatan bila terjadi sengketa"
+      },
+      {
+        title: "Pembeli menyetujui dan mengirim pembayaran via Payment Gateway",
+        short: "Pembayaran",
+        text: "Pembeli menekan 'Bayar' — inilah momen kesepakatan terbentuk secara elektronik. Pembayaran dikirim melalui payment gateway sebagai perantara aman antara pembeli dan penjual.",
+        from: "pembeli", to: "gateway", packet: "💳", label: "Bayar",
+        set: {pembeli:"safe", platform:"", gateway:"active"},
+        law: "UU ITE: transaksi elektronik dianggap terjadi saat penawaran diterima melalui persetujuan elektronik (Verifikasi dosen: nomor pasal); PP 71/2019 tentang penyelenggaraan sistem transaksi elektronik"
+      },
+      {
+        title: "Payment Gateway memverifikasi ke Bank / Dompet Digital",
+        short: "Verifikasi Bank",
+        text: "Payment gateway mengkonfirmasi ketersediaan dana ke bank atau dompet digital pembeli. Proses ini menjamin dana tersedia sebelum penjual diberitahu sehingga risiko penipuan dari sisi pembayaran berkurang.",
+        from: "gateway", to: "bank", packet: "🔐", label: "Verifikasi dana",
+        set: {gateway:"warn", bank:"active"},
+        law: "PP 71/2019 tentang penyelenggara sistem pembayaran elektronik sebagai PSE (Verifikasi dosen: nomor pasal)"
+      },
+      {
+        title: "Bank mengkonfirmasi — Payment Gateway memberi sinyal ke Penjual",
+        short: "Konfirmasi",
+        text: "Bank menyetujui transaksi; payment gateway meneruskan konfirmasi kepada penjual bahwa pembayaran berhasil. Penjual kini memiliki kewajiban hukum untuk menyerahkan barang sesuai yang dijanjikan.",
+        from: "gateway", to: "penjual", packet: "✅", label: "Konfirmasi",
+        set: {bank:"safe", gateway:"safe", penjual:"active"},
+        law: "KUH Perdata: perjanjian yang sah mengikat para pihak layaknya undang-undang bagi mereka (Verifikasi dosen: Pasal 1338 KUH Perdata); penjual wajib memenuhi prestasi menyerahkan barang"
+      },
+      {
+        title: "Penjual mengirim produk — Kontrak Terpenuhi",
+        short: "Kirim Produk",
+        text: "Penjual mengirimkan produk sesuai deskripsi dan waktu yang dijanjikan. Kewajiban penjual (prestasi) terpenuhi dan kontrak selesai. Jika penjual tidak mengirim barang, ia dapat dituntut karena wanprestasi.",
+        from: "penjual", to: "pembeli", packet: "📦", label: "Produk dikirim",
+        set: {penjual:"safe", pembeli:"safe"},
+        law: "KUH Perdata tentang wanprestasi bila kewajiban tidak dipenuhi (Verifikasi dosen: nomor pasal); UU Perlindungan Konsumen UU 8/1999: konsumen berhak mendapat barang sesuai perjanjian (Verifikasi dosen: nomor pasal)",
+        tip: "Simpan resi pengiriman sebagai bukti pemenuhan kontrak oleh penjual"
+      }
+    ],
+    outcome: "Transaksi elektronik yang sah memenuhi 4 syarat KUH Perdata, melibatkan PSE terdaftar, dan terdokumentasi di setiap langkah. Simpan semua bukti digital sejak langkah pertama agar posisi hukum kamu kuat bila terjadi sengketa."
+  },
+
+  tteExplorer: {
+    title: "Jelajahi: Jenis Tanda Tangan Elektronik",
+    intro: "Klik kartu untuk membuka definisi, cara kerja teknis, contoh platform, dan dasar hukumnya.",
+    items: [
+      {
+        id:"ttersertifikasi",
+        icon:"🔐",
+        name:"TTE Tersertifikasi",
+        tag:"Kekuatan hukum tertinggi",
+        summary:"TTE Tersertifikasi adalah tanda tangan elektronik yang pembuatannya menggunakan jasa Penyelenggara Sertifikasi Elektronik (PSrE) yang diakui dan terdaftar resmi di Indonesia. Sertifikat elektronik mengikat identitas penanda tangan ke kunci publiknya sehingga identitas dapat diverifikasi oleh pihak ketiga yang dipercaya.",
+        how:[
+          "Penanda tangan meminta sertifikat elektronik dari PSrE terdaftar, misalnya BSrE (Balai Sertifikasi Elektronik milik BSSN)",
+          "PSrE memverifikasi identitas pemohon sebelum menerbitkan sertifikat",
+          "Dokumen elektronik diproses dengan fungsi hash; hasil hash dienkripsi dengan kunci privat penanda tangan",
+          "Sertifikat elektronik yang berisi kunci publik dilampirkan bersama dokumen",
+          "Penerima memverifikasi tanda tangan dengan kunci publik: jika cocok, dokumen utuh dan identitas penanda tangan terbukti"
+        ],
+        ex:[
+          "Penandatanganan kontrak kerja sama antar instansi pemerintah atau BUMN menggunakan sistem TTE resmi",
+          "Dokumen perizinan elektronik yang diterbitkan melalui platform OSS (Online Single Submission)",
+          "Notaris dan PPAT yang menggunakan sistem tanda tangan elektronik bersertifikat untuk akta",
+          "Platform perjanjian digital berbasis sertifikat untuk kontrak bernilai tinggi antar pelaku bisnis"
+        ],
+        impact:"Kekuatan pembuktian paling kuat: identitas penanda tangan sulit disangkal (nirsangkal), dokumen tidak dapat diubah diam-diam tanpa terdeteksi, dan sertifikat dari PSrE menjadi bukti identitas yang dapat diverifikasi secara independen oleh siapapun.",
+        law:[
+          "UU ITE mengatur bahwa TTE yang memenuhi syarat (data pembuatan hanya terkait penanda tangan dan berada dalam kuasanya) memiliki kekuatan hukum dan akibat hukum yang sah (Verifikasi dosen: nomor pasal UU ITE tentang TTE)",
+          "PP 71/2019 membedakan TTE tersertifikasi dan tidak tersertifikasi serta mengatur persyaratan PSrE (Verifikasi dosen: nomor pasal PP 71/2019)",
+          "UNCITRAL Model Law on Electronic Signatures 2001: prinsip kesetaraan fungsional dan netral teknologi"
+        ],
+        prev:[
+          "Gunakan TTE tersertifikasi untuk dokumen bernilai tinggi: kontrak kerja sama, perizinan, dan dokumen perdata penting",
+          "Pastikan PSrE yang digunakan terdaftar dan diakui BSSN atau kementerian yang berwenang",
+          "Simpan sertifikat dan dokumen bertanda tangan dalam format yang dapat diverifikasi ulang di kemudian hari"
+        ]
+      },
+      {
+        id:"ttidaktersertifikasi",
+        icon:"✍️",
+        name:"TTE Tidak Tersertifikasi",
+        tag:"Sah, pembuktian lebih berat",
+        summary:"TTE Tidak Tersertifikasi adalah tanda tangan elektronik yang dibuat tanpa menggunakan jasa PSrE. Contoh umum: PIN, OTP, tanda tangan di layar sentuh, gambar tanda tangan yang disisipkan ke dokumen, atau centang 'Saya setuju'. Keduanya diakui sah secara hukum, tetapi beban pembuktian identitas dan keutuhan dokumennya lebih berat untuk yang tidak tersertifikasi.",
+        how:[
+          "Pengguna melakukan tindakan yang dianggap sebagai tanda persetujuan: mengetik PIN, memasukkan OTP, menggambar di layar, atau mencentang 'Saya setuju'",
+          "Sistem mencatat tindakan tersebut bersama metadata: waktu, akun pengguna, alamat IP, dan perangkat",
+          "Tidak ada sertifikat elektronik dari PSrE yang mengikat identitas ke kunci publik",
+          "Keaslian dibuktikan dari kualitas log sistem, kesesuaian nomor telepon atau email OTP, dan rekaman aktivitas akun"
+        ],
+        ex:[
+          "Aplikasi pinjaman online: pengguna menekan 'Setuju' dan memasukkan OTP sebagai konfirmasi persetujuan",
+          "Kurir pengiriman: penerima menggambar tanda tangan di tablet; tersimpan di sistem perusahaan dengan log waktu",
+          "Platform e-commerce: pembeli mencentang syarat dan ketentuan sebelum membayar (clickwrap)",
+          "Aplikasi perbankan: nasabah menyetujui transaksi dengan PIN atau autentikasi biometrik"
+        ],
+        impact:"Tetap sah dan berlaku untuk transaksi sehari-hari bernilai kecil hingga menengah. Namun bila terjadi sengketa, pihak yang mengandalkan TTE tidak tersertifikasi perlu menyediakan bukti pendukung tambahan: log sistem, data akun, rekaman OTP, dan sebagainya. Nilai pembuktiannya dinilai hakim berdasarkan kualitas bukti yang tersedia.",
+        law:[
+          "UU ITE mengakui TTE yang memenuhi persyaratan tertentu sebagai sah; PP 71/2019 membedakan tersertifikasi dan tidak tersertifikasi (Verifikasi dosen: nomor pasal)",
+          "Nilai bukti TTE tidak tersertifikasi dinilai berdasarkan keutuhan, keaslian, dan dapat dipertanggungjawabkannya (Verifikasi dosen: pasal UU ITE tentang alat bukti elektronik)",
+          "UU Perlindungan Konsumen (UU 8/1999) relevan bila persetujuan dipakai dalam konteks klausula baku konsumen"
+        ],
+        prev:[
+          "Pilih platform yang menyimpan log transaksi secara otomatis dan dapat dicetak sebagai bukti persetujuan",
+          "Simpan notifikasi OTP, email konfirmasi, dan bukti persetujuan dari sumber asli, bukan hanya tangkapan layar",
+          "Untuk dokumen bernilai tinggi atau jangka panjang, pertimbangkan beralih ke TTE tersertifikasi"
+        ]
+      },
+      {
+        id:"kriptografi",
+        icon:"🔑",
+        name:"Tanda Tangan Digital Kriptografi",
+        tag:"Berbasis kriptografi asimetris",
+        summary:"Tanda tangan digital berbasis kriptografi adalah teknik spesifik yang menggunakan pasangan kunci asimetris: kunci privat (rahasia, hanya dipegang penanda tangan) dan kunci publik (dibagikan, dipakai siapa saja untuk memverifikasi). Ini adalah teknologi di balik TTE Tersertifikasi dan menjadi fondasi keamanan komunikasi digital modern.",
+        how:[
+          "Dokumen yang akan ditandatangani diproses dengan fungsi hash (misal SHA-256), menghasilkan 'sidik jari' dokumen yang unik",
+          "Sidik jari (hash) dienkripsi menggunakan kunci privat penanda tangan — hasilnya disebut tanda tangan digital",
+          "Tanda tangan digital dilampirkan bersama dokumen dan kunci publik penanda tangan",
+          "Penerima mendekripsi tanda tangan dengan kunci publik untuk mendapatkan hash asli",
+          "Penerima menghitung ulang hash dokumen yang diterima; jika cocok dengan hash yang didekripsi, dokumen utuh dan penanda tangannya terbukti",
+          "Jika dokumen diubah sedikit saja setelah ditandatangani, hash-nya berubah dan verifikasi langsung gagal — inilah jaminan integritas"
+        ],
+        ex:[
+          "Email terenkripsi S/MIME atau PGP yang digunakan oleh organisasi keamanan dan jurnalis investigatif",
+          "Sertifikat TLS/SSL situs web (gembok di browser) yang membuktikan identitas server kepada pengunjung",
+          "Tanda tangan kode perangkat lunak: sistem operasi memverifikasi program tidak diubah sejak dirilis pengembang resmi",
+          "Transaksi blockchain yang menggunakan tanda tangan digital untuk membuktikan kepemilikan dan keaslian aset digital"
+        ],
+        impact:"Memberikan tiga jaminan sekaligus: (1) Autentikasi — terbukti siapa yang menandatangani karena hanya pemegang kunci privat yang bisa membuat tanda tangan yang valid; (2) Integritas — dokumen tidak berubah sejak ditandatangani; (3) Nirsangkal — penanda tangan sulit menyangkal telah menandatangani karena hanya ia yang memegang kunci privat.",
+        law:[
+          "UU ITE mengatur syarat TTE yang sah, termasuk bahwa data pembuatan TTE hanya terkait pada penanda tangan (prinsip ini mencerminkan peran kunci privat) (Verifikasi dosen: nomor pasal UU ITE tentang TTE)",
+          "PP 71/2019 mengatur PSrE yang mengelola sertifikat untuk pasangan kunci publik dan privat (Verifikasi dosen: nomor pasal)",
+          "Standar internasional: RSA, ECDSA, dan Ed25519 adalah algoritma yang umum digunakan; NIST dan ISO 27001 memberikan panduan implementasi yang diakui global"
+        ],
+        prev:[
+          "Kunci privat harus disimpan aman dan tidak dibagikan; simpan di perangkat keras (hardware token) atau HSM untuk keamanan tinggi",
+          "Gunakan algoritma yang masih direkomendasikan saat ini (misal RSA 2048-bit ke atas, ECDSA P-256); hindari algoritma usang seperti MD5 atau SHA-1",
+          "Pastikan kunci publik diperoleh dari PSrE atau CA (Certificate Authority) terpercaya untuk menghindari serangan man-in-the-middle"
+        ]
+      }
+    ]
+  },
+
+  ecommerceMock: {
+    title: "Simulasi: Analisis Halaman Checkout BelanjaCepat.id",
+    kind: "web",
+    instruct: "Kamu akan menganalisis halaman checkout toko online fiktif 'BelanjaCepat.id'. Klik bagian yang menurutmu bermasalah secara hukum atau keamanan. Hati-hati: beberapa bagian tampak janggal tetapi sebenarnya wajar dan justru merupakan praktik yang baik.",
+    header: {
+      url: [{t:"http://belanjacepat.id/checkout", h:"h1"}]
+    },
+    messages: [
+      {parts: ["BelanjaCepat.id — Checkout Pesananmu"]},
+      {parts: ["Produk: Sepatu Lari Pro-X  |  Harga di halaman produk: ", {t:"Rp 450.000", h:"h3"}, "  |  Harga di halaman ini: Rp 487.500"]},
+      {parts: ["Subtotal: Rp 487.500  |  Ongkir: Rp 15.000  |  Total: Rp 502.500"]},
+      {parts: [{t:"Dengan menekan 'Bayar Sekarang', kamu membebaskan BelanjaCepat.id dan seluruh penjual dari segala tanggung jawab atas kerusakan, keterlambatan, atau ketidaksesuaian produk.", h:"h2"}]},
+      {parts: [{t:"✓ TERPERCAYA · ✓ 100% AMAN · ✓ GARANSI ASLI", h:"h4"}]},
+      {parts: [{t:"Kebijakan Pengembalian: Produk dapat dikembalikan dalam 7 hari kerja apabila tidak sesuai deskripsi. Hubungi layanan pelanggan untuk proses retur.", h:"h5"}]}
+    ],
+    cta: "Bayar Sekarang",
+    hotspots: [
+      {
+        id:"h1",
+        label:"Tidak ada HTTPS — koneksi tidak aman",
+        why:" URL dimulai dengan 'http://' bukan 'https://'. Tanpa enkripsi TLS, data pembayaran (nomor kartu, PIN) dapat dicegat oleh pihak ketiga di jaringan yang sama. Selalu cari ikon gembok dan 'https://' di URL sebelum memasukkan data sensitif apa pun.",
+        decoy: false
+      },
+      {
+        id:"h2",
+        label:"Klausula baku yang membebaskan penjual dari semua tanggung jawab",
+        why:" Klausula yang secara sepihak membebaskan pelaku usaha dari segala tanggung jawab dilarang oleh UU Perlindungan Konsumen (UU 8/1999) karena merugikan konsumen. Klausula seperti ini dapat dinyatakan batal demi hukum (Verifikasi dosen: nomor pasal UU 8/1999 tentang larangan klausula baku).",
+        decoy: false
+      },
+      {
+        id:"h3",
+        label:"Harga berubah antara halaman produk dan halaman checkout",
+        why:" Harga tercantum Rp 450.000 di halaman produk, tetapi menjadi Rp 487.500 di checkout tanpa penjelasan. Ini berpotensi menjadi penipuan harga dan melanggar kewajiban pelaku usaha menyediakan informasi yang benar. Prinsip 'hal tertentu' dalam syarat sah perjanjian mengharuskan harga jelas dan konsisten.",
+        decoy: false
+      },
+      {
+        id:"h4",
+        label:"Badge 'Terpercaya' dan '100% Aman' adalah klaim marketing, bukan jaminan hukum",
+        why:" Badge ini dibuat sendiri oleh platform tanpa verifikasi pihak ketiga yang independen. Ini praktik pemasaran yang umum dan tidak melanggar hukum, tetapi tidak memiliki kekuatan hukum sebagai jaminan. Jaminan hukum yang nyata berasal dari terdaftarnya PSE di Komdigi dan hak konsumen yang diatur UU Perlindungan Konsumen.",
+        decoy: true
+      },
+      {
+        id:"h5",
+        label:"Kebijakan pengembalian yang jelas dan tertulis — ini praktik yang baik",
+        why:" Kebijakan pengembalian yang tertulis jelas justru merupakan tanda platform yang bertanggung jawab dan memenuhi kewajibannya. Ini sesuai kewajiban pelaku usaha menyediakan syarat kontrak yang dapat dibaca sebelum transaksi terjadi. Konsumen berhak mendapat informasi yang jelas tentang hak pengembalian barang.",
+        decoy: true
+      }
+    ]
+  },
+
+  cls1: {
+    title: "Kelompokkan contoh tanda tangan berikut",
+    bins: ["TTE tersertifikasi", "TTE tidak tersertifikasi (sah, pembuktian lebih berat)", "Lemah / belum memenuhi syarat TTE"],
+    items: [
+      {t:"Surat kerja sama ditandatangani dengan sertifikat elektronik dari penyelenggara sertifikasi (PSrE) terdaftar", a:0, why:"Memakai jasa PSrE dan sertifikat elektronik: kategori tersertifikasi."},
+      {t:"Dokumen resmi instansi dengan tanda tangan digital bersertifikat dan kode verifikasi", a:0, why:"Didukung sertifikat elektronik sehingga integritas dan identitas penanda tangan dapat diverifikasi."},
+      {t:"Aplikasi pinjaman: pengguna menekan 'Setuju', memasukkan OTP, dan sistem mencatat waktu serta akun", a:1, why:"Tanpa PSrE, tetapi ada autentikasi dan log. Dapat sah, namun pembuktian bergantung pada kualitas log dan sistem."},
+      {t:"Kurir meminta penerima menggambar tanda tangan di layar tablet; tersimpan di sistem perusahaan dengan log", a:1, why:"Contoh umum TTE tidak tersertifikasi untuk transaksi sehari-hari."},
+      {t:"Gambar scan tanda tangan basah ditempel ke PDF kontrak oleh siapa saja yang memegang file", a:2, why:"Mudah disalin dan dipalsukan; tidak menunjukkan bahwa data tanda tangan hanya dalam kuasa penanda tangan."},
+      {t:"Mengetik 'Setuju, Budi' di akhir chat grup tanpa identitas jelas", a:2, why:"Bisa menjadi petunjuk persetujuan, tetapi sulit dianggap TTE yang memadai tanpa bukti identitas dan keutuhan."},
+      {t:"Kontrak ditandatangani basah di kertas, lalu dipindai dan dikirim lewat email", a:2, why:"Ini tanda tangan basah; hasil pindai adalah salinan elektronik, bukan TTE. Keaslian dokumen perlu bukti lain."},
+      {t:"Kontrak dengan mitra bisnis ditandatangani lewat platform tanda tangan digital yang memakai sertifikat elektronik terdaftar", a:0, why:"Kategori tersertifikasi; baik untuk dokumen bernilai tinggi."}
+    ]
+  },
+
+  flash2: {
+    title: "Uji istilah TTE, PSE, dan bukti (klik kartu untuk membalik)",
+    cards: [
+      {f:"Tanda tangan digital", b:"Teknik TTE berbasis kriptografi: dokumen di-hash lalu ditandatangani dengan kunci privat; diverifikasi dengan kunci publik."},
+      {f:"PSrE", b:"Penyelenggara Sertifikasi Elektronik: lembaga yang menerbitkan sertifikat elektronik untuk TTE tersertifikasi."},
+      {f:"Nirsangkal", b:"Sifat TTE yang membuat penanda tangan sulit menyangkal telah menandatangani."},
+      {f:"Kesetaraan fungsional", b:"Prinsip UNCITRAL: dokumen/tanda tangan elektronik setara dengan versi kertas bila menjalankan fungsi yang sama."},
+      {f:"PSE lingkup privat", b:"Penyelenggara sistem elektronik non-instansi (marketplace, fintech, media sosial); wajib mendaftar."},
+      {f:"PMSE", b:"Perdagangan melalui sistem elektronik; diatur PP 80/2019."},
+      {f:"Alat bukti elektronik", b:"Informasi/dokumen elektronik dan hasil cetaknya yang diakui sebagai alat bukti sah menurut UU ITE; nilai buktinya dinilai hakim."},
+      {f:"Keutuhan dokumen", b:"Dokumen tidak berubah sejak dibuat atau ditandatangani; salah satu syarat kekuatan bukti."}
+    ]
+  },
+
+  cls2: {
+    title: "Kelompokkan sistem berikut menurut lingkup PSE",
+    bins: ["PSE lingkup publik", "PSE lingkup privat (wajib daftar)", "Perlu dicek / bukan PSE yang melayani publik"],
+    items: [
+      {t:"Aplikasi layanan administrasi kependudukan yang dioperasikan instansi pemerintah", a:0, why:"Dioperasikan instansi: PSE lingkup publik."},
+      {t:"Sistem perizinan online milik pemerintah daerah", a:0, why:"Penyelenggara instansi negara: PSE lingkup publik."},
+      {t:"Marketplace yang dikelola perseroan terbatas swasta", a:1, why:"Penyelenggara swasta: PSE lingkup privat yang wajib mendaftar."},
+      {t:"Dompet digital milik perusahaan fintech", a:1, why:"PSE privat; juga tunduk pada pengawasan sektor keuangan."},
+      {t:"Media sosial asing yang menyediakan layanan untuk pengguna di Indonesia", a:1, why:"PSE privat asing yang melayani pengguna di Indonesia umumnya wajib terdaftar. Verifikasi dosen untuk batas penerapannya."},
+      {t:"Toko online UMKM yang punya situs dan sistem pembayaran sendiri", a:1, why:"Menyelenggarakan sistem elektronik untuk transaksi dengan konsumen: patut dicek sebagai PSE privat."},
+      {t:"Sistem informasi internal kantor yang hanya dipakai karyawan sendiri", a:2, why:"Dipakai untuk keperluan internal dan tidak melayani publik; perlu dicek definisi dan ruang lingkup. Verifikasi dosen."},
+      {t:"Penjual perorangan yang berjualan di dalam marketplace tanpa membuat sistem sendiri", a:2, why:"Ia pedagang yang memakai platform, bukan penyelenggara sistem; kewajibannya sebagai pedagang berbeda dari PSE."}
+    ]
+  },
+
+  cek1: {
+    title: "Periksa keabsahan sebuah toko online sebelum membeli (centang yang sudah kamu cek)",
+    items: [
+      "Identitas penjual jelas: nama usaha, alamat, kontak, bukan hanya akun tanpa jejak.",
+      "Deskripsi barang, harga, ongkir, dan estimasi pengiriman tertulis jelas (hal tertentu).",
+      "Syarat dan ketentuan serta kebijakan pengembalian dapat dibaca sebelum membayar.",
+      "Pembayaran lewat kanal resmi (rekening berbadan usaha, escrow marketplace), bukan transfer pribadi tanpa jaminan.",
+      "Seluruh bukti disimpan: tangkapan layar halaman produk, chat, bukti bayar, resi.",
+      "Platform tempat transaksi memiliki mekanisme pengaduan dan identitas penyelenggara yang jelas."
+    ],
+    doneMsg: "Daftar periksa lengkap. Kebiasaan ini mengurangi risiko tertipu toko fiktif dan memperkuat bukti bila ada sengketa."
+  },
+
+  scn2: {
+    title: "Skenario fiktif: toko 'SepatuKilat.id' tidak mengirim barang. Kamu adalah Rina. Apa langkah pertamamu?",
+    start: "n0",
+    nodes: {
+      n0: {text:"Barang tidak datang, akun penjual dihapus, tetapi kamu masih punya tangkapan layar DM, bukti transfer, dan nomor rekening penerima. Langkah pertamamu…",
+        choices:[{t:"Mengamankan bukti dari sumber asli (ekspor chat, mutasi rekening dari bank) lalu melapor ke bank dan platform", to:"n1"},{t:"Mengunggah nama dan foto rekening penjual di media sosial untuk mempermalukannya", to:"n2"},{t:"Menghapus chat karena sudah kesal, lalu merelakan uangnya", to:"n3"}]},
+      n1: {text:"Bank menerima laporanmu dan platform meminta data. Kamu menimbang langkah berikut. Pilih jalur penyelesaian…",
+        choices:[{t:"Mengajukan pengaduan ke bank, platform, dan konsumen, lalu melapor ke kepolisian bila perlu", to:"n4"},{t:"Hanya menunggu platform membalas tanpa tindak lanjut", to:"n5"}]},
+      n2: {end:true, text:"Hasil: kemarahanmu dapat dimengerti, tetapi mengunggah data pribadi atau tuduhan tanpa dasar dapat membuatmu sendiri berisiko dilaporkan atas pencemaran nama baik atau pelanggaran data pribadi, dan bukti aslimu bisa rusak.",
+        lens:"Hukum: penegakan lewat jalur resmi lebih aman dan bernilai bukti. Pelaku usaha/pihak lain: tidak boleh dihukum main hakim sendiri. Etika: mempermalukan di ruang publik tidak sebanding dan bisa salah sasaran."},
+      n3: {end:true, text:"Hasil: kamu kehilangan bukti penting dan kesempatan melapor ke bank dan platform. Penjual kemungkinan mengulangi modusnya pada orang lain.",
+        lens:"Hukum: tanpa bukti, klaim sulit dibuktikan. Konsumen lain: ikut dirugikan karena pelaku tidak dilaporkan. Etika: melapor juga bentuk tanggung jawab bersama."},
+      n4: {end:true, text:"Hasil: kamu menempuh jalur yang paling kuat. Bukti asli membantu aparat dan pihak bank menelusuri rekening; pengaduan konsumen dan laporan pidana dapat berjalan berdampingan dengan permintaan pengembalian dana.",
+        lens:"Hukum: perdata (wanprestasi), pidana (dugaan penipuan, berita bohong dalam transaksi elektronik), dan perlindungan konsumen berjalan paralel. Platform sebagai PSE: dapat dimintai bantuan data dan penindakan akun. Etika: proporsional dan tidak menyebar data orang."},
+      n5: {end:true, text:"Hasil: tanpa tindak lanjut, penanganan lambat dan bukti bisa kedaluwarsa (log hilang, rekening kosong). Platform tidak otomatis bertanggung jawab atas transaksi di luar sistemnya.",
+        lens:"Hukum: segera lapor dan lengkapi bukti. Platform: kewajiban terbatas pada sistemnya. Etika: bersikap proaktif melindungi diri dan orang lain."}
+    }
+  },
+
+  ref1: {
+    title: "Tulis 3–5 kalimat",
+    prompt: "Pikirkan satu transaksi online yang pernah kamu lakukan atau lihat (belanja, top-up, langganan, jual beli lewat chat). Jelaskan: (a) apakah keempat syarat sah perjanjian terpenuhi, (b) bukti apa yang kamu punya atau seharusnya kamu simpan, dan (c) satu hal yang akan kamu lakukan berbeda berdasarkan materi hari ini.",
+    hint: "Tulisan tersimpan otomatis di perangkat ini. Gunakan tombol Salin untuk mengumpulkan ke dosen."
+  },
+
+  quiz1: {
+    title: "Kuis penutup (9 soal)",
+    items: [
+      {q:"Empat syarat sah perjanjian dalam KUH Perdata adalah…", o:["Sepakat, cakap, hal tertentu, sebab yang halal","Tertulis, ditandatangani, bermeterai, disaksikan","Harga jelas, barang ada, pembayaran lunas, ada kuitansi","Sepakat, bermeterai, notaris, saksi"], a:0, why:"Kesepakatan, kecakapan, hal tertentu, dan sebab yang halal. Bentuk tertulis tidak menjadi syarat umum."},
+      {q:"Syarat 'sepakat' dan 'cakap' disebut syarat subjektif. Bila tidak terpenuhi, perjanjian umumnya…", o:["Batal demi hukum","Dapat dibatalkan","Tetap sah tanpa syarat","Berubah menjadi pidana"], a:1, why:"Pelanggaran syarat subjektif membuat perjanjian dapat dibatalkan; syarat objektif yang dilanggar membuatnya batal demi hukum."},
+      {q:"Seseorang membeli barang lewat DM, menyetujui harga, dan membayar. Menurut kerangka hukum kita, perjanjian tersebut…", o:["Tidak sah karena tidak ada kertas","Dapat sah bila syarat sah terpenuhi dan dapat dibuktikan","Hanya sah bila memakai tanda tangan digital bersertifikat","Hanya sah di marketplace resmi"], a:1, why:"Medium bukan penentu. Syarat sah dan pembuktian yang menentukan."},
+      {q:"Bentuk persetujuan online yang umumnya paling kuat sebagai bukti kesepakatan adalah…", o:["Browsewrap","Clickwrap yang tercatat waktu dan akunnya","Iklan di media sosial","Notifikasi push"], a:1, why:"Clickwrap memerlukan tindakan aktif dan dapat dicatat; browsewrap lebih rawan dipersoalkan."},
+      {q:"Perbedaan utama TTE tersertifikasi dan tidak tersertifikasi adalah…", o:["Tersertifikasi memakai jasa PSrE dan sertifikat elektronik","Yang tidak tersertifikasi selalu tidak sah","Tersertifikasi tidak perlu bukti identitas","Tidak ada perbedaan hukum"], a:0, why:"Tersertifikasi memakai PSrE dan sertifikat elektronik; yang tidak tersertifikasi tetap bisa sah tetapi pembuktiannya lebih berat."},
+      {q:"Prinsip 'kesetaraan fungsional' dalam UNCITRAL Model Law berarti…", o:["Semua tanda tangan harus berbentuk gambar","Tanda tangan elektronik setara bila menjalankan fungsi yang sama dengan tanda tangan basah","Dokumen elektronik selalu lebih kuat dari kertas","Hanya kertas yang dapat menjadi bukti"], a:1, why:"Bentuk elektronik tidak menjadi alasan penolakan bila fungsinya terpenuhi."},
+      {q:"Marketplace swasta yang beroperasi di Indonesia termasuk…", o:["PSE lingkup publik","PSE lingkup privat yang wajib mendaftar","Bukan PSE sama sekali","Hanya perlu mendaftar bila omzetnya besar (tidak ada kewajiban lain)"], a:1, why:"Penyelenggara swasta masuk PSE lingkup privat dan diwajibkan mendaftar; rincian lengkap perlu merujuk PP 71/2019 dan Permenkominfo 5/2020."},
+      {q:"Pernyataan yang tepat tentang alat bukti elektronik adalah…", o:["Tangkapan layar otomatis dipercaya hakim","Informasi dan dokumen elektronik diakui sebagai alat bukti sah, tetapi nilainya dinilai dari keutuhan dan keaslian","Hanya hasil cetak yang boleh dijadikan bukti","Bukti elektronik tidak boleh dipakai dalam perkara pidana"], a:1, why:"UU ITE mengakui bukti elektronik, tetapi penilaian nilai bukti tetap pada hakim berdasarkan keaslian dan keutuhannya."},
+      {q:"Pada kasus toko online fiktif, tindakan paling tepat setelah barang tidak dikirim adalah…", o:["Menyebar data pribadi penjual","Mengamankan bukti asli lalu mengadu ke bank, platform, dan aparat","Menghapus chat dan melupakannya","Membuat akun palsu untuk menjebak penjual"], a:1, why:"Bukti asli dan jalur resmi memberi posisi paling kuat; main hakim sendiri berisiko hukum."}
+    ]
+  }
+};
+</script>
+
+
+<!-- ===== [SHARED:JS] — jangan ubah blok ini antar pertemuan ===== -->
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const K=PAGE.id+":";
+const store={get(k,d){try{const v=localStorage.getItem(K+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(K+k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const widgets=$$(".w[data-widget]"); const done=new Set(store.get("done",[]));
+function markDone(id){done.add(id);store.set("done",[...done]);const el=$("#"+id);if(el)el.classList.add("done");updateProgress()}
+function updateProgress(){const p=widgets.length?Math.round(done.size/widgets.length*100):0;$("#pbar").style.width=p+"%";$("#ppct").textContent=p+"%"}
+const body=(el)=>{const d=document.createElement("div");d.className="wb";el.appendChild(d);return d};
+
+/* ---------- Poll ---------- */
+function poll(el,c){const b=body(el);const saved=store.get(el.id,null);
+  b.innerHTML=`<h3>${esc(c.q)}</h3><div class="opts"></div><div class="fb"></div>`;
+  const o=$(".opts",b),fb=$(".fb",b);
+  c.opts.forEach((x,i)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=x.t;bt.onclick=()=>pick(i);o.appendChild(bt)});
+  function pick(i){$$(".opt",o).forEach((e,j)=>e.classList.toggle("sel",i===j));fb.className="fb show ok";fb.innerHTML="<b>Insight:</b> "+esc(c.opts[i].why);store.set(el.id,i);markDone(el.id)}
+  if(saved!==null)pick(saved)}
+
+/* ---------- Checklist ---------- */
+function checklist(el,c){const b=body(el);const st=store.get(el.id,[]);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="ckl"></div><div class="fb"></div>`;
+  const box=$(".ckl",b),fb=$(".fb",b);
+  c.items.forEach((t,i)=>{const l=document.createElement("label");l.innerHTML=`<input type="checkbox"><span>${esc(t)}</span>`;const cb=$("input",l);cb.checked=st.includes(i);cb.onchange=chk;box.appendChild(l)});
+  function chk(){const v=$$("input",box).map((x,i)=>x.checked?i:-1).filter(i=>i>=0);store.set(el.id,v);if(v.length===c.items.length){fb.className="fb show ok";fb.textContent=c.doneMsg||"Selesai.";markDone(el.id)}else fb.className="fb"}
+  chk()}
+
+/* ---------- Flashcards ---------- */
+function flash(el,c){const b=body(el);let i=0;const known=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="flash"><div class="flash-in"><div class="face f"></div><div class="face b"></div></div></div>
+  <div class="fc-ctl"><button class="btn ghost" data-a="prev">‹ Sebelumnya</button><span class="cnt"></span><button class="btn ghost" data-a="next">Berikutnya ›</button><button class="btn" data-a="know">Saya paham ✓</button></div>`;
+  const fl=$(".flash",b);
+  function draw(){const x=c.cards[i];$(".f",b).textContent=x.f;$(".b",b).textContent=x.b;fl.classList.remove("flip");$(".cnt",b).textContent=`${i+1}/${c.cards.length} · paham ${known.size}`}
+  fl.onclick=()=>fl.classList.toggle("flip");
+  b.onclick=e=>{const a=e.target.dataset.a;if(!a)return;if(a==="next")i=(i+1)%c.cards.length;if(a==="prev")i=(i-1+c.cards.length)%c.cards.length;if(a==="know"){known.add(i);store.set(el.id,[...known]);if(known.size===c.cards.length)markDone(el.id);i=(i+1)%c.cards.length}draw()};
+  draw();if(known.size===c.cards.length)markDone(el.id)}
+
+/* ---------- Classify ---------- */
+function classify(el,c){const b=body(el);let pick=null;const asg={};
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="cls-pool"></div><div class="cls-bins"></div>
+  <p><button class="btn" data-a="chk">Periksa</button> <button class="btn ghost" data-a="rst">Ulangi</button> <span class="score"></span></p><div class="fb"></div>`;
+  const pool=$(".cls-pool",b),bins=$(".cls-bins",b),fb=$(".fb",b);
+  c.bins.forEach((n,bi)=>{const d=document.createElement("div");d.className="bin";d.tabIndex=0;d.dataset.b=bi;d.innerHTML=`<h4>${esc(n)}</h4>`;bins.appendChild(d)});
+  function render(){pool.innerHTML="";$$(".bin .cls-item",bins).forEach(e=>e.remove());
+    c.items.forEach((x,i)=>{const e=document.createElement("button");e.className="cls-item";e.textContent=x.t;e.dataset.i=i;
+      if(pick===i)e.classList.add("pick");
+      if(asg[i]!==undefined)$$(".bin",bins)[asg[i]].appendChild(e);else pool.appendChild(e)})}
+  b.onclick=e=>{const it=e.target.closest(".cls-item");const bin=e.target.closest(".bin");const a=e.target.dataset.a;
+    if(a==="rst"){for(const k in asg)delete asg[k];pick=null;fb.className="fb";$(".score",b).textContent="";render();return}
+    if(a==="chk"){if(Object.keys(asg).length<c.items.length){fb.className="fb show";fb.textContent="Tempatkan semua kartu terlebih dahulu.";return}
+      let s=0,html="<ul>";c.items.forEach((x,i)=>{const ok=asg[i]===x.a;if(ok)s++;html+=`<li>${ok?"✓":"✗"} <b>${esc(x.t)}</b> → <em>${esc(c.bins[x.a])}</em>. ${esc(x.why)}</li>`});html+="</ul>";
+      $$(".cls-item",b).forEach(el2=>{el2.classList.add(asg[el2.dataset.i]===c.items[el2.dataset.i].a?"right":"wrong")});
+      $(".score",b).textContent=`Skor ${s}/${c.items.length}`;fb.className="fb show ok";fb.innerHTML=html;markDone(el.id);return}
+    if(it&&(pool.contains(it)||bins.contains(it))){const i=+it.dataset.i;if(asg[i]!==undefined&&!bin){delete asg[i]}pick=i;render();return}
+    if(bin&&pick!==null){asg[pick]=+bin.dataset.b;pick=null;render()}};
+  render()}
+
+/* ---------- Scenario ---------- */
+function scenario(el,c){const b=body(el);
+  function show(id){const n=c.nodes[id];
+    b.innerHTML=`<h3>${esc(c.title)}</h3><p class="scn-text">${esc(n.text)}</p>`;
+    if(n.end){b.insertAdjacentHTML("beforeend",`<div class="scn-end"><b>Tinjauan 3 kacamata:</b> ${esc(n.lens)}</div><p><button class="btn ghost">Coba jalur lain</button></p>`);$(".btn",b).onclick=()=>show(c.start);markDone(el.id)}
+    else{const o=document.createElement("div");o.className="opts";n.choices.forEach(ch=>{const x=document.createElement("button");x.className="opt";x.textContent=ch.t;x.onclick=()=>show(ch.to);o.appendChild(x)});b.appendChild(o)}}
+  show(c.start)}
+
+/* ---------- Reflection ---------- */
+function reflect(el,c){const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt)}</p><textarea placeholder="Tulis di sini…"></textarea><p><small>${esc(c.hint||"")}</small></p><p><button class="btn" data-a="cp">Salin jawaban</button> <span class="cnt"></span></p>`;
+  const ta=$("textarea",b);ta.value=store.get(el.id,"");
+  const upd=()=>{const n=ta.value.trim().split(/\s+/).filter(Boolean).length;$(".cnt",b).textContent=n+" kata";if(n>=15)markDone(el.id)};
+  ta.oninput=()=>{store.set(el.id,ta.value);upd()};
+  $("[data-a=cp]",b).onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText(ta.value).then(()=>{e.target.textContent="Tersalin ✓";setTimeout(()=>e.target.textContent="Salin jawaban",1500)})};
+  upd()}
+
+/* ---------- Quiz ---------- */
+function quiz(el,c){const b=body(el);const ans=[];let i=0;
+  function show(){if(i>=c.items.length)return fin();const x=c.items[i];
+    b.innerHTML=`<h3>${esc(c.title)} · ${i+1}/${c.items.length}</h3><p><b>${esc(x.q)}</b></p><div class="opts"></div><div class="fb"></div><p><button class="btn" disabled>Lanjut ›</button></p>`;
+    const o=$(".opts",b),fb=$(".fb",b),nx=$(".btn",b);
+    x.o.forEach((t,j)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=t;bt.onclick=()=>{if(ans[i]!==undefined)return;ans[i]=j;$$(".opt",o).forEach((e,k)=>{if(k===x.a)e.classList.add("right");else if(k===j)e.classList.add("wrong")});fb.className="fb show "+(j===x.a?"ok":"");fb.innerHTML=(j===x.a?"<b>Benar.</b> ":"<b>Belum tepat.</b> ")+esc(x.why);nx.disabled=false;nx.textContent=i===c.items.length-1?"Lihat skor":"Lanjut ›"};o.appendChild(bt)});
+    nx.onclick=()=>{i++;show()}}
+  function fin(){const s=c.items.filter((x,k)=>ans[k]===x.a).length;const p=Math.round(s/c.items.length*100);
+    store.set(el.id+":score",p);
+    b.innerHTML=`<h3>Hasil kuis</h3><p class="score">${s}/${c.items.length} (${p}%)</p><p>${p>=80?"Sangat baik. Pemahamanmu kuat.":p>=60?"Cukup. Ulas butir yang salah.":"Perlu ulang. Baca kembali segmen 2–4."}</p><p><button class="btn ghost">Ulangi kuis</button></p>`;
+    $(".btn",b).onclick=()=>{ans.length=0;i=0;show()};markDone(el.id)}
+  show()}
+
+const R={poll,checklist,flash,classify,scenario,reflect,quiz};
+window.EHC={$,$$,store,esc,markDone,body};
+widgets.forEach(el=>{const t=el.dataset.widget;if(R[t]&&PAGE[el.id])R[t](el,PAGE[el.id]);if(done.has(el.id))el.classList.add("done")});
+updateProgress();
+
+/* ---------- Agenda & scrollspy ---------- */
+const ag=$("#agenda");const segs=$$(".seg");
+segs.forEach((s,i)=>{const a=document.createElement("a");a.href="#"+s.id;a.innerHTML=`${esc(s.dataset.title)}`;ag.appendChild(a)});
+const links=$$("a",ag);
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}})},{rootMargin:"-30% 0px -60% 0px"});
+segs.forEach(s=>io.observe(s));
+
+})();
+</script>
+<!-- ===== [/SHARED:JS] ===== -->
+<script>
+/* ===== [SHARED:VIZ-JS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+(function(){
+"use strict";
+const E=window.EHC; if(!E){return}
+const {$,$$,store,esc,markDone,body}=E;
+const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+const arr=x=>x==null?[]:Array.isArray(x)?x:[x];
+const list=(a,tag="ul")=>`<${tag}>${arr(a).map(x=>`<li>${esc(x)}</li>`).join("")}</${tag}>`;
+
+/* =============== FLOW: animasi alur proses antar aktor =============== */
+/* cfg: {title, sub, actors:[{id,icon,name,x,y,role,state,badge}], zones:[{x,y,w,h,label}],
+         steps:[{title,text,from,to,packet,label,count,bad,set:{id:'safe|warn|danger|lock|active'|['danger','teks']},law,tip,risk}], outcome} */
+function flow(el,c,opt){
+  opt=opt||{};const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title||"")}</h3>${c.sub?`<p>${esc(c.sub)}</p>`:""}
+  <div class="v-stage"><svg class="v-lines" viewBox="0 0 100 100" preserveAspectRatio="none"></svg><div class="v-layer"></div></div>
+  <div class="v-ctl"><button class="btn ghost" data-a="rs" title="Ulang dari awal">Ulang</button><button class="btn ghost" data-a="pv">‹ Mundur</button><button class="btn" data-a="pl">Putar otomatis</button><button class="btn ghost" data-a="nx">Lanjut ›</button>
+  <label>Kecepatan <select data-a="sp"><option value="1.6">Lambat</option><option value="1" selected>Normal</option><option value="0.6">Cepat</option></select></label></div>
+  <div class="v-rail"></div><div class="v-cap" aria-live="polite"></div>`;
+  const stage=$(".v-stage",b),svg=$(".v-lines",b),layer=$(".v-layer",b),rail=$(".v-rail",b),cap=$(".v-cap",b),play=$("[data-a=pl]",b);
+  const A={},pos={};
+  (c.zones||[]).forEach(z=>{const d=document.createElement("div");d.className="v-zone";d.style.cssText=`left:${z.x}%;top:${z.y}%;width:${z.w}%;height:${z.h}%`;d.textContent=z.label||"";layer.appendChild(d)});
+  c.actors.forEach(a=>{pos[a.id]=a;const d=document.createElement("div");d.className="v-actor r-"+(a.role||"neutral");d.style.cssText=`left:${a.x}%;top:${a.y}%`;
+    d.innerHTML=`<div class="v-ico">${a.icon}</div><div class="v-name">${esc(a.name)}</div><div class="v-badge"></div>`;layer.appendChild(d);A[a.id]=d});
+  const seenPairs=new Set(),L={};
+  c.steps.forEach(s=>arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const k=f+">"+t;if(f===t||seenPairs.has(k))return;seenPairs.add(k);
+    const ln=document.createElementNS("http://www.w3.org/2000/svg","line");ln.setAttribute("x1",pos[f].x);ln.setAttribute("y1",pos[f].y);ln.setAttribute("x2",pos[t].x);ln.setAttribute("y2",pos[t].y);svg.appendChild(ln);L[k]=ln})));
+  c.steps.forEach((s,i)=>{const r=document.createElement("button");r.textContent=`${i+1}. ${s.short||s.title}`;r.onclick=()=>{halt();go(i,true)};rail.appendChild(r)});
+  let cur=-1,tm=[],auto=false,max=-1,sp=1;
+  const T=(fn,ms)=>{const id=setTimeout(fn,ms);tm.push(id);return id};
+  const clr=()=>{tm.forEach(clearTimeout);tm=[];$$(".v-packet",layer).forEach(p=>p.remove())};
+  function states(i){
+    c.actors.forEach(a=>setSt(a.id,a.state||"",a.badge||""));
+    for(let k=0;k<=i;k++){const st=c.steps[k].set||{};for(const id in st){const v=st[id];Array.isArray(v)?setSt(id,v[0],v[1]||""):setSt(id,v,"")}}}
+  function setSt(id,s,badge){const d=A[id];if(!d)return;d.className=d.className.replace(/\bs-\w+/g,"").trim();if(s)d.classList.add("s-"+s);$(".v-badge",d).textContent=badge}
+  function fire(s){
+    const dur=reduce?1:900*sp,n=s.count||1;let d=0;
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{ if(f===t)return;
+      for(let k=0;k<n;k++){T(()=>{const a=pos[f],z=pos[t],p=document.createElement("div");p.className="v-packet";p.style.cssText=`left:${a.x}%;top:${a.y}%;--dur:${dur}ms`;
+        p.innerHTML=(s.packet||"✉️")+(s.label&&k===0?`<span class="v-plabel">${esc(s.label)}</span>`:"");layer.appendChild(p);void p.offsetWidth;
+        p.style.left=z.x+"%";p.style.top=z.y+"%";T(()=>{p.style.opacity=0;T(()=>p.remove(),320)},dur)},d+k*240*sp)}
+      d+=90*sp}));
+    return dur+(n-1)*240*sp+d}
+  function go(i,animate){
+    if(i<0||i>=c.steps.length)return;clr();cur=i;max=Math.max(max,i);const s=c.steps[i];
+    states(i-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const l=L[f+">"+t];if(l){l.classList.add("on");if(s.bad)l.classList.add("bad")}}));
+    arr(s.from).forEach(f=>{A[f]&&A[f].classList.add("s-active")});
+    const after=animate?fire(s):0;
+    T(()=>{states(i);arr(s.from).forEach(f=>{});},animate?Math.min(after,1100*sp):0);
+    $$("button",rail).forEach((r,k)=>{r.classList.toggle("on",k===i);r.classList.toggle("seen",k<i||k<=max&&k!==i)});
+    cap.innerHTML=`<span class="v-num">Langkah ${i+1} / ${c.steps.length}</span><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p>`
+      +((s.law||s.tip||s.risk)?`<div class="v-chips">${s.risk?`<span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span>`:""}${s.law?`<span class="v-chip law"><b>Dasar hukum</b>${esc(s.law)}</span>`:""}${s.tip?`<span class="v-chip tip"><b>Tips</b>${esc(s.tip)}</span>`:""}</div>`:"")
+      +(i===c.steps.length-1&&c.outcome?`<div class="v-outcome">${esc(c.outcome)}</div>`:"");
+    if(i===c.steps.length-1&&!opt.silent)markDone(el.id);
+    return after}
+  function halt(){auto=false;play.textContent="Putar otomatis"}
+  function step(){if(!auto)return;if(cur>=c.steps.length-1){halt();return}const after=go(cur+1,true);T(step,after+2600*sp)}
+  b.addEventListener("click",e=>{const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==="rs"){halt();clr();cur=-1;states(-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));$$("button",rail).forEach(r=>r.className="");cap.innerHTML="<span class=\"v-num\">Siap</span><h4>Tekan “Putar otomatis” atau “Lanjut”</h4><p>Setiap langkah menampilkan apa yang terjadi, dasar hukumnya, dan cara memutus rantainya.</p>"}
+    if(a==="nx"){halt();go(Math.min(cur+1,c.steps.length-1),true)}
+    if(a==="pv"){halt();go(Math.max(cur-1,0),false)}
+    if(a==="pl"){if(auto){halt();return}auto=true;play.textContent="Jeda";if(cur>=c.steps.length-1){cur=-1}step()}
+  });
+  $("[data-a=sp]",b).onchange=e=>{sp=+e.target.value};
+  b.querySelector("[data-a=rs]").click();
+}
+
+/* =============== EXPLORER: peta jenis / konsep dengan detail =============== */
+/* cfg: {title, intro, items:[{id,icon,name,tag,summary,how[],ex,impact,law,prev[],flow:'kunciFlow'}]} */
+function explorer(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3>${c.intro?`<p>${esc(c.intro)}</p>`:""}<div class="v-grid"></div><div class="v-detail-wrap"><p class="v-hintp"><em>Klik salah satu kartu untuk membuka penjelasan, contoh, dasar hukum, dan cara pencegahannya.</em></p></div>`;
+  const grid=$(".v-grid",b),wrap=$(".v-detail-wrap",b);
+  c.items.forEach((it,i)=>{const t=document.createElement("button");t.className="v-tile"+(seen.has(i)?" seen":"");t.innerHTML=`<span class="ic">${it.icon}</span><b>${esc(it.name)}</b><small>${esc(it.tag||"")}</small>`;t.onclick=()=>open(i);grid.appendChild(t)});
+  function open(i,tab){const it=c.items[i];seen.add(i);store.set(el.id,[...seen]);
+    $$(".v-tile",grid).forEach((t,k)=>{t.classList.toggle("sel",k===i);if(seen.has(k))t.classList.add("seen")});
+    const tabs=[["ap","Apa itu",true],["how","Cara kerja",it.how],["ex","Contoh",it.ex],["im","Dampak",it.impact],["law","Dasar hukum",it.law],["pv","Pencegahan",it.prev]].filter(x=>x[2]);
+    tab=tab||"ap";
+    const pane={ap:()=>`<p>${esc(it.summary)}</p>`,how:()=>list(it.how,"ol"),ex:()=>Array.isArray(it.ex)?list(it.ex):`<p>${esc(it.ex)}</p>`,im:()=>Array.isArray(it.impact)?list(it.impact):`<p>${esc(it.impact)}</p>`,law:()=>Array.isArray(it.law)?list(it.law):`<p>${esc(it.law)}</p>`,pv:()=>list(it.prev)};
+    wrap.innerHTML=`<div class="v-detail"><h3><span style="font-size:1.8rem">${it.icon}</span>${esc(it.name)}</h3><div class="v-tabs">${tabs.map(t=>`<button data-t="${t[0]}" class="${t[0]===tab?"on":""}">${t[1]}</button>`).join("")}</div><div class="v-pane">${pane[tab]()}</div>${it.flow&&PAGE[it.flow]?`<div class="v-sub"><button class="btn" data-f="1">Lihat animasi prosesnya</button><div class="v-flowbox"></div></div>`:""}</div>`;
+    wrap.onclick=e=>{const t=e.target.dataset.t;if(t){open(i,t)}if(e.target.dataset.f){e.target.style.display="none";flow($(".v-flowbox",wrap),PAGE[it.flow],{silent:true})}};
+    if(seen.size===c.items.length)markDone(el.id)}
+  if(seen.size===c.items.length)markDone(el.id)
+}
+
+/* =============== MOCK: layar HP / email / web / postingan dengan titik klik =============== */
+/* cfg: {title, kind:'chat|email|web|post', header:{name,sub,avatar,from,to,subject,url}, messages:[{from,time,parts}], cta, stats,
+         hotspots:[{id,label,why,decoy}], instruct}
+   parts: array string | {t:'teks', h:'idHotspot'} */
+function mock(el,c){
+  const b=body(el);const found=new Set(store.get(el.id,[]));const real=c.hotspots.filter(h=>!h.decoy);const H={};c.hotspots.forEach(h=>H[h.id]=h);
+  const P=parts=>arr(parts).map(p=>typeof p==="string"?esc(p):`<span class="v-hot" data-h="${p.h}" tabindex="0" role="button">${esc(p.t)}</span>`).join("");
+  const h=c.header||{};let inner="";
+  if(c.kind==="email"){inner=`<div class="v-bar"><span>✉️</span><b>Kotak masuk</b></div><div class="v-meta"><div><b>Dari:</b> ${P(h.from)}</div><div><b>Kepada:</b> ${P(h.to)}</div><div><b>Subjek:</b> ${P(h.subject)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="web"){inner=`<div class="v-bar"><span>🔒</span><div class="v-url">${P(h.url)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="post"){inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}</div><div class="v-stats">${esc(c.stats||"")}</div>`}
+  else{inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-msgs">${c.messages.map(m=>`<div class="v-msg ${m.from==="me"?"me":""}">${P(m.parts)}${m.time?`<time>${esc(m.time)}</time>`:""}</div>`).join("")}</div>`}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.instruct||"Klik bagian yang menurutmu mencurigakan. Hati-hati: ada juga bagian yang tampak janggal tetapi wajar.")}</p>
+  <div class="v-mockwrap"><div class="v-phone"><div class="v-screen ${c.kind||"chat"}">${inner}</div></div>
+  <div><div class="v-spec-lbl"><span>Tanda bahaya ditemukan</span><span class="cnt"></span></div><div class="v-prog"><i></i></div><p><button class="btn ghost" data-a="hint">Tampilkan petunjuk</button> <button class="btn ghost" data-a="reset">Ulangi</button></p><div class="v-finds"></div></div></div>`;
+  const scr=$(".v-phone",b),fin=$(".v-finds",b);
+  function upd(){const n=[...found].filter(id=>!H[id].decoy).length;$(".cnt",b).textContent=`${n} / ${real.length}`;$(".v-prog i",b).style.width=(n/real.length*100)+"%";if(n===real.length)markDone(el.id)}
+  function mark(id){const hs=H[id];if(!hs)return;found.add(id);store.set(el.id,[...found]);$$(`[data-h="${id}"]`,b).forEach(x=>x.classList.add(hs.decoy?"decoy":"found"));
+    if(!$(`[data-f="${id}"]`,fin)){const d=document.createElement("div");d.className="v-find"+(hs.decoy?" ok":"");d.dataset.f=id;d.innerHTML=`<b>${hs.decoy?"Ini wajar":"Tanda bahaya: "+esc(hs.label)}</b>${esc(hs.why)}`;fin.appendChild(d)}upd()}
+  b.addEventListener("click",e=>{const x=e.target.closest(".v-hot");if(x){mark(x.dataset.h);return}if(e.target.dataset.a==="hint"){scr.classList.toggle("v-hint")}if(e.target.dataset.a==="reset"){found.clear();store.set(el.id,[]);$$(".v-hot",b).forEach(x=>x.classList.remove("found","decoy"));fin.innerHTML="";scr.classList.remove("v-hint");upd()}});
+  b.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList.contains("v-hot"))mark(e.target.dataset.h)});
+  found.forEach(id=>mark(id));upd();
+}
+
+/* =============== TIMELINE =============== */
+/* cfg: {title, events:[{when,title,text,icon,law}]} */
+function timeline(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));let cur=0;
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="v-tl"><div class="v-tl-track"></div></div><div class="v-cap"></div><p><button class="btn ghost" data-a="p">‹ Sebelumnya</button> <button class="btn" data-a="n">Berikutnya ›</button></p>`;
+  const tr=$(".v-tl-track",b),cap=$(".v-cap",b);
+  c.events.forEach((ev,i)=>{const p=document.createElement("button");p.className="v-tl-pt";p.innerHTML=`<span class="dot">${ev.icon||"•"}</span><span class="when">${esc(ev.when)}</span><span class="tt">${esc(ev.title)}</span>`;p.onclick=()=>show(i);tr.appendChild(p)});
+  function show(i){cur=i;seen.add(i);store.set(el.id,[...seen]);const ev=c.events[i];
+    $$(".v-tl-pt",tr).forEach((p,k)=>{p.classList.toggle("on",k===i);p.classList.toggle("seen",seen.has(k))});
+    const pt=$(".v-tl-pt",tr)[i],sc=tr.parentElement;if(pt&&sc&&sc.scrollTo){sc.scrollTo({left:pt.getBoundingClientRect().left-sc.getBoundingClientRect().left+sc.scrollLeft-sc.clientWidth/2+pt.offsetWidth/2,behavior:reduce?"auto":"smooth"})}
+    cap.innerHTML=`<span class="v-num">${esc(ev.when)}</span><h4>${esc(ev.title)}</h4><p>${esc(ev.text)}</p>${ev.law?`<div class="v-chips"><span class="v-chip law"><b>Dasar hukum</b>${esc(ev.law)}</span></div>`:""}`;
+    if(seen.size===c.events.length)markDone(el.id)}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="n")show(Math.min(cur+1,c.events.length-1));if(a==="p")show(Math.max(cur-1,0))});
+  show(0);
+}
+
+/* =============== SPECTRUM: geser untuk melihat trade-off =============== */
+/* cfg: {title, prompt, left, right, stops:[{at,label,text,risk}]} */
+function spectrum(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"")}</p><div class="v-spec"><div class="v-spec-lbl"><span>‹ ${esc(c.left)}</span><span>${esc(c.right)} ›</span></div><input type="range" min="0" max="100" value="50" aria-label="${esc(c.title)}">
+  <div class="v-spec-bars"><div><small>${esc(c.left)}</small><div class="bar"><i></i></div></div><div><small>${esc(c.right)}</small><div class="bar r"><i></i></div></div></div></div><div class="v-cap"></div>`;
+  const rg=$("input",b),cap=$(".v-cap",b),bl=$(".bar i",b),br=$(".bar.r i",b);
+  function upd(){const v=+rg.value;bl.style.width=(100-v)+"%";br.style.width=v+"%";
+    let best=0,d=1e9;c.stops.forEach((s,i)=>{const x=Math.abs(s.at-v);if(x<d){d=x;best=i}});const s=c.stops[best];
+    cap.innerHTML=`<span class="v-num">${esc(s.label)}</span><p>${esc(s.text)}</p>${s.risk?`<div class="v-chips"><span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span></div>`:""}`;
+    seen.add(best);store.set(el.id,[...seen]);if(seen.size>=Math.min(3,c.stops.length))markDone(el.id)}
+  rg.oninput=upd;upd();
+}
+
+/* =============== ORDER: urutkan langkah =============== */
+/* cfg: {title, prompt, items:[{t,why}]} dalam urutan benar */
+function order(el,c){
+  const b=body(el);const n=c.items.length;
+  const idx=c.items.map((_,i)=>i);const sh=idx.map((_,i)=>idx[(i*3+2)%n]).filter((v,i,a)=>a.indexOf(v)===i);idx.forEach(i=>{if(!sh.includes(i))sh.push(i)});
+  let pool=sh.slice(),ans=[];if(pool.every((v,i)=>v===i)){pool.reverse()}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"Klik langkah satu per satu sesuai urutan yang benar. Klik langkah di kolom jawaban untuk membatalkannya.")}</p><div class="v-ord"><div><h4>Langkah acak</h4><div class="col pool"></div></div><div><h4>Urutan kamu</h4><div class="col ans"></div></div></div><p><button class="btn" data-a="chk" disabled>Periksa urutan</button> <button class="btn ghost" data-a="rst">Ulangi</button></p><div class="fb"></div>`;
+  const P=$(".pool",b),Aw=$(".ans",b),chk=$("[data-a=chk]",b),fb=$(".fb",b);
+  function draw(res){P.innerHTML="";Aw.innerHTML="";pool.forEach(i=>{const x=document.createElement("button");x.className="it";x.textContent=c.items[i].t;x.onclick=()=>{ans.push(i);pool=pool.filter(v=>v!==i);fb.className="fb";draw()};P.appendChild(x)});
+    ans.forEach((i,k)=>{const x=document.createElement("button");x.className="it"+(res?(i===k?" right":" wrong"):"");x.innerHTML=`<i>${k+1}</i>`+esc(c.items[i].t);x.onclick=()=>{if(res)return;ans=ans.filter(v=>v!==i);pool.push(i);draw()};Aw.appendChild(x)});
+    chk.disabled=pool.length>0}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="rst"){pool=sh.slice();ans=[];fb.className="fb";draw()}
+    if(a==="chk"){const ok=ans.filter((v,k)=>v===k).length;draw(true);fb.className="fb show"+(ok===n?" ok":"");fb.innerHTML=`<b>${ok}/${n} posisi tepat.</b><ol>${c.items.map(x=>`<li>${esc(x.t)}${x.why?`: ${esc(x.why)}`:""}</li>`).join("")}</ol>`;markDone(el.id)}});
+  draw();
+}
+
+/* ---------- registrasi ---------- */
+const V={flow,explorer,mock,timeline,spectrum,order};
+$$(".w[data-widget]").forEach(el=>{const t=el.dataset.widget;if(V[t]&&PAGE[el.id])V[t](el,PAGE[el.id])});
+/* reveal on scroll */
+if(!reduce&&"IntersectionObserver" in window){document.documentElement.classList.add("reveal-on");
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{rootMargin:"0px 0px -8% 0px"});
+  $$(".seg").forEach(s=>io.observe(s));
+  setTimeout(()=>$$(".seg").forEach(s=>s.classList.add("in")),2500)}
+})();
+/* ===== [/SHARED:VIZ-JS] ===== */
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pertemuan 4 — Privasi & Data Personal: UU PDP dan GDPR | Etika Hukum Cyber</title>
+<style>
+/* ===== [SHARED:CSS] — jangan ubah blok ini antar pertemuan, kecuali --accent ===== */
+:root{
+  --accent:#be123c; --accent-soft:#ffe4e6; --accent-ink:#881337;
+  --bg:#f6f7f4; --card:#ffffff; --ink:#1c2321; --muted:#5b6762; --line:#dfe4e0;
+  --ok:#15803d; --ok-soft:#dcfce7; --bad:#b91c1c; --bad-soft:#fee2e2; --warn:#b45309; --warn-soft:#fef3c7;
+  --radius:14px; --shadow:0 1px 2px rgba(20,30,25,.06),0 6px 20px rgba(20,30,25,.06);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16.5px}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;letter-spacing:-.01em}
+h2{font-size:1.55rem} h3{font-size:1.15rem} p{margin:.6em 0}
+a{color:var(--accent)}
+button{font:inherit;cursor:pointer}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(246,247,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-weight:700;font-size:.95rem;white-space:nowrap}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
+.progress{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress>i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+.pct{font-size:.85rem;font-weight:700;min-width:42px;text-align:right}
+.tbtn{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 12px;font-size:.82rem;font-weight:600}
+.tbtn[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.layout{max-width:1180px;margin:0 auto;padding:24px 20px 80px;display:grid;grid-template-columns:230px 1fr;gap:28px}
+nav.agenda{position:sticky;top:76px;align-self:start;max-height:calc(100vh - 96px);overflow:auto}
+nav.agenda h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+nav.agenda a{display:block;text-decoration:none;color:var(--ink);padding:8px 10px;border-radius:10px;font-size:.88rem;border-left:3px solid transparent}
+nav.agenda a span{display:block;font-size:.72rem;color:var(--muted)}
+nav.agenda a:hover{background:var(--card)}
+nav.agenda a.active{background:var(--accent-soft);border-left-color:var(--accent);font-weight:600}
+.hero{background:linear-gradient(135deg,var(--accent-ink),var(--accent));color:#fff;border-radius:22px;padding:34px 34px 28px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border-radius:99px;padding:3px 12px;font-size:.78rem;font-weight:600;letter-spacing:.04em}
+.hero h1{font-size:2.05rem;margin:.5em 0 .3em}
+.hero p{max-width:62ch;opacity:.92}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:18px}
+.meta div{background:rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;font-size:.84rem}
+.meta b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;opacity:.75}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:16px 0;box-shadow:var(--shadow)}
+.seg{margin:34px 0}
+.seg-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.seg-head .num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.seg-head h2{margin:0;flex:1;min-width:200px}
+.chip{display:inline-block;background:var(--accent-soft);color:var(--accent-ink);border-radius:99px;padding:3px 11px;font-size:.76rem;font-weight:700}
+.chip.act{background:#ede9fe;color:#5b21b6}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);color:var(--accent-ink);border-radius:0 12px 12px 0;padding:12px 16px;margin:14px 0}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft);color:#78350f}
+.callout.law{border-color:#1d4ed8;background:#dbeafe;color:#1e3a8a}
+.callout b.t{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfdfc}
+.mini h3{margin-bottom:.3em}
+table.t{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
+table.t th,table.t td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+table.t th{background:var(--accent-soft);color:var(--accent-ink)}
+.tablewrap{overflow-x:auto}
+details.acc{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:#fff}
+details.acc summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details.acc summary::after{content:"+";font-weight:700;color:var(--accent)}
+details.acc[open] summary::after{content:"–"}
+details.acc>div{padding:0 16px 14px}
+/* interactive widgets */
+.w{border:2px solid var(--accent);border-radius:var(--radius);padding:20px 22px;margin:18px 0;background:#fff;position:relative}
+.w>.w-label{position:absolute;top:-12px;left:16px;background:var(--accent);color:#fff;border-radius:99px;font-size:.72rem;font-weight:700;padding:2px 12px;letter-spacing:.05em;text-transform:uppercase}
+.w.done{border-color:var(--ok)} .w.done>.w-label{background:var(--ok)}
+.w h3{margin-top:.2em}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 18px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.opts{display:grid;gap:8px;margin:12px 0}
+.opt{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px}
+.opt:hover{border-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--warn-soft);color:#78350f;font-size:.93rem;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--ok-soft);color:#14532d}
+.flash{perspective:900px;max-width:520px;margin:12px auto}
+.flash-in{position:relative;min-height:190px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.flash.flip .flash-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:22px;display:grid;place-items:center;text-align:center;font-size:1.05rem}
+.face.f{background:var(--accent);color:#fff;font-weight:700;font-size:1.25rem}
+.face.b{background:var(--accent-soft);color:var(--accent-ink);transform:rotateY(180deg)}
+.fc-ctl{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.cls-pool,.cls-bins{display:grid;gap:10px}
+.cls-bins{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:14px}
+.cls-item{border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;text-align:left}
+.cls-item.pick{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.cls-item.right{border-color:var(--ok);background:var(--ok-soft)}
+.cls-item.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.bin{border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:110px;cursor:pointer;background:#fcfdfc}
+.bin:hover{border-color:var(--accent)}
+.bin h4{font-size:.9rem;margin:0 0 8px;color:var(--accent-ink)}
+.bin .cls-item{margin-bottom:6px;font-size:.88rem;cursor:pointer}
+.scn-text{font-size:1.02rem}
+.scn-end{border-radius:12px;padding:14px 16px;background:var(--accent-soft);color:var(--accent-ink);margin-top:10px}
+textarea{width:100%;min-height:96px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;resize:vertical}
+textarea:focus,.opt:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+.score{font-size:1.4rem;font-weight:800;color:var(--accent)}
+.ckl label{display:flex;gap:10px;align-items:flex-start;padding:7px 4px;cursor:pointer}
+.ckl input{margin-top:.38em;accent-color:var(--accent)}
+.bars .bar{margin:8px 0}
+.bars .bar>div{height:26px;border-radius:8px;background:var(--accent-soft);position:relative;overflow:hidden}
+.bars .bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);opacity:.85;width:0;transition:width .5s}
+.bars .bar span{position:absolute;left:10px;top:2px;font-size:.84rem;font-weight:600;color:#0b1f1c;z-index:1}
+.refs li{margin:.5em 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 0 10px}
+@media(max-width:860px){.layout{grid-template-columns:1fr}nav.agenda{display:none}.hero h1{font-size:1.6rem}.brand small{display:none}}
+@media print{.topbar,nav.agenda{display:none!important}.layout{display:block}.card,.w{box-shadow:none;break-inside:avoid}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* ===== [/SHARED:CSS] ===== */
+/* ===== [SHARED:VIZ-CSS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+/* hero hidup */
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 88% 15%,rgba(255,255,255,.22),transparent 42%),radial-gradient(circle at 8% 95%,rgba(255,255,255,.12),transparent 40%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:linear-gradient(115deg,transparent 30%,#000);mask-image:linear-gradient(115deg,transparent 30%,#000);animation:v-grid 22s linear infinite}
+.hero>*{position:relative;z-index:1}
+@keyframes v-grid{to{background-position:36px 36px}}
+/* reveal saat scroll */
+.reveal-on .seg{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal-on .seg.in{opacity:1;transform:none}
+.seg-head .num{box-shadow:0 0 0 5px var(--accent-soft)}
+
+/* ---------- STAGE (flow) ---------- */
+.v-stage{position:relative;aspect-ratio:2/1;min-height:300px;border-radius:16px;overflow:hidden;color:#e8eefc;
+  background:#0a1120;background-image:radial-gradient(ellipse at 50% -10%,#1b2d57 0,transparent 62%),linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:auto,30px 30px,30px 30px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 10px 30px rgba(10,17,32,.28)}
+.v-lines{position:absolute;inset:0;width:100%;height:100%}
+.v-lines line{stroke:rgba(255,255,255,.16);stroke-width:1.5;stroke-dasharray:4 5;vector-effect:non-scaling-stroke;transition:stroke .4s}
+.v-lines line.on{stroke:#7dd3fc;stroke-width:2.5;stroke-dasharray:6 6;animation:v-dash 1s linear infinite}
+.v-lines line.on.bad{stroke:#fb7185}
+@keyframes v-dash{to{stroke-dashoffset:-24}}
+.v-actor{position:absolute;transform:translate(-50%,-50%);width:104px;text-align:center;z-index:2}
+.v-ico{width:60px;height:60px;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;font-size:29px;background:#16213b;border:2px solid #3a4a70;transition:border-color .4s,box-shadow .4s,background .4s,transform .3s}
+.v-name{font-size:.74rem;font-weight:700;line-height:1.15;text-shadow:0 1px 3px #000}
+.v-badge{display:inline-block;margin-top:3px;font-size:.64rem;font-weight:700;padding:1px 8px;border-radius:99px;background:rgba(255,255,255,.12);color:#e8eefc;min-height:0;transition:background .3s}
+.v-badge:empty{display:none}
+.v-actor.r-attacker .v-ico{border-color:#fb7185;background:#2a1220}
+.v-actor.r-victim .v-ico{border-color:#38bdf8}
+.v-actor.s-safe .v-ico{border-color:#4ade80;box-shadow:0 0 20px #4ade8070}
+.v-actor.s-safe .v-badge{background:#14532d}
+.v-actor.s-warn .v-ico{border-color:#fbbf24;box-shadow:0 0 22px #fbbf2480;animation:v-pulse 1.4s infinite}
+.v-actor.s-warn .v-badge{background:#78350f}
+.v-actor.s-danger .v-ico{border-color:#f43f5e;background:#3a1020;box-shadow:0 0 26px #f43f5e90;animation:v-shake .5s 2,v-pulse 1.4s .5s infinite}
+.v-actor.s-danger .v-badge{background:#881337}
+.v-actor.s-lock .v-ico{border-color:#a78bfa;background:#231a45;box-shadow:0 0 22px #a78bfa80}
+.v-actor.s-lock .v-badge{background:#4c1d95}
+.v-actor.s-active .v-ico{border-color:#7dd3fc;box-shadow:0 0 22px #7dd3fc80;transform:scale(1.08)}
+@keyframes v-pulse{50%{box-shadow:0 0 34px currentColor}}
+@keyframes v-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.v-packet{position:absolute;transform:translate(-50%,-50%);font-size:22px;z-index:3;pointer-events:none;
+  transition:left var(--dur,1000ms) cubic-bezier(.5,0,.3,1),top var(--dur,1000ms) cubic-bezier(.5,0,.3,1),opacity .3s;filter:drop-shadow(0 0 7px rgba(125,211,252,.9))}
+.v-plabel{position:absolute;left:50%;top:-20px;transform:translateX(-50%);white-space:nowrap;font-size:.64rem;font-weight:700;background:#0b1220;border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:1px 6px;color:#e8eefc}
+.v-zone{position:absolute;border:1.5px dashed rgba(255,255,255,.22);border-radius:14px;z-index:1;font-size:.64rem;color:rgba(255,255,255,.55);padding:3px 9px;pointer-events:none}
+.v-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 8px}
+.v-ctl .btn{padding:7px 14px}
+.v-ctl select{font:inherit;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#fff}
+.v-rail{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px}
+.v-rail button{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.78rem;font-weight:600;color:var(--muted)}
+.v-rail button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.v-rail button.seen{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+.v-cap{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:12px 16px;background:#fcfdfc;min-height:96px}
+.v-cap .v-num{font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.v-cap h4{margin:.1em 0 .25em;font-size:1.05rem}
+.v-cap p{margin:.3em 0}
+.v-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.v-chip{border-radius:10px;padding:5px 10px;font-size:.82rem;line-height:1.4}
+.v-chip.law{background:#dbeafe;color:#1e3a8a}
+.v-chip.tip{background:var(--ok-soft);color:#14532d}
+.v-chip.risk{background:var(--bad-soft);color:#7f1d1d}
+.v-outcome{margin-top:10px;border-radius:12px;padding:12px 16px;background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+
+/* ---------- EXPLORER ---------- */
+.v-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:10px;margin:12px 0}
+.v-tile{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:14px 10px;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+.v-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--accent)}
+.v-tile .ic{font-size:2rem;display:block;margin-bottom:4px}
+.v-tile b{display:block;font-size:.9rem;line-height:1.2}
+.v-tile small{color:var(--muted);font-size:.72rem}
+.v-tile.sel{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 0 3px var(--accent-soft)}
+.v-tile.seen::after{content:"✓";position:absolute;top:6px;right:9px;color:var(--ok);font-weight:800}
+.v-detail{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fcfdfc;animation:v-in .35s}
+@keyframes v-in{from{opacity:0;transform:translateY(8px)}}
+.v-detail h3{display:flex;align-items:center;gap:10px}
+.v-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.v-tabs button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.8rem;font-weight:600}
+.v-tabs button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.v-pane ul,.v-pane ol{margin:.3em 0 .3em 1.2em;padding:0}
+.v-pane li{margin:.3em 0}
+.v-sub{margin-top:12px}
+
+/* ---------- MOCK (layar HP / email / web / post) ---------- */
+.v-mockwrap{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:18px;align-items:start}
+.v-phone{background:#0f172a;border-radius:30px;padding:10px;box-shadow:0 14px 34px rgba(15,23,42,.3);max-width:360px;width:100%;margin:0 auto}
+.v-screen{background:#f3f4f6;border-radius:22px;overflow:hidden;min-height:380px;display:flex;flex-direction:column;font-size:.9rem}
+.v-bar{background:#0f766e;color:#fff;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.v-bar .av{width:34px;height:34px;border-radius:50%;background:#ffffff33;display:grid;place-items:center;font-size:1.1rem}
+.v-bar b{display:block;font-size:.9rem;line-height:1.1}.v-bar small{opacity:.8;font-size:.7rem}
+.v-msgs{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1;background:#e5ded5}
+.v-msg{max-width:84%;padding:8px 11px;border-radius:12px;background:#fff;box-shadow:0 1px 1px rgba(0,0,0,.12);line-height:1.45}
+.v-msg.me{align-self:flex-end;background:#d9fdd3}
+.v-msg time{display:block;text-align:right;font-size:.62rem;color:#6b7280;margin-top:2px}
+.v-screen.email,.v-screen.web,.v-screen.post{background:#fff}
+.v-screen.email .v-bar{background:#334155}.v-screen.web .v-bar{background:#e5e7eb;color:#111827}.v-screen.post .v-bar{background:#1d4ed8}
+.v-url{background:#fff;border:1px solid #d1d5db;border-radius:99px;padding:5px 12px;flex:1;font-size:.76rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.v-body{padding:14px 16px;flex:1}.v-body p{margin:.55em 0}
+.v-meta{padding:8px 16px;border-bottom:1px solid #e5e7eb;font-size:.78rem;color:#4b5563}
+.v-meta b{color:#111827}
+.v-cta{display:inline-block;background:#2563eb;color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;margin-top:6px}
+.v-stats{padding:8px 16px;border-top:1px solid #e5e7eb;font-size:.78rem;color:#6b7280}
+.v-hot{cursor:pointer;border-radius:4px;transition:background .2s,box-shadow .2s;border-bottom:2px dotted transparent}
+.v-hint .v-hot{border-bottom-color:#f59e0b;animation:v-blink 1.4s infinite}
+@keyframes v-blink{50%{background:#fde68a}}
+.v-hot:hover{background:#fde68a}
+.v-hot.found{background:#fecaca;box-shadow:0 0 0 2px #ef4444;border-radius:4px;animation:none}
+.v-hot.decoy{background:#dcfce7;box-shadow:0 0 0 2px #22c55e;animation:none}
+.v-finds{display:grid;gap:8px}
+.v-find{border-left:4px solid var(--bad);background:var(--bad-soft);border-radius:0 10px 10px 0;padding:8px 12px;font-size:.88rem;animation:v-in .3s}
+.v-find.ok{border-color:var(--ok);background:var(--ok-soft)}
+.v-find b{display:block}
+.v-prog{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+.v-prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+
+/* ---------- TIMELINE ---------- */
+.v-tl{position:relative;margin:14px 0 6px;overflow-x:auto;padding:22px 6px 10px}
+.v-tl-track{display:flex;gap:0;min-width:max-content;position:relative}
+.v-tl-track::before{content:"";position:absolute;left:30px;right:30px;top:15px;height:4px;background:var(--line);border-radius:4px}
+.v-tl-pt{width:128px;text-align:center;position:relative;background:none;border:0;padding:0 4px}
+.v-tl-pt .dot{width:34px;height:34px;margin:0 auto 6px;border-radius:50%;background:#fff;border:3px solid var(--line);display:grid;place-items:center;position:relative;z-index:1;transition:all .25s;font-size:1rem}
+.v-tl-pt .when{display:block;font-weight:800;font-size:.8rem;color:var(--accent-ink)}
+.v-tl-pt .tt{display:block;font-size:.74rem;color:var(--muted);line-height:1.25}
+.v-tl-pt.seen .dot{border-color:var(--accent)}
+.v-tl-pt.on .dot{background:var(--accent);border-color:var(--accent);transform:scale(1.25);box-shadow:0 0 0 6px var(--accent-soft)}
+
+/* ---------- SPECTRUM ---------- */
+.v-spec-lbl{display:flex;justify-content:space-between;font-weight:700;font-size:.9rem}
+.v-spec input[type=range]{width:100%;accent-color:var(--accent);margin:10px 0 4px;height:28px}
+.v-spec-bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.v-spec-bars .bar{height:14px;background:var(--line);border-radius:99px;overflow:hidden}
+.v-spec-bars .bar i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.v-spec-bars .bar.r i{background:#ea580c}
+
+/* ---------- ORDER ---------- */
+.v-ord{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.v-ord h4{margin:0 0 6px;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.v-ord .col{display:grid;gap:6px;align-content:start;min-height:80px}
+.v-ord .it{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:.9rem}
+.v-ord .it:hover{border-color:var(--accent)}
+.v-ord .it.right{border-color:var(--ok);background:var(--ok-soft)}.v-ord .it.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.v-ord .it i{font-style:normal;font-weight:800;color:var(--accent);margin-right:6px}
+@media(max-width:760px){.v-mockwrap,.v-ord{grid-template-columns:1fr}.v-stage{min-height:340px;aspect-ratio:1.25/1}.v-actor{width:84px}.v-ico{width:50px;height:50px;font-size:24px}}
+@media print{.reveal-on .seg{opacity:1!important;transform:none!important}}
+@media(prefers-reduced-motion:reduce){.hero::after,.v-actor .v-ico,.v-lines line.on,.v-hint .v-hot{animation:none!important}.reveal-on .seg{opacity:1;transform:none}}
+/* ===== [/SHARED:VIZ-CSS] ===== */
+
+</style>
+</head>
+<body>
+
+<header class="topbar"><div class="topbar-in">
+  <div class="brand">Etika Hukum Cyber<small>Pertemuan 4 dari 16</small></div>
+  <div class="progress" title="Progres aktivitas"><i id="pbar"></i></div>
+  <div class="pct" id="ppct">0%</div>
+</div></header>
+
+<div class="layout">
+<nav class="agenda" id="agenda" aria-label="Agenda"><h4>Agenda</h4></nav>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <span class="tag">PERTEMUAN 4 · MINGGU 4</span>
+  <h1>Privasi & Data Personal: UU PDP dan Prinsip GDPR</h1>
+  <p>Data pribadimu dikumpulkan setiap hari: saat belanja, memesan ojek, atau mengisi formulir kampus. Hari ini kamu belajar apa itu privasi digital, apa saja hakmu sebagai pemilik data, dan apa kewajiban pihak yang mengelola datamu menurut UU No. 27 Tahun 2022 serta GDPR Uni Eropa.</p>
+  <div class="meta">
+    <div><b>Program Studi</b>Bisnis Digital</div>
+    <div><b>Dosen</b>Ibnu Amri Thaher</div>
+    <div><b>Waktu</b>100 menit · Teori</div>
+    <div><b>Metode</b>Kuliah & Diskusi Kelompok</div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Capaian pertemuan ini</h3>
+  <p><span class="chip">CPMK-2</span> Menganalisis kerangka hukum siber Indonesia dan internasional, termasuk privasi dan perlindungan data pribadi.</p>
+  <p><b>Kemampuan akhir:</b> menganalisis konsep privasi dan hukum Perlindungan Data Pribadi (PDP).</p>
+  <p><b>Indikator penilaian:</b> ketepatan identifikasi hak subjek data dan kewajiban pengelola data.</p>
+  <p>Setelah sesi ini kamu mampu: (1) menjelaskan konsep privasi digital dan perkembangannya; (2) membedakan data pribadi umum dan spesifik; (3) mencocokkan hak subjek data dengan situasi nyata; (4) membedakan peran pengendali dan prosesor data beserta kewajibannya; (5) membandingkan UU PDP dengan GDPR; (6) menyusun langkah awal respons insiden kebocoran data.</p>
+</section>
+
+<!-- ===================== SEGMEN 1 ===================== -->
+<section class="seg" id="s1" data-title="Pembuka & Pemantik" data-min="0–12" data-dur="12">
+  <div class="seg-head"><div class="num">1</div><h2>Pembuka & Pemantik: Seberapa Berharga Datamu?</h2></div>
+
+  <div class="w" data-widget="poll" id="poll1"><span class="w-label">Pemantik · Polling</span></div>
+
+  <div class="card">
+    <h3>Mengapa topik ini penting bagi bisnis digital?</h3>
+    <p>Hampir semua model bisnis digital (e-commerce, fintech, aplikasi layanan) bergantung pada data pelanggan. Data adalah aset, tetapi juga <b>tanggung jawab</b>. Satu insiden kebocoran dapat memicu hilangnya kepercayaan pelanggan, sanksi hukum, dan kerugian finansial. Kamu kelak bisa menjadi pemilik usaha, analis, atau pengelola produk yang memegang data orang lain, sehingga kamu perlu paham hak pemilik data dan kewajiban pengelolanya.</p>
+    <div class="callout"><b class="t">Peta hari ini</b>Konsep privasi → aktivitas klasifikasi data dan hak subjek → peran pengendali/prosesor dan perbandingan GDPR → simulasi insiden kebocoran → kuis.</div>
+  </div>
+</section>
+
+<!-- ===================== SEGMEN 2 ===================== -->
+<section class="seg" id="s2" data-title="Konsep Privasi & UU PDP" data-min="12–34" data-dur="22">
+  <div class="seg-head"><div class="num">2</div><h2>Konsep Privasi Digital dan UU No. 27 Tahun 2022</h2></div>
+
+  <div class="card">
+    <h3>Apa itu privasi? Dari "hak untuk dibiarkan sendiri" sampai data digital</h3>
+    <div class="grid2">
+      <div class="mini"><h3>Warren & Brandeis (1890)</h3><p>Dalam artikel <i>The Right to Privacy</i> (Harvard Law Review), mereka merumuskan privasi sebagai <b>"right to be let alone"</b>, yakni hak untuk dibiarkan sendiri. Latar belakangnya: munculnya fotografi dan surat kabar yang mudah mengekspos kehidupan pribadi.</p></div>
+      <div class="mini"><h3>Westin (1967)</h3><p>Privasi sebagai klaim individu, kelompok, atau lembaga untuk <b>menentukan sendiri</b> kapan, bagaimana, dan sejauh mana informasi tentang mereka disampaikan kepada pihak lain (sering disebut privasi informasional).</p></div>
+      <div class="mini"><h3>Solove (2008)</h3><p>Privasi adalah konsep yang beragam, sehingga lebih berguna dilihat lewat <b>taksonomi masalah privasi</b>: pengumpulan informasi, pemrosesan informasi, penyebaran informasi, dan gangguan/invasi.</p></div>
+      <div class="mini"><h3>Tavani (2016)</h3><p>Membedakan jenis privasi: <b>fisik/akses</b>, <b>keputusan</b> (kebebasan memilih), <b>psikologis</b>, dan <b>informasional</b>. Di dunia digital, privasi informasional paling sering terancam.</p></div>
+    </div>
+    <div class="callout"><b class="t">Intinya</b>Privasi digital bukan berarti "tidak ada yang boleh tahu apa pun tentangku", tetapi <b>aku punya kendali</b> atas siapa memakai datamu, untuk apa, dan sampai kapan.</div>
+  </div>
+
+  <div class="card">
+    <h3>Ancaman privasi di era digital</h3>
+    <ul>
+      <li><b>Pengumpulan masif</b> — aplikasi meminta akses kontak, lokasi, kamera, mikrofon melebihi kebutuhan.</li>
+      <li><b>Profiling</b> — data dianalisis untuk memprediksi kebiasaan, minat, bahkan kondisi finansial seseorang.</li>
+      <li><b>Pelacakan & iklan tertarget</b> — cookie, ID perangkat, dan jejak lokasi.</li>
+      <li><b>Kebocoran & jual-beli data</b> — database diretas atau dijual di forum gelap.</li>
+      <li><b>Penyalahgunaan oleh orang dalam</b> — karyawan yang mengakses data tanpa keperluan.</li>
+    </ul>
+    <div class="callout warn"><b class="t">Ingat konteks etika</b>Mengumpulkan data secara legal tidak otomatis etis. Pertanyaan etis yang sama dari minggu 1 tetap dipakai: siapa yang diuntungkan, siapa yang dirugikan, dan apakah pemilik data diperlakukan sebagai manusia atau sekadar komoditas?</div>
+  </div>
+
+  <div class="card">
+    <h3>Landasan hukum privasi di Indonesia</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Sumber</th><th>Isi pokok (garis besar)</th></tr>
+      <tr><td>UUD 1945, Pasal 28G ayat (1)</td><td>Setiap orang berhak atas perlindungan diri pribadi, keluarga, kehormatan, martabat, dan harta benda yang di bawah kekuasaannya.</td></tr>
+      <tr><td>UU ITE (UU 11/2008 jo. UU 19/2016 jo. UU 1/2024), Pasal 26</td><td>Penggunaan informasi tentang data pribadi melalui media elektronik harus dengan persetujuan orang yang bersangkutan; pelanggaran dapat digugat ganti rugi.</td></tr>
+      <tr><td>PP 71/2019 tentang Penyelenggaraan Sistem dan Transaksi Elektronik</td><td>Kewajiban penyelenggara sistem elektronik terkait pelindungan data pribadi dan keamanan sistem.</td></tr>
+      <tr><td><b>UU No. 27 Tahun 2022 tentang PDP</b></td><td>Undang-undang khusus pertama yang secara komprehensif mengatur data pribadi: jenis data, hak subjek data, kewajiban pengendali/prosesor, transfer data, sanksi.</td></tr>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h3>UU PDP dalam satu lembar</h3>
+    <div class="grid2">
+      <div class="mini"><h3>Subjek Data</h3><p>Orang perseorangan yang pada dirinya melekat data pribadi. Kamu adalah subjek data dari data milikmu sendiri.</p></div>
+      <div class="mini"><h3>Pengendali Data</h3><p>Pihak yang <b>menentukan tujuan dan melakukan kendali</b> atas pemrosesan data pribadi (bisa orang, badan publik, organisasi).</p></div>
+      <div class="mini"><h3>Prosesor Data</h3><p>Pihak yang <b>memproses data atas nama pengendali</b> dan mengikuti instruksinya.</p></div>
+      <div class="mini"><h3>Pemrosesan</h3><p>Seluruh siklus: pemerolehan, pengolahan, penyimpanan, perbaikan, penampilan, pengungkapan, transfer, penghapusan, hingga pemusnahan.</p></div>
+    </div>
+    <h3>Dua kelompok data pribadi</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th></th><th>Data pribadi umum</th><th>Data pribadi spesifik</th></tr>
+      <tr><td><b>Contoh menurut UU PDP</b></td><td>Nama lengkap, jenis kelamin, kewarganegaraan, agama, status perkawinan, dan data yang bila digabung dapat mengidentifikasi seseorang</td><td>Data dan informasi kesehatan, data biometrik, data genetika, catatan kejahatan, data anak, data keuangan pribadi, dan data lain sesuai peraturan</td></tr>
+      <tr><td><b>Tingkat risiko</b></td><td>Lebih rendah</td><td>Tinggi: bocornya dapat menimbulkan diskriminasi, kerugian finansial, atau bahaya fisik</td></tr>
+      <tr><td><b>Konsekuensi</b></td><td>Wajib dasar pemrosesan yang sah</td><td>Perlakuan lebih ketat, misalnya penilaian dampak pelindungan data untuk pemrosesan berisiko tinggi</td></tr>
+    </table></div>
+    <div class="callout warn"><b class="t">Perlu verifikasi dosen</b>Daftar rinci kategori data umum vs spesifik (termasuk penempatan agama dan status perkawinan sebagai data umum) mengikuti rumusan UU PDP; mohon cek ulang teks resmi pasal terkait sebelum kuliah. Perhatikan bahwa GDPR menempatkan data agama sebagai "kategori khusus".</div>
+    <details class="acc"><summary>Dasar pemrosesan data yang sah menurut UU PDP</summary><div>
+      <p>Pemrosesan data pribadi harus punya dasar. Garis besarnya: (1) <b>persetujuan yang sah dan eksplisit</b> dari subjek data untuk satu atau beberapa tujuan tertentu; (2) pemenuhan kewajiban perjanjian; (3) pemenuhan kewajiban hukum; (4) pelindungan kepentingan vital subjek data; (5) pelaksanaan tugas dalam rangka kepentingan umum atau kewenangan pengendali; (6) pemenuhan kepentingan yang sah lainnya.</p>
+      <p>Perhatikan bahwa persetujuan <b>bukan satu-satunya</b> dasar. Toko online boleh memakai alamatmu untuk mengirim barang bukan karena kamu "setuju" pada klausul panjang, tetapi karena itu perlu untuk menjalankan perjanjian jual-beli.</p></div></details>
+    <details class="acc"><summary>Prinsip pelindungan data yang menjadi pegangan pengelola data</summary><div>
+      <ul><li>Pengumpulan <b>terbatas dan spesifik</b>, sah, dan transparan.</li>
+      <li>Pemrosesan sesuai <b>tujuan</b>.</li>
+      <li>Menjamin hak subjek data.</li>
+      <li>Akurat, lengkap, tidak menyesatkan, dan mutakhir.</li>
+      <li>Dilindungi keamanannya dari akses, pengungkapan, dan perubahan tanpa hak.</li>
+      <li>Diberi tahu tujuan dan aktivitas pemrosesan, serta kegagalan pelindungan.</li>
+      <li>Dimusnahkan atau dihapus setelah masa retensi berakhir atau atas permintaan.</li>
+      <li>Dilakukan secara <b>bertanggung jawab</b> dan dapat dibuktikan.</li></ul></div></details>
+  </div>
+
+  <div class="w" data-widget="flash" id="flash1"><span class="w-label">Kartu istilah · Flashcard</span></div>
+</section>
+
+<!-- ===================== SEGMEN 3 ===================== -->
+<section class="seg" id="s3" data-title="Aktivitas: Data & Hak Subjek" data-min="34–52" data-dur="18">
+  <div class="seg-head"><div class="num">3</div><h2>Aktivitas: Klasifikasi Data dan Hak Subjek Data</h2><span class="chip act">Aktivitas</span></div>
+
+  <div class="card">
+    <h3>Hak-hak subjek data (garis besar UU PDP)</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Hak</th><th>Artinya bagimu</th></tr>
+      <tr><td>Mendapat informasi</td><td>Tahu identitas pengendali, dasar hukum, tujuan, dan akuntabilitas pihak yang meminta datamu.</td></tr>
+      <tr><td>Melengkapi, memperbarui, memperbaiki</td><td>Meminta data yang salah atau usang dibetulkan.</td></tr>
+      <tr><td>Akses dan memperoleh salinan</td><td>Melihat dan meminta salinan data pribadimu yang diproses.</td></tr>
+      <tr><td>Mengakhiri pemrosesan, menghapus, memusnahkan</td><td>Meminta data dihentikan pemakaiannya atau dihapus dalam kondisi yang diatur.</td></tr>
+      <tr><td>Menarik kembali persetujuan</td><td>Mencabut izin yang pernah diberikan.</td></tr>
+      <tr><td>Keberatan atas keputusan otomatis</td><td>Mengajukan keberatan bila keputusan yang berdampak padamu diambil semata-mata lewat pemrosesan otomatis, termasuk profiling.</td></tr>
+      <tr><td>Menunda atau membatasi pemrosesan</td><td>Meminta pemrosesan dibatasi secara proporsional dengan tujuan.</td></tr>
+      <tr><td>Menggugat dan menerima ganti rugi</td><td>Menuntut pertanggungjawaban bila hakmu dilanggar.</td></tr>
+      <tr><td>Portabilitas data</td><td>Memperoleh dan/atau memakai datamu dalam bentuk yang sesuai struktur atau format yang lazim, dan memindahkannya ke pengendali lain.</td></tr>
+    </table></div>
+    <div class="callout warn"><b class="t">Perlu verifikasi dosen</b>Hak-hak di atas diringkas dari rumusan umum UU PDP; ada pengecualian untuk kepentingan tertentu (misalnya pertahanan, penegakan hukum, kepentingan umum) dan syarat tata cara yang bergantung peraturan pelaksana. Cek nomor pasal dan peraturan pelaksana terbaru sebelum menyebutnya secara spesifik.</div>
+  </div>
+
+  <p><b>Aktivitas A.</b> Klik satu kartu data, lalu klik kotak kategori yang tepat, dan tekan <b>Periksa</b> bila semua terisi.</p>
+  <div class="w" data-widget="classify" id="cls1"><span class="w-label">A · Klasifikasi jenis data</span></div>
+
+  <p><b>Aktivitas B.</b> Cocokkan tiap situasi dengan hak subjek data yang paling relevan.</p>
+  <div class="w" data-widget="classify" id="cls2"><span class="w-label">B · Pencocokan hak subjek data</span></div>
+
+  <div class="w" data-widget="explorer" id="hakDataExplorer"><span class="w-label">Jelajahi · Hak Subjek Data UU PDP</span></div>
+</section>
+
+<!-- ===================== SEGMEN 4 ===================== -->
+<section class="seg" id="s4" data-title="Pengendali, Prosesor & GDPR" data-min="52–70" data-dur="18">
+  <div class="seg-head"><div class="num">4</div><h2>Pengendali vs Prosesor dan Perbandingan UU PDP dengan GDPR</h2></div>
+
+  <div class="card">
+    <h3>Pengendali dan prosesor: siapa menanggung apa?</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th></th><th>Pengendali Data</th><th>Prosesor Data</th></tr>
+      <tr><td><b>Peran</b></td><td>Menentukan <i>mengapa</i> dan <i>bagaimana</i> data diproses</td><td>Memproses atas nama dan sesuai instruksi pengendali</td></tr>
+      <tr><td><b>Contoh</b></td><td>Toko online, bank, kampus, aplikasi transportasi</td><td>Penyedia cloud/hosting, jasa email blast, vendor pusat panggilan</td></tr>
+      <tr><td><b>Kewajiban inti</b></td><td>Dasar pemrosesan yang sah, menjamin hak subjek data, menjaga keamanan, memberi notifikasi kebocoran, menilai dampak untuk pemrosesan berisiko tinggi</td><td>Memproses sesuai instruksi, menjaga keamanan, dan tunduk pada kewajiban terkait pemrosesan yang dilakukannya</td></tr>
+      <tr><td><b>Hubungan</b></td><td colspan="2">Idealnya diatur dalam perjanjian pemrosesan data. Bila prosesor menentukan tujuannya sendiri, ia dapat dianggap bertindak sebagai pengendali.</td></tr>
+    </table></div>
+    <div class="callout law"><b class="t">Pejabat pelaksana fungsi PDP</b>UU PDP mewajibkan pengendali dan prosesor menunjuk pejabat atau petugas yang menjalankan fungsi pelindungan data pada kondisi tertentu (misalnya pemrosesan untuk pelayanan publik, pemantauan teratur dan sistematis atas data dalam skala besar, atau pemrosesan data spesifik skala besar). Peran ini mirip <i>Data Protection Officer</i> (DPO) dalam GDPR.</div>
+  </div>
+
+  <div class="w" data-widget="classify" id="cls3"><span class="w-label">C · Peran dalam pemrosesan data</span></div>
+
+  <div class="card">
+    <h3>UU PDP vs GDPR: apa yang sama dan berbeda?</h3>
+    <p>GDPR (<i>General Data Protection Regulation</i>, Regulation (EU) 2016/679) berlaku di Uni Eropa sejak 25 Mei 2018 dan menjadi acuan global. UU PDP Indonesia banyak terinspirasi GDPR, tetapi tidak identik.</p>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Aspek</th><th>UU PDP (Indonesia)</th><th>GDPR (Uni Eropa)</th></tr>
+      <tr><td>Dasar hukum</td><td>UU No. 27 Tahun 2022</td><td>Regulation (EU) 2016/679</td></tr>
+      <tr><td>Aktor utama</td><td>Subjek data, pengendali, prosesor</td><td>Data subject, controller, processor</td></tr>
+      <tr><td>Kategori data sensitif</td><td>"Data pribadi spesifik" (kesehatan, biometrik, genetika, catatan kejahatan, anak, keuangan pribadi)</td><td>"Special categories" (antara lain ras/etnis, pandangan politik, agama, kesehatan, biometrik, genetika, orientasi seksual)</td></tr>
+      <tr><td>Dasar pemrosesan</td><td>Enam dasar, termasuk persetujuan eksplisit</td><td>Enam dasar (consent, contract, legal obligation, vital interests, public task, legitimate interests)</td></tr>
+      <tr><td>Hak subjek data</td><td>Informasi, akses, koreksi, hapus, tarik persetujuan, keberatan keputusan otomatis, ganti rugi, portabilitas</td><td>Serupa: informasi, akses, rectification, erasure ("right to be forgotten"), restriction, portability, objection</td></tr>
+      <tr><td>Notifikasi kebocoran</td><td>Pemberitahuan tertulis kepada subjek data dan lembaga paling lambat 3 x 24 jam</td><td>Notifikasi kepada otoritas pengawas dalam 72 jam bila ada risiko terhadap hak dan kebebasan</td></tr>
+      <tr><td>Jangkauan wilayah</td><td>Berlaku bagi pemrosesan di Indonesia maupun di luar Indonesia yang berakibat hukum di Indonesia atau terhadap subjek data WNI di luar yurisdiksi</td><td>Berlaku juga bagi pihak di luar UE yang menawarkan barang/jasa atau memantau perilaku orang di UE (<i>extraterritorial</i>)</td></tr>
+      <tr><td>Pengawas</td><td>Lembaga PDP yang ditetapkan presiden</td><td>Otoritas pengawas independen di tiap negara anggota</td></tr>
+      <tr><td>Sanksi</td><td>Administratif (peringatan, penghentian sementara, penghapusan data, denda administratif) dan pidana</td><td>Denda administratif besar, hingga €20 juta atau 4% omzet global tahunan, mana yang lebih tinggi</td></tr>
+    </table></div>
+    <div class="callout warn"><b class="t">Perlu verifikasi dosen</b>Angka batas waktu 3 x 24 jam, besaran denda administratif UU PDP (pada UU disebut persentase dari pendapatan tahunan), ancaman pidana, serta status pembentukan Lembaga PDP dan peraturan pelaksananya (PP) dapat berubah. Cek rujukan resmi terbaru.</div>
+    <details class="acc"><summary>Tujuh prinsip GDPR (Pasal 5) yang menjadi acuan global</summary><div>
+      <ol><li><b>Lawfulness, fairness, transparency</b> — sah, adil, transparan.</li>
+      <li><b>Purpose limitation</b> — data dipakai hanya untuk tujuan yang dinyatakan.</li>
+      <li><b>Data minimisation</b> — kumpulkan seperlunya saja.</li>
+      <li><b>Accuracy</b> — data akurat dan mutakhir.</li>
+      <li><b>Storage limitation</b> — simpan tidak lebih lama dari perlu.</li>
+      <li><b>Integrity and confidentiality</b> — aman dari akses dan kerusakan tanpa hak.</li>
+      <li><b>Accountability</b> — pengendali bertanggung jawab dan mampu membuktikan kepatuhan.</li></ol>
+      <p>Hampir semuanya punya padanan dalam prinsip UU PDP di segmen 2.</p></div></details>
+    <details class="acc"><summary>Mengapa GDPR penting bagi bisnis digital Indonesia?</summary><div>
+      <p>Karena GDPR dapat berlaku lintas batas. Jika marketplace Indonesia menjual produk ke pelanggan di Eropa, atau toko online melacak perilaku pengunjung dari Uni Eropa, ia dapat terikat aturan GDPR. Ini contoh isu yurisdiksi yang akan dibahas lagi pada pertemuan tentang yurisdiksi internasional.</p></div></details>
+  </div>
+
+  <div class="w" data-widget="flash" id="flash2"><span class="w-label">Kartu istilah · Pengelolaan data</span></div>
+</section>
+
+<!-- ===================== SEGMEN 5 ===================== -->
+<section class="seg" id="s5" data-title="Studi Kasus: Insiden Kebocoran" data-min="70–85" data-dur="15">
+  <div class="seg-head"><div class="num">5</div><h2>Studi Kasus: Simulasi Respons Insiden Kebocoran Data</h2><span class="chip act">Studi kasus</span></div>
+
+  <div class="card">
+    <h3>Kasus nyata untuk diskusi</h3>
+    <p>Beberapa insiden dugaan kebocoran data besar di Indonesia ramai diberitakan dalam beberapa tahun terakhir. Dua yang sering dijadikan rujukan adalah <b>dugaan kebocoran data pengguna sebuah platform e-commerce (2020)</b> dan <b>dugaan kebocoran data peserta BPJS Kesehatan (2021)</b>. Di panggung global, kasus <b>Facebook–Cambridge Analytica (2018)</b> memperlihatkan bagaimana data pengguna dapat dipakai untuk profiling politik tanpa pemahaman pemiliknya.</p>
+    <details class="acc"><summary>Pertanyaan diskusi kelompok</summary><div>
+      <ul><li>Siapa pengendali data, dan siapa subjek datanya dalam kasus tersebut?</li>
+      <li>Data jenis apa yang bocor (umum atau spesifik), dan mengapa itu menentukan tingkat risikonya?</li>
+      <li>Hak apa yang dapat digunakan korban? Kewajiban apa yang seharusnya dipenuhi pengelola?</li>
+      <li>Bila kejadian serupa terjadi setelah UU PDP berlaku penuh, apa yang berbeda?</li></ul></div></details>
+    <div class="callout warn"><b class="t">Perlu verifikasi dosen</b>Rincian kasus nyata (jumlah data, pihak, tahun, status penanganan) bersumber dari pemberitaan dan pernyataan resmi yang dapat berubah. Rujuk sumber primer sebelum menyebut angka di kelas. Simulasi di bawah memakai <b>skenario fiktif</b>.</div>
+  </div>
+
+  <div class="w" data-widget="scenario" id="scn1"><span class="w-label">Simulasi · Skenario fiktif</span></div>
+
+  <div class="w" data-widget="flow" id="breachFlow"><span class="w-label">Animasi · Alur Kebocoran Data & Kewajiban Pengendali</span></div>
+
+  <div class="w" data-widget="checklist" id="chk1"><span class="w-label">Daftar periksa respons insiden</span></div>
+
+  <div class="w" data-widget="reflect" id="ref1"><span class="w-label">Refleksi tertulis</span></div>
+</section>
+
+<!-- ===================== SEGMEN 6 ===================== -->
+<section class="seg" id="s6" data-title="Kuis & Penutup" data-min="85–100" data-dur="15">
+  <div class="seg-head"><div class="num">6</div><h2>Kuis Penutup & Rangkuman</h2><span class="chip act">Evaluasi</span></div>
+  <div class="w" data-widget="spectrum" id="privasiSpectrum"><span class="w-label">Spektrum · Privasi vs Personalisasi</span></div>
+
+  <div class="w" data-widget="quiz" id="quiz1"><span class="w-label">Kuis penutup</span></div>
+
+  <div class="card">
+    <h3>Rangkuman 1 menit</h3>
+    <ul>
+      <li>Privasi digital berarti kendali atas siapa memakai datamu, untuk apa, dan berapa lama.</li>
+      <li>UU PDP membedakan data pribadi umum dan spesifik; yang spesifik berisiko tinggi dan diperlakukan lebih ketat.</li>
+      <li>Subjek data punya hak (akses, koreksi, hapus, tarik persetujuan, keberatan keputusan otomatis, ganti rugi); pengendali dan prosesor punya kewajiban.</li>
+      <li>Pengendali menentukan tujuan dan cara; prosesor menjalankan instruksi.</li>
+      <li>GDPR mirip secara prinsip dan berlaku lintas batas; insiden kebocoran harus ditangani cepat, jujur, dan terdokumentasi.</li>
+    </ul>
+    <h3>Tugas mandiri minggu depan</h3>
+    <p>Pilih satu aplikasi yang kamu pakai (marketplace, dompet digital, atau media sosial). Baca kebijakan privasinya dan tulis 1 halaman: (a) data apa yang dikumpulkan, (b) untuk tujuan apa, (c) apakah ada cara menghapus akun/data, dan (d) menurut penilaianmu, apakah selaras dengan hak subjek data menurut UU PDP.</p>
+  </div>
+
+  <div class="card refs">
+    <h3>Referensi</h3>
+    <ol>
+      <li>Republik Indonesia. (2022). <i>Undang-Undang No. 27 Tahun 2022 tentang Pelindungan Data Pribadi</i>.</li>
+      <li>Makarim, E. (2020). <i>Pengantar Hukum Informatika dan Elektronika</i>. Rajawali Pers.</li>
+      <li>Tavani, H. T. (2016). <i>Ethics and Technology: Controversies, Questions, and Strategies for Ethical Computing</i> (5th ed.). John Wiley & Sons.</li>
+      <li><b>Tambahan:</b> European Union. (2016). <i>Regulation (EU) 2016/679 (General Data Protection Regulation)</i>.</li>
+      <li><b>Tambahan:</b> Warren, S. D., & Brandeis, L. D. (1890). The Right to Privacy. <i>Harvard Law Review, 4</i>(5), 193–220.</li>
+      <li><b>Tambahan:</b> Solove, D. J. (2008). <i>Understanding Privacy</i>. Harvard University Press.</li>
+      <li><b>Tambahan:</b> Westin, A. F. (1967). <i>Privacy and Freedom</i>. Atheneum.</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (2024). <i>UU No. 1 Tahun 2024 tentang Perubahan Kedua atas UU No. 11 Tahun 2008 tentang ITE</i>.</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (2019). <i>Peraturan Pemerintah No. 71 Tahun 2019 tentang Penyelenggaraan Sistem dan Transaksi Elektronik</i>.</li>
+    </ol>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Mohon cek ulang: (1) nomor pasal dan rumusan kategori data umum/spesifik serta hak subjek data; (2) batas waktu notifikasi kebocoran (3 x 24 jam) dan besaran sanksi administratif/pidana UU PDP; (3) status Lembaga PDP dan peraturan pelaksana (PP) terbaru; (4) fakta kasus nyata (e-commerce 2020, BPJS Kesehatan 2021, Cambridge Analytica) dari sumber primer; (5) angka dan ketentuan GDPR bila ada amandemen atau pedoman EDPB terbaru.</div>
+  </div>
+</section>
+
+<footer>Etika Hukum Cyber · Bisnis Digital · Pertemuan 4 · Materi ini untuk tujuan pendidikan dan bukan nasihat hukum.</footer>
+</main>
+</div>
+
+
+<!-- ===================== DATA HALAMAN ===================== -->
+<script>
+const PAGE = {
+  id: "p04",
+
+  poll1: {
+    q: "Sebuah aplikasi edit foto meminta izin akses kontak, lokasi, dan mikrofon sebelum bisa dipakai. Apa tindakanmu?",
+    opts: [
+      {t:"Klik 'Izinkan semua' saja agar cepat", why:"Ini yang paling umum, tetapi berisiko. Izin yang tidak relevan dengan fungsi aplikasi melanggar semangat minimalisasi data, dan kamu menyerahkan kendali atas data kontak serta lokasimu."},
+      {t:"Izinkan hanya yang relevan (mis. akses foto), tolak sisanya", why:"Pilihan bijak: kamu memakai kendalimu sebagai pemilik data. Aplikasi yang baik seharusnya tetap berfungsi tanpa izin yang tidak diperlukan."},
+      {t:"Batal pakai dan cari aplikasi lain", why:"Sah dan sering tepat. Tetapi jika layanan yang kamu butuhkan hanya satu, kamu perlu tahu bahwa kamu punya hak untuk tahu tujuan pengumpulan data."},
+      {t:"Tidak pernah membaca, jadi tidak tahu", why:"Jujur dan sangat umum. Itulah mengapa hukum mewajibkan pengelola menyampaikan informasi secara jelas dan transparan, bukan sekadar menyembunyikannya di syarat dan ketentuan panjang."}
+    ]
+  },
+
+  flash1: {
+    title: "Uji istilah kunci (klik kartu untuk membalik)",
+    cards: [
+      {f:"Privasi (Warren & Brandeis)", b:"'Right to be let alone', hak untuk dibiarkan sendiri; dirumuskan tahun 1890."},
+      {f:"Privasi informasional", b:"Kendali individu atas pengumpulan, penggunaan, dan penyebaran informasi tentang dirinya."},
+      {f:"Data pribadi", b:"Data tentang orang perseorangan yang teridentifikasi atau dapat diidentifikasi, sendiri atau dikombinasikan dengan informasi lain."},
+      {f:"Data pribadi umum", b:"Contoh: nama lengkap, jenis kelamin, kewarganegaraan, agama, status perkawinan (menurut rumusan UU PDP)."},
+      {f:"Data pribadi spesifik", b:"Data berisiko tinggi: kesehatan, biometrik, genetika, catatan kejahatan, data anak, keuangan pribadi."},
+      {f:"Subjek data", b:"Orang perseorangan yang pada dirinya melekat data pribadi."},
+      {f:"Persetujuan eksplisit", b:"Persetujuan yang jelas, untuk tujuan tertentu, dan dapat ditarik kembali; bukan sekadar kotak yang sudah tercentang."},
+      {f:"Profiling", b:"Pemrosesan otomatis data untuk menilai atau memprediksi aspek pribadi seseorang, misalnya minat, perilaku, atau kemampuan finansial."}
+    ]
+  },
+
+  cls1: {
+    title: "Kelompokkan jenis data berikut",
+    bins: ["Data pribadi umum", "Data pribadi spesifik", "Bukan data pribadi (anonim/agregat)"],
+    items: [
+      {t:"Nama lengkap mahasiswa", a:0, why:"Nama lengkap adalah contoh data pribadi umum."},
+      {t:"Riwayat diagnosis penyakit pasien klinik", a:1, why:"Data dan informasi kesehatan termasuk data pribadi spesifik."},
+      {t:"Sidik jari untuk absensi karyawan", a:1, why:"Data biometrik termasuk data pribadi spesifik."},
+      {t:"Tanggal lahir dan nama sekolah siswa SD", a:1, why:"Data anak termasuk kategori spesifik karena anak lebih rentan."},
+      {t:"Nomor rekening dan saldo tabungan nasabah", a:1, why:"Data keuangan pribadi termasuk spesifik; bocornya dapat menimbulkan kerugian finansial."},
+      {t:"Jenis kelamin dan kewarganegaraan", a:0, why:"Keduanya adalah contoh data pribadi umum."},
+      {t:"Statistik 'rata-rata usia pengguna aplikasi adalah 24 tahun' tanpa identitas siapa pun", a:2, why:"Data agregat yang tidak dapat dikaitkan dengan individu tertentu pada dasarnya bukan data pribadi. Hati-hati: jika kelompoknya sangat kecil, individu bisa teridentifikasi kembali."},
+      {t:"Catatan kejahatan (SKCK) seseorang", a:1, why:"Catatan kejahatan termasuk data pribadi spesifik."},
+      {t:"Agama yang tercantum di KTP", a:0, why:"Menurut rumusan UU PDP, agama masuk kategori umum. Namun GDPR menempatkannya di kategori khusus, sehingga ini bahan diskusi (perlu verifikasi dosen)."}
+    ]
+  },
+
+  cls2: {
+    title: "Situasi mana cocok dengan hak apa?",
+    bins: ["Hak akses & salinan", "Hak koreksi / pembaruan", "Hak hapus / akhiri pemrosesan", "Hak tarik persetujuan", "Hak keberatan atas keputusan otomatis", "Hak gugat & ganti rugi"],
+    items: [
+      {t:"Kamu meminta toko online menunjukkan data apa saja yang tersimpan tentangmu.", a:0, why:"Itu hak akses dan memperoleh salinan data."},
+      {t:"Nama di akun tertulis salah dan kamu meminta diperbaiki.", a:1, why:"Hak melengkapi, memperbarui, dan memperbaiki data."},
+      {t:"Setelah berhenti pakai layanan, kamu meminta akun dan datamu dihapus.", a:2, why:"Hak mengakhiri pemrosesan serta menghapus/memusnahkan data (dengan batasan yang diatur)."},
+      {t:"Kamu mencabut izin aplikasi memakai datamu untuk iklan.", a:3, why:"Hak menarik kembali persetujuan yang pernah diberikan."},
+      {t:"Pengajuan pinjamanmu ditolak hanya oleh algoritma dan kamu meminta ditinjau manusia.", a:4, why:"Hak mengajukan keberatan atas keputusan yang semata-mata berdasarkan pemrosesan otomatis, termasuk profiling."},
+      {t:"Datamu bocor akibat kelalaian perusahaan dan kamu menuntut kompensasi.", a:5, why:"Hak menggugat dan menerima ganti rugi atas pelanggaran pemrosesan data."},
+      {t:"Kamu meminta salinan riwayat transaksi yang dipegang aplikasi.", a:0, why:"Hak akses dan memperoleh salinan."},
+      {t:"Kamu pindah rumah dan meminta alamat pengiriman di sistem diperbarui.", a:1, why:"Hak memperbarui data agar akurat."}
+    ]
+  },
+
+  cls3: {
+    title: "Tentukan peran pihak berikut",
+    bins: ["Pengendali Data", "Prosesor Data", "Subjek Data"],
+    items: [
+      {t:"Toko online yang menentukan data pelanggan apa yang dikumpulkan dan untuk tujuan apa", a:0, why:"Pihak yang menentukan tujuan dan kendali pemrosesan adalah pengendali."},
+      {t:"Penyedia cloud yang menyimpan database pelanggan toko atas instruksi toko", a:1, why:"Ia memproses atas nama pengendali dan mengikuti instruksinya."},
+      {t:"Pelanggan yang namanya, alamat, dan nomor HP-nya dikumpulkan toko", a:2, why:"Orang yang datanya diproses adalah subjek data."},
+      {t:"Jasa email blast yang hanya mengirim email sesuai daftar dan naskah dari klien", a:1, why:"Ia menjalankan instruksi klien (prosesor)."},
+      {t:"Bank yang memutuskan memakai data nasabah untuk penilaian kredit", a:0, why:"Bank menentukan tujuan pemrosesan sehingga ia pengendali."},
+      {t:"Mahasiswa yang mengisi formulir pendaftaran lomba kampus", a:2, why:"Ia pemilik data yang diserahkan, yaitu subjek data."},
+      {t:"Vendor analitik yang memakai data klien untuk membuat profil lalu menjualnya sendiri", a:0, why:"Karena ia menentukan tujuan sendiri, ia bertindak sebagai pengendali dan butuh dasar pemrosesan sendiri; ini juga berpotensi pelanggaran bila tidak diizinkan klien."}
+    ]
+  },
+
+  flash2: {
+    title: "Uji istilah pengelolaan data dan GDPR",
+    cards: [
+      {f:"Pengendali data", b:"Pihak yang menentukan tujuan dan kendali atas pemrosesan data pribadi."},
+      {f:"Prosesor data", b:"Pihak yang memproses data atas nama dan sesuai instruksi pengendali."},
+      {f:"Pejabat pelaksana fungsi PDP", b:"Petugas yang menjalankan fungsi pelindungan data pada kondisi tertentu; padanan DPO dalam GDPR."},
+      {f:"Data minimisation", b:"Kumpulkan hanya data yang benar-benar diperlukan untuk tujuan yang jelas."},
+      {f:"Purpose limitation", b:"Data hanya dipakai untuk tujuan yang dinyatakan saat dikumpulkan."},
+      {f:"Accountability", b:"Pengelola data bertanggung jawab dan harus mampu membuktikan kepatuhannya."},
+      {f:"Notifikasi kebocoran", b:"Kewajiban memberi tahu subjek data dan pengawas bila terjadi kegagalan pelindungan (UU PDP: 3 x 24 jam; GDPR: 72 jam ke otoritas)."},
+      {f:"Extraterritorial (GDPR)", b:"GDPR dapat berlaku bagi pihak di luar UE yang menawarkan barang/jasa atau memantau perilaku orang di UE."}
+    ]
+  },
+
+  scn1: {
+    title: "Skenario fiktif: 'BelanjaKita' menemukan data penggunanya dijual",
+    start: "n0",
+    nodes: {
+      n0: {text:"Kamu manajer produk di BelanjaKita (e-commerce fiktif). Senin pagi, seorang peneliti keamanan memberi tahu bahwa ada unggahan di forum yang mengaku menjual 'database pengguna BelanjaKita', berisi nama, email, nomor HP, alamat, dan hash sandi. Belum jelas apakah asli. Apa langkahmu pertama?",
+        choices:[{t:"Tunggu dulu sampai ada bukti kuat sebelum memberi tahu siapa pun", to:"n1"},{t:"Aktifkan tim insiden: isolasi sistem, kumpulkan bukti, dan nilai dampak", to:"n2"},{t:"Langsung umumkan 'tidak ada kebocoran' di media sosial agar tenang", to:"n3"}]},
+      n1: {end:true, text:"Hasil: tiga hari kemudian sampel data tersebut terbukti asli dan sudah beredar luas. Perusahaan terlambat menutup celah dan melewati batas waktu pemberitahuan. Kepercayaan pelanggan anjlok, dan potensi sanksi bertambah karena kelalaian.",
+        lens:"Utilitarian: menunda memperbesar kerugian bagi banyak pengguna. Deontologi: pengguna berhak tahu risiko atas data mereka. Keutamaan: menunda demi citra menunjukkan kurangnya kejujuran dan tanggung jawab."},
+      n2: {text:"Hasil investigasi (24 jam): sampel data cocok dengan data asli dan kemungkinan berasal dari akun admin vendor yang disusupi. Sebagian pengguna terdampak, dan tidak ada data kartu atau data keuangan yang tersimpan di database tersebut. Langkah berikutnya?",
+        choices:[{t:"Beri tahu pengguna dan lembaga pengawas secara jelas, ganti kredensial, dorong reset sandi, dan sediakan kanal bantuan", to:"n4"},{t:"Hanya beri tahu lembaga pengawas secara diam-diam, pengguna tidak usah", to:"n5"},{t:"Hanya paksa reset sandi tanpa penjelasan agar tidak menimbulkan kepanikan", to:"n6"}]},
+      n3: {end:true, text:"Hasil: pernyataan 'tidak ada kebocoran' terbantah ketika peneliti merilis bukti. Perusahaan dianggap berbohong, sehingga kerugian reputasi lebih besar dibanding jika jujur sejak awal.",
+        lens:"Utilitarian: kebohongan memberi ketenangan sesaat tetapi kerugian jangka panjang lebih besar. Deontologi: berbohong kepada pengguna melanggar kewajiban kejujuran dan perlakuan hormat. Keutamaan: karakter tidak jujur dan tidak akuntabel."},
+      n4: {end:true, text:"Hasil: pengguna dan lembaga pengawas diberi tahu secara tertulis dalam batas waktu yang ditentukan hukum. Pengguna mengganti sandi dan waspada terhadap phishing. Ada kritik, tetapi kepercayaan pulih lebih cepat karena perusahaan terbuka, bertanggung jawab, dan memperbaiki celah vendor.",
+        lens:"Utilitarian: meminimalkan kerugian pengguna. Deontologi: menghormati hak subjek data atas informasi. Keutamaan: jujur, bertanggung jawab, dan berani menanggung konsekuensi. Ini yang paling sejalan dengan kewajiban notifikasi pada UU PDP dan prinsip akuntabilitas GDPR."},
+      n5: {end:true, text:"Hasil: pengguna tidak tahu sandi dan datanya bocor, sehingga banyak yang jadi korban penipuan dan phishing yang memakai data asli mereka. Ketika terbongkar, perusahaan dinilai menutupi insiden dan menghadapi risiko sanksi karena tidak memberi tahu subjek data.",
+        lens:"Utilitarian: yang diuntungkan hanya perusahaan sesaat; kerugian ditanggung pengguna. Deontologi: pengguna diperlakukan sebagai alat menjaga citra. Keutamaan: mencerminkan sikap menghindar dari tanggung jawab."},
+      n6: {end:true, text:"Hasil: sebagian pengguna mengganti sandi, tetapi tidak tahu data lain (nama, nomor HP, alamat) sudah bocor, sehingga mereka tidak waspada terhadap penipuan yang memakai data tersebut. Pemberitahuan yang tidak jelas dianggap tidak memenuhi kewajiban transparansi.",
+        lens:"Utilitarian: manfaat sebagian, risiko tetap besar. Deontologi: hak informasi pengguna tidak terpenuhi. Keutamaan: niat menenangkan baik, tetapi kurang jujur dan tuntas."}
+    }
+  },
+
+  chk1: {
+    title: "Centang langkah yang menurutmu wajib dalam respons insiden",
+    items: [
+      "Mengisolasi sistem terdampak dan menutup celah (mis. cabut akses yang disusupi).",
+      "Mengamankan dan mendokumentasikan bukti (log, waktu kejadian, ruang lingkup).",
+      "Menilai jenis data yang bocor (umum/spesifik) dan jumlah subjek terdampak.",
+      "Memberi tahu subjek data dan lembaga pengawas secara tertulis dalam batas waktu hukum (UU PDP: paling lambat 3 x 24 jam; verifikasi dosen).",
+      "Menyiapkan kanal bantuan dan imbauan perlindungan bagi pengguna (reset sandi, waspada phishing).",
+      "Mengevaluasi akar masalah dan memperbaiki prosedur, termasuk pengawasan vendor/prosesor."
+    ],
+    doneMsg: "Daftar periksa lengkap. Dalam praktik, dokumentasikan setiap langkah dan siapa penanggung jawabnya."
+  },
+
+  ref1: {
+    title: "Tulis 3–5 kalimat",
+    prompt: "Ingat satu aplikasi yang pernah meminta datamu (bisa nomor HP, lokasi, atau foto). Jelaskan: (a) data apa yang diminta, (b) apakah menurutmu perlu untuk layanan tersebut, (c) hak subjek data mana yang bisa kamu gunakan, dan (d) apa yang akan kamu ubah setelah belajar hari ini.",
+    hint: "Tulisan tersimpan otomatis di perangkat ini. Gunakan tombol Salin untuk mengumpulkan ke dosen."
+  },
+
+  quiz1: {
+    title: "Kuis penutup (10 soal)",
+    items: [
+      {q:"Warren dan Brandeis (1890) merumuskan privasi sebagai…", o:["Hak untuk memiliki harta benda","Hak untuk dibiarkan sendiri (right to be let alone)","Hak untuk mengakses informasi pemerintah","Hak untuk menyebarkan opini"], a:1, why:"Artikel The Right to Privacy merumuskan privasi sebagai hak untuk dibiarkan sendiri."},
+      {q:"Manakah yang termasuk data pribadi spesifik menurut UU PDP?", o:["Nama lengkap","Jenis kelamin","Data biometrik","Kewarganegaraan"], a:2, why:"Data biometrik termasuk data pribadi spesifik; tiga lainnya termasuk data umum."},
+      {q:"Pihak yang menentukan tujuan dan kendali atas pemrosesan data pribadi disebut…", o:["Pengendali data","Prosesor data","Subjek data","Pihak ketiga netral"], a:0, why:"Pengendali menentukan mengapa dan bagaimana data diproses; prosesor hanya menjalankan atas nama pengendali."},
+      {q:"Kamu meminta aplikasi memperbaiki alamat yang salah di akunmu. Hak yang kamu gunakan adalah…", o:["Hak portabilitas","Hak menarik persetujuan","Hak atas keputusan otomatis","Hak melengkapi, memperbarui, dan memperbaiki data"], a:3, why:"Meminta data diperbaiki atau diperbarui adalah hak koreksi/pembaruan."},
+      {q:"Menurut UU PDP, pengendali data wajib memberi tahu subjek data dan lembaga bila terjadi kegagalan pelindungan, dalam waktu…", o:["Satu tahun","Paling lambat 3 x 24 jam","Tidak ada kewajiban","Setelah ada putusan pengadilan"], a:1, why:"UU PDP mengatur pemberitahuan tertulis paling lambat 3 x 24 jam (perlu verifikasi dosen untuk rujukan pasal)."},
+      {q:"Perusahaan Indonesia menjual barang ke pelanggan di Uni Eropa. Mengapa GDPR bisa relevan baginya?", o:["GDPR hanya berlaku di Indonesia","GDPR tidak pernah berlaku bagi pihak asing","GDPR dapat berlaku bagi pihak di luar UE yang menawarkan barang/jasa kepada orang di UE","GDPR hanya berlaku untuk bank"], a:2, why:"GDPR memiliki jangkauan ekstrateritorial."},
+      {q:"Aplikasi kasir hanya perlu nama dan nomor HP pelanggan, tetapi mengumpulkan juga lokasi dan daftar kontak. Prinsip yang paling dilanggar adalah…", o:["Data minimisation (minimalisasi data)","Hak portabilitas","Hak ganti rugi","Notifikasi kebocoran"], a:0, why:"Prinsip minimalisasi: kumpulkan hanya data yang diperlukan untuk tujuan yang jelas."},
+      {q:"Sanksi bagi pelanggaran UU PDP secara garis besar adalah…", o:["Hanya teguran lisan","Hanya sanksi sosial","Tidak ada sanksi","Sanksi administratif (mis. peringatan sampai denda administratif) dan juga pidana"], a:3, why:"UU PDP memuat sanksi administratif dan pidana; detail besaran perlu diverifikasi pada teks resmi."},
+      {q:"Mengapa klik 'Saya setuju' tidak otomatis membuat semua pemrosesan sah?", o:["Karena setuju tidak pernah berlaku","Karena persetujuan harus jelas, spesifik tujuannya, dapat ditarik kembali, dan pemrosesan tetap harus sesuai tujuan","Karena hanya persetujuan lisan yang berlaku","Karena hanya pemerintah yang boleh meminta persetujuan"], a:1, why:"Persetujuan harus eksplisit dan terikat tujuan; pengelola juga tetap harus mematuhi prinsip lain seperti minimalisasi dan keamanan."},
+      {q:"Gagasan Solove (2008) tentang privasi paling tepat dirangkum sebagai…", o:["Privasi hanyalah rahasia","Privasi sama dengan menyembunyikan kesalahan","Privasi sulit didefinisikan tunggal sehingga dilihat lewat taksonomi masalah (pengumpulan, pemrosesan, penyebaran, invasi)","Privasi tidak relevan di era digital"], a:2, why:"Solove mengusulkan melihat privasi lewat taksonomi masalah privasi, bukan satu definisi tunggal."}
+    ]
+  },
+
+  hakDataExplorer: {
+    title: "Jelajahi: Hak Subjek Data menurut UU PDP",
+    intro: "Klik kartu untuk membuka penjelasan, cara menggunakan hak tersebut, contoh nyata, dasar hukum, dan padanan di GDPR.",
+    items: [
+      {
+        id:"hak-info", icon:"ℹ️", name:"Hak Mendapat Informasi", tag:"Transparansi",
+        summary:"Hak untuk mengetahui identitas pengendali data, dasar hukum pemrosesan, tujuan, dan akuntabilitas sebelum memberikan persetujuan atau data diproses.",
+        how:[
+          "Sebelum menyerahkan data, tanyakan atau cari tahu siapa yang mengumpulkan, untuk tujuan apa, dan berapa lama disimpan.",
+          "Baca kebijakan privasi dan formulir persetujuan secara kritis, bukan sekadar klik 'Setuju'.",
+          "Bila informasi tidak jelas atau tersembunyi, kamu berhak bertanya langsung kepada pengendali data."
+        ],
+        ex:[
+          "Saat mendaftar aplikasi, periksa apakah ada penjelasan jelas tentang untuk apa nomor HP dan lokasimu dipakai.",
+          "Saat mengisi formulir di klinik, tanyakan apakah data kesehatanmu akan dibagikan ke pihak ketiga.",
+          "Sebelum menyetujui cookies di sebuah situs web, periksa kategori cookies dan tujuannya."
+        ],
+        impact:"Tanpa informasi yang memadai, persetujuan yang diberikan tidak sah karena tidak berdasarkan pemahaman yang cukup. Ini melindungi dari penyalahgunaan data yang tidak disadari.",
+        law:[
+          "UU PDP: hak mendapat informasi tentang identitas pengendali, dasar hukum, tujuan, dan akuntabilitas (Verifikasi dosen: nomor pasal spesifik).",
+          "Padanan GDPR: Right to be informed (Pasal 13–14 GDPR) — hak mendapat informasi tentang pemrosesan data."
+        ],
+        prev:[
+          "Biasakan membaca syarat dan ketentuan serta kebijakan privasi, terutama bagian penggunaan data.",
+          "Jangan klik 'Setuju' tanpa membaca tujuan pengumpulan data."
+        ]
+      },
+      {
+        id:"hak-akses", icon:"👁️", name:"Hak Akses", tag:"Transparansi aktif",
+        summary:"Hak untuk meminta dan mendapatkan salinan data pribadi yang tersimpan di pengendali data, sehingga kamu dapat memverifikasi apa yang mereka pegang tentangmu.",
+        how:[
+          "Hubungi pengendali data (mis. melalui email resmi atau portal privasi mereka) untuk meminta salinan data.",
+          "Sebutkan data apa yang ingin diakses dan untuk tujuan apa.",
+          "Pengendali wajib merespons permintaan dalam batas waktu yang ditentukan."
+        ],
+        ex:[
+          "Mengirim email ke marketplace dan meminta daftar lengkap data pribadi yang tersimpan di akunmu.",
+          "Meminta bank menunjukkan informasi apa saja yang dipegang tentang dirimu.",
+          "Mengunduh arsip data aktivitas dari platform media sosial (biasanya tersedia di pengaturan akun)."
+        ],
+        impact:"Memungkinkan kamu memverifikasi keakuratan data dan mengetahui apakah ada informasi yang tidak seharusnya dikumpulkan. Dasar untuk menggunakan hak-hak lain seperti koreksi atau penghapusan.",
+        law:[
+          "UU PDP: hak akses dan memperoleh salinan data pribadi (Verifikasi dosen: nomor pasal spesifik).",
+          "Padanan GDPR: Right of access (Pasal 15 GDPR) — hak mendapatkan salinan data dan informasi tentang pemrosesannya."
+        ],
+        prev:[
+          "Secara berkala, unduh arsip data dari platform yang sering kamu gunakan.",
+          "Periksa apakah data yang tersimpan akurat dan relevan dengan layanan yang kamu pakai."
+        ]
+      },
+      {
+        id:"hak-koreksi", icon:"✏️", name:"Hak Koreksi", tag:"Akurasi data",
+        summary:"Hak untuk meminta perbaikan data yang tidak akurat, tidak lengkap, atau sudah usang, agar informasi yang dipegang pengendali sesuai dengan kondisi terkini.",
+        how:[
+          "Identifikasi data yang salah atau tidak aktual di akun atau catatan yang dipegang pengendali.",
+          "Hubungi pengendali data dan sampaikan permintaan koreksi beserta bukti yang diperlukan.",
+          "Simpan bukti korespondensi dan tanggal permintaan untuk tindak lanjut jika perlu."
+        ],
+        ex:[
+          "Nama atau tanggal lahir yang salah ketik di akun e-commerce diminta diperbaiki.",
+          "Alamat pengiriman yang sudah tidak berlaku di toko online diperbarui ke alamat baru.",
+          "Riwayat kredit yang mengandung kesalahan diperbaiki di lembaga keuangan."
+        ],
+        impact:"Data yang tidak akurat dapat merugikan kamu secara serius, misalnya dalam penilaian kredit, rekam medis, atau identifikasi hukum. Koreksi melindungi kepentinganmu.",
+        law:[
+          "UU PDP: hak melengkapi, memperbarui, dan memperbaiki data (Verifikasi dosen: nomor pasal spesifik).",
+          "Padanan GDPR: Right to rectification (Pasal 16 GDPR) — hak meminta koreksi data yang tidak akurat atau tidak lengkap."
+        ],
+        prev:[
+          "Segera laporkan data yang salah begitu kamu menemukan kesalahan.",
+          "Simpan dokumentasi permintaan koreksi dan tanggapan pengendali."
+        ]
+      },
+      {
+        id:"hak-hapus", icon:"🗑️", name:"Hak Hapus / Right to be Forgotten", tag:"Penghapusan data",
+        summary:"Hak untuk meminta penghapusan data pribadi dalam kondisi tertentu, misalnya bila data sudah tidak diperlukan untuk tujuan semula, persetujuan dicabut, atau data diproses secara tidak sah. Hak ini memiliki pengecualian untuk kepentingan hukum dan kepentingan umum.",
+        how:[
+          "Sampaikan permintaan penghapusan kepada pengendali secara tertulis, sebutkan alasan yang menjadi dasar.",
+          "Misalnya: tujuan pemrosesan sudah tidak relevan, atau kamu mencabut persetujuan.",
+          "Pahami bahwa pengendali dapat menolak bila ada dasar hukum lain yang lebih kuat (mis. kewajiban hukum, pertahanan negara, atau kepentingan umum)."
+        ],
+        ex:[
+          "Setelah menutup akun media sosial, meminta agar semua data dihapus secara permanen.",
+          "Meminta mesin pencari menghapus tautan ke berita lama yang memuat informasi pribadimu yang sudah tidak relevan.",
+          "Mencabut persetujuan dan meminta data pemasaran dihapus dari daftar email promosi."
+        ],
+        impact:"Melindungi dari data usang yang dapat mempengaruhi reputasi atau menjadi sumber kebocoran. Memberikan kontrol kembali atas jejak digital.",
+        law:[
+          "UU PDP: hak mengakhiri pemrosesan serta menghapus/memusnahkan data (ada kondisi dan pengecualian tertentu) (Verifikasi dosen: nomor pasal spesifik).",
+          "Padanan GDPR: Right to erasure / Right to be forgotten (Pasal 17 GDPR) — hak meminta penghapusan dalam kondisi tertentu."
+        ],
+        prev:[
+          "Tutup akun layanan yang tidak lagi digunakan dan minta penghapusan data secara eksplisit.",
+          "Pahami bahwa hak ini memiliki pengecualian untuk kepentingan hukum, keamanan, dan kepentingan umum."
+        ]
+      },
+      {
+        id:"hak-portabilitas", icon:"📦", name:"Hak Portabilitas", tag:"Pemindahan data",
+        summary:"Hak untuk memperoleh data pribadi dalam format yang terstruktur dan lazim digunakan, serta memindahkannya ke pengendali data lain. Mendorong persaingan sehat karena pengguna tidak terkunci pada satu layanan.",
+        how:[
+          "Minta pengendali data mengekspor datamu dalam format standar yang dapat dibaca mesin (mis. CSV, JSON).",
+          "Gunakan data tersebut untuk berpindah ke layanan lain tanpa harus mengisi ulang semua informasi dari nol.",
+          "Hak ini berlaku untuk data yang kamu berikan secara aktif dan diproses berdasarkan persetujuan atau perjanjian."
+        ],
+        ex:[
+          "Mengunduh riwayat transaksi dan data profil dari satu marketplace untuk dipindahkan ke marketplace lain.",
+          "Meminta ekspor data kesehatan dari satu aplikasi ke aplikasi lain untuk melanjutkan rekam medis.",
+          "Memindahkan kontak dan riwayat dari satu platform komunikasi ke platform lain."
+        ],
+        impact:"Mendorong persaingan sehat di pasar digital karena pengguna dapat berpindah layanan tanpa kehilangan data. Meningkatkan kendali pengguna atas data mereka.",
+        law:[
+          "UU PDP: hak portabilitas data (memperoleh dan memakai data dalam format lazim serta memindahkannya ke pengendali lain) (Verifikasi dosen: nomor pasal spesifik).",
+          "Padanan GDPR: Right to data portability (Pasal 20 GDPR) — hak mendapatkan data dalam format terstruktur dan memindahkannya ke pengendali lain."
+        ],
+        prev:[
+          "Manfaatkan fitur ekspor data yang biasanya disediakan platform di bagian pengaturan akun.",
+          "Simpan salinan lokal data pentingmu secara berkala sebagai cadangan."
+        ]
+      }
+    ]
+  },
+
+  breachFlow: {
+    title: "Alur Kebocoran Data dan Kewajiban Pengendali",
+    sub: "Animasi 5 langkah: dari eksfiltrasi data oleh penyerang hingga investigasi dan sanksi. Ikuti setiap langkah untuk memahami kewajiban pengendali data menurut UU PDP.",
+    actors: [
+      {id:"attacker", icon:"🎭", name:"Penyerang", x:13, y:28, role:"attacker"},
+      {id:"database", icon:"🗄️", name:"Database Perusahaan", x:50, y:28, role:"victim"},
+      {id:"dpo", icon:"🛡️", name:"Tim DPO / Keamanan", x:50, y:72, role:"neutral"},
+      {id:"regulator", icon:"⚖️", name:"Regulator (Lembaga PDP)", x:82, y:28, role:"neutral"},
+      {id:"users", icon:"👥", name:"Subjek Data / Pengguna", x:82, y:72, role:"victim"}
+    ],
+    zones: [
+      {x:2, y:10, w:28, h:35, label:"Aktor eksternal"},
+      {x:34, y:10, w:28, h:90, label:"Sistem internal"},
+      {x:66, y:5, w:31, h:95, label:"Pihak yang wajib dinotifikasi"}
+    ],
+    steps: [
+      {
+        title:"Eksfiltrasi data oleh penyerang",
+        short:"Eksfiltrasi",
+        text:"Penyerang berhasil mengakses database perusahaan (mis. melalui celah keamanan, kredensial yang bocor, atau rekayasa sosial) dan mengekstrak data pribadi pengguna.",
+        from:"attacker", to:"database",
+        packet:"💀", label:"data dicuri",
+        set:{attacker:["danger","menyerang"], database:["danger","tereksploitasi"]},
+        risk:"Data pengguna (nama, email, nomor HP, alamat) kini di tangan penyerang",
+        law:"UU PDP mewajibkan pengendali mengambil langkah pelindungan teknis dan organisasi yang memadai sebelum insiden terjadi"
+      },
+      {
+        title:"Tim keamanan mendeteksi anomali",
+        short:"Deteksi",
+        text:"Tim DPO atau keamanan siber perusahaan mendeteksi adanya anomali — misalnya lonjakan akses tidak normal, peringatan sistem, atau laporan dari pihak luar.",
+        from:"database", to:"dpo",
+        packet:"🚨", label:"alert",
+        set:{attacker:"danger", database:"warn", dpo:["warn","investigasi"]},
+        tip:"Semakin cepat dideteksi, semakin kecil dampaknya pada pengguna",
+        risk:"Setiap jam keterlambatan berarti lebih banyak data yang dapat disalahgunakan"
+      },
+      {
+        title:"Notifikasi ke regulator dalam batas waktu",
+        short:"Notifikasi regulator",
+        text:"Pengendali data wajib memberitahukan insiden kepada Lembaga PDP (regulator) secara tertulis paling lambat 3 x 24 jam setelah mengetahui terjadinya kegagalan pelindungan data (Verifikasi dosen: batas waktu dan pasal spesifik UU PDP).",
+        from:"dpo", to:"regulator",
+        packet:"📄", label:"laporan insiden",
+        set:{database:"warn", dpo:["active","melapor"], regulator:["warn","menerima laporan"]},
+        law:"UU PDP: notifikasi kepada lembaga paling lambat 3 x 24 jam (Verifikasi dosen: pasal dan PP pelaksana). GDPR: 72 jam ke otoritas pengawas (Pasal 33).",
+        risk:"Terlambat melapor dapat menambah beratnya sanksi administratif"
+      },
+      {
+        title:"Notifikasi ke subjek data terdampak",
+        short:"Notifikasi pengguna",
+        text:"Selain ke regulator, pengendali juga wajib memberi tahu subjek data yang terdampak secara tertulis agar mereka dapat mengambil langkah perlindungan diri: mengganti sandi, waspada phishing, atau memantau rekening.",
+        from:"dpo", to:"users",
+        packet:"📧", label:"pemberitahuan",
+        set:{dpo:["active","menotifikasi"], users:["warn","terdampak"], regulator:"lock"},
+        law:"UU PDP: pemberitahuan tertulis kepada subjek data paling lambat 3 x 24 jam (Verifikasi dosen: pasal dan PP pelaksana). GDPR: notifikasi ke individu bila risiko tinggi (Pasal 34).",
+        tip:"Transparansi kepada pengguna mempercepat pemulihan kepercayaan dan mengurangi kerugian lebih lanjut"
+      },
+      {
+        title:"Investigasi dan penerapan sanksi",
+        short:"Sanksi",
+        text:"Regulator melakukan investigasi dan dapat mengenakan sanksi administratif (peringatan, penghentian pemrosesan, denda administratif) dan/atau sanksi pidana tergantung tingkat kelalaian (Verifikasi dosen: besaran sanksi UU PDP dan status PP pelaksana terbaru).",
+        from:"regulator", to:"dpo",
+        packet:"⚖️", label:"sanksi",
+        set:{attacker:"lock", database:"safe", dpo:["lock","dikenai sanksi"], regulator:["active","memberikan sanksi"], users:"safe"},
+        law:"UU PDP: sanksi administratif dan pidana (Verifikasi dosen: besaran sanksi dan pasal spesifik). GDPR: denda hingga €20 juta atau 4% omzet global tahunan.",
+        risk:"Menyembunyikan insiden hampir selalu memperburuk sanksi secara signifikan dan merusak reputasi jangka panjang"
+      }
+    ],
+    outcome:"Pelajaran utama: deteksi cepat, transparansi kepada regulator dan pengguna dalam batas waktu hukum, serta perbaikan sistem adalah tiga kunci respons insiden yang bertanggung jawab sesuai UU PDP."
+  },
+
+  privasiSpectrum: {
+    title: "Spektrum: Privasi Penuh ↔ Personalisasi Penuh",
+    prompt: "Geser slider untuk menjelajahi lima titik trade-off antara privasi dan personalisasi. Setiap titik menggambarkan manfaat, risiko, dan kaitannya dengan prinsip minimasi data (data minimization) dalam UU PDP dan GDPR.",
+    left: "Privasi Penuh",
+    right: "Personalisasi Penuh",
+    stops: [
+      {
+        at:0,
+        label:"Titik 1: Data Minimal, Privasi Ketat",
+        text:"Hanya data yang benar-benar diperlukan yang dikumpulkan. Pengguna tidak diidentifikasi lebih jauh dari yang dibutuhkan. Layanan berfungsi secara anonim atau pseudonim. Ini adalah implementasi ideal prinsip minimasi data (data minimization) dalam UU PDP dan GDPR Pasal 5(1)(c): kumpulkan seperlunya, tidak lebih.",
+        risk:"Manfaat: privasi paling tinggi, risiko kebocoran minimal. Catatan: layanan mungkin kurang personal, tetapi hak subjek data paling terlindungi."
+      },
+      {
+        at:25,
+        label:"Titik 2: Data Fungsional dengan Kontrol Granular",
+        text:"Data dikumpulkan sesuai kebutuhan layanan dengan kontrol granular bagi pengguna — misalnya bisa memilih kategori izin secara terpisah. Pengguna paham data apa yang dipakai dan untuk apa. Ini adalah praktik terbaik yang sejalan dengan prinsip transparansi dan minimasi data UU PDP.",
+        risk:"Manfaat: pengalaman yang baik dengan privasi terjaga. Catatan: membutuhkan desain sistem yang lebih cermat dari sisi pengembang, tetapi ini standar yang diharapkan UU PDP."
+      },
+      {
+        at:50,
+        label:"Titik 3: Pertukaran Sadar — Data untuk Personalisasi",
+        text:"Pengguna memahami bahwa datanya dipakai untuk personalisasi konten dan iklan, dan secara sadar menyetujui pertukaran ini. Persetujuan diberikan secara eksplisit dan spesifik tujuannya, bukan tersembunyi dalam syarat dan ketentuan panjang. Ini adalah zona 'informed consent' yang ditekankan UU PDP dan GDPR.",
+        risk:"Manfaat: personalisasi relevan yang meningkatkan pengalaman. Risiko: data dapat disalahgunakan jika pengendali tidak bertanggung jawab atau terjadi kebocoran."
+      },
+      {
+        at:75,
+        label:"Titik 4: Personalisasi Tinggi, Profiling Ekstensif",
+        text:"Perusahaan membangun profil terperinci tentang minat, kebiasaan, dan karakter pengguna. Rekomendasi sangat akurat. Namun, profiling yang tidak transparan berpotensi melanggar hak keberatan atas keputusan otomatis dalam UU PDP, terutama bila dipakai untuk keputusan berdampak besar seperti skor kredit atau seleksi asuransi.",
+        risk:"Risiko besar: profiling tidak transparan, potensi diskriminasi algoritmik, dan kebocoran profil lengkap dapat menimbulkan kerugian besar bagi subjek data."
+      },
+      {
+        at:100,
+        label:"Titik 5: Semua Data Dibagikan Tanpa Batas",
+        text:"Semua data pengguna dikumpulkan, dianalisis, dan dibagikan tanpa batasan yang jelas. Ini melanggar hampir semua prinsip UU PDP: minimasi data, pembatasan tujuan (purpose limitation), transparansi, dan hak subjek data. Kebocoran data dalam skenario ini dapat menimbulkan kerugian yang sangat besar bagi banyak pihak.",
+        risk:"Risiko ekstrem: pelanggaran UU PDP dan GDPR, potensi sanksi berat administratif dan pidana. Pengguna tidak memiliki kendali atas data mereka sama sekali."
+      }
+    ]
+  }
+};
+</script>
+
+<!-- ===== [SHARED:JS] — jangan ubah blok ini antar pertemuan ===== -->
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const K=PAGE.id+":";
+const store={get(k,d){try{const v=localStorage.getItem(K+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(K+k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const widgets=$$(".w[data-widget]"); const done=new Set(store.get("done",[]));
+function markDone(id){done.add(id);store.set("done",[...done]);const el=$("#"+id);if(el)el.classList.add("done");updateProgress()}
+function updateProgress(){const p=widgets.length?Math.round(done.size/widgets.length*100):0;$("#pbar").style.width=p+"%";$("#ppct").textContent=p+"%"}
+const body=(el)=>{const d=document.createElement("div");d.className="wb";el.appendChild(d);return d};
+
+/* ---------- Poll ---------- */
+function poll(el,c){const b=body(el);const saved=store.get(el.id,null);
+  b.innerHTML=`<h3>${esc(c.q)}</h3><div class="opts"></div><div class="fb"></div>`;
+  const o=$(".opts",b),fb=$(".fb",b);
+  c.opts.forEach((x,i)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=x.t;bt.onclick=()=>pick(i);o.appendChild(bt)});
+  function pick(i){$$(".opt",o).forEach((e,j)=>e.classList.toggle("sel",i===j));fb.className="fb show ok";fb.innerHTML="<b>Insight:</b> "+esc(c.opts[i].why);store.set(el.id,i);markDone(el.id)}
+  if(saved!==null)pick(saved)}
+
+/* ---------- Checklist ---------- */
+function checklist(el,c){const b=body(el);const st=store.get(el.id,[]);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="ckl"></div><div class="fb"></div>`;
+  const box=$(".ckl",b),fb=$(".fb",b);
+  c.items.forEach((t,i)=>{const l=document.createElement("label");l.innerHTML=`<input type="checkbox"><span>${esc(t)}</span>`;const cb=$("input",l);cb.checked=st.includes(i);cb.onchange=chk;box.appendChild(l)});
+  function chk(){const v=$$("input",box).map((x,i)=>x.checked?i:-1).filter(i=>i>=0);store.set(el.id,v);if(v.length===c.items.length){fb.className="fb show ok";fb.textContent=c.doneMsg||"Selesai.";markDone(el.id)}else fb.className="fb"}
+  chk()}
+
+/* ---------- Flashcards ---------- */
+function flash(el,c){const b=body(el);let i=0;const known=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="flash"><div class="flash-in"><div class="face f"></div><div class="face b"></div></div></div>
+  <div class="fc-ctl"><button class="btn ghost" data-a="prev">‹ Sebelumnya</button><span class="cnt"></span><button class="btn ghost" data-a="next">Berikutnya ›</button><button class="btn" data-a="know">Saya paham ✓</button></div>`;
+  const fl=$(".flash",b);
+  function draw(){const x=c.cards[i];$(".f",b).textContent=x.f;$(".b",b).textContent=x.b;fl.classList.remove("flip");$(".cnt",b).textContent=`${i+1}/${c.cards.length} · paham ${known.size}`}
+  fl.onclick=()=>fl.classList.toggle("flip");
+  b.onclick=e=>{const a=e.target.dataset.a;if(!a)return;if(a==="next")i=(i+1)%c.cards.length;if(a==="prev")i=(i-1+c.cards.length)%c.cards.length;if(a==="know"){known.add(i);store.set(el.id,[...known]);if(known.size===c.cards.length)markDone(el.id);i=(i+1)%c.cards.length}draw()};
+  draw();if(known.size===c.cards.length)markDone(el.id)}
+
+/* ---------- Classify ---------- */
+function classify(el,c){const b=body(el);let pick=null;const asg={};
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="cls-pool"></div><div class="cls-bins"></div>
+  <p><button class="btn" data-a="chk">Periksa</button> <button class="btn ghost" data-a="rst">Ulangi</button> <span class="score"></span></p><div class="fb"></div>`;
+  const pool=$(".cls-pool",b),bins=$(".cls-bins",b),fb=$(".fb",b);
+  c.bins.forEach((n,bi)=>{const d=document.createElement("div");d.className="bin";d.tabIndex=0;d.dataset.b=bi;d.innerHTML=`<h4>${esc(n)}</h4>`;bins.appendChild(d)});
+  function render(){pool.innerHTML="";$$(".bin .cls-item",bins).forEach(e=>e.remove());
+    c.items.forEach((x,i)=>{const e=document.createElement("button");e.className="cls-item";e.textContent=x.t;e.dataset.i=i;
+      if(pick===i)e.classList.add("pick");
+      if(asg[i]!==undefined)$$(".bin",bins)[asg[i]].appendChild(e);else pool.appendChild(e)})}
+  b.onclick=e=>{const it=e.target.closest(".cls-item");const bin=e.target.closest(".bin");const a=e.target.dataset.a;
+    if(a==="rst"){for(const k in asg)delete asg[k];pick=null;fb.className="fb";$(".score",b).textContent="";render();return}
+    if(a==="chk"){if(Object.keys(asg).length<c.items.length){fb.className="fb show";fb.textContent="Tempatkan semua kartu terlebih dahulu.";return}
+      let s=0,html="<ul>";c.items.forEach((x,i)=>{const ok=asg[i]===x.a;if(ok)s++;html+=`<li>${ok?"✓":"✗"} <b>${esc(x.t)}</b> → <em>${esc(c.bins[x.a])}</em>. ${esc(x.why)}</li>`});html+="</ul>";
+      $$(".cls-item",b).forEach(el2=>{el2.classList.add(asg[el2.dataset.i]===c.items[el2.dataset.i].a?"right":"wrong")});
+      $(".score",b).textContent=`Skor ${s}/${c.items.length}`;fb.className="fb show ok";fb.innerHTML=html;markDone(el.id);return}
+    if(it&&(pool.contains(it)||bins.contains(it))){const i=+it.dataset.i;if(asg[i]!==undefined&&!bin){delete asg[i]}pick=i;render();return}
+    if(bin&&pick!==null){asg[pick]=+bin.dataset.b;pick=null;render()}};
+  render()}
+
+/* ---------- Scenario ---------- */
+function scenario(el,c){const b=body(el);
+  function show(id){const n=c.nodes[id];
+    b.innerHTML=`<h3>${esc(c.title)}</h3><p class="scn-text">${esc(n.text)}</p>`;
+    if(n.end){b.insertAdjacentHTML("beforeend",`<div class="scn-end"><b>Tinjauan 3 kacamata:</b> ${esc(n.lens)}</div><p><button class="btn ghost">Coba jalur lain</button></p>`);$(".btn",b).onclick=()=>show(c.start);markDone(el.id)}
+    else{const o=document.createElement("div");o.className="opts";n.choices.forEach(ch=>{const x=document.createElement("button");x.className="opt";x.textContent=ch.t;x.onclick=()=>show(ch.to);o.appendChild(x)});b.appendChild(o)}}
+  show(c.start)}
+
+/* ---------- Reflection ---------- */
+function reflect(el,c){const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt)}</p><textarea placeholder="Tulis di sini…"></textarea><p><small>${esc(c.hint||"")}</small></p><p><button class="btn" data-a="cp">Salin jawaban</button> <span class="cnt"></span></p>`;
+  const ta=$("textarea",b);ta.value=store.get(el.id,"");
+  const upd=()=>{const n=ta.value.trim().split(/\s+/).filter(Boolean).length;$(".cnt",b).textContent=n+" kata";if(n>=15)markDone(el.id)};
+  ta.oninput=()=>{store.set(el.id,ta.value);upd()};
+  $("[data-a=cp]",b).onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText(ta.value).then(()=>{e.target.textContent="Tersalin ✓";setTimeout(()=>e.target.textContent="Salin jawaban",1500)})};
+  upd()}
+
+/* ---------- Quiz ---------- */
+function quiz(el,c){const b=body(el);const ans=[];let i=0;
+  function show(){if(i>=c.items.length)return fin();const x=c.items[i];
+    b.innerHTML=`<h3>${esc(c.title)} · ${i+1}/${c.items.length}</h3><p><b>${esc(x.q)}</b></p><div class="opts"></div><div class="fb"></div><p><button class="btn" disabled>Lanjut ›</button></p>`;
+    const o=$(".opts",b),fb=$(".fb",b),nx=$(".btn",b);
+    x.o.forEach((t,j)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=t;bt.onclick=()=>{if(ans[i]!==undefined)return;ans[i]=j;$$(".opt",o).forEach((e,k)=>{if(k===x.a)e.classList.add("right");else if(k===j)e.classList.add("wrong")});fb.className="fb show "+(j===x.a?"ok":"");fb.innerHTML=(j===x.a?"<b>Benar.</b> ":"<b>Belum tepat.</b> ")+esc(x.why);nx.disabled=false;nx.textContent=i===c.items.length-1?"Lihat skor":"Lanjut ›"};o.appendChild(bt)});
+    nx.onclick=()=>{i++;show()}}
+  function fin(){const s=c.items.filter((x,k)=>ans[k]===x.a).length;const p=Math.round(s/c.items.length*100);
+    store.set(el.id+":score",p);
+    b.innerHTML=`<h3>Hasil kuis</h3><p class="score">${s}/${c.items.length} (${p}%)</p><p>${p>=80?"Sangat baik. Pemahamanmu kuat.":p>=60?"Cukup. Ulas butir yang salah.":"Perlu ulang. Baca kembali segmen 2–4."}</p><p><button class="btn ghost">Ulangi kuis</button></p>`;
+    $(".btn",b).onclick=()=>{ans.length=0;i=0;show()};markDone(el.id)}
+  show()}
+
+const R={poll,checklist,flash,classify,scenario,reflect,quiz};
+window.EHC={$,$$,store,esc,markDone,body};
+widgets.forEach(el=>{const t=el.dataset.widget;if(R[t]&&PAGE[el.id])R[t](el,PAGE[el.id]);if(done.has(el.id))el.classList.add("done")});
+updateProgress();
+
+/* ---------- Agenda & scrollspy ---------- */
+const ag=$("#agenda");const segs=$$(".seg");
+segs.forEach((s,i)=>{const a=document.createElement("a");a.href="#"+s.id;a.innerHTML=`${esc(s.dataset.title)}`;ag.appendChild(a)});
+const links=$$("a",ag);
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}})},{rootMargin:"-30% 0px -60% 0px"});
+segs.forEach(s=>io.observe(s));
+
+})();
+</script>
+<!-- ===== [/SHARED:JS] ===== -->
+<script>
+/* ===== [SHARED:VIZ-JS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+(function(){
+"use strict";
+const E=window.EHC; if(!E){return}
+const {$,$$,store,esc,markDone,body}=E;
+const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+const arr=x=>x==null?[]:Array.isArray(x)?x:[x];
+const list=(a,tag="ul")=>`<${tag}>${arr(a).map(x=>`<li>${esc(x)}</li>`).join("")}</${tag}>`;
+
+/* =============== FLOW: animasi alur proses antar aktor =============== */
+/* cfg: {title, sub, actors:[{id,icon,name,x,y,role,state,badge}], zones:[{x,y,w,h,label}],
+         steps:[{title,text,from,to,packet,label,count,bad,set:{id:'safe|warn|danger|lock|active'|['danger','teks']},law,tip,risk}], outcome} */
+function flow(el,c,opt){
+  opt=opt||{};const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title||"")}</h3>${c.sub?`<p>${esc(c.sub)}</p>`:""}
+  <div class="v-stage"><svg class="v-lines" viewBox="0 0 100 100" preserveAspectRatio="none"></svg><div class="v-layer"></div></div>
+  <div class="v-ctl"><button class="btn ghost" data-a="rs" title="Ulang dari awal">Ulang</button><button class="btn ghost" data-a="pv">‹ Mundur</button><button class="btn" data-a="pl">Putar otomatis</button><button class="btn ghost" data-a="nx">Lanjut ›</button>
+  <label>Kecepatan <select data-a="sp"><option value="1.6">Lambat</option><option value="1" selected>Normal</option><option value="0.6">Cepat</option></select></label></div>
+  <div class="v-rail"></div><div class="v-cap" aria-live="polite"></div>`;
+  const stage=$(".v-stage",b),svg=$(".v-lines",b),layer=$(".v-layer",b),rail=$(".v-rail",b),cap=$(".v-cap",b),play=$("[data-a=pl]",b);
+  const A={},pos={};
+  (c.zones||[]).forEach(z=>{const d=document.createElement("div");d.className="v-zone";d.style.cssText=`left:${z.x}%;top:${z.y}%;width:${z.w}%;height:${z.h}%`;d.textContent=z.label||"";layer.appendChild(d)});
+  c.actors.forEach(a=>{pos[a.id]=a;const d=document.createElement("div");d.className="v-actor r-"+(a.role||"neutral");d.style.cssText=`left:${a.x}%;top:${a.y}%`;
+    d.innerHTML=`<div class="v-ico">${a.icon}</div><div class="v-name">${esc(a.name)}</div><div class="v-badge"></div>`;layer.appendChild(d);A[a.id]=d});
+  const seenPairs=new Set(),L={};
+  c.steps.forEach(s=>arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const k=f+">"+t;if(f===t||seenPairs.has(k))return;seenPairs.add(k);
+    const ln=document.createElementNS("http://www.w3.org/2000/svg","line");ln.setAttribute("x1",pos[f].x);ln.setAttribute("y1",pos[f].y);ln.setAttribute("x2",pos[t].x);ln.setAttribute("y2",pos[t].y);svg.appendChild(ln);L[k]=ln})));
+  c.steps.forEach((s,i)=>{const r=document.createElement("button");r.textContent=`${i+1}. ${s.short||s.title}`;r.onclick=()=>{halt();go(i,true)};rail.appendChild(r)});
+  let cur=-1,tm=[],auto=false,max=-1,sp=1;
+  const T=(fn,ms)=>{const id=setTimeout(fn,ms);tm.push(id);return id};
+  const clr=()=>{tm.forEach(clearTimeout);tm=[];$$(".v-packet",layer).forEach(p=>p.remove())};
+  function states(i){
+    c.actors.forEach(a=>setSt(a.id,a.state||"",a.badge||""));
+    for(let k=0;k<=i;k++){const st=c.steps[k].set||{};for(const id in st){const v=st[id];Array.isArray(v)?setSt(id,v[0],v[1]||""):setSt(id,v,"")}}}
+  function setSt(id,s,badge){const d=A[id];if(!d)return;d.className=d.className.replace(/\bs-\w+/g,"").trim();if(s)d.classList.add("s-"+s);$(".v-badge",d).textContent=badge}
+  function fire(s){
+    const dur=reduce?1:900*sp,n=s.count||1;let d=0;
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{ if(f===t)return;
+      for(let k=0;k<n;k++){T(()=>{const a=pos[f],z=pos[t],p=document.createElement("div");p.className="v-packet";p.style.cssText=`left:${a.x}%;top:${a.y}%;--dur:${dur}ms`;
+        p.innerHTML=(s.packet||"✉️")+(s.label&&k===0?`<span class="v-plabel">${esc(s.label)}</span>`:"");layer.appendChild(p);void p.offsetWidth;
+        p.style.left=z.x+"%";p.style.top=z.y+"%";T(()=>{p.style.opacity=0;T(()=>p.remove(),320)},dur)},d+k*240*sp)}
+      d+=90*sp}));
+    return dur+(n-1)*240*sp+d}
+  function go(i,animate){
+    if(i<0||i>=c.steps.length)return;clr();cur=i;max=Math.max(max,i);const s=c.steps[i];
+    states(i-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const l=L[f+">"+t];if(l){l.classList.add("on");if(s.bad)l.classList.add("bad")}}));
+    arr(s.from).forEach(f=>{A[f]&&A[f].classList.add("s-active")});
+    const after=animate?fire(s):0;
+    T(()=>{states(i);arr(s.from).forEach(f=>{});},animate?Math.min(after,1100*sp):0);
+    $$("button",rail).forEach((r,k)=>{r.classList.toggle("on",k===i);r.classList.toggle("seen",k<i||k<=max&&k!==i)});
+    cap.innerHTML=`<span class="v-num">Langkah ${i+1} / ${c.steps.length}</span><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p>`
+      +((s.law||s.tip||s.risk)?`<div class="v-chips">${s.risk?`<span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span>`:""}${s.law?`<span class="v-chip law"><b>Dasar hukum</b>${esc(s.law)}</span>`:""}${s.tip?`<span class="v-chip tip"><b>Tips</b>${esc(s.tip)}</span>`:""}</div>`:"")
+      +(i===c.steps.length-1&&c.outcome?`<div class="v-outcome">${esc(c.outcome)}</div>`:"");
+    if(i===c.steps.length-1&&!opt.silent)markDone(el.id);
+    return after}
+  function halt(){auto=false;play.textContent="Putar otomatis"}
+  function step(){if(!auto)return;if(cur>=c.steps.length-1){halt();return}const after=go(cur+1,true);T(step,after+2600*sp)}
+  b.addEventListener("click",e=>{const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==="rs"){halt();clr();cur=-1;states(-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));$$("button",rail).forEach(r=>r.className="");cap.innerHTML="<span class=\"v-num\">Siap</span><h4>Tekan “Putar otomatis” atau “Lanjut”</h4><p>Setiap langkah menampilkan apa yang terjadi, dasar hukumnya, dan cara memutus rantainya.</p>"}
+    if(a==="nx"){halt();go(Math.min(cur+1,c.steps.length-1),true)}
+    if(a==="pv"){halt();go(Math.max(cur-1,0),false)}
+    if(a==="pl"){if(auto){halt();return}auto=true;play.textContent="Jeda";if(cur>=c.steps.length-1){cur=-1}step()}
+  });
+  $("[data-a=sp]",b).onchange=e=>{sp=+e.target.value};
+  b.querySelector("[data-a=rs]").click();
+}
+
+/* =============== EXPLORER: peta jenis / konsep dengan detail =============== */
+/* cfg: {title, intro, items:[{id,icon,name,tag,summary,how[],ex,impact,law,prev[],flow:'kunciFlow'}]} */
+function explorer(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3>${c.intro?`<p>${esc(c.intro)}</p>`:""}<div class="v-grid"></div><div class="v-detail-wrap"><p class="v-hintp"><em>Klik salah satu kartu untuk membuka penjelasan, contoh, dasar hukum, dan cara pencegahannya.</em></p></div>`;
+  const grid=$(".v-grid",b),wrap=$(".v-detail-wrap",b);
+  c.items.forEach((it,i)=>{const t=document.createElement("button");t.className="v-tile"+(seen.has(i)?" seen":"");t.innerHTML=`<span class="ic">${it.icon}</span><b>${esc(it.name)}</b><small>${esc(it.tag||"")}</small>`;t.onclick=()=>open(i);grid.appendChild(t)});
+  function open(i,tab){const it=c.items[i];seen.add(i);store.set(el.id,[...seen]);
+    $$(".v-tile",grid).forEach((t,k)=>{t.classList.toggle("sel",k===i);if(seen.has(k))t.classList.add("seen")});
+    const tabs=[["ap","Apa itu",true],["how","Cara kerja",it.how],["ex","Contoh",it.ex],["im","Dampak",it.impact],["law","Dasar hukum",it.law],["pv","Pencegahan",it.prev]].filter(x=>x[2]);
+    tab=tab||"ap";
+    const pane={ap:()=>`<p>${esc(it.summary)}</p>`,how:()=>list(it.how,"ol"),ex:()=>Array.isArray(it.ex)?list(it.ex):`<p>${esc(it.ex)}</p>`,im:()=>Array.isArray(it.impact)?list(it.impact):`<p>${esc(it.impact)}</p>`,law:()=>Array.isArray(it.law)?list(it.law):`<p>${esc(it.law)}</p>`,pv:()=>list(it.prev)};
+    wrap.innerHTML=`<div class="v-detail"><h3><span style="font-size:1.8rem">${it.icon}</span>${esc(it.name)}</h3><div class="v-tabs">${tabs.map(t=>`<button data-t="${t[0]}" class="${t[0]===tab?"on":""}">${t[1]}</button>`).join("")}</div><div class="v-pane">${pane[tab]()}</div>${it.flow&&PAGE[it.flow]?`<div class="v-sub"><button class="btn" data-f="1">Lihat animasi prosesnya</button><div class="v-flowbox"></div></div>`:""}</div>`;
+    wrap.onclick=e=>{const t=e.target.dataset.t;if(t){open(i,t)}if(e.target.dataset.f){e.target.style.display="none";flow($(".v-flowbox",wrap),PAGE[it.flow],{silent:true})}};
+    if(seen.size===c.items.length)markDone(el.id)}
+  if(seen.size===c.items.length)markDone(el.id)
+}
+
+/* =============== MOCK: layar HP / email / web / postingan dengan titik klik =============== */
+/* cfg: {title, kind:'chat|email|web|post', header:{name,sub,avatar,from,to,subject,url}, messages:[{from,time,parts}], cta, stats,
+         hotspots:[{id,label,why,decoy}], instruct}
+   parts: array string | {t:'teks', h:'idHotspot'} */
+function mock(el,c){
+  const b=body(el);const found=new Set(store.get(el.id,[]));const real=c.hotspots.filter(h=>!h.decoy);const H={};c.hotspots.forEach(h=>H[h.id]=h);
+  const P=parts=>arr(parts).map(p=>typeof p==="string"?esc(p):`<span class="v-hot" data-h="${p.h}" tabindex="0" role="button">${esc(p.t)}</span>`).join("");
+  const h=c.header||{};let inner="";
+  if(c.kind==="email"){inner=`<div class="v-bar"><span>✉️</span><b>Kotak masuk</b></div><div class="v-meta"><div><b>Dari:</b> ${P(h.from)}</div><div><b>Kepada:</b> ${P(h.to)}</div><div><b>Subjek:</b> ${P(h.subject)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="web"){inner=`<div class="v-bar"><span>🔒</span><div class="v-url">${P(h.url)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="post"){inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}</div><div class="v-stats">${esc(c.stats||"")}</div>`}
+  else{inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-msgs">${c.messages.map(m=>`<div class="v-msg ${m.from==="me"?"me":""}">${P(m.parts)}${m.time?`<time>${esc(m.time)}</time>`:""}</div>`).join("")}</div>`}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.instruct||"Klik bagian yang menurutmu mencurigakan. Hati-hati: ada juga bagian yang tampak janggal tetapi wajar.")}</p>
+  <div class="v-mockwrap"><div class="v-phone"><div class="v-screen ${c.kind||"chat"}">${inner}</div></div>
+  <div><div class="v-spec-lbl"><span>Tanda bahaya ditemukan</span><span class="cnt"></span></div><div class="v-prog"><i></i></div><p><button class="btn ghost" data-a="hint">Tampilkan petunjuk</button> <button class="btn ghost" data-a="reset">Ulangi</button></p><div class="v-finds"></div></div></div>`;
+  const scr=$(".v-phone",b),fin=$(".v-finds",b);
+  function upd(){const n=[...found].filter(id=>!H[id].decoy).length;$(".cnt",b).textContent=`${n} / ${real.length}`;$(".v-prog i",b).style.width=(n/real.length*100)+"%";if(n===real.length)markDone(el.id)}
+  function mark(id){const hs=H[id];if(!hs)return;found.add(id);store.set(el.id,[...found]);$$(`[data-h="${id}"]`,b).forEach(x=>x.classList.add(hs.decoy?"decoy":"found"));
+    if(!$(`[data-f="${id}"]`,fin)){const d=document.createElement("div");d.className="v-find"+(hs.decoy?" ok":"");d.dataset.f=id;d.innerHTML=`<b>${hs.decoy?"Ini wajar":"Tanda bahaya: "+esc(hs.label)}</b>${esc(hs.why)}`;fin.appendChild(d)}upd()}
+  b.addEventListener("click",e=>{const x=e.target.closest(".v-hot");if(x){mark(x.dataset.h);return}if(e.target.dataset.a==="hint"){scr.classList.toggle("v-hint")}if(e.target.dataset.a==="reset"){found.clear();store.set(el.id,[]);$$(".v-hot",b).forEach(x=>x.classList.remove("found","decoy"));fin.innerHTML="";scr.classList.remove("v-hint");upd()}});
+  b.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList.contains("v-hot"))mark(e.target.dataset.h)});
+  found.forEach(id=>mark(id));upd();
+}
+
+/* =============== TIMELINE =============== */
+/* cfg: {title, events:[{when,title,text,icon,law}]} */
+function timeline(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));let cur=0;
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="v-tl"><div class="v-tl-track"></div></div><div class="v-cap"></div><p><button class="btn ghost" data-a="p">‹ Sebelumnya</button> <button class="btn" data-a="n">Berikutnya ›</button></p>`;
+  const tr=$(".v-tl-track",b),cap=$(".v-cap",b);
+  c.events.forEach((ev,i)=>{const p=document.createElement("button");p.className="v-tl-pt";p.innerHTML=`<span class="dot">${ev.icon||"•"}</span><span class="when">${esc(ev.when)}</span><span class="tt">${esc(ev.title)}</span>`;p.onclick=()=>show(i);tr.appendChild(p)});
+  function show(i){cur=i;seen.add(i);store.set(el.id,[...seen]);const ev=c.events[i];
+    $$(".v-tl-pt",tr).forEach((p,k)=>{p.classList.toggle("on",k===i);p.classList.toggle("seen",seen.has(k))});
+    const pt=$(".v-tl-pt",tr)[i],sc=tr.parentElement;if(pt&&sc&&sc.scrollTo){sc.scrollTo({left:pt.getBoundingClientRect().left-sc.getBoundingClientRect().left+sc.scrollLeft-sc.clientWidth/2+pt.offsetWidth/2,behavior:reduce?"auto":"smooth"})}
+    cap.innerHTML=`<span class="v-num">${esc(ev.when)}</span><h4>${esc(ev.title)}</h4><p>${esc(ev.text)}</p>${ev.law?`<div class="v-chips"><span class="v-chip law"><b>Dasar hukum</b>${esc(ev.law)}</span></div>`:""}`;
+    if(seen.size===c.events.length)markDone(el.id)}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="n")show(Math.min(cur+1,c.events.length-1));if(a==="p")show(Math.max(cur-1,0))});
+  show(0);
+}
+
+/* =============== SPECTRUM: geser untuk melihat trade-off =============== */
+/* cfg: {title, prompt, left, right, stops:[{at,label,text,risk}]} */
+function spectrum(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"")}</p><div class="v-spec"><div class="v-spec-lbl"><span>‹ ${esc(c.left)}</span><span>${esc(c.right)} ›</span></div><input type="range" min="0" max="100" value="50" aria-label="${esc(c.title)}">
+  <div class="v-spec-bars"><div><small>${esc(c.left)}</small><div class="bar"><i></i></div></div><div><small>${esc(c.right)}</small><div class="bar r"><i></i></div></div></div></div><div class="v-cap"></div>`;
+  const rg=$("input",b),cap=$(".v-cap",b),bl=$(".bar i",b),br=$(".bar.r i",b);
+  function upd(){const v=+rg.value;bl.style.width=(100-v)+"%";br.style.width=v+"%";
+    let best=0,d=1e9;c.stops.forEach((s,i)=>{const x=Math.abs(s.at-v);if(x<d){d=x;best=i}});const s=c.stops[best];
+    cap.innerHTML=`<span class="v-num">${esc(s.label)}</span><p>${esc(s.text)}</p>${s.risk?`<div class="v-chips"><span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span></div>`:""}`;
+    seen.add(best);store.set(el.id,[...seen]);if(seen.size>=Math.min(3,c.stops.length))markDone(el.id)}
+  rg.oninput=upd;upd();
+}
+
+/* =============== ORDER: urutkan langkah =============== */
+/* cfg: {title, prompt, items:[{t,why}]} dalam urutan benar */
+function order(el,c){
+  const b=body(el);const n=c.items.length;
+  const idx=c.items.map((_,i)=>i);const sh=idx.map((_,i)=>idx[(i*3+2)%n]).filter((v,i,a)=>a.indexOf(v)===i);idx.forEach(i=>{if(!sh.includes(i))sh.push(i)});
+  let pool=sh.slice(),ans=[];if(pool.every((v,i)=>v===i)){pool.reverse()}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"Klik langkah satu per satu sesuai urutan yang benar. Klik langkah di kolom jawaban untuk membatalkannya.")}</p><div class="v-ord"><div><h4>Langkah acak</h4><div class="col pool"></div></div><div><h4>Urutan kamu</h4><div class="col ans"></div></div></div><p><button class="btn" data-a="chk" disabled>Periksa urutan</button> <button class="btn ghost" data-a="rst">Ulangi</button></p><div class="fb"></div>`;
+  const P=$(".pool",b),Aw=$(".ans",b),chk=$("[data-a=chk]",b),fb=$(".fb",b);
+  function draw(res){P.innerHTML="";Aw.innerHTML="";pool.forEach(i=>{const x=document.createElement("button");x.className="it";x.textContent=c.items[i].t;x.onclick=()=>{ans.push(i);pool=pool.filter(v=>v!==i);fb.className="fb";draw()};P.appendChild(x)});
+    ans.forEach((i,k)=>{const x=document.createElement("button");x.className="it"+(res?(i===k?" right":" wrong"):"");x.innerHTML=`<i>${k+1}</i>`+esc(c.items[i].t);x.onclick=()=>{if(res)return;ans=ans.filter(v=>v!==i);pool.push(i);draw()};Aw.appendChild(x)});
+    chk.disabled=pool.length>0}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="rst"){pool=sh.slice();ans=[];fb.className="fb";draw()}
+    if(a==="chk"){const ok=ans.filter((v,k)=>v===k).length;draw(true);fb.className="fb show"+(ok===n?" ok":"");fb.innerHTML=`<b>${ok}/${n} posisi tepat.</b><ol>${c.items.map(x=>`<li>${esc(x.t)}${x.why?`: ${esc(x.why)}`:""}</li>`).join("")}</ol>`;markDone(el.id)}});
+  draw();
+}
+
+/* ---------- registrasi ---------- */
+const V={flow,explorer,mock,timeline,spectrum,order};
+$$(".w[data-widget]").forEach(el=>{const t=el.dataset.widget;if(V[t]&&PAGE[el.id])V[t](el,PAGE[el.id])});
+/* reveal on scroll */
+if(!reduce&&"IntersectionObserver" in window){document.documentElement.classList.add("reveal-on");
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{rootMargin:"0px 0px -8% 0px"});
+  $$(".seg").forEach(s=>io.observe(s));
+  setTimeout(()=>$$(".seg").forEach(s=>s.classList.add("in")),2500)}
+})();
+/* ===== [/SHARED:VIZ-JS] ===== */
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pertemuan 15 — Bedah Kasus Terpadu | Etika Hukum Cyber</title>
+<style>
+/* ===== [SHARED:CSS] — jangan ubah blok ini antar pertemuan, kecuali --accent ===== */
+:root{
+  --accent:#4338ca; --accent-soft:#e0e7ff; --accent-ink:#312e81;
+  --bg:#f6f7f4; --card:#ffffff; --ink:#1c2321; --muted:#5b6762; --line:#dfe4e0;
+  --ok:#15803d; --ok-soft:#dcfce7; --bad:#b91c1c; --bad-soft:#fee2e2; --warn:#b45309; --warn-soft:#fef3c7;
+  --radius:14px; --shadow:0 1px 2px rgba(20,30,25,.06),0 6px 20px rgba(20,30,25,.06);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16.5px}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;letter-spacing:-.01em}
+h2{font-size:1.55rem} h3{font-size:1.15rem} p{margin:.6em 0}
+a{color:var(--accent)}
+button{font:inherit;cursor:pointer}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(246,247,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-weight:700;font-size:.95rem;white-space:nowrap}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
+.progress{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress>i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+.pct{font-size:.85rem;font-weight:700;min-width:42px;text-align:right}
+.tbtn{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 12px;font-size:.82rem;font-weight:600}
+.tbtn[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.layout{max-width:1180px;margin:0 auto;padding:24px 20px 80px;display:grid;grid-template-columns:230px 1fr;gap:28px}
+nav.agenda{position:sticky;top:76px;align-self:start;max-height:calc(100vh - 96px);overflow:auto}
+nav.agenda h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+nav.agenda a{display:block;text-decoration:none;color:var(--ink);padding:8px 10px;border-radius:10px;font-size:.88rem;border-left:3px solid transparent}
+nav.agenda a span{display:block;font-size:.72rem;color:var(--muted)}
+nav.agenda a:hover{background:var(--card)}
+nav.agenda a.active{background:var(--accent-soft);border-left-color:var(--accent);font-weight:600}
+.hero{background:linear-gradient(135deg,var(--accent-ink),var(--accent));color:#fff;border-radius:22px;padding:34px 34px 28px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border-radius:99px;padding:3px 12px;font-size:.78rem;font-weight:600;letter-spacing:.04em}
+.hero h1{font-size:2.05rem;margin:.5em 0 .3em}
+.hero p{max-width:62ch;opacity:.92}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:18px}
+.meta div{background:rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;font-size:.84rem}
+.meta b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;opacity:.75}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:16px 0;box-shadow:var(--shadow)}
+.seg{margin:34px 0}
+.seg-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.seg-head .num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.seg-head h2{margin:0;flex:1;min-width:200px}
+.chip{display:inline-block;background:var(--accent-soft);color:var(--accent-ink);border-radius:99px;padding:3px 11px;font-size:.76rem;font-weight:700}
+.chip.act{background:#ede9fe;color:#5b21b6}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);color:var(--accent-ink);border-radius:0 12px 12px 0;padding:12px 16px;margin:14px 0}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft);color:#78350f}
+.callout.law{border-color:#1d4ed8;background:#dbeafe;color:#1e3a8a}
+.callout b.t{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfdfc}
+.mini h3{margin-bottom:.3em}
+table.t{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
+table.t th,table.t td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+table.t th{background:var(--accent-soft);color:var(--accent-ink)}
+.tablewrap{overflow-x:auto}
+details.acc{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:#fff}
+details.acc summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details.acc summary::after{content:"+";font-weight:700;color:var(--accent)}
+details.acc[open] summary::after{content:"–"}
+details.acc>div{padding:0 16px 14px}
+/* interactive widgets */
+.w{border:2px solid var(--accent);border-radius:var(--radius);padding:20px 22px;margin:18px 0;background:#fff;position:relative}
+.w>.w-label{position:absolute;top:-12px;left:16px;background:var(--accent);color:#fff;border-radius:99px;font-size:.72rem;font-weight:700;padding:2px 12px;letter-spacing:.05em;text-transform:uppercase}
+.w.done{border-color:var(--ok)} .w.done>.w-label{background:var(--ok)}
+.w h3{margin-top:.2em}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 18px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.opts{display:grid;gap:8px;margin:12px 0}
+.opt{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px}
+.opt:hover{border-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--warn-soft);color:#78350f;font-size:.93rem;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--ok-soft);color:#14532d}
+.flash{perspective:900px;max-width:520px;margin:12px auto}
+.flash-in{position:relative;min-height:190px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.flash.flip .flash-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:22px;display:grid;place-items:center;text-align:center;font-size:1.05rem}
+.face.f{background:var(--accent);color:#fff;font-weight:700;font-size:1.25rem}
+.face.b{background:var(--accent-soft);color:var(--accent-ink);transform:rotateY(180deg)}
+.fc-ctl{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.cls-pool,.cls-bins{display:grid;gap:10px}
+.cls-bins{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:14px}
+.cls-item{border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;text-align:left}
+.cls-item.pick{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.cls-item.right{border-color:var(--ok);background:var(--ok-soft)}
+.cls-item.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.bin{border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:110px;cursor:pointer;background:#fcfdfc}
+.bin:hover{border-color:var(--accent)}
+.bin h4{font-size:.9rem;margin:0 0 8px;color:var(--accent-ink)}
+.bin .cls-item{margin-bottom:6px;font-size:.88rem;cursor:pointer}
+.scn-text{font-size:1.02rem}
+.scn-end{border-radius:12px;padding:14px 16px;background:var(--accent-soft);color:var(--accent-ink);margin-top:10px}
+textarea{width:100%;min-height:96px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;resize:vertical}
+textarea:focus,.opt:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+.score{font-size:1.4rem;font-weight:800;color:var(--accent)}
+.ckl label{display:flex;gap:10px;align-items:flex-start;padding:7px 4px;cursor:pointer}
+.ckl input{margin-top:.38em;accent-color:var(--accent)}
+.bars .bar{margin:8px 0}
+.bars .bar>div{height:26px;border-radius:8px;background:var(--accent-soft);position:relative;overflow:hidden}
+.bars .bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);opacity:.85;width:0;transition:width .5s}
+.bars .bar span{position:absolute;left:10px;top:2px;font-size:.84rem;font-weight:600;color:#0b1f1c;z-index:1}
+.refs li{margin:.5em 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 0 10px}
+@media(max-width:860px){.layout{grid-template-columns:1fr}nav.agenda{display:none}.hero h1{font-size:1.6rem}.brand small{display:none}}
+@media print{.topbar,nav.agenda{display:none!important}.layout{display:block}.card,.w{box-shadow:none;break-inside:avoid}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* ===== [/SHARED:CSS] ===== */
+/* ===== [SHARED:VIZ-CSS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+/* hero hidup */
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 88% 15%,rgba(255,255,255,.22),transparent 42%),radial-gradient(circle at 8% 95%,rgba(255,255,255,.12),transparent 40%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:linear-gradient(115deg,transparent 30%,#000);mask-image:linear-gradient(115deg,transparent 30%,#000);animation:v-grid 22s linear infinite}
+.hero>*{position:relative;z-index:1}
+@keyframes v-grid{to{background-position:36px 36px}}
+/* reveal saat scroll */
+.reveal-on .seg{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal-on .seg.in{opacity:1;transform:none}
+.seg-head .num{box-shadow:0 0 0 5px var(--accent-soft)}
+
+/* ---------- STAGE (flow) ---------- */
+.v-stage{position:relative;aspect-ratio:2/1;min-height:300px;border-radius:16px;overflow:hidden;color:#e8eefc;
+  background:#0a1120;background-image:radial-gradient(ellipse at 50% -10%,#1b2d57 0,transparent 62%),linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:auto,30px 30px,30px 30px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 10px 30px rgba(10,17,32,.28)}
+.v-lines{position:absolute;inset:0;width:100%;height:100%}
+.v-lines line{stroke:rgba(255,255,255,.16);stroke-width:1.5;stroke-dasharray:4 5;vector-effect:non-scaling-stroke;transition:stroke .4s}
+.v-lines line.on{stroke:#7dd3fc;stroke-width:2.5;stroke-dasharray:6 6;animation:v-dash 1s linear infinite}
+.v-lines line.on.bad{stroke:#fb7185}
+@keyframes v-dash{to{stroke-dashoffset:-24}}
+.v-actor{position:absolute;transform:translate(-50%,-50%);width:104px;text-align:center;z-index:2}
+.v-ico{width:60px;height:60px;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;font-size:29px;background:#16213b;border:2px solid #3a4a70;transition:border-color .4s,box-shadow .4s,background .4s,transform .3s}
+.v-name{font-size:.74rem;font-weight:700;line-height:1.15;text-shadow:0 1px 3px #000}
+.v-badge{display:inline-block;margin-top:3px;font-size:.64rem;font-weight:700;padding:1px 8px;border-radius:99px;background:rgba(255,255,255,.12);color:#e8eefc;min-height:0;transition:background .3s}
+.v-badge:empty{display:none}
+.v-actor.r-attacker .v-ico{border-color:#fb7185;background:#2a1220}
+.v-actor.r-victim .v-ico{border-color:#38bdf8}
+.v-actor.s-safe .v-ico{border-color:#4ade80;box-shadow:0 0 20px #4ade8070}
+.v-actor.s-safe .v-badge{background:#14532d}
+.v-actor.s-warn .v-ico{border-color:#fbbf24;box-shadow:0 0 22px #fbbf2480;animation:v-pulse 1.4s infinite}
+.v-actor.s-warn .v-badge{background:#78350f}
+.v-actor.s-danger .v-ico{border-color:#f43f5e;background:#3a1020;box-shadow:0 0 26px #f43f5e90;animation:v-shake .5s 2,v-pulse 1.4s .5s infinite}
+.v-actor.s-danger .v-badge{background:#881337}
+.v-actor.s-lock .v-ico{border-color:#a78bfa;background:#231a45;box-shadow:0 0 22px #a78bfa80}
+.v-actor.s-lock .v-badge{background:#4c1d95}
+.v-actor.s-active .v-ico{border-color:#7dd3fc;box-shadow:0 0 22px #7dd3fc80;transform:scale(1.08)}
+@keyframes v-pulse{50%{box-shadow:0 0 34px currentColor}}
+@keyframes v-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.v-packet{position:absolute;transform:translate(-50%,-50%);font-size:22px;z-index:3;pointer-events:none;
+  transition:left var(--dur,1000ms) cubic-bezier(.5,0,.3,1),top var(--dur,1000ms) cubic-bezier(.5,0,.3,1),opacity .3s;filter:drop-shadow(0 0 7px rgba(125,211,252,.9))}
+.v-plabel{position:absolute;left:50%;top:-20px;transform:translateX(-50%);white-space:nowrap;font-size:.64rem;font-weight:700;background:#0b1220;border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:1px 6px;color:#e8eefc}
+.v-zone{position:absolute;border:1.5px dashed rgba(255,255,255,.22);border-radius:14px;z-index:1;font-size:.64rem;color:rgba(255,255,255,.55);padding:3px 9px;pointer-events:none}
+.v-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 8px}
+.v-ctl .btn{padding:7px 14px}
+.v-ctl select{font:inherit;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#fff}
+.v-rail{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px}
+.v-rail button{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.78rem;font-weight:600;color:var(--muted)}
+.v-rail button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.v-rail button.seen{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+.v-cap{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:12px 16px;background:#fcfdfc;min-height:96px}
+.v-cap .v-num{font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.v-cap h4{margin:.1em 0 .25em;font-size:1.05rem}
+.v-cap p{margin:.3em 0}
+.v-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.v-chip{border-radius:10px;padding:5px 10px;font-size:.82rem;line-height:1.4}
+.v-chip.law{background:#dbeafe;color:#1e3a8a}
+.v-chip.tip{background:var(--ok-soft);color:#14532d}
+.v-chip.risk{background:var(--bad-soft);color:#7f1d1d}
+.v-outcome{margin-top:10px;border-radius:12px;padding:12px 16px;background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+
+/* ---------- EXPLORER ---------- */
+.v-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:10px;margin:12px 0}
+.v-tile{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:14px 10px;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+.v-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--accent)}
+.v-tile .ic{font-size:2rem;display:block;margin-bottom:4px}
+.v-tile b{display:block;font-size:.9rem;line-height:1.2}
+.v-tile small{color:var(--muted);font-size:.72rem}
+.v-tile.sel{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 0 3px var(--accent-soft)}
+.v-tile.seen::after{content:"✓";position:absolute;top:6px;right:9px;color:var(--ok);font-weight:800}
+.v-detail{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fcfdfc;animation:v-in .35s}
+@keyframes v-in{from{opacity:0;transform:translateY(8px)}}
+.v-detail h3{display:flex;align-items:center;gap:10px}
+.v-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.v-tabs button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.8rem;font-weight:600}
+.v-tabs button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.v-pane ul,.v-pane ol{margin:.3em 0 .3em 1.2em;padding:0}
+.v-pane li{margin:.3em 0}
+.v-sub{margin-top:12px}
+
+/* ---------- MOCK (layar HP / email / web / post) ---------- */
+.v-mockwrap{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:18px;align-items:start}
+.v-phone{background:#0f172a;border-radius:30px;padding:10px;box-shadow:0 14px 34px rgba(15,23,42,.3);max-width:360px;width:100%;margin:0 auto}
+.v-screen{background:#f3f4f6;border-radius:22px;overflow:hidden;min-height:380px;display:flex;flex-direction:column;font-size:.9rem}
+.v-bar{background:#0f766e;color:#fff;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.v-bar .av{width:34px;height:34px;border-radius:50%;background:#ffffff33;display:grid;place-items:center;font-size:1.1rem}
+.v-bar b{display:block;font-size:.9rem;line-height:1.1}.v-bar small{opacity:.8;font-size:.7rem}
+.v-msgs{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1;background:#e5ded5}
+.v-msg{max-width:84%;padding:8px 11px;border-radius:12px;background:#fff;box-shadow:0 1px 1px rgba(0,0,0,.12);line-height:1.45}
+.v-msg.me{align-self:flex-end;background:#d9fdd3}
+.v-msg time{display:block;text-align:right;font-size:.62rem;color:#6b7280;margin-top:2px}
+.v-screen.email,.v-screen.web,.v-screen.post{background:#fff}
+.v-screen.email .v-bar{background:#334155}.v-screen.web .v-bar{background:#e5e7eb;color:#111827}.v-screen.post .v-bar{background:#1d4ed8}
+.v-url{background:#fff;border:1px solid #d1d5db;border-radius:99px;padding:5px 12px;flex:1;font-size:.76rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.v-body{padding:14px 16px;flex:1}.v-body p{margin:.55em 0}
+.v-meta{padding:8px 16px;border-bottom:1px solid #e5e7eb;font-size:.78rem;color:#4b5563}
+.v-meta b{color:#111827}
+.v-cta{display:inline-block;background:#2563eb;color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;margin-top:6px}
+.v-stats{padding:8px 16px;border-top:1px solid #e5e7eb;font-size:.78rem;color:#6b7280}
+.v-hot{cursor:pointer;border-radius:4px;transition:background .2s,box-shadow .2s;border-bottom:2px dotted transparent}
+.v-hint .v-hot{border-bottom-color:#f59e0b;animation:v-blink 1.4s infinite}
+@keyframes v-blink{50%{background:#fde68a}}
+.v-hot:hover{background:#fde68a}
+.v-hot.found{background:#fecaca;box-shadow:0 0 0 2px #ef4444;border-radius:4px;animation:none}
+.v-hot.decoy{background:#dcfce7;box-shadow:0 0 0 2px #22c55e;animation:none}
+.v-finds{display:grid;gap:8px}
+.v-find{border-left:4px solid var(--bad);background:var(--bad-soft);border-radius:0 10px 10px 0;padding:8px 12px;font-size:.88rem;animation:v-in .3s}
+.v-find.ok{border-color:var(--ok);background:var(--ok-soft)}
+.v-find b{display:block}
+.v-prog{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+.v-prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+
+/* ---------- TIMELINE ---------- */
+.v-tl{position:relative;margin:14px 0 6px;overflow-x:auto;padding:22px 6px 10px}
+.v-tl-track{display:flex;gap:0;min-width:max-content;position:relative}
+.v-tl-track::before{content:"";position:absolute;left:30px;right:30px;top:15px;height:4px;background:var(--line);border-radius:4px}
+.v-tl-pt{width:128px;text-align:center;position:relative;background:none;border:0;padding:0 4px}
+.v-tl-pt .dot{width:34px;height:34px;margin:0 auto 6px;border-radius:50%;background:#fff;border:3px solid var(--line);display:grid;place-items:center;position:relative;z-index:1;transition:all .25s;font-size:1rem}
+.v-tl-pt .when{display:block;font-weight:800;font-size:.8rem;color:var(--accent-ink)}
+.v-tl-pt .tt{display:block;font-size:.74rem;color:var(--muted);line-height:1.25}
+.v-tl-pt.seen .dot{border-color:var(--accent)}
+.v-tl-pt.on .dot{background:var(--accent);border-color:var(--accent);transform:scale(1.25);box-shadow:0 0 0 6px var(--accent-soft)}
+
+/* ---------- SPECTRUM ---------- */
+.v-spec-lbl{display:flex;justify-content:space-between;font-weight:700;font-size:.9rem}
+.v-spec input[type=range]{width:100%;accent-color:var(--accent);margin:10px 0 4px;height:28px}
+.v-spec-bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.v-spec-bars .bar{height:14px;background:var(--line);border-radius:99px;overflow:hidden}
+.v-spec-bars .bar i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.v-spec-bars .bar.r i{background:#ea580c}
+
+/* ---------- ORDER ---------- */
+.v-ord{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.v-ord h4{margin:0 0 6px;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.v-ord .col{display:grid;gap:6px;align-content:start;min-height:80px}
+.v-ord .it{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:.9rem}
+.v-ord .it:hover{border-color:var(--accent)}
+.v-ord .it.right{border-color:var(--ok);background:var(--ok-soft)}.v-ord .it.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.v-ord .it i{font-style:normal;font-weight:800;color:var(--accent);margin-right:6px}
+@media(max-width:760px){.v-mockwrap,.v-ord{grid-template-columns:1fr}.v-stage{min-height:340px;aspect-ratio:1.25/1}.v-actor{width:84px}.v-ico{width:50px;height:50px;font-size:24px}}
+@media print{.reveal-on .seg{opacity:1!important;transform:none!important}}
+@media(prefers-reduced-motion:reduce){.hero::after,.v-actor .v-ico,.v-lines line.on,.v-hint .v-hot{animation:none!important}.reveal-on .seg{opacity:1;transform:none}}
+/* ===== [/SHARED:VIZ-CSS] ===== */
+
+</style>
+<style>
+/* ===== Tambahan khusus pertemuan 15 (di luar SHARED): widget rotation & rubric ===== */
+.x-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.x-in,.x-sel{font:inherit;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff;color:var(--ink)}
+.x-in{flex:1;min-width:180px}
+.x-in:focus,.x-sel:focus{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+.rot-list{display:grid;gap:8px;margin:12px 0}
+.rot-row{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;background:#fcfdfc}
+.rot-row.now{border-color:var(--accent);background:var(--accent-soft)}
+.rot-row.fin{border-color:var(--ok);background:var(--ok-soft)}
+.rot-n{width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.85rem}
+.rot-row.fin .rot-n{background:var(--ok)}
+.rot-meta{font-size:.82rem;color:var(--muted)}
+.rot-clock{border-radius:16px;background:var(--ink);color:#fff;padding:16px 20px;margin:14px 0;text-align:center}
+.rot-clock .ph{font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+.rot-clock .tm{font-size:3rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.rot-clock.low .tm{color:#fcd34d}
+.rot-clock.zero .tm{color:#fca5a5}
+.rot-clock .bar{height:6px;background:#ffffff33;border-radius:99px;margin-top:8px;overflow:hidden}
+.rot-clock .bar i{display:block;height:100%;width:0;background:#fff;transition:width .3s}
+.rub-crit{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;background:#fcfdfc}
+.rub-crit h4{margin:0 0 4px;font-size:1rem}
+.rub-crit .wt{font-weight:700;color:var(--accent-ink);background:var(--accent-soft);border-radius:99px;padding:1px 9px;font-size:.78rem;margin-left:6px}
+.rub-lv{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 4px}
+.rub-lv button{min-width:48px;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:6px 12px;font-weight:700}
+.rub-lv button:hover{border-color:var(--accent)}
+.rub-lv button[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.rub-d{font-size:.88rem;color:var(--muted);min-height:1.4em}
+.rub-total{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin:12px 0}
+.rub-total .score{font-size:2rem}
+.seg-set button[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header class="topbar"><div class="topbar-in">
+  <div class="brand">Etika Hukum Cyber<small>Pertemuan 15 dari 16</small></div>
+  <div class="progress" title="Progres aktivitas"><i id="pbar"></i></div>
+  <div class="pct" id="ppct">0%</div>
+</div></header>
+
+<div class="layout">
+<nav class="agenda" id="agenda" aria-label="Agenda"><h4>Agenda</h4></nav>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <span class="tag">PERTEMUAN 15 · MINGGU 15</span>
+  <h1>Bedah Kasus Terpadu: Etika dan Hukum Siber dalam Satu Analisis</h1>
+  <p>Hari ini bukan kuliah biasa. Kelompokmu mempresentasikan analisis kasus nyata pelanggaran etika dan hukum siber, dengan menyatukan semua yang dipelajari sejak minggu 1. Halaman ini adalah <em>ruang kerja</em>: ada giliran dan timer, rubrik penilaian, kerangka laporan, peta keterkaitan minggu 1–14, contoh kasus model, dan kuis persiapan UAS.</p>
+  <div class="meta">
+    <div><b>Program Studi</b>Bisnis Digital</div>
+    <div><b>Dosen</b>Ibnu Amri Thaher</div>
+    <div><b>Waktu</b>100 menit · Presentasi</div>
+    <div><b>Metode</b>Presentasi Kelompok</div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Capaian pertemuan ini</h3>
+  <p><span class="chip">CPMK-1</span> <span class="chip">CPMK-2</span> <span class="chip">CPMK-3</span> <span class="chip">CPMK-4</span> Seluruh capaian mata kuliah: etika dan moralitas digital, hukum siber (UU ITE, PDP, HKI), cybercrime, serta e-commerce, AI, keamanan, yurisdiksi, dan tata kelola siber.</p>
+  <p><b>Kemampuan akhir:</b> mengintegrasikan seluruh konsep dalam analisis studi kasus terpadu.</p>
+  <p><b>Pengalaman belajar:</b> menyusun laporan dan mempresentasikan hasil analisis kasus etika dan hukum siber.</p>
+  <p><b>Indikator penilaian:</b> kualitas laporan, kedalaman analisis, kemampuan presentasi.</p>
+  <p>Setelah sesi ini kamu mampu: (1) memakai kerangka analisis terpadu (fakta, pemangku kepentingan, tiga kacamata etika, hukum, rekomendasi); (2) menghubungkan satu kasus dengan beberapa minggu materi; (3) menilai analisis kelompok lain dengan rubrik; (4) mempersiapkan diri untuk UAS.</p>
+</section>
+
+<!-- ===================== SEGMEN 1 ===================== -->
+<section class="seg" id="s1" data-title="Pembuka & Peta Minggu 1–14" data-min="0–5" data-dur="5">
+  <div class="seg-head"><div class="num">1</div><h2>Pembuka & Peta Minggu 1–14</h2></div>
+
+  <div class="w" data-widget="poll" id="poll1"><span class="w-label">Pemantik · Polling</span></div>
+
+  <div class="card">
+    <h3>Jadwal 100 menit hari ini</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Menit</th><th>Kegiatan</th></tr>
+      <tr><td>0–5</td><td>Pembuka dan polling</td></tr>
+      <tr><td>5–15</td><td>Kerangka analisis terpadu dan template laporan</td></tr>
+      <tr><td>15–23</td><td>Contoh kasus model (skenario fiktif)</td></tr>
+      <tr><td>23–83</td><td><b>Presentasi kelompok</b>: 5 kelompok × (8′ presentasi + 4′ tanya jawab) = 60′, dinilai dengan rubrik</td></tr>
+      <tr><td>83–90</td><td>Sintesis: peta keterkaitan dan refleksi</td></tr>
+      <tr><td>90–100</td><td>Kuis review UAS dan tips UAS</td></tr>
+    </table></div>
+  </div>
+
+  <div class="w" data-widget="flash" id="flashPeta"><span class="w-label">Peta Minggu 1–14 · Flashcard</span></div>
+  <div class="w" data-widget="explorer" id="kasusNyataExplorer"><span class="w-label">Pilih Kasus · Kasus Nyata untuk Dianalisis</span></div>
+</section>
+
+<!-- ===================== SEGMEN 2 ===================== -->
+<section class="seg" id="s2" data-title="Kerangka Analisis Terpadu" data-min="5–15" data-dur="10">
+  <div class="seg-head"><div class="num">2</div><h2>Kerangka Analisis Terpadu & Template Laporan</h2></div>
+
+  <div class="card">
+    <h3>Enam lapis analisis: dari fakta sampai rekomendasi</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Lapis</th><th>Pertanyaan kunci</th><th>Yang harus tampak di laporan</th></tr>
+      <tr><td><b>1. Fakta</b></td><td>Apa yang benar-benar terjadi, kapan, siapa, berapa besar dampaknya?</td><td>Kronologi bertanggal, sumber tepercaya (putusan, rilis resmi, media kredibel), pemisahan fakta dari dugaan</td></tr>
+      <tr><td><b>2. Pemangku kepentingan</b></td><td>Siapa yang terdampak atau berkepentingan?</td><td>Peta pihak (korban, pelaku, perusahaan, karyawan, regulator, publik) beserta kepentingan dan dampak</td></tr>
+      <tr><td><b>3. Etika (tiga kacamata)</b></td><td>Apa penilaiannya menurut utilitarianisme, deontologi, etika keutamaan?</td><td>Tiga penilaian singkat, lalu penjelasan kacamata mana yang paling meyakinkan dan mengapa</td></tr>
+      <tr><td><b>4. Hukum relevan</b></td><td>Aturan mana yang bersinggungan? (UU ITE, PDP, HKI, cybercrime, AI/perlindungan konsumen, dsb.)</td><td>Dasar hukum dengan nomor UU yang benar, dikaitkan dengan fakta; bedakan sanksi pidana, perdata, administratif</td></tr>
+      <tr><td><b>5. Keterkaitan materi</b></td><td>Kasus ini menyentuh minggu berapa saja?</td><td>Peta minggu 1–14 yang dipakai (lihat kartu dan klasifikasi hari ini)</td></tr>
+      <tr><td><b>6. Rekomendasi</b></td><td>Apa yang sebaiknya dilakukan, oleh siapa, kapan, diukur bagaimana?</td><td>Rekomendasi jangka pendek dan panjang, pelaksana jelas, ukuran keberhasilan</td></tr>
+    </table></div>
+    <div class="callout"><b class="t">Rumus laporan yang baik</b>Setiap klaim hukum harus punya fakta pasangannya, dan setiap rekomendasi harus nyambung ke temuan etika atau hukum. Hindari daftar pasal tanpa penerapan.</div>
+    <details class="acc"><summary>Susunan laporan yang disarankan (5–8 halaman)</summary><div>
+      <ol><li>Judul dan ringkasan (maks. 150 kata)</li><li>Kronologi dan fakta kasus</li><li>Pemangku kepentingan</li><li>Analisis etika (tiga kacamata)</li><li>Analisis hukum</li><li>Keterkaitan dengan materi minggu 1–14</li><li>Rekomendasi</li><li>Daftar pustaka dan catatan verifikasi (mana yang pasti, mana yang masih perlu dicek)</li></ol>
+      <p>Jumlah halaman adalah saran; ikuti ketentuan tugas dari dosen.</p></div></details>
+    <details class="acc"><summary>Memilih kasus: contoh arah topik (faktanya wajib kamu verifikasi sendiri)</summary><div>
+      <ul><li>Insiden ransomware pada pusat data pemerintah (2024) dan dampaknya pada layanan publik.</li><li>Kasus kebocoran dan jual beli data pribadi yang diberitakan di Indonesia.</li><li>Penipuan daring dan rekayasa sosial (phishing, penipuan berkedok pekerjaan atau investasi).</li><li>Deepfake atau konten buatan AI yang menyesatkan.</li><li>Sengketa hak cipta atas karya digital atau penggunaan data untuk melatih AI.</li><li>Perkara pasal pencemaran nama baik di media sosial.</li></ul>
+      <p><small>Daftar ini hanya arah pencarian. Pastikan kasus yang kamu pilih punya sumber terpercaya; bila ragu, nyatakan sebagai asumsi atau pakai skenario fiktif berlabel jelas.</small></p></div></details>
+  </div>
+
+  <div class="w" data-widget="checklist" id="kerangka"><span class="w-label">Cek kelengkapan laporan · Checklist</span></div>
+  <div class="w" data-widget="reflect" id="rangka"><span class="w-label">Template laporan · Refleksi tertulis</span></div>
+  <div class="w" data-widget="order" id="analisisKasusOrder"><span class="w-label">Susun Urutan · Langkah Analisis Kasus</span></div>
+</section>
+
+<!-- ===================== SEGMEN 3 ===================== -->
+<section class="seg" id="s3" data-title="Contoh Kasus Model" data-min="15–23" data-dur="8">
+  <div class="seg-head"><div class="num">3</div><h2>Contoh Kasus Model: "SehatKu" (skenario fiktif)</h2><span class="chip act">Model</span></div>
+
+  <div class="callout warn"><b class="t">Skenario fiktif</b>PT SehatKu Digital, aplikasi SehatKu, dan semua angka di bagian ini rekaan untuk latihan. Kemiripan dengan perusahaan nyata tidak disengaja.</div>
+
+  <div class="card">
+    <h3>Ringkasan kasus</h3>
+    <p>SehatKu adalah aplikasi konsultasi kesehatan sekaligus toko suplemen daring. Pada suatu Senin, peneliti keamanan independen memberi tahu bahwa basis data berisi data pengguna (nama, nomor HP, riwayat keluhan kesehatan) dapat diakses publik karena salah konfigurasi penyimpanan awan. Data itu sempat diunduh pihak tak dikenal dan ditawarkan di forum gelap. Manajemen menunda pemberitahuan kepada pengguna selama dua minggu "menunggu investigasi". Seorang insinyur internal, Rani, mengunggah kritik di media sosial; perusahaan mengancam melaporkannya karena "pencemaran nama baik". Di sisi lain, chatbot AI SehatKu menyarankan suplemen tertentu dengan klaim "membantu menyembuhkan" penyakit kronis, dan banner promosi memakai ilustrasi karya seorang desainer lepas tanpa izin.</p>
+  </div>
+
+  <div class="card">
+    <h3>Analisis model memakai enam lapis</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Lapis</th><th>Isi analisis (contoh)</th></tr>
+      <tr><td><b>1. Fakta</b></td><td>Fakta: basis data terbuka akibat salah konfigurasi; data diunduh pihak lain; pemberitahuan ditunda dua minggu; klaim "menyembuhkan" oleh chatbot; ilustrasi dipakai tanpa izin. Belum pasti (perlu bukti): jumlah pengguna terdampak, siapa pengunduh, apakah ada kerugian nyata.</td></tr>
+      <tr><td><b>2. Pemangku kepentingan</b></td><td>Pengguna (privasi, risiko penipuan dan stigma kesehatan); perusahaan (reputasi, sanksi); Rani sebagai pelapor internal; desainer (hak ekonomi atas karya); peneliti keamanan; regulator; pelaku pengunduh data.</td></tr>
+      <tr><td><b>3. Etika</b></td><td><b>Utilitarian:</b> menunda pemberitahuan menekan kepanikan jangka pendek, tetapi merugikan ribuan pengguna yang tak bisa melindungi diri; manfaat tidak seimbang. <b>Deontologi:</b> pengguna berhak tahu bahwa datanya terancam; menyembunyikan memperlakukan mereka sebagai alat bisnis. <b>Keutamaan:</b> jujur dan bertanggung jawab menuntut pengakuan cepat dan perlindungan pelapor internal. Kesimpulan: ketiganya sepakat bahwa penundaan dan pembungkaman tidak dapat dibenarkan.</td></tr>
+      <tr><td><b>4. Hukum relevan</b></td><td><b>PDP (UU 27/2022):</b> kewajiban pengendali data menjaga keamanan data dan memberi pemberitahuan pelanggaran dalam jangka waktu tertentu (periksa ketentuan pasti). <b>UU ITE (UU 1/2024 sebagai perubahan kedua):</b> akses tanpa hak oleh pihak pengunduh; ancaman pasal pencemaran nama baik terhadap Rani perlu diuji, termasuk soal kepentingan umum. <b>HKI (UU Hak Cipta):</b> penggunaan ilustrasi tanpa lisensi. <b>Perlindungan konsumen dan AI:</b> klaim kesehatan menyesatkan oleh chatbot; pelaku usaha tetap bertanggung jawab atas keluaran sistemnya; pedoman etika AI nasional bersifat panduan. <b>Cybercrime:</b> pengunduh dan penjual data di forum gelap.</td></tr>
+      <tr><td><b>5. Keterkaitan minggu</b></td><td>M1–2 (etika dan profesi: pelapor internal), M4 (PDP), M5 (HKI), M6 (UU ITE dan kebebasan berpendapat), M7 dan M9 (cybercrime), M10 (e-commerce dan konsumen), M11 (AI), M12 (keamanan siber).</td></tr>
+      <tr><td><b>6. Rekomendasi</b></td><td><b>Segera (1 minggu):</b> kunci akses data, beri tahu pengguna dan regulator, tawarkan pemantauan penyalahgunaan. <b>Menengah (3 bulan):</b> audit konfigurasi, uji penetrasi berkala, kebijakan perlindungan pelapor, hentikan klaim kesehatan chatbot dan tambah peninjauan manusia. <b>Panjang:</b> lisensi aset kreatif, pelatihan etika, pelaporan insiden terukur (waktu deteksi dan waktu pemberitahuan). Penanggung jawab: CTO, DPO atau penanggung jawab data, dan hukum.</td></tr>
+    </table></div>
+    <div class="callout law"><b class="t">Catatan hukum</b>Ketentuan rinci (jangka waktu pemberitahuan, ancaman sanksi, status pedoman AI) sebaiknya diverifikasi pada teks resmi saat menyusun laporan sungguhan. Di model ini ditulis umum agar kamu belajar strukturnya.</div>
+    <details class="acc"><summary>Mengapa model ini dinilai kuat menurut rubrik?</summary><div>
+      <ul><li>Fakta dipisah dari dugaan.</li><li>Pemangku kepentingan lebih dari sekadar "pengguna dan perusahaan".</li><li>Tiga kacamata dipakai, lalu ada kesimpulan.</li><li>Hukum dikaitkan dengan fakta, bukan sekadar daftar UU.</li><li>Rekomendasi punya waktu, pelaksana, dan arah ukuran.</li></ul>
+      <p>Kelemahan yang masih bisa diperbaiki: belum ada data kerugian dan rujukan putusan; itu wajar karena kasusnya fiktif.</p></div></details>
+  </div>
+
+  <div class="w" data-widget="scenario" id="scn1"><span class="w-label">Simulasi keputusan · Hari ke-1 setelah laporan</span></div>
+</section>
+
+<!-- ===================== SEGMEN 4 ===================== -->
+<section class="seg" id="s4" data-title="Presentasi Kelompok" data-min="23–83" data-dur="60">
+  <div class="seg-head"><div class="num">4</div><h2>Presentasi Kelompok: Giliran, Timer, dan Rubrik</h2><span class="chip act">Presentasi</span></div>
+
+  <div class="card">
+    <h3>Aturan main presentasi</h3>
+    <ul>
+      <li><b>8 menit presentasi:</b> ringkas kasus, tampilkan enam lapis, utamakan analisis daripada cerita ulang berita.</li>
+      <li><b>4 menit tanya jawab:</b> penonton bertanya, seluruh anggota boleh menjawab.</li>
+      <li><b>Peran:</b> bagi bicara secara merata; setiap anggota perlu terlihat berkontribusi.</li>
+      <li><b>Etika presentasi:</b> sebut sumber, jangan menyebarkan data pribadi nyata atau tuduhan tanpa bukti; sensor identitas bila perlu.</li>
+    </ul>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Indikator RPS</th><th>Dinilai lewat rubrik</th></tr>
+      <tr><td>Kualitas laporan</td><td>Kriteria 1 (struktur dan sumber)</td></tr>
+      <tr><td>Kedalaman analisis</td><td>Kriteria 2, 3, 4, 5 (fakta, etika, hukum, rekomendasi)</td></tr>
+      <tr><td>Kemampuan presentasi</td><td>Kriteria 6 (penyajian dan tanya jawab)</td></tr>
+    </table></div>
+  </div>
+
+  <div class="w" data-widget="checklist" id="siap"><span class="w-label">Sebelum maju · Checklist kelompok</span></div>
+  <div class="w" data-widget="flow" id="presentasiFlow"><span class="w-label">Alur Sesi Presentasi · Panduan Visual</span></div>
+  <div class="w" data-widget="rotation" id="giliran"><span class="w-label">Pengatur giliran & timer · Widget</span></div>
+  <div class="w" data-widget="rubric" id="rubrik"><span class="w-label">Rubrik penilaian interaktif · Widget</span></div>
+</section>
+
+<!-- ===================== SEGMEN 5 ===================== -->
+<section class="seg" id="s5" data-title="Sintesis: Peta Keterkaitan" data-min="83–90" data-dur="7">
+  <div class="seg-head"><div class="num">5</div><h2>Sintesis: Kasus Ini Menyentuh Minggu Berapa?</h2><span class="chip act">Aktivitas</span></div>
+  <p>Setiap cuplikan kasus di bawah punya <em>satu fokus utama</em>, tetapi hampir selalu menyentuh minggu lain juga. Klik kartu, lalu klik kelompok minggu yang menurutmu paling tepat. Setelah dicek, baca penjelasan minggu tambahannya.</p>
+  <div class="w" data-widget="classify" id="peta"><span class="w-label">Peta keterkaitan · Klasifikasi</span></div>
+  <div class="w" data-widget="reflect" id="refl"><span class="w-label">Refleksi akhir</span></div>
+</section>
+
+<!-- ===================== SEGMEN 6 ===================== -->
+<section class="seg" id="s6" data-title="Kuis Review & Tips UAS" data-min="90–100" data-dur="10">
+  <div class="seg-head"><div class="num">6</div><h2>Kuis Review & Tips UAS</h2><span class="chip act">Evaluasi</span></div>
+  <div class="w" data-widget="quiz" id="quiz1"><span class="w-label">Kuis review UAS</span></div>
+
+  <div class="card">
+    <h3>Tips menghadapi UAS</h3>
+    <p>Rincian bentuk soal, cakupan, dan aturan UAS diumumkan dosen. Tips berikut berlaku umum untuk mata kuliah ini.</p>
+    <details class="acc" open><summary>1. Buat satu halaman peta 14 minggu</summary><div><p>Untuk tiap minggu tulis: konsep kunci, dasar hukum (nomor UU), satu contoh kasus, dan satu istilah yang sering tertukar. Pakai kartu peta hari ini sebagai kerangka.</p></div></details>
+    <details class="acc"><summary>2. Latih pola jawab soal kasus</summary><div><p>Gunakan urutan: <b>fakta penting → pemangku kepentingan → penilaian etika (minimal dua kacamata) → hukum yang relevan → rekomendasi</b>. Jawaban bernas jauh lebih baik daripada panjang tanpa struktur.</p></div></details>
+    <details class="acc"><summary>3. Bedakan istilah yang mirip</summary><div><ul><li>Etika vs moral vs hukum.</li><li>Hak cipta vs merek vs paten.</li><li>Sanksi pidana vs perdata vs administratif.</li><li>Data pribadi umum vs spesifik.</li><li>Pengendali data vs prosesor data.</li></ul><p>Tabel perbandingan buatanmu sendiri adalah bahan belajar paling efektif.</p></div></details>
+    <details class="acc"><summary>4. Soal hukum: pegang nomor UU dan ide pokok</summary><div><p>Hafalkan nomor dan nama UU utama (UU ITE, PDP, Hak Cipta, dll.) beserta ide pokoknya. Jika ragu nomor pasal, tulis "ketentuan tentang ..." dan jelaskan isinya, kecuali dosen meminta pasal tertentu. Jangan mengarang pasal.</p></div></details>
+    <details class="acc"><summary>5. Kelola waktu dan ulangi kuis</summary><div><p>Kerjakan soal yang paling kamu kuasai dulu. Ulangi kuis tiap minggu di halaman bahan ajar untuk mengecek butir yang salah. Tidurlah cukup pada malam sebelum ujian.</p></div></details>
+  </div>
+
+  <div class="card">
+    <h3>Rangkuman 1 menit</h3>
+    <ul>
+      <li>Kasus siber nyata hampir selalu berlapis: etika, hukum, dan teknologi sekaligus.</li>
+      <li>Enam lapis (fakta, pemangku kepentingan, etika, hukum, keterkaitan materi, rekomendasi) adalah kerangka yang bisa dipakai untuk UAS dan di dunia kerja.</li>
+      <li>Analisis yang baik memisahkan fakta dari dugaan, mengaitkan hukum dengan fakta, dan memberi rekomendasi yang dapat dijalankan.</li>
+    </ul>
+    <h3>Tugas mandiri</h3>
+    <p>Perbaiki laporan kelompokmu berdasarkan masukan hari ini dan kumpulkan sesuai ketentuan dosen. Persiapkan UAS (Pertemuan 16) dengan peta 14 minggu dan latihan soal.</p>
+  </div>
+
+  <div class="card refs">
+    <h3>Referensi</h3>
+    <ol>
+      <li>Tavani, H. T. (2016). <i>Ethics and Technology: Controversies, Questions, and Strategies for Ethical Computing</i> (5th ed.). John Wiley & Sons.</li>
+      <li>Spinello, R. A. (2020). <i>Cyberethics: Morality and Law in Cyberspace</i> (7th ed.). Jones & Bartlett Learning.</li>
+      <li>Makarim, E. (2020). <i>Pengantar Hukum Informatika dan Elektronika</i>. Rajawali Pers.</li>
+      <li>Republik Indonesia. (2024). <i>UU No. 1 Tahun 2024 tentang Perubahan Kedua atas UU No. 11 Tahun 2008 tentang Informasi dan Transaksi Elektronik</i>.</li>
+      <li>Republik Indonesia. (2022). <i>UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi</i>.</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (2014). <i>UU No. 28 Tahun 2014 tentang Hak Cipta</i>.</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (1999). <i>UU No. 8 Tahun 1999 tentang Perlindungan Konsumen</i>.</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (2019). <i>PP No. 71 Tahun 2019 tentang Penyelenggaraan Sistem dan Transaksi Elektronik</i>; <i>PP No. 80 Tahun 2019 tentang Perdagangan Melalui Sistem Elektronik</i>.</li>
+      <li><b>Tambahan:</b> Kementerian Komunikasi dan Informatika. (2023). <i>Surat Edaran Menkominfo No. 9 Tahun 2023 tentang Etika Kecerdasan Artifisial</i>.</li>
+      <li><b>Tambahan:</b> Council of Europe. (2001). <i>Convention on Cybercrime</i> (Budapest Convention, ETS No. 185).</li>
+      <li><b>Tambahan:</b> Bertens, K. (2013). <i>Etika</i>. Gramedia Pustaka Utama.</li>
+    </ol>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Mohon cek sebelum dipakai di kelas: (1) status dan tanggal berlaku KUHP baru (UU No. 1 Tahun 2023) serta kaitannya dengan pasal pidana di UU ITE; (2) masa transisi dan peraturan pelaksana UU PDP, serta jangka waktu pemberitahuan pelanggaran data; (3) status Surat Edaran Menkominfo 9/2023 dan ada tidaknya aturan AI yang lebih baru; (4) kecocokan peta minggu 1–14 (urutan topik) dengan RPS resmi; (5) fakta kasus nyata yang dipilih mahasiswa; (6) bentuk dan cakupan UAS; (7) bobot dan kriteria rubrik disesuaikan dengan kebijakan penilaian Anda.</div>
+  </div>
+</section>
+
+<footer>Etika Hukum Cyber · Bisnis Digital · Pertemuan 15 · Materi ini untuk tujuan pendidikan. Kasus "SehatKu" adalah skenario fiktif.</footer>
+</main>
+</div>
+
+
+<!-- ===================== DATA HALAMAN ===================== -->
+<script>
+const PAGE = {
+  id: "p15",
+
+  poll1: {
+    q: "Sebuah perusahaan lalai mengamankan data, data bocor, lalu pelapor internalnya diancam dipidana. Bagaimana analisis terbaik atas kasus ini?",
+    opts: [
+      {t:"Cukup lihat apakah ada pasal yang dilanggar", why:"Terlalu sempit. Hukum penting, tetapi tanpa etika kamu tidak menjelaskan mengapa tindakan itu salah di celah yang belum diatur, dan tanpa fakta kamu tak tahu pasal mana yang cocok."},
+      {t:"Cukup nilai dari sisi etika dan moral", why:"Juga belum cukup. Etika memberi arah, tetapi konsekuensi hukum (sanksi, hak korban) harus ikut dianalisis agar rekomendasinya realistis."},
+      {t:"Analisis berlapis: fakta, pemangku kepentingan, etika, hukum, lalu rekomendasi", why:"Inilah tujuan hari ini. Kasus nyata hampir selalu berlapis, sehingga kerangka terpadu mencegah analisis yang timpang."},
+      {t:"Cukup lihat siapa yang paling viral di media sosial", why:"Viralitas bukan bukti. Fakta harus dipisah dari opini publik; sorotan media hanya satu sumber, bukan kesimpulan."}
+    ]
+  },
+
+  flashPeta: {
+    title: "Peta minggu 1–14: kartu istilah (klik kartu untuk membalik)",
+    cards: [
+      {f:"Minggu 1", b:"Pengenalan etika, moral, dan hukum di era digital; tiga kacamata etika; policy vacuum."},
+      {f:"Minggu 2", b:"Etika profesi dan kode etik bidang teknologi informasi; dilema profesional dan whistleblowing."},
+      {f:"Minggu 3", b:"Pengantar hukum siber dan ruang lingkupnya; sumber hukum siber, awal pembahasan yurisdiksi."},
+      {f:"Minggu 4", b:"Privasi dan pelindungan data pribadi (UU 27/2022): hak subjek data, kewajiban pengendali data."},
+      {f:"Minggu 5", b:"Hak kekayaan intelektual di ruang digital: hak cipta, merek, paten; pembajakan dan lisensi."},
+      {f:"Minggu 6", b:"Kebebasan berpendapat dan UU ITE (UU 1/2024 perubahan kedua): batas ekspresi, pencemaran nama baik, hoaks."},
+      {f:"Minggu 7", b:"Cybercrime sistem dan teknis: akses ilegal, malware, ransomware, serangan DDoS."},
+      {f:"Minggu 8", b:"UTS: evaluasi materi awal (CPMK-1 dan CPMK-2)."},
+      {f:"Minggu 9", b:"Cybercrime manipulasi sosial dan finansial: phishing, penipuan daring, rekayasa sosial."},
+      {f:"Minggu 10", b:"E-commerce dan transaksi elektronik: perlindungan konsumen, kontrak elektronik, tanggung jawab platform."},
+      {f:"Minggu 11", b:"Kecerdasan artifisial: bias, transparansi, akuntabilitas, etika AI, deepfake."},
+      {f:"Minggu 12", b:"Keamanan siber: prinsip CIA, manajemen risiko, kepatuhan dan tanggung jawab organisasi."},
+      {f:"Minggu 13", b:"Yurisdiksi internasional: kejahatan lintas negara, kerja sama hukum, Konvensi Budapest."},
+      {f:"Minggu 14", b:"Tata kelola siber: peran pemerintah, swasta, dan masyarakat; kebijakan dan standar."}
+    ]
+  },
+
+  kerangka: {
+    title: "Checklist kelengkapan laporan kelompok",
+    items: [
+      "Fakta: kronologi bertanggal, sumber tepercaya, fakta dipisahkan dari dugaan atau opini.",
+      "Pemangku kepentingan: minimal 4 pihak, lengkap dengan kepentingan dan dampaknya.",
+      "Etika: tiga kacamata (utilitarian, deontologi, keutamaan) diterapkan, lalu ada kesimpulan.",
+      "Hukum (UU ITE): ketentuan terkait akses, konten, atau transaksi elektronik dikaitkan dengan fakta.",
+      "Hukum (PDP): ada analisis data pribadi, pengendali data, atau pelanggaran data bila relevan.",
+      "Hukum (HKI): karya, lisensi, atau pelanggaran hak cipta/merek bila relevan.",
+      "Hukum (cybercrime dan lintas negara): jenis serangan atau penipuan, pelaku, yurisdiksi bila relevan.",
+      "AI dan konsumen: peran sistem AI, klaim yang menyesatkan, atau perlindungan konsumen bila relevan.",
+      "Keterkaitan minggu 1–14 disebutkan (minimal 4 minggu).",
+      "Rekomendasi: jangka pendek dan panjang, pelaksana jelas, ukuran keberhasilan.",
+      "Daftar pustaka lengkap dan ada catatan hal yang masih perlu diverifikasi."
+    ],
+    doneMsg: "Laporanmu memenuhi kerangka terpadu. Periksa sekali lagi kecocokan klaim hukum dengan fakta."
+  },
+
+  rangka: {
+    title: "Rangka laporan kelompokmu (draf)",
+    prompt: "Tulis versi singkat laporanmu: (1) judul kasus dan sumber utama; (2) tiga kalimat fakta; (3) tiga pemangku kepentingan; (4) satu penilaian etika dari satu kacamata; (5) satu dasar hukum yang paling kuat beserta alasannya; (6) satu rekomendasi konkret.",
+    hint: "Tulisan tersimpan otomatis di perangkat ini. Gunakan tombol Salin untuk menempelkannya ke dokumen laporan."
+  },
+
+  scn1: {
+    title: "Kasus SehatKu (fiktif): kamu CTO dan baru menerima laporan celah data",
+    start: "n0",
+    nodes: {
+      n0: {text:"Kamu CTO SehatKu. Peneliti keamanan melapor bahwa basis data pengguna terbuka dan sudah diunduh pihak lain. CEO berkata: \"Perbaiki diam-diam dulu, jangan sampai pengguna panik.\" Apa keputusanmu?",
+        choices:[{t:"Perbaiki diam-diam, pemberitahuan menunggu investigasi selesai", to:"n1"},{t:"Perbaiki, lalu segera beri tahu pengguna dan regulator dengan langkah perlindungan", to:"n2"},{t:"Umumkan bahwa ini kesalahan vendor awan agar perusahaan tampak tak bersalah", to:"n3"}]},
+      n1: {end:true, text:"Hasil: pengguna tidak tahu datanya mungkin dipakai untuk penipuan; ketika bocoran terungkap, kepercayaan runtuh dan perusahaan tampak menyembunyikan. Penundaan juga berisiko bertentangan dengan kewajiban pemberitahuan menurut UU PDP (periksa jangka waktunya).",
+        lens:"Utilitarian: manfaat kecil (menghindari panik) vs kerugian besar pengguna. Deontologi: pengguna berhak atas informasi tentang datanya. Keutamaan: kejujuran dan tanggung jawab tidak terpenuhi."},
+      n2: {end:true, text:"Hasil: ada gejolak sesaat, tetapi pengguna dapat mengganti sandi dan waspada penipuan, regulator mendapat laporan, dan reputasi jangka panjang lebih terjaga. Kamu juga dapat melindungi pelapor internal dan memperbaiki prosesnya.",
+        lens:"Memenuhi ketiga kacamata: manfaat bersih bagi banyak pihak, hak pengguna dihormati, dan kamu bertindak sebagai profesional berintegritas. Catatan: tetap pastikan fakta tidak dilebih-lebihkan."},
+      n3: {end:true, text:"Hasil: menyalahkan pihak lain tanpa bukti menambah masalah; vendor bisa membantah, dan pengguna tetap tidak terlindungi. Secara hukum, tanggung jawab pengendali data tidak otomatis hilang karena memakai pihak ketiga.",
+        lens:"Utilitarian: merugikan hubungan bisnis dan pengguna. Deontologi: tidak jujur, memakai kebohongan sebagai alat. Keutamaan: mencuci tangan adalah kebalikan dari tanggung jawab."}
+    }
+  },
+
+  siap: {
+    title: "Kesiapan kelompok sebelum maju",
+    items: [
+      "Durasi sudah dilatih: tidak lebih dari 8 menit.",
+      "Slide singkat (disarankan maks. 8 lembar), memuat enam lapis analisis.",
+      "Pembagian peran: semua anggota punya bagian bicara atau menjawab.",
+      "Sumber ditulis, dan tidak ada data pribadi nyata yang tidak perlu.",
+      "Menyiapkan dua kemungkinan pertanyaan penonton dan jawabannya.",
+      "Satu rekomendasi andalan siap dijelaskan dalam 30 detik."
+    ],
+    doneMsg: "Kelompok siap. Semoga lancar."
+  },
+
+  giliran: {
+    title: "Giliran dan timer presentasi",
+    groups: ["Kelompok 1","Kelompok 2","Kelompok 3","Kelompok 4","Kelompok 5"],
+    present: 8,
+    qa: 4,
+    hint: "5 kelompok × (8 menit presentasi + 4 menit tanya jawab) = 60 menit. Isi topik kasus tiap kelompok, acak urutan bila perlu, lalu tekan Mulai. Tombol utama berganti fungsi mengikuti tahap."
+  },
+
+  rubrik: {
+    title: "Rubrik penilaian kelompok",
+    groups: ["Kelompok 1","Kelompok 2","Kelompok 3","Kelompok 4","Kelompok 5"],
+    evaluators: ["Dosen","Teman"],
+    levels: ["Perlu perbaikan","Cukup","Baik","Sangat baik"],
+    hint: "Pilih penilai dan kelompok, lalu beri skor 1–4 untuk tiap kriteria. Skor akhir = jumlah (bobot × skor ÷ 4), maksimum 100. Bobot dan kategori adalah usulan; dosen dapat menyesuaikan.",
+    crit: [
+      {n:"Kualitas laporan", w:20, d:["Struktur tidak lengkap, sumber tidak jelas","Struktur sebagian lengkap, sumber terbatas","Struktur lengkap dan runtut, sumber memadai dan dikutip","Struktur lengkap dan ringkas, sumber beragam dan tepercaya, penulisan rapi"]},
+      {n:"Kedalaman fakta dan pemangku kepentingan", w:15, d:["Hanya menceritakan ulang berita","Fakta ada, pemangku kepentingan sedikit","Fakta bertanggal, fakta dan dugaan dipisah, 4 pihak atau lebih","Fakta kuat dan terverifikasi, pemangku kepentingan lengkap dengan kepentingan dan dampaknya"]},
+      {n:"Analisis etika (tiga kacamata)", w:15, d:["Tidak memakai kerangka etika","Memakai satu kacamata","Memakai tiga kacamata dengan penerapan jelas","Tiga kacamata, membahas pertentangannya, dan menarik kesimpulan beralasan"]},
+      {n:"Analisis hukum", w:20, d:["Tidak ada atau keliru","Menyebut UU tanpa mengaitkan dengan fakta","Mengaitkan dua bidang hukum atau lebih dengan fakta, nomor UU benar","Terpadu lintas bidang, membedakan pidana, perdata, administratif, dan jujur mengakui ketidakpastian"]},
+      {n:"Rekomendasi", w:15, d:["Tidak ada atau terlalu umum","Ada tetapi kurang berkaitan dengan temuan","Spesifik, ada pelaksana dan jangka waktu","Spesifik, realistis, terukur, dan berasal dari temuan etika serta hukum"]},
+      {n:"Presentasi dan tanya jawab", w:15, d:["Tidak teratur, melebihi atau jauh di bawah waktu","Cukup teratur, tanya jawab kurang meyakinkan","Jelas, tepat waktu, menjawab dengan baik","Menarik dan efektif, kompak, jawaban tepat dan tenang"]}
+    ]
+  },
+
+  peta: {
+    title: "Pilih kelompok minggu yang menjadi fokus utama tiap cuplikan",
+    bins: ["Etika dan profesi (M1–2)", "Hukum siber, PDP, HKI, UU ITE (M3–6)", "Cybercrime (M7, M9)", "E-commerce, AI, keamanan, yurisdiksi, tata kelola (M10–14)"],
+    items: [
+      {t:"Seorang insinyur disuruh diam setelah menemukan celah keamanan produk", a:0, why:"Fokus utama: etika profesi dan whistleblowing (M1–2). Menyentuh juga keamanan siber (M12) dan UU ITE bila ia dilaporkan balik (M6)."},
+      {t:"Aplikasi mengumpulkan lokasi dan kontak pengguna tanpa persetujuan jelas", a:1, why:"Fokus utama: pelindungan data pribadi (M4). Menyentuh juga etika (M1) dan e-commerce bila datanya dijual (M10)."},
+      {t:"Desainer menemukan karyanya dipakai di iklan tanpa izin", a:1, why:"Fokus utama: hak kekayaan intelektual (M5). Menyentuh juga etika (M1) dan konsumen/e-commerce (M10)."},
+      {t:"Seorang warganet dilaporkan karena unggahan kritik terhadap sebuah usaha", a:1, why:"Fokus utama: kebebasan berpendapat dan UU ITE (M6). Menyentuh juga etika (M1–2) dan kadang PDP bila ada data pribadi (M4)."},
+      {t:"Ransomware mengunci server dan layanan berhenti", a:2, why:"Fokus utama: cybercrime sistem/teknis (M7). Menyentuh juga keamanan siber dan tata kelola (M12, M14) serta PDP bila data bocor (M4)."},
+      {t:"Pesan palsu berkedok bank menguras rekening nasabah", a:2, why:"Fokus utama: cybercrime manipulasi sosial dan finansial (M9). Menyentuh juga perlindungan konsumen (M10) dan etika."},
+      {t:"Chatbot AI memberi klaim kesehatan yang menyesatkan dan pemilik platform menolak bertanggung jawab", a:3, why:"Fokus utama: etika dan tanggung jawab AI (M11). Menyentuh juga konsumen (M10), etika (M1), dan tata kelola (M14)."},
+      {t:"Pelaku, server, dan korban berada di negara berbeda sehingga penegakan hukum sulit", a:3, why:"Fokus utama: yurisdiksi internasional (M13). Menyentuh juga cybercrime (M7, M9) dan tata kelola (M14)."}
+    ]
+  },
+
+  refl: {
+    title: "Tulis 3–5 kalimat",
+    prompt: "Dari semua presentasi hari ini, (a) satu analisis dari kelompok lain yang mengubah cara pandangmu dan mengapa; (b) satu minggu materi yang menurutmu paling perlu kamu ulang sebelum UAS dan strategi belajarmu.",
+    hint: "Tersimpan otomatis di perangkat ini. Gunakan tombol Salin untuk mengumpulkan ke dosen."
+  },
+
+  quiz1: {
+    title: "Kuis review (8 soal)",
+    items: [
+      {q:"Langkah pertama paling tepat dalam analisis kasus terpadu adalah…", o:["Menyimpulkan siapa yang salah","Mengumpulkan fakta dan memisahkannya dari dugaan","Mencari pasal sebanyak mungkin","Menulis rekomendasi"], a:1, why:"Fakta menjadi dasar semua lapis berikutnya. Tanpa fakta yang kuat, analisis hukum dan etika mudah keliru."},
+      {q:"Perusahaan menyimpan data pelanggan tanpa pengamanan memadai sehingga bocor. Undang-undang yang paling langsung relevan adalah…", o:["UU No. 28 Tahun 2014","UU No. 27 Tahun 2022","UU No. 8 Tahun 1999 saja","UU tentang Perseroan Terbatas"], a:1, why:"UU 27/2022 mengatur pelindungan data pribadi. UU lain (mis. perlindungan konsumen) dapat ikut relevan, tetapi PDP paling langsung."},
+      {q:"Seorang kreator menemukan ilustrasinya dipakai sebuah merek tanpa izin. Bidang hukum yang paling relevan adalah…", o:["Hak cipta (UU No. 28 Tahun 2014)","Pelindungan data pribadi","Hukum pajak","Hukum agraria"], a:0, why:"Karya ilustrasi dilindungi hak cipta; penggunaan tanpa izin atau lisensi bisa menjadi pelanggaran hak ekonomi pencipta."},
+      {q:"Manajer menunda memberi tahu pengguna tentang kebocoran data karena takut panik. Penilaian utilitarian yang paling tepat adalah…", o:["Benar, karena panik pasti lebih buruk","Kurang tepat, karena kerugian pengguna yang tak bisa melindungi diri sering lebih besar daripada manfaat menunda","Benar, karena tidak ada hukum yang mengatur","Tidak relevan, karena utilitarianisme tidak menilai tindakan perusahaan"], a:1, why:"Utilitarianisme menimbang manfaat dan kerugian semua pihak; menunda biasanya merugikan lebih banyak orang."},
+      {q:"Pihak asing masuk ke sistem perusahaan tanpa izin lalu mengunduh data. Tindakan ini terutama masuk ke kategori…", o:["Pelanggaran etika kecil","Cybercrime berupa akses ilegal ke sistem elektronik","Sengketa merek dagang","Perselisihan ketenagakerjaan"], a:1, why:"Akses tanpa hak ke sistem elektronik adalah ranah cybercrime (diatur dalam UU ITE)."},
+      {q:"Mengapa analisis kasus AI sering memerlukan etika selain hukum?", o:["Karena AI tidak punya dampak sosial","Karena aturan khusus AI masih berkembang sehingga etika mengisi celah penilaian","Karena etika menggantikan hukum","Karena AI hanya urusan teknis"], a:1, why:"Seperti policy vacuum pada pertemuan 1: teknologi bergerak lebih cepat daripada aturan, sehingga prinsip etika dipakai sementara."},
+      {q:"Rekomendasi yang paling baik dalam laporan kasus adalah…", o:["\"Perusahaan harus lebih baik.\"","\"Perusahaan perlu audit keamanan berkala oleh pihak independen dalam 3 bulan, dipimpin CTO, diukur dari jumlah celah kritis yang tertutup.\"","\"Pemerintah harus menghukum semua pihak.\"","\"Pengguna harus berhati-hati.\""], a:1, why:"Rekomendasi baik spesifik, punya pelaksana, waktu, dan ukuran keberhasilan."},
+      {q:"Pelaku penipuan daring berada di luar negeri, korban di Indonesia. Aspek yang paling menantang adalah…", o:["Yurisdiksi dan kerja sama penegakan hukum lintas negara","Ukuran huruf laporan","Jumlah korban","Pilihan warna aplikasi"], a:0, why:"Kejahatan lintas batas membutuhkan kerja sama antarnegara; perjanjian seperti Konvensi Budapest berusaha memfasilitasinya."}
+    ]
+  },
+
+  kasusNyataExplorer: {
+    title: "Pilih Kasus Nyata untuk Dianalisis Kelompok",
+    intro: "Klik kartu kasus untuk membuka ringkasan, pertanyaan analisis, dasar hukum, dan referensi. Pilih satu kasus sebagai bahan presentasi kelompokmu.",
+    items: [
+      {
+        id: "pdn", icon: "🏛️", name: "Kebocoran Data PDN 2024", tag: "Ransomware · Pemerintah",
+        summary: "Pada Juni 2024, Pusat Data Nasional Sementara (PDNS) diserang ransomware yang mengakibatkan lumpuhnya layanan di ratusan instansi pemerintah, termasuk imigrasi. Pelaku meminta tebusan sekitar 8 juta USD dan pemerintah menolak membayar. Insiden memunculkan pertanyaan serius tentang tata kelola data pemerintah dan kewajiban backup. (Verifikasi dosen: tanggal pasti, varian ransomware, daftar instansi terdampak, status hukum pelaku)",
+        how: [
+          "Apakah ada pelanggaran kewajiban pengamanan data oleh instansi pengelola PDNS? (aspek etika profesi dan regulasi)",
+          "Siapa yang bertanggung jawab: Kominfo, BSSN, penyedia layanan, atau instansi pengguna?",
+          "Apakah keputusan tidak membayar tebusan sudah tepat secara etika dan kebijakan publik?",
+          "Mengapa tidak ada sistem backup yang memadai, dan siapa yang lalai dalam pengawasan?",
+          "Apakah ada kewajiban hukum untuk memberitahu publik tentang insiden ini sesuai UU PDP?"
+        ],
+        ex: [
+          "BSSN — Laporan insiden dan siaran pers resmi (bssn.go.id)",
+          "Kominfo — Pengumuman dan perkembangan penanganan resmi",
+          "Media kredibel: Kompas, Tempo, The Jakarta Post (cari berita Juni–Juli 2024)",
+          "Laporan Panitia Kerja DPR terkait insiden PDNS (bila tersedia)"
+        ],
+        impact: "Ratusan instansi pemerintah tidak dapat mengakses data dan layanan. Layanan imigrasi, perizinan, dan layanan publik lain terganggu selama beberapa hari hingga minggu. Kepercayaan publik pada tata kelola data pemerintah menurun signifikan. (Verifikasi dosen: data pasti jumlah instansi dan durasi gangguan)",
+        law: [
+          "UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi — kewajiban pengendali data menjaga keamanan",
+          "UU No. 1 Tahun 2024 tentang ITE — akses ilegal dan kejahatan siber",
+          "PP No. 71 Tahun 2019 tentang PSTE — penyelenggaraan sistem elektronik pemerintah",
+          "Perpres tentang Pusat Data Nasional (Verifikasi dosen: nomor dan ketentuan teknis backup)"
+        ],
+        prev: [
+          "Kaitkan dengan: Minggu 7 (cybercrime teknis: ransomware), Minggu 4 (PDP dan kewajiban pengendali), Minggu 12 (keamanan siber), Minggu 14 (tata kelola siber)",
+          "Pelajaran utama: backup terisolasi, business continuity plan, tanggung jawab pengendali data pemerintah"
+        ]
+      },
+      {
+        id: "cambridge", icon: "📊", name: "Cambridge Analytica 2018", tag: "Privasi · Manipulasi Demokrasi",
+        summary: "Data sekitar 87 juta pengguna Facebook diperoleh tanpa persetujuan eksplisit melalui kuis kepribadian oleh peneliti Aleksandr Kogan, lalu dijual ke Cambridge Analytica. Data digunakan untuk mikrotargeting iklan politik dalam pemilu AS 2016 dan referendum Brexit. Skandal ini memicu penyelidikan regulasi global dan denda besar terhadap Facebook (Meta). (Verifikasi dosen: angka pengguna terdampak, detail penjualan data, status hukum akhir)",
+        how: [
+          "Apakah Facebook bertanggung jawab atas data yang dikumpulkan pihak ketiga melalui platformnya?",
+          "Di mana batas antara riset akademik yang sah dan eksploitasi data untuk kepentingan politik?",
+          "Apakah profiling psikografis untuk iklan politik dapat dibenarkan secara etika demokrasi?",
+          "Bagaimana implikasi kasus ini terhadap lahirnya GDPR dan prinsip persetujuan eksplisit?"
+        ],
+        ex: [
+          "Whistleblower Christopher Wylie — kesaksian di parlemen Inggris dan Senat AS (tersedia daring)",
+          "FTC vs Facebook — penyelesaian denda 5 miliar USD (2019)",
+          "Dokumenter 'The Great Hack' (Netflix, 2019)",
+          "Buku: 'Mindf*ck' oleh Christopher Wylie (2019)"
+        ],
+        impact: "Kepercayaan publik pada media sosial anjlok. Facebook dikenai denda rekordiri 5 miliar USD. GDPR mulai berlaku efektif 2018 sebagian sebagai respons atas kasus serupa. Pertanyaan tentang manipulasi demokrasi melalui data masih diperdebatkan di seluruh dunia.",
+        law: [
+          "GDPR (General Data Protection Regulation) Eropa — persetujuan, tujuan spesifik, minimalisasi data",
+          "CFAA (Computer Fraud and Abuse Act) AS",
+          "Prinsip UU No. 27 Tahun 2022 (PDP) Indonesia: persetujuan eksplisit dan tujuan yang sah",
+          "Hukum pemilu tentang penggunaan data untuk iklan politik (Verifikasi dosen: regulasi Indonesia)"
+        ],
+        prev: [
+          "Kaitkan dengan: Minggu 4 (PDP dan prinsip persetujuan), Minggu 1 (etika: deontologi dan keutamaan), Minggu 14 (tata kelola platform global)",
+          "Pelajaran: consent harus eksplisit dan terinformasi; platform bertanggung jawab atas ekosistem pihak ketiganya"
+        ]
+      },
+      {
+        id: "prita", icon: "✉️", name: "Kasus Prita Mulyasari", tag: "UU ITE · Kebebasan Berekspresi",
+        summary: "Prita Mulyasari mengirim email keluhan tentang pelayanan RS Omni Internasional pada 2008. Email menyebar melalui milis. RS melaporkan Prita ke polisi dengan tuduhan pencemaran nama baik melalui media elektronik. Prita sempat ditahan, divonis bersalah di pengadilan negeri, lalu dibebaskan di tingkat kasasi MA. Kasus ini menjadi preseden penting dan memicu perdebatan nasional tentang penggunaan UU ITE terhadap keluhan konsumen biasa.",
+        how: [
+          "Apakah mengirim email keluhan tentang pelayanan kesehatan termasuk pencemaran nama baik menurut UU ITE?",
+          "Bagaimana menyeimbangkan hak konsumen untuk menyuarakan keluhan dengan perlindungan reputasi bisnis?",
+          "Apakah penerapan UU ITE dalam kasus ini proporsional dibandingkan dampaknya bagi korban?",
+          "Apa peran 'kepentingan umum' sebagai pengecualian dalam pasal pencemaran nama baik?"
+        ],
+        ex: [
+          "Putusan MA (Mahkamah Agung) — kasus pidana Prita Mulyasari (cari di direktori putusan MA)",
+          "Laporan LBH dan Safenet tentang penggunaan UU ITE terhadap ekspresi personal",
+          "Berita arsip: Kompas, Tempo (2008–2009)",
+          "Revisi UU ITE 2016 dan 2024 — bagaimana kasus ini mempengaruhi perdebatan revisi"
+        ],
+        impact: "Memicu perdebatan nasional tentang UU ITE dan kebebasan berpendapat. Menjadi salah satu pendorong revisi UU ITE. Memperkuat gerakan advokasi hak digital di Indonesia. Menunjukkan risiko bagi konsumen biasa yang menyuarakan keluhan di media digital.",
+        law: [
+          "UU No. 11 Tahun 2008 tentang ITE pasal pencemaran nama baik (lihat juga perubahan di UU 19/2016 dan UU 1/2024)",
+          "KUHP pasal pencemaran nama baik (Pasal 310 dst.) — sebagai pembanding hukum offline vs online",
+          "Prinsip kepentingan umum sebagai pengecualian (periksa perkembangan yurisprudensi dan SE Mahkamah Agung)"
+        ],
+        prev: [
+          "Kaitkan dengan: Minggu 6 (UU ITE dan kebebasan berpendapat), Minggu 1 (etika vs hukum, policy vacuum), Minggu 3 (hukum siber Indonesia)",
+          "Pelajaran: batas antara keluhan konsumen dan pencemaran nama baik masih abu-abu; pentingnya klarifikasi hukum dan perlindungan konsumen"
+        ]
+      },
+      {
+        id: "deepfake", icon: "🎭", name: "Deepfake & Penipuan Berbasis AI", tag: "AI · Penipuan · Impersonasi",
+        summary: "Kasus-kasus penipuan menggunakan deepfake semakin meningkat. Salah satu yang banyak dilaporkan adalah kasus di Hong Kong (2024) di mana karyawan perusahaan ditransfer dana besar setelah pelaku menggunakan video call deepfake yang menyerupai CFO dan kolega lain. Deepfake juga digunakan untuk konten pornografi non-konsensual dan propaganda politik. (Verifikasi dosen: detail kasus dan sumber terpercaya sebelum digunakan di kelas)",
+        how: [
+          "Siapa yang bertanggung jawab atas penyalahgunaan teknologi deepfake: pengembang alat AI, platform distribusi, atau pengguna?",
+          "Bagaimana korban dan perusahaan dapat melindungi diri dari impersonasi berbasis AI dalam komunikasi bisnis?",
+          "Apakah regulasi saat ini di Indonesia sudah cukup untuk menangani kejahatan deepfake?",
+          "Apa perbedaan etis antara deepfake untuk seni/hiburan vs deepfake untuk penipuan atau pencemaran nama baik?"
+        ],
+        ex: [
+          "Laporan berita internasional tentang kasus deepfake video call Hong Kong 2024 (Verifikasi dosen: sumber terpercaya)",
+          "Laporan FBI, Europol, dan Interpol tentang tren penipuan berbasis AI (2023–2024)",
+          "BSSN dan Kominfo — panduan deteksi dan pencegahan deepfake bila tersedia (Verifikasi dosen)",
+          "Riset: 'Deepfakes and the Infocalypse' (Nina Schick, 2020)"
+        ],
+        impact: "Kerugian finansial besar pada individu dan perusahaan. Kerusakan reputasi pada tokoh yang diimpersonasi. Erosi kepercayaan pada konten video dan audio digital. Tantangan bagi penegak hukum dalam pembuktian keaslian bukti digital.",
+        law: [
+          "UU No. 1 Tahun 2024 tentang ITE — penipuan elektronik dan konten menyesatkan",
+          "KUHP — penipuan (Pasal 378) dan kemungkinan pasal dalam KUHP baru (UU No. 1 Tahun 2023, Verifikasi dosen: kapan berlaku)",
+          "UU No. 27 Tahun 2022 (PDP) — bila data biometrik digunakan tanpa consent untuk membuat deepfake",
+          "Belum ada regulasi deepfake yang spesifik di Indonesia (Verifikasi dosen: apakah sudah ada peraturan baru)"
+        ],
+        prev: [
+          "Kaitkan dengan: Minggu 11 (etika AI, deepfake), Minggu 9 (cybercrime manipulasi sosial), Minggu 4 (PDP biometrik), Minggu 6 (konten menyesatkan)",
+          "Pelajaran: kebijakan teknologi perlu mengantisipasi penyalahgunaan AI; verifikasi identitas digital dan literasi deepfake perlu diperkuat"
+        ]
+      },
+      {
+        id: "whistleblower", icon: "🔍", name: "Whistleblower & Etika AI Korporat", tag: "Bias Algoritma · Etika Profesi",
+        summary: "Beberapa whistleblower dari perusahaan teknologi besar mengungkap masalah etika internal. Frances Haugen (2021) membocorkan dokumen Facebook/Meta yang menunjukkan perusahaan mengetahui dampak negatif algoritmanya pada kesehatan mental remaja namun tidak bertindak. Timnit Gebru (2020) dipecat Google setelah mempublikasikan riset tentang risiko model bahasa besar terhadap kelompok rentan. (Verifikasi dosen: detail kasus, status hukum, perkembangan terbaru)",
+        how: [
+          "Kapan seorang profesional IT memiliki kewajiban moral untuk menjadi whistleblower dan menghadapi risiko pemecatan?",
+          "Bagaimana menilai trade-off antara loyalitas perusahaan dan tanggung jawab terhadap kepentingan publik?",
+          "Apakah bias algoritma merupakan pelanggaran etika, pelanggaran hukum, atau keduanya? Siapa yang dirugikan?",
+          "Apa perlindungan hukum yang tersedia bagi whistleblower di Indonesia dibandingkan negara lain?"
+        ],
+        ex: [
+          "Kesaksian Frances Haugen di Senat AS (Oktober 2021) — tersedia di YouTube dan situs Kongres AS",
+          "Kasus Timnit Gebru — wawancara dan artikel di MIT Technology Review, Wired (2020–2021)",
+          "UU No. 31 Tahun 2014 tentang Perlindungan Saksi dan Korban — konteks Indonesia",
+          "Laporan AI Now Institute tentang akuntabilitas AI di perusahaan teknologi"
+        ],
+        impact: "Mendorong legislasi AI di berbagai negara. Memunculkan perdebatan tentang tanggung jawab platform atas dampak algoritmanya pada masyarakat. Memperkuat gerakan untuk transparansi dan akuntabilitas AI. Menunjukkan risiko budaya 'move fast and break things' di industri teknologi.",
+        law: [
+          "UU No. 31 Tahun 2014 tentang Perlindungan Saksi dan Korban (Verifikasi dosen: apakah mencakup whistleblower korporat bidang teknologi)",
+          "Kode etik ACM dan IEEE — kewajiban melaporkan bahaya yang diketahui kepada publik",
+          "EU AI Act — kewajiban transparansi dan audit model AI berisiko tinggi (Verifikasi dosen: status berlaku dan cakupan)",
+          "Belum ada regulasi whistleblower teknologi yang spesifik di Indonesia (Verifikasi dosen)"
+        ],
+        prev: [
+          "Kaitkan dengan: Minggu 2 (etika profesi, whistleblowing), Minggu 11 (etika AI, bias algoritma), Minggu 1 (kerangka etika: deontologi dan keutamaan), Minggu 14 (tata kelola AI)",
+          "Pelajaran: kode etik profesi harus lebih kuat dari loyalitas korporat ketika menyangkut kepentingan publik"
+        ]
+      }
+    ]
+  },
+
+  analisisKasusOrder: {
+    title: "Susun Urutan: Langkah Analisis Kasus Etika-Hukum",
+    prompt: "Klik langkah satu per satu sesuai urutan yang benar untuk menganalisis kasus etika dan hukum siber. Klik langkah di kolom jawaban untuk membatalkannya.",
+    items: [
+      {t: "Identifikasi fakta kasus — pisahkan fakta dari asumsi dan opini", why: "Fakta yang kuat adalah fondasi seluruh analisis. Tanpa pemisahan fakta dari dugaan, penilaian etika dan hukum mudah tergelincir pada asumsi yang belum terbukti."},
+      {t: "Petakan pemangku kepentingan — siapa yang terlibat, peran dan kepentingan masing-masing", why: "Setelah fakta diketahui, kita perlu memahami siapa saja yang terdampak dan berkepentingan sebelum menilai secara etika maupun hukum."},
+      {t: "Identifikasi isu etika — pakai tiga kacamata (utilitarian, deontologi, keutamaan)", why: "Penilaian etika dilakukan setelah fakta dan pemangku kepentingan dipetakan, sehingga analisisnya berbasis konteks nyata, bukan abstrak."},
+      {t: "Identifikasi isu hukum — UU mana yang relevan, pasal apa yang mungkin dilanggar", why: "Analisis hukum lebih efektif setelah etika dikaji; ini membantu membedakan pelanggaran moral dari pelanggaran hukum positif yang dapat dituntut."},
+      {t: "Analisis tanggung jawab — siapa yang paling bertanggung jawab dan mengapa", why: "Setelah etika dan hukum dipetakan, kita dapat menentukan tanggung jawab dengan lebih akurat, berdasar, dan adil terhadap semua pihak."},
+      {t: "Evaluasi respons yang diambil — apakah respons sudah tepat? Apa kekurangannya?", why: "Mengevaluasi respons nyata memerlukan pemahaman semua konteks sebelumnya; ini mempersiapkan dasar yang kuat untuk rekomendasi konkret."},
+      {t: "Rumuskan rekomendasi — apa yang seharusnya dilakukan berbeda? Kebijakan apa yang perlu diperbaiki?", why: "Rekomendasi adalah kulminasi dari semua lapis sebelumnya; tanpa fondasi yang kuat di langkah 1-6, rekomendasi menjadi kabur dan tidak dapat dilaksanakan."}
+    ]
+  },
+
+  presentasiFlow: {
+    title: "Alur Sesi Presentasi Kelas",
+    sub: "Panduan visual alur sesi 12 menit per kelompok. Tekan Putar otomatis atau Lanjut untuk melihat tiap tahap.",
+    actors: [
+      {id: "kelompok", icon: "👥", name: "Kelompok Presentasi", x: 20, y: 40, role: "neutral", state: "", badge: ""},
+      {id: "audiens", icon: "🎓", name: "Kelas/Audiens", x: 80, y: 40, role: "neutral", state: "", badge: ""},
+      {id: "dosen", icon: "📋", name: "Dosen/Moderator", x: 50, y: 14, role: "neutral", state: "", badge: ""},
+      {id: "waktu", icon: "⏱️", name: "Timer", x: 50, y: 78, role: "neutral", state: "", badge: ""}
+    ],
+    steps: [
+      {
+        title: "Presentasi Kelompok (8 menit)",
+        short: "Presentasi 8′",
+        text: "Kelompok mempresentasikan analisis kasus: kronologi fakta, pemangku kepentingan, analisis etika (3 kacamata), analisis hukum, keterkaitan materi minggu 1–14, dan rekomendasi. Timer berjalan; dosen akan menghentikan tepat saat 8 menit habis.",
+        from: "kelompok", to: "audiens",
+        packet: "📊", label: "Analisis kasus",
+        set: {kelompok: "active", waktu: "warn"},
+        tip: "Kriteria penilaian: kedalaman analisis (fakta, etika, hukum), penguasaan regulasi, kemampuan argumentasi, kualitas laporan"
+      },
+      {
+        title: "Audiens Menyimak & Menyiapkan Pertanyaan",
+        short: "Audiens siap",
+        text: "Selama presentasi berlangsung, audiens menyimak dengan kritis dan menyiapkan minimal satu pertanyaan yang menantang: tentang fakta yang perlu diverifikasi, kelemahan analisis etika, atau ketepatan dasar hukum yang digunakan.",
+        from: "audiens", to: "dosen",
+        packet: "📝", label: "Catat pertanyaan",
+        set: {audiens: "active", kelompok: "safe"},
+        tip: "Pertanyaan terbaik menyasar: satu fakta yang masih perlu dibuktikan, atau satu rekomendasi yang paling realistis"
+      },
+      {
+        title: "Sesi Tanya Jawab (4 menit)",
+        short: "Tanya jawab 4′",
+        text: "Audiens mengajukan pertanyaan. Seluruh anggota kelompok boleh menjawab. Dosen dapat mengarahkan atau menambah pertanyaan jika waktu masih ada. Jawab dengan tenang; akui bila ada hal yang belum pasti.",
+        from: "audiens", to: "kelompok",
+        packet: "❓", label: "Pertanyaan",
+        set: {audiens: "active", kelompok: "warn", waktu: "warn"},
+        risk: "Waktu 4 menit — disiplin waktu penting agar semua kelompok mendapat giliran"
+      },
+      {
+        title: "Komentar & Koreksi Dosen",
+        short: "Feedback dosen",
+        text: "Dosen memberikan komentar: hal yang sudah kuat dalam analisis, hal yang perlu diperbaiki, dan koreksi atas klaim hukum atau etika yang keliru. Ini adalah momen belajar paling berharga bagi seluruh kelas, bukan hanya kelompok yang presentasi.",
+        from: "dosen", to: "kelompok",
+        packet: "💬", label: "Feedback",
+        set: {dosen: "active", kelompok: "safe", audiens: "safe"},
+        tip: "Catat koreksi dosen; akan berguna untuk memperbaiki laporan akhir sebelum dikumpulkan"
+      },
+      {
+        title: "Transisi ke Kelompok Berikutnya (1 menit)",
+        short: "Transisi 1′",
+        text: "Satu menit transisi: kelompok yang baru selesai kembali ke tempat duduk, kelompok berikutnya bersiap di depan. Dosen memberi sinyal mulai. Gunakan waktu ini untuk mengisi skor rubrik sementara.",
+        from: "dosen", to: "waktu",
+        packet: "⏭️", label: "Kelompok berikutnya",
+        set: {dosen: "active", waktu: "active", kelompok: "lock"},
+        tip: "Total: 5 kelompok × (8′ presentasi + 4′ tanya jawab + 1′ transisi) ≈ 65 menit"
+      }
+    ],
+    outcome: "Sesi presentasi kelas selesai. Setiap kelompok mendapat 8 menit presentasi, 4 menit tanya jawab, dan umpan balik langsung dari dosen dan rekan. Laporan akhir diperbaiki berdasarkan masukan hari ini."
+  }
+};
+</script>
+
+<!-- ===== [SHARED:JS] — jangan ubah blok ini antar pertemuan ===== -->
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const K=PAGE.id+":";
+const store={get(k,d){try{const v=localStorage.getItem(K+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(K+k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const widgets=$$(".w[data-widget]"); const done=new Set(store.get("done",[]));
+function markDone(id){done.add(id);store.set("done",[...done]);const el=$("#"+id);if(el)el.classList.add("done");updateProgress()}
+function updateProgress(){const p=widgets.length?Math.round(done.size/widgets.length*100):0;$("#pbar").style.width=p+"%";$("#ppct").textContent=p+"%"}
+const body=(el)=>{const d=document.createElement("div");d.className="wb";el.appendChild(d);return d};
+
+/* ---------- Poll ---------- */
+function poll(el,c){const b=body(el);const saved=store.get(el.id,null);
+  b.innerHTML=`<h3>${esc(c.q)}</h3><div class="opts"></div><div class="fb"></div>`;
+  const o=$(".opts",b),fb=$(".fb",b);
+  c.opts.forEach((x,i)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=x.t;bt.onclick=()=>pick(i);o.appendChild(bt)});
+  function pick(i){$$(".opt",o).forEach((e,j)=>e.classList.toggle("sel",i===j));fb.className="fb show ok";fb.innerHTML="<b>Insight:</b> "+esc(c.opts[i].why);store.set(el.id,i);markDone(el.id)}
+  if(saved!==null)pick(saved)}
+
+/* ---------- Checklist ---------- */
+function checklist(el,c){const b=body(el);const st=store.get(el.id,[]);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="ckl"></div><div class="fb"></div>`;
+  const box=$(".ckl",b),fb=$(".fb",b);
+  c.items.forEach((t,i)=>{const l=document.createElement("label");l.innerHTML=`<input type="checkbox"><span>${esc(t)}</span>`;const cb=$("input",l);cb.checked=st.includes(i);cb.onchange=chk;box.appendChild(l)});
+  function chk(){const v=$$("input",box).map((x,i)=>x.checked?i:-1).filter(i=>i>=0);store.set(el.id,v);if(v.length===c.items.length){fb.className="fb show ok";fb.textContent=c.doneMsg||"Selesai.";markDone(el.id)}else fb.className="fb"}
+  chk()}
+
+/* ---------- Flashcards ---------- */
+function flash(el,c){const b=body(el);let i=0;const known=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="flash"><div class="flash-in"><div class="face f"></div><div class="face b"></div></div></div>
+  <div class="fc-ctl"><button class="btn ghost" data-a="prev">‹ Sebelumnya</button><span class="cnt"></span><button class="btn ghost" data-a="next">Berikutnya ›</button><button class="btn" data-a="know">Saya paham ✓</button></div>`;
+  const fl=$(".flash",b);
+  function draw(){const x=c.cards[i];$(".f",b).textContent=x.f;$(".b",b).textContent=x.b;fl.classList.remove("flip");$(".cnt",b).textContent=`${i+1}/${c.cards.length} · paham ${known.size}`}
+  fl.onclick=()=>fl.classList.toggle("flip");
+  b.onclick=e=>{const a=e.target.dataset.a;if(!a)return;if(a==="next")i=(i+1)%c.cards.length;if(a==="prev")i=(i-1+c.cards.length)%c.cards.length;if(a==="know"){known.add(i);store.set(el.id,[...known]);if(known.size===c.cards.length)markDone(el.id);i=(i+1)%c.cards.length}draw()};
+  draw();if(known.size===c.cards.length)markDone(el.id)}
+
+/* ---------- Classify ---------- */
+function classify(el,c){const b=body(el);let pick=null;const asg={};
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="cls-pool"></div><div class="cls-bins"></div>
+  <p><button class="btn" data-a="chk">Periksa</button> <button class="btn ghost" data-a="rst">Ulangi</button> <span class="score"></span></p><div class="fb"></div>`;
+  const pool=$(".cls-pool",b),bins=$(".cls-bins",b),fb=$(".fb",b);
+  c.bins.forEach((n,bi)=>{const d=document.createElement("div");d.className="bin";d.tabIndex=0;d.dataset.b=bi;d.innerHTML=`<h4>${esc(n)}</h4>`;bins.appendChild(d)});
+  function render(){pool.innerHTML="";$$(".bin .cls-item",bins).forEach(e=>e.remove());
+    c.items.forEach((x,i)=>{const e=document.createElement("button");e.className="cls-item";e.textContent=x.t;e.dataset.i=i;
+      if(pick===i)e.classList.add("pick");
+      if(asg[i]!==undefined)$$(".bin",bins)[asg[i]].appendChild(e);else pool.appendChild(e)})}
+  b.onclick=e=>{const it=e.target.closest(".cls-item");const bin=e.target.closest(".bin");const a=e.target.dataset.a;
+    if(a==="rst"){for(const k in asg)delete asg[k];pick=null;fb.className="fb";$(".score",b).textContent="";render();return}
+    if(a==="chk"){if(Object.keys(asg).length<c.items.length){fb.className="fb show";fb.textContent="Tempatkan semua kartu terlebih dahulu.";return}
+      let s=0,html="<ul>";c.items.forEach((x,i)=>{const ok=asg[i]===x.a;if(ok)s++;html+=`<li>${ok?"✓":"✗"} <b>${esc(x.t)}</b> → <em>${esc(c.bins[x.a])}</em>. ${esc(x.why)}</li>`});html+="</ul>";
+      $$(".cls-item",b).forEach(el2=>{el2.classList.add(asg[el2.dataset.i]===c.items[el2.dataset.i].a?"right":"wrong")});
+      $(".score",b).textContent=`Skor ${s}/${c.items.length}`;fb.className="fb show ok";fb.innerHTML=html;markDone(el.id);return}
+    if(it&&(pool.contains(it)||bins.contains(it))){const i=+it.dataset.i;if(asg[i]!==undefined&&!bin){delete asg[i]}pick=i;render();return}
+    if(bin&&pick!==null){asg[pick]=+bin.dataset.b;pick=null;render()}};
+  render()}
+
+/* ---------- Scenario ---------- */
+function scenario(el,c){const b=body(el);
+  function show(id){const n=c.nodes[id];
+    b.innerHTML=`<h3>${esc(c.title)}</h3><p class="scn-text">${esc(n.text)}</p>`;
+    if(n.end){b.insertAdjacentHTML("beforeend",`<div class="scn-end"><b>Tinjauan 3 kacamata:</b> ${esc(n.lens)}</div><p><button class="btn ghost">Coba jalur lain</button></p>`);$(".btn",b).onclick=()=>show(c.start);markDone(el.id)}
+    else{const o=document.createElement("div");o.className="opts";n.choices.forEach(ch=>{const x=document.createElement("button");x.className="opt";x.textContent=ch.t;x.onclick=()=>show(ch.to);o.appendChild(x)});b.appendChild(o)}}
+  show(c.start)}
+
+/* ---------- Reflection ---------- */
+function reflect(el,c){const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt)}</p><textarea placeholder="Tulis di sini…"></textarea><p><small>${esc(c.hint||"")}</small></p><p><button class="btn" data-a="cp">Salin jawaban</button> <span class="cnt"></span></p>`;
+  const ta=$("textarea",b);ta.value=store.get(el.id,"");
+  const upd=()=>{const n=ta.value.trim().split(/\s+/).filter(Boolean).length;$(".cnt",b).textContent=n+" kata";if(n>=15)markDone(el.id)};
+  ta.oninput=()=>{store.set(el.id,ta.value);upd()};
+  $("[data-a=cp]",b).onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText(ta.value).then(()=>{e.target.textContent="Tersalin ✓";setTimeout(()=>e.target.textContent="Salin jawaban",1500)})};
+  upd()}
+
+/* ---------- Quiz ---------- */
+function quiz(el,c){const b=body(el);const ans=[];let i=0;
+  function show(){if(i>=c.items.length)return fin();const x=c.items[i];
+    b.innerHTML=`<h3>${esc(c.title)} · ${i+1}/${c.items.length}</h3><p><b>${esc(x.q)}</b></p><div class="opts"></div><div class="fb"></div><p><button class="btn" disabled>Lanjut ›</button></p>`;
+    const o=$(".opts",b),fb=$(".fb",b),nx=$(".btn",b);
+    x.o.forEach((t,j)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=t;bt.onclick=()=>{if(ans[i]!==undefined)return;ans[i]=j;$$(".opt",o).forEach((e,k)=>{if(k===x.a)e.classList.add("right");else if(k===j)e.classList.add("wrong")});fb.className="fb show "+(j===x.a?"ok":"");fb.innerHTML=(j===x.a?"<b>Benar.</b> ":"<b>Belum tepat.</b> ")+esc(x.why);nx.disabled=false;nx.textContent=i===c.items.length-1?"Lihat skor":"Lanjut ›"};o.appendChild(bt)});
+    nx.onclick=()=>{i++;show()}}
+  function fin(){const s=c.items.filter((x,k)=>ans[k]===x.a).length;const p=Math.round(s/c.items.length*100);
+    store.set(el.id+":score",p);
+    b.innerHTML=`<h3>Hasil kuis</h3><p class="score">${s}/${c.items.length} (${p}%)</p><p>${p>=80?"Sangat baik. Pemahamanmu kuat.":p>=60?"Cukup. Ulas butir yang salah.":"Perlu ulang. Baca kembali segmen 2–4."}</p><p><button class="btn ghost">Ulangi kuis</button></p>`;
+    $(".btn",b).onclick=()=>{ans.length=0;i=0;show()};markDone(el.id)}
+  show()}
+
+const R={poll,checklist,flash,classify,scenario,reflect,quiz};
+window.EHC={$,$$,store,esc,markDone,body};
+widgets.forEach(el=>{const t=el.dataset.widget;if(R[t]&&PAGE[el.id])R[t](el,PAGE[el.id]);if(done.has(el.id))el.classList.add("done")});
+updateProgress();
+
+/* ---------- Agenda & scrollspy ---------- */
+const ag=$("#agenda");const segs=$$(".seg");
+segs.forEach((s,i)=>{const a=document.createElement("a");a.href="#"+s.id;a.innerHTML=`${esc(s.dataset.title)}`;ag.appendChild(a)});
+const links=$$("a",ag);
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}})},{rootMargin:"-30% 0px -60% 0px"});
+segs.forEach(s=>io.observe(s));
+
+})();
+</script>
+<!-- ===== [/SHARED:JS] ===== -->
+<script>
+/* ===== [SHARED:VIZ-JS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+(function(){
+"use strict";
+const E=window.EHC; if(!E){return}
+const {$,$$,store,esc,markDone,body}=E;
+const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+const arr=x=>x==null?[]:Array.isArray(x)?x:[x];
+const list=(a,tag="ul")=>`<${tag}>${arr(a).map(x=>`<li>${esc(x)}</li>`).join("")}</${tag}>`;
+
+/* =============== FLOW: animasi alur proses antar aktor =============== */
+/* cfg: {title, sub, actors:[{id,icon,name,x,y,role,state,badge}], zones:[{x,y,w,h,label}],
+         steps:[{title,text,from,to,packet,label,count,bad,set:{id:'safe|warn|danger|lock|active'|['danger','teks']},law,tip,risk}], outcome} */
+function flow(el,c,opt){
+  opt=opt||{};const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title||"")}</h3>${c.sub?`<p>${esc(c.sub)}</p>`:""}
+  <div class="v-stage"><svg class="v-lines" viewBox="0 0 100 100" preserveAspectRatio="none"></svg><div class="v-layer"></div></div>
+  <div class="v-ctl"><button class="btn ghost" data-a="rs" title="Ulang dari awal">Ulang</button><button class="btn ghost" data-a="pv">‹ Mundur</button><button class="btn" data-a="pl">Putar otomatis</button><button class="btn ghost" data-a="nx">Lanjut ›</button>
+  <label>Kecepatan <select data-a="sp"><option value="1.6">Lambat</option><option value="1" selected>Normal</option><option value="0.6">Cepat</option></select></label></div>
+  <div class="v-rail"></div><div class="v-cap" aria-live="polite"></div>`;
+  const stage=$(".v-stage",b),svg=$(".v-lines",b),layer=$(".v-layer",b),rail=$(".v-rail",b),cap=$(".v-cap",b),play=$("[data-a=pl]",b);
+  const A={},pos={};
+  (c.zones||[]).forEach(z=>{const d=document.createElement("div");d.className="v-zone";d.style.cssText=`left:${z.x}%;top:${z.y}%;width:${z.w}%;height:${z.h}%`;d.textContent=z.label||"";layer.appendChild(d)});
+  c.actors.forEach(a=>{pos[a.id]=a;const d=document.createElement("div");d.className="v-actor r-"+(a.role||"neutral");d.style.cssText=`left:${a.x}%;top:${a.y}%`;
+    d.innerHTML=`<div class="v-ico">${a.icon}</div><div class="v-name">${esc(a.name)}</div><div class="v-badge"></div>`;layer.appendChild(d);A[a.id]=d});
+  const seenPairs=new Set(),L={};
+  c.steps.forEach(s=>arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const k=f+">"+t;if(f===t||seenPairs.has(k))return;seenPairs.add(k);
+    const ln=document.createElementNS("http://www.w3.org/2000/svg","line");ln.setAttribute("x1",pos[f].x);ln.setAttribute("y1",pos[f].y);ln.setAttribute("x2",pos[t].x);ln.setAttribute("y2",pos[t].y);svg.appendChild(ln);L[k]=ln})));
+  c.steps.forEach((s,i)=>{const r=document.createElement("button");r.textContent=`${i+1}. ${s.short||s.title}`;r.onclick=()=>{halt();go(i,true)};rail.appendChild(r)});
+  let cur=-1,tm=[],auto=false,max=-1,sp=1;
+  const T=(fn,ms)=>{const id=setTimeout(fn,ms);tm.push(id);return id};
+  const clr=()=>{tm.forEach(clearTimeout);tm=[];$$(".v-packet",layer).forEach(p=>p.remove())};
+  function states(i){
+    c.actors.forEach(a=>setSt(a.id,a.state||"",a.badge||""));
+    for(let k=0;k<=i;k++){const st=c.steps[k].set||{};for(const id in st){const v=st[id];Array.isArray(v)?setSt(id,v[0],v[1]||""):setSt(id,v,"")}}}
+  function setSt(id,s,badge){const d=A[id];if(!d)return;d.className=d.className.replace(/\bs-\w+/g,"").trim();if(s)d.classList.add("s-"+s);$(".v-badge",d).textContent=badge}
+  function fire(s){
+    const dur=reduce?1:900*sp,n=s.count||1;let d=0;
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{ if(f===t)return;
+      for(let k=0;k<n;k++){T(()=>{const a=pos[f],z=pos[t],p=document.createElement("div");p.className="v-packet";p.style.cssText=`left:${a.x}%;top:${a.y}%;--dur:${dur}ms`;
+        p.innerHTML=(s.packet||"✉️")+(s.label&&k===0?`<span class="v-plabel">${esc(s.label)}</span>`:"");layer.appendChild(p);void p.offsetWidth;
+        p.style.left=z.x+"%";p.style.top=z.y+"%";T(()=>{p.style.opacity=0;T(()=>p.remove(),320)},dur)},d+k*240*sp)}
+      d+=90*sp}));
+    return dur+(n-1)*240*sp+d}
+  function go(i,animate){
+    if(i<0||i>=c.steps.length)return;clr();cur=i;max=Math.max(max,i);const s=c.steps[i];
+    states(i-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const l=L[f+">"+t];if(l){l.classList.add("on");if(s.bad)l.classList.add("bad")}}));
+    arr(s.from).forEach(f=>{A[f]&&A[f].classList.add("s-active")});
+    const after=animate?fire(s):0;
+    T(()=>{states(i);arr(s.from).forEach(f=>{});},animate?Math.min(after,1100*sp):0);
+    $$("button",rail).forEach((r,k)=>{r.classList.toggle("on",k===i);r.classList.toggle("seen",k<i||k<=max&&k!==i)});
+    cap.innerHTML=`<span class="v-num">Langkah ${i+1} / ${c.steps.length}</span><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p>`
+      +((s.law||s.tip||s.risk)?`<div class="v-chips">${s.risk?`<span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span>`:""}${s.law?`<span class="v-chip law"><b>Dasar hukum</b>${esc(s.law)}</span>`:""}${s.tip?`<span class="v-chip tip"><b>Tips</b>${esc(s.tip)}</span>`:""}</div>`:"")
+      +(i===c.steps.length-1&&c.outcome?`<div class="v-outcome">${esc(c.outcome)}</div>`:"");
+    if(i===c.steps.length-1&&!opt.silent)markDone(el.id);
+    return after}
+  function halt(){auto=false;play.textContent="Putar otomatis"}
+  function step(){if(!auto)return;if(cur>=c.steps.length-1){halt();return}const after=go(cur+1,true);T(step,after+2600*sp)}
+  b.addEventListener("click",e=>{const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==="rs"){halt();clr();cur=-1;states(-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));$$("button",rail).forEach(r=>r.className="");cap.innerHTML="<span class=\"v-num\">Siap</span><h4>Tekan “Putar otomatis” atau “Lanjut”</h4><p>Setiap langkah menampilkan apa yang terjadi, dasar hukumnya, dan cara memutus rantainya.</p>"}
+    if(a==="nx"){halt();go(Math.min(cur+1,c.steps.length-1),true)}
+    if(a==="pv"){halt();go(Math.max(cur-1,0),false)}
+    if(a==="pl"){if(auto){halt();return}auto=true;play.textContent="Jeda";if(cur>=c.steps.length-1){cur=-1}step()}
+  });
+  $("[data-a=sp]",b).onchange=e=>{sp=+e.target.value};
+  b.querySelector("[data-a=rs]").click();
+}
+
+/* =============== EXPLORER: peta jenis / konsep dengan detail =============== */
+/* cfg: {title, intro, items:[{id,icon,name,tag,summary,how[],ex,impact,law,prev[],flow:'kunciFlow'}]} */
+function explorer(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3>${c.intro?`<p>${esc(c.intro)}</p>`:""}<div class="v-grid"></div><div class="v-detail-wrap"><p class="v-hintp"><em>Klik salah satu kartu untuk membuka penjelasan, contoh, dasar hukum, dan cara pencegahannya.</em></p></div>`;
+  const grid=$(".v-grid",b),wrap=$(".v-detail-wrap",b);
+  c.items.forEach((it,i)=>{const t=document.createElement("button");t.className="v-tile"+(seen.has(i)?" seen":"");t.innerHTML=`<span class="ic">${it.icon}</span><b>${esc(it.name)}</b><small>${esc(it.tag||"")}</small>`;t.onclick=()=>open(i);grid.appendChild(t)});
+  function open(i,tab){const it=c.items[i];seen.add(i);store.set(el.id,[...seen]);
+    $$(".v-tile",grid).forEach((t,k)=>{t.classList.toggle("sel",k===i);if(seen.has(k))t.classList.add("seen")});
+    const tabs=[["ap","Apa itu",true],["how","Cara kerja",it.how],["ex","Contoh",it.ex],["im","Dampak",it.impact],["law","Dasar hukum",it.law],["pv","Pencegahan",it.prev]].filter(x=>x[2]);
+    tab=tab||"ap";
+    const pane={ap:()=>`<p>${esc(it.summary)}</p>`,how:()=>list(it.how,"ol"),ex:()=>Array.isArray(it.ex)?list(it.ex):`<p>${esc(it.ex)}</p>`,im:()=>Array.isArray(it.impact)?list(it.impact):`<p>${esc(it.impact)}</p>`,law:()=>Array.isArray(it.law)?list(it.law):`<p>${esc(it.law)}</p>`,pv:()=>list(it.prev)};
+    wrap.innerHTML=`<div class="v-detail"><h3><span style="font-size:1.8rem">${it.icon}</span>${esc(it.name)}</h3><div class="v-tabs">${tabs.map(t=>`<button data-t="${t[0]}" class="${t[0]===tab?"on":""}">${t[1]}</button>`).join("")}</div><div class="v-pane">${pane[tab]()}</div>${it.flow&&PAGE[it.flow]?`<div class="v-sub"><button class="btn" data-f="1">Lihat animasi prosesnya</button><div class="v-flowbox"></div></div>`:""}</div>`;
+    wrap.onclick=e=>{const t=e.target.dataset.t;if(t){open(i,t)}if(e.target.dataset.f){e.target.style.display="none";flow($(".v-flowbox",wrap),PAGE[it.flow],{silent:true})}};
+    if(seen.size===c.items.length)markDone(el.id)}
+  if(seen.size===c.items.length)markDone(el.id)
+}
+
+/* =============== MOCK: layar HP / email / web / postingan dengan titik klik =============== */
+/* cfg: {title, kind:'chat|email|web|post', header:{name,sub,avatar,from,to,subject,url}, messages:[{from,time,parts}], cta, stats,
+         hotspots:[{id,label,why,decoy}], instruct}
+   parts: array string | {t:'teks', h:'idHotspot'} */
+function mock(el,c){
+  const b=body(el);const found=new Set(store.get(el.id,[]));const real=c.hotspots.filter(h=>!h.decoy);const H={};c.hotspots.forEach(h=>H[h.id]=h);
+  const P=parts=>arr(parts).map(p=>typeof p==="string"?esc(p):`<span class="v-hot" data-h="${p.h}" tabindex="0" role="button">${esc(p.t)}</span>`).join("");
+  const h=c.header||{};let inner="";
+  if(c.kind==="email"){inner=`<div class="v-bar"><span>✉️</span><b>Kotak masuk</b></div><div class="v-meta"><div><b>Dari:</b> ${P(h.from)}</div><div><b>Kepada:</b> ${P(h.to)}</div><div><b>Subjek:</b> ${P(h.subject)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="web"){inner=`<div class="v-bar"><span>🔒</span><div class="v-url">${P(h.url)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="post"){inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}</div><div class="v-stats">${esc(c.stats||"")}</div>`}
+  else{inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-msgs">${c.messages.map(m=>`<div class="v-msg ${m.from==="me"?"me":""}">${P(m.parts)}${m.time?`<time>${esc(m.time)}</time>`:""}</div>`).join("")}</div>`}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.instruct||"Klik bagian yang menurutmu mencurigakan. Hati-hati: ada juga bagian yang tampak janggal tetapi wajar.")}</p>
+  <div class="v-mockwrap"><div class="v-phone"><div class="v-screen ${c.kind||"chat"}">${inner}</div></div>
+  <div><div class="v-spec-lbl"><span>Tanda bahaya ditemukan</span><span class="cnt"></span></div><div class="v-prog"><i></i></div><p><button class="btn ghost" data-a="hint">Tampilkan petunjuk</button> <button class="btn ghost" data-a="reset">Ulangi</button></p><div class="v-finds"></div></div></div>`;
+  const scr=$(".v-phone",b),fin=$(".v-finds",b);
+  function upd(){const n=[...found].filter(id=>!H[id].decoy).length;$(".cnt",b).textContent=`${n} / ${real.length}`;$(".v-prog i",b).style.width=(n/real.length*100)+"%";if(n===real.length)markDone(el.id)}
+  function mark(id){const hs=H[id];if(!hs)return;found.add(id);store.set(el.id,[...found]);$$(`[data-h="${id}"]`,b).forEach(x=>x.classList.add(hs.decoy?"decoy":"found"));
+    if(!$(`[data-f="${id}"]`,fin)){const d=document.createElement("div");d.className="v-find"+(hs.decoy?" ok":"");d.dataset.f=id;d.innerHTML=`<b>${hs.decoy?"Ini wajar":"Tanda bahaya: "+esc(hs.label)}</b>${esc(hs.why)}`;fin.appendChild(d)}upd()}
+  b.addEventListener("click",e=>{const x=e.target.closest(".v-hot");if(x){mark(x.dataset.h);return}if(e.target.dataset.a==="hint"){scr.classList.toggle("v-hint")}if(e.target.dataset.a==="reset"){found.clear();store.set(el.id,[]);$$(".v-hot",b).forEach(x=>x.classList.remove("found","decoy"));fin.innerHTML="";scr.classList.remove("v-hint");upd()}});
+  b.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList.contains("v-hot"))mark(e.target.dataset.h)});
+  found.forEach(id=>mark(id));upd();
+}
+
+/* =============== TIMELINE =============== */
+/* cfg: {title, events:[{when,title,text,icon,law}]} */
+function timeline(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));let cur=0;
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="v-tl"><div class="v-tl-track"></div></div><div class="v-cap"></div><p><button class="btn ghost" data-a="p">‹ Sebelumnya</button> <button class="btn" data-a="n">Berikutnya ›</button></p>`;
+  const tr=$(".v-tl-track",b),cap=$(".v-cap",b);
+  c.events.forEach((ev,i)=>{const p=document.createElement("button");p.className="v-tl-pt";p.innerHTML=`<span class="dot">${ev.icon||"•"}</span><span class="when">${esc(ev.when)}</span><span class="tt">${esc(ev.title)}</span>`;p.onclick=()=>show(i);tr.appendChild(p)});
+  function show(i){cur=i;seen.add(i);store.set(el.id,[...seen]);const ev=c.events[i];
+    $$(".v-tl-pt",tr).forEach((p,k)=>{p.classList.toggle("on",k===i);p.classList.toggle("seen",seen.has(k))});
+    const pt=$(".v-tl-pt",tr)[i],sc=tr.parentElement;if(pt&&sc&&sc.scrollTo){sc.scrollTo({left:pt.getBoundingClientRect().left-sc.getBoundingClientRect().left+sc.scrollLeft-sc.clientWidth/2+pt.offsetWidth/2,behavior:reduce?"auto":"smooth"})}
+    cap.innerHTML=`<span class="v-num">${esc(ev.when)}</span><h4>${esc(ev.title)}</h4><p>${esc(ev.text)}</p>${ev.law?`<div class="v-chips"><span class="v-chip law"><b>Dasar hukum</b>${esc(ev.law)}</span></div>`:""}`;
+    if(seen.size===c.events.length)markDone(el.id)}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="n")show(Math.min(cur+1,c.events.length-1));if(a==="p")show(Math.max(cur-1,0))});
+  show(0);
+}
+
+/* =============== SPECTRUM: geser untuk melihat trade-off =============== */
+/* cfg: {title, prompt, left, right, stops:[{at,label,text,risk}]} */
+function spectrum(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"")}</p><div class="v-spec"><div class="v-spec-lbl"><span>‹ ${esc(c.left)}</span><span>${esc(c.right)} ›</span></div><input type="range" min="0" max="100" value="50" aria-label="${esc(c.title)}">
+  <div class="v-spec-bars"><div><small>${esc(c.left)}</small><div class="bar"><i></i></div></div><div><small>${esc(c.right)}</small><div class="bar r"><i></i></div></div></div></div><div class="v-cap"></div>`;
+  const rg=$("input",b),cap=$(".v-cap",b),bl=$(".bar i",b),br=$(".bar.r i",b);
+  function upd(){const v=+rg.value;bl.style.width=(100-v)+"%";br.style.width=v+"%";
+    let best=0,d=1e9;c.stops.forEach((s,i)=>{const x=Math.abs(s.at-v);if(x<d){d=x;best=i}});const s=c.stops[best];
+    cap.innerHTML=`<span class="v-num">${esc(s.label)}</span><p>${esc(s.text)}</p>${s.risk?`<div class="v-chips"><span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span></div>`:""}`;
+    seen.add(best);store.set(el.id,[...seen]);if(seen.size>=Math.min(3,c.stops.length))markDone(el.id)}
+  rg.oninput=upd;upd();
+}
+
+/* =============== ORDER: urutkan langkah =============== */
+/* cfg: {title, prompt, items:[{t,why}]} dalam urutan benar */
+function order(el,c){
+  const b=body(el);const n=c.items.length;
+  const idx=c.items.map((_,i)=>i);const sh=idx.map((_,i)=>idx[(i*3+2)%n]).filter((v,i,a)=>a.indexOf(v)===i);idx.forEach(i=>{if(!sh.includes(i))sh.push(i)});
+  let pool=sh.slice(),ans=[];if(pool.every((v,i)=>v===i)){pool.reverse()}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"Klik langkah satu per satu sesuai urutan yang benar. Klik langkah di kolom jawaban untuk membatalkannya.")}</p><div class="v-ord"><div><h4>Langkah acak</h4><div class="col pool"></div></div><div><h4>Urutan kamu</h4><div class="col ans"></div></div></div><p><button class="btn" data-a="chk" disabled>Periksa urutan</button> <button class="btn ghost" data-a="rst">Ulangi</button></p><div class="fb"></div>`;
+  const P=$(".pool",b),Aw=$(".ans",b),chk=$("[data-a=chk]",b),fb=$(".fb",b);
+  function draw(res){P.innerHTML="";Aw.innerHTML="";pool.forEach(i=>{const x=document.createElement("button");x.className="it";x.textContent=c.items[i].t;x.onclick=()=>{ans.push(i);pool=pool.filter(v=>v!==i);fb.className="fb";draw()};P.appendChild(x)});
+    ans.forEach((i,k)=>{const x=document.createElement("button");x.className="it"+(res?(i===k?" right":" wrong"):"");x.innerHTML=`<i>${k+1}</i>`+esc(c.items[i].t);x.onclick=()=>{if(res)return;ans=ans.filter(v=>v!==i);pool.push(i);draw()};Aw.appendChild(x)});
+    chk.disabled=pool.length>0}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="rst"){pool=sh.slice();ans=[];fb.className="fb";draw()}
+    if(a==="chk"){const ok=ans.filter((v,k)=>v===k).length;draw(true);fb.className="fb show"+(ok===n?" ok":"");fb.innerHTML=`<b>${ok}/${n} posisi tepat.</b><ol>${c.items.map(x=>`<li>${esc(x.t)}${x.why?`: ${esc(x.why)}`:""}</li>`).join("")}</ol>`;markDone(el.id)}});
+  draw();
+}
+
+/* ---------- registrasi ---------- */
+const V={flow,explorer,mock,timeline,spectrum,order};
+$$(".w[data-widget]").forEach(el=>{const t=el.dataset.widget;if(V[t]&&PAGE[el.id])V[t](el,PAGE[el.id])});
+/* reveal on scroll */
+if(!reduce&&"IntersectionObserver" in window){document.documentElement.classList.add("reveal-on");
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{rootMargin:"0px 0px -8% 0px"});
+  $$(".seg").forEach(s=>io.observe(s));
+  setTimeout(()=>$$(".seg").forEach(s=>s.classList.add("in")),2500)}
+})();
+/* ===== [/SHARED:VIZ-JS] ===== */
+</script>
+
+<!-- ===================== WIDGET BARU (di luar SHARED): rotation & rubric ===================== -->
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const K=PAGE.id+":x:";
+const st={get(k,d){try{const v=localStorage.getItem(K+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(K+k,JSON.stringify(v))}catch(e){}}};
+const fmt=s=>String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
+function sync(){const ws=$$(".w[data-widget]");const n=ws.filter(w=>w.classList.contains("done")).length;$("#pbar").style.width=(ws.length?Math.round(n/ws.length*100):0)+"%";$("#ppct").textContent=(ws.length?Math.round(n/ws.length*100):0)+"%"}
+function mark(el){el.classList.add("done");const a=st.get("done",[]);if(!a.includes(el.id)){a.push(el.id);st.set("done",a)}sync()}
+
+/* ---------- Rotation: giliran + timer ---------- */
+function rotation(el,c){
+  const b=document.createElement("div");b.className="wb";el.appendChild(b);
+  const n=c.groups.length;
+  let order=st.get(el.id+":order",null);if(!order||order.length!==n)order=c.groups.map((_,i)=>i);
+  let topics=st.get(el.id+":topics",c.groups.map(()=>""));
+  let fin=st.get(el.id+":fin",[]);
+  let phase="idle",running=false,left=0,deadline=0,tick=null;
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.hint||"")}</p>
+  <div class="rot-list"></div>
+  <div class="rot-clock" role="timer"><div class="ph"></div><div class="tm">00:00</div><div class="bar"><i></i></div></div>
+  <div class="x-row"><button class="btn" data-a="main"></button><button class="btn ghost" data-a="skip">Lewati tahap ›</button><button class="btn ghost" data-a="shuf">Acak urutan</button><button class="btn ghost" data-a="rst">Reset jadwal</button></div>
+  <div class="fb"></div>`;
+  const list=$(".rot-list",b),clock=$(".rot-clock",b),ph=$(".ph",b),tm=$(".tm",b),bar=$(".bar i",b),fb=$(".fb",b);
+  const mainB=$("[data-a=main]",b),skipB=$("[data-a=skip]",b),shufB=$("[data-a=shuf]",b);
+  const slot=(c.present+c.qa);
+  const cur=()=>order.findIndex(g=>!fin.includes(g));
+  function renderList(){
+    list.innerHTML="";const ci=cur();
+    order.forEach((g,pos)=>{
+      const r=document.createElement("div");r.className="rot-row"+(fin.includes(g)?" fin":(pos===ci?" now":""));
+      const off=pos*slot;
+      r.innerHTML=`<div class="rot-n">${pos+1}</div><div><b>${esc(c.groups[g])}</b> <span class="rot-meta">· mulai menit ke-${off} dari sesi presentasi · ${c.present}′ + ${c.qa}′ tanya jawab ${fin.includes(g)?"· selesai ✓":(pos===ci?"· giliran sekarang":"")}</span><div class="x-row"><input class="x-in" type="text" maxlength="140" placeholder="Judul atau topik kasus" aria-label="Topik ${esc(c.groups[g])}"></div></div>`;
+      const inp=$("input",r);inp.value=topics[g]||"";inp.oninput=()=>{topics[g]=inp.value;st.set(el.id+":topics",topics);draw()};
+      list.appendChild(r)});
+  }
+  function draw(){
+    const ci=cur();
+    const gname=ci>=0?c.groups[order[ci]]:"";const tp=ci>=0&&topics[order[ci]]?" · "+topics[order[ci]]:"";
+    clock.classList.toggle("low",(phase==="present"||phase==="qa")&&left>0&&left<=60);
+    clock.classList.toggle("zero",(phase==="present"||phase==="qa")&&left===0);
+    if(ci<0){ph.textContent="Semua kelompok selesai";tm.textContent="00:00";bar.style.width="100%";mainB.textContent="Semua selesai";mainB.disabled=true;skipB.disabled=true;shufB.disabled=true;return}
+    mainB.disabled=false;skipB.disabled=(phase==="idle");shufB.disabled=!(phase==="idle"&&fin.length===0);
+    if(phase==="idle"){ph.textContent="Siap · "+gname+tp;tm.textContent=fmt(c.present*60);bar.style.width="0%";mainB.textContent="▶ Mulai presentasi "+gname}
+    else{
+      const tot=(phase==="present"?c.present:c.qa)*60;
+      ph.textContent=(phase==="present"?"Presentasi":"Tanya jawab")+" · "+gname+tp;
+      tm.textContent=fmt(left);bar.style.width=Math.round((tot-left)/tot*100)+"%";
+      if(left===0)mainB.textContent=phase==="present"?"▶ Mulai tanya jawab":"✓ Selesai, kelompok berikutnya";
+      else mainB.textContent=running?"❚❚ Jeda":"▶ Lanjut";
+    }
+  }
+  function loop(){clearInterval(tick);tick=setInterval(()=>{left=Math.max(0,Math.ceil((deadline-Date.now())/1000));if(left<=0){clearInterval(tick);tick=null;running=false;fb.className="fb show";fb.textContent=phase==="present"?"Waktu presentasi habis. Lanjut ke tanya jawab.":"Waktu tanya jawab habis. Persilakan kelompok berikutnya."}draw()},250)}
+  function begin(p){phase=p;left=(p==="present"?c.present:c.qa)*60;deadline=Date.now()+left*1000;running=true;fb.className="fb";loop();draw()}
+  function finish(){const ci=cur();if(ci>=0){fin.push(order[ci]);st.set(el.id+":fin",fin);mark(el)}clearInterval(tick);tick=null;running=false;phase="idle";left=0;fb.className="fb";renderList();draw()}
+  b.onclick=e=>{const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==="main"){
+      if(phase==="idle")begin("present");
+      else if(left===0){if(phase==="present")begin("qa");else finish()}
+      else if(running){clearInterval(tick);tick=null;running=false;draw()}
+      else{deadline=Date.now()+left*1000;running=true;loop();draw()}}
+    else if(a==="skip"){if(phase==="present")begin("qa");else if(phase==="qa")finish()}
+    else if(a==="shuf"){if(phase==="idle"&&fin.length===0){for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}st.set(el.id+":order",order);renderList();draw()}}
+    else if(a==="rst"){clearInterval(tick);tick=null;running=false;phase="idle";left=0;fin=[];st.set(el.id+":fin",fin);fb.className="fb";renderList();draw()}};
+  renderList();draw();
+  if(fin.length)el.classList.add("done");
+}
+
+/* ---------- Rubric ---------- */
+function rubric(el,c){
+  const b=document.createElement("div");b.className="wb";el.appendChild(b);
+  const nc=c.crit.length;
+  let S=st.get(el.id+":s",{});
+  let ev=0,gi=0;
+  const key=(e,g)=>c.evaluators[e]+"|"+g;
+  const get=(e,g)=>S[key(e,g)]||c.crit.map(()=>0);
+  const total=arr=>{let t=0;arr.forEach((v,i)=>{t+=c.crit[i].w*v/4});return Math.round(t*10)/10};
+  const full=arr=>arr.every(v=>v>0);
+  const cat=t=>t>=85?"Sangat baik":t>=70?"Baik":t>=55?"Cukup":"Perlu perbaikan";
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.hint||"")}</p>
+  <div class="x-row seg-set" role="group" aria-label="Penilai"></div>
+  <div class="x-row"><label for="${el.id}-g"><b>Kelompok yang dinilai:</b></label><select class="x-sel" id="${el.id}-g"></select></div>
+  <div class="rub-body"></div>
+  <div class="rub-total"><span class="score"></span><span class="cat"></span></div>
+  <div class="x-row"><button class="btn ghost" data-a="clr">Kosongkan skor kelompok ini</button><button class="btn" data-a="cp">Salin ringkasan</button><span class="cnt"></span></div>
+  <div class="tablewrap"><table class="t"><thead><tr><th>Kelompok</th>${c.evaluators.map(x=>`<th>${esc(x)}</th>`).join("")}<th>Rata-rata</th></tr></thead><tbody class="sum"></tbody></table></div>`;
+  const seg=$(".seg-set",b),sel=$(".x-sel",b),bd=$(".rub-body",b),sc=$(".score",b),ct=$(".cat",b),sum=$(".sum",b);
+  c.evaluators.forEach((x,i)=>{const bt=document.createElement("button");bt.className="tbtn";bt.textContent="Penilai: "+x;bt.setAttribute("aria-pressed",i===ev);bt.onclick=()=>{ev=i;draw()};seg.appendChild(bt)});
+  c.groups.forEach((g,i)=>{const o=document.createElement("option");o.value=i;o.textContent=g;sel.appendChild(o)});
+  sel.onchange=()=>{gi=+sel.value;draw()};
+  function save(){st.set(el.id+":s",S)}
+  function drawBody(){
+    const arr=get(ev,gi);bd.innerHTML="";
+    c.crit.forEach((k,i)=>{
+      const d=document.createElement("div");d.className="rub-crit";
+      d.innerHTML=`<h4>${i+1}. ${esc(k.n)}<span class="wt">bobot ${k.w}</span></h4><div class="rub-lv" role="group" aria-label="Skor ${esc(k.n)}"></div><div class="rub-d" aria-live="polite"></div>`;
+      const lv=$(".rub-lv",d),dd=$(".rub-d",d);
+      for(let s=1;s<=4;s++){const bt=document.createElement("button");bt.textContent=s;bt.title=c.levels[s-1]+": "+k.d[s-1];bt.setAttribute("aria-label","Skor "+s+", "+c.levels[s-1]);bt.setAttribute("aria-pressed",arr[i]===s);
+        bt.onclick=()=>{const a=get(ev,gi).slice();a[i]=a[i]===s?0:s;S[key(ev,gi)]=a;save();draw()};lv.appendChild(bt)}
+      dd.textContent=arr[i]?c.levels[arr[i]-1]+": "+k.d[arr[i]-1]:"Belum dinilai. Arahkan kursor atau fokus ke angka untuk melihat deskripsi tiap level.";
+      bd.appendChild(d)});
+  }
+  function drawSum(){
+    sum.innerHTML="";
+    c.groups.forEach((g,gx)=>{
+      const vals=c.evaluators.map((_,e)=>{const a=S[key(e,gx)];return a&&full(a)?total(a):null});
+      const got=vals.filter(v=>v!==null);
+      const avg=got.length?Math.round(got.reduce((x,y)=>x+y,0)/got.length*10)/10:null;
+      const tr=document.createElement("tr");
+      tr.innerHTML=`<td>${esc(g)}</td>${vals.map(v=>`<td>${v===null?"–":v}</td>`).join("")}<td><b>${avg===null?"–":avg}</b></td>`;
+      sum.appendChild(tr)});
+  }
+  function draw(){
+    $$("button",seg).forEach((x,i)=>x.setAttribute("aria-pressed",i===ev));
+    sel.value=gi;drawBody();
+    const arr=get(ev,gi);const t=total(arr);const f=full(arr);
+    sc.textContent=t+" / 100";ct.textContent=f?"Kategori (usulan): "+cat(t):"Lengkapi semua kriteria ("+arr.filter(v=>v>0).length+"/"+nc+" terisi)";
+    drawSum();
+    if(Object.keys(S).some(k=>full(S[k])))mark(el);
+  }
+  b.onclick=e=>{const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==="clr"){delete S[key(ev,gi)];save();draw()}
+    if(a==="cp"){const lines=["Ringkasan rubrik · Pertemuan 15"];c.groups.forEach((g,gx)=>{lines.push(g+": "+c.evaluators.map((x,e)=>{const arr=S[key(e,gx)];return x+" "+(arr&&full(arr)?total(arr):"-")}).join(", "))});
+      const txt=lines.join("\n");const cn=$(".cnt",b);
+      if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>{cn.textContent="Tersalin ✓";setTimeout(()=>cn.textContent="",1500)})}};
+  draw();
+}
+
+const X={rotation,rubric};
+$$(".w[data-widget]").forEach(el=>{const t=el.dataset.widget;if(X[t]&&PAGE[el.id])X[t](el,PAGE[el.id])});
+const saved=st.get("done",[]);saved.forEach(id=>{const e=document.getElementById(id);if(e)e.classList.add("done")});
+const mo=new MutationObserver(sync);$$(".w[data-widget]").forEach(w=>mo.observe(w,{attributes:true,attributeFilter:["class"]}));
+sync();
+})();
+</script>
+</body>
+</html>

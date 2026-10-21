@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pertemuan 7 — Kejahatan Siber I: Hacking, Malware, Ransomware, DDoS | Etika Hukum Cyber</title>
+<style>
+/* ===== [SHARED:CSS] — jangan ubah blok ini antar pertemuan, kecuali --accent ===== */
+:root{
+  --accent:#be123c; --accent-soft:#ffe4e6; --accent-ink:#881337;
+  --bg:#f6f7f4; --card:#ffffff; --ink:#1c2321; --muted:#5b6762; --line:#dfe4e0;
+  --ok:#15803d; --ok-soft:#dcfce7; --bad:#b91c1c; --bad-soft:#fee2e2; --warn:#b45309; --warn-soft:#fef3c7;
+  --radius:14px; --shadow:0 1px 2px rgba(20,30,25,.06),0 6px 20px rgba(20,30,25,.06);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16.5px}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;letter-spacing:-.01em}
+h2{font-size:1.55rem} h3{font-size:1.15rem} p{margin:.6em 0}
+a{color:var(--accent)}
+button{font:inherit;cursor:pointer}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(246,247,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-weight:700;font-size:.95rem;white-space:nowrap}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
+.progress{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress>i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+.pct{font-size:.85rem;font-weight:700;min-width:42px;text-align:right}
+.tbtn{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 12px;font-size:.82rem;font-weight:600}
+.tbtn[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.layout{max-width:1180px;margin:0 auto;padding:24px 20px 80px;display:grid;grid-template-columns:230px 1fr;gap:28px}
+nav.agenda{position:sticky;top:76px;align-self:start;max-height:calc(100vh - 96px);overflow:auto}
+nav.agenda h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+nav.agenda a{display:block;text-decoration:none;color:var(--ink);padding:8px 10px;border-radius:10px;font-size:.88rem;border-left:3px solid transparent}
+nav.agenda a span{display:block;font-size:.72rem;color:var(--muted)}
+nav.agenda a:hover{background:var(--card)}
+nav.agenda a.active{background:var(--accent-soft);border-left-color:var(--accent);font-weight:600}
+.hero{background:linear-gradient(135deg,var(--accent-ink),var(--accent));color:#fff;border-radius:22px;padding:34px 34px 28px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border-radius:99px;padding:3px 12px;font-size:.78rem;font-weight:600;letter-spacing:.04em}
+.hero h1{font-size:2.05rem;margin:.5em 0 .3em}
+.hero p{max-width:62ch;opacity:.92}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:18px}
+.meta div{background:rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;font-size:.84rem}
+.meta b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;opacity:.75}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:16px 0;box-shadow:var(--shadow)}
+.seg{margin:34px 0}
+.seg-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.seg-head .num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.seg-head h2{margin:0;flex:1;min-width:200px}
+.chip{display:inline-block;background:var(--accent-soft);color:var(--accent-ink);border-radius:99px;padding:3px 11px;font-size:.76rem;font-weight:700}
+.chip.act{background:#ede9fe;color:#5b21b6}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);color:var(--accent-ink);border-radius:0 12px 12px 0;padding:12px 16px;margin:14px 0}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft);color:#78350f}
+.callout.law{border-color:#1d4ed8;background:#dbeafe;color:#1e3a8a}
+.callout b.t{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfdfc}
+.mini h3{margin-bottom:.3em}
+table.t{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
+table.t th,table.t td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+table.t th{background:var(--accent-soft);color:var(--accent-ink)}
+.tablewrap{overflow-x:auto}
+details.acc{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:#fff}
+details.acc summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details.acc summary::after{content:"+";font-weight:700;color:var(--accent)}
+details.acc[open] summary::after{content:"–"}
+details.acc>div{padding:0 16px 14px}
+/* interactive widgets */
+.w{border:2px solid var(--accent);border-radius:var(--radius);padding:20px 22px;margin:18px 0;background:#fff;position:relative}
+.w>.w-label{position:absolute;top:-12px;left:16px;background:var(--accent);color:#fff;border-radius:99px;font-size:.72rem;font-weight:700;padding:2px 12px;letter-spacing:.05em;text-transform:uppercase}
+.w.done{border-color:var(--ok)} .w.done>.w-label{background:var(--ok)}
+.w h3{margin-top:.2em}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 18px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.opts{display:grid;gap:8px;margin:12px 0}
+.opt{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px}
+.opt:hover{border-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--warn-soft);color:#78350f;font-size:.93rem;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--ok-soft);color:#14532d}
+.flash{perspective:900px;max-width:520px;margin:12px auto}
+.flash-in{position:relative;min-height:190px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.flash.flip .flash-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:22px;display:grid;place-items:center;text-align:center;font-size:1.05rem}
+.face.f{background:var(--accent);color:#fff;font-weight:700;font-size:1.25rem}
+.face.b{background:var(--accent-soft);color:var(--accent-ink);transform:rotateY(180deg)}
+.fc-ctl{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.cls-pool,.cls-bins{display:grid;gap:10px}
+.cls-bins{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:14px}
+.cls-item{border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;text-align:left}
+.cls-item.pick{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.cls-item.right{border-color:var(--ok);background:var(--ok-soft)}
+.cls-item.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.bin{border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:110px;cursor:pointer;background:#fcfdfc}
+.bin:hover{border-color:var(--accent)}
+.bin h4{font-size:.9rem;margin:0 0 8px;color:var(--accent-ink)}
+.bin .cls-item{margin-bottom:6px;font-size:.88rem;cursor:pointer}
+.scn-text{font-size:1.02rem}
+.scn-end{border-radius:12px;padding:14px 16px;background:var(--accent-soft);color:var(--accent-ink);margin-top:10px}
+textarea{width:100%;min-height:96px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;resize:vertical}
+textarea:focus,.opt:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+.score{font-size:1.4rem;font-weight:800;color:var(--accent)}
+.ckl label{display:flex;gap:10px;align-items:flex-start;padding:7px 4px;cursor:pointer}
+.ckl input{margin-top:.38em;accent-color:var(--accent)}
+.bars .bar{margin:8px 0}
+.bars .bar>div{height:26px;border-radius:8px;background:var(--accent-soft);position:relative;overflow:hidden}
+.bars .bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);opacity:.85;width:0;transition:width .5s}
+.bars .bar span{position:absolute;left:10px;top:2px;font-size:.84rem;font-weight:600;color:#0b1f1c;z-index:1}
+.refs li{margin:.5em 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 0 10px}
+@media(max-width:860px){.layout{grid-template-columns:1fr}nav.agenda{display:none}.hero h1{font-size:1.6rem}.brand small{display:none}}
+@media print{.topbar,nav.agenda{display:none!important}.layout{display:block}.card,.w{box-shadow:none;break-inside:avoid}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* ===== [/SHARED:CSS] ===== */
+/* ===== [SHARED:VIZ-CSS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+/* hero hidup */
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 88% 15%,rgba(255,255,255,.22),transparent 42%),radial-gradient(circle at 8% 95%,rgba(255,255,255,.12),transparent 40%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:linear-gradient(115deg,transparent 30%,#000);mask-image:linear-gradient(115deg,transparent 30%,#000);animation:v-grid 22s linear infinite}
+.hero>*{position:relative;z-index:1}
+@keyframes v-grid{to{background-position:36px 36px}}
+/* reveal saat scroll */
+.reveal-on .seg{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal-on .seg.in{opacity:1;transform:none}
+.seg-head .num{box-shadow:0 0 0 5px var(--accent-soft)}
+
+/* ---------- STAGE (flow) ---------- */
+.v-stage{position:relative;aspect-ratio:2/1;min-height:300px;border-radius:16px;overflow:hidden;color:#e8eefc;
+  background:#0a1120;background-image:radial-gradient(ellipse at 50% -10%,#1b2d57 0,transparent 62%),linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:auto,30px 30px,30px 30px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 10px 30px rgba(10,17,32,.28)}
+.v-lines{position:absolute;inset:0;width:100%;height:100%}
+.v-lines line{stroke:rgba(255,255,255,.16);stroke-width:1.5;stroke-dasharray:4 5;vector-effect:non-scaling-stroke;transition:stroke .4s}
+.v-lines line.on{stroke:#7dd3fc;stroke-width:2.5;stroke-dasharray:6 6;animation:v-dash 1s linear infinite}
+.v-lines line.on.bad{stroke:#fb7185}
+@keyframes v-dash{to{stroke-dashoffset:-24}}
+.v-actor{position:absolute;transform:translate(-50%,-50%);width:104px;text-align:center;z-index:2}
+.v-ico{width:60px;height:60px;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;font-size:29px;background:#16213b;border:2px solid #3a4a70;transition:border-color .4s,box-shadow .4s,background .4s,transform .3s}
+.v-name{font-size:.74rem;font-weight:700;line-height:1.15;text-shadow:0 1px 3px #000}
+.v-badge{display:inline-block;margin-top:3px;font-size:.64rem;font-weight:700;padding:1px 8px;border-radius:99px;background:rgba(255,255,255,.12);color:#e8eefc;min-height:0;transition:background .3s}
+.v-badge:empty{display:none}
+.v-actor.r-attacker .v-ico{border-color:#fb7185;background:#2a1220}
+.v-actor.r-victim .v-ico{border-color:#38bdf8}
+.v-actor.s-safe .v-ico{border-color:#4ade80;box-shadow:0 0 20px #4ade8070}
+.v-actor.s-safe .v-badge{background:#14532d}
+.v-actor.s-warn .v-ico{border-color:#fbbf24;box-shadow:0 0 22px #fbbf2480;animation:v-pulse 1.4s infinite}
+.v-actor.s-warn .v-badge{background:#78350f}
+.v-actor.s-danger .v-ico{border-color:#f43f5e;background:#3a1020;box-shadow:0 0 26px #f43f5e90;animation:v-shake .5s 2,v-pulse 1.4s .5s infinite}
+.v-actor.s-danger .v-badge{background:#881337}
+.v-actor.s-lock .v-ico{border-color:#a78bfa;background:#231a45;box-shadow:0 0 22px #a78bfa80}
+.v-actor.s-lock .v-badge{background:#4c1d95}
+.v-actor.s-active .v-ico{border-color:#7dd3fc;box-shadow:0 0 22px #7dd3fc80;transform:scale(1.08)}
+@keyframes v-pulse{50%{box-shadow:0 0 34px currentColor}}
+@keyframes v-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.v-packet{position:absolute;transform:translate(-50%,-50%);font-size:22px;z-index:3;pointer-events:none;
+  transition:left var(--dur,1000ms) cubic-bezier(.5,0,.3,1),top var(--dur,1000ms) cubic-bezier(.5,0,.3,1),opacity .3s;filter:drop-shadow(0 0 7px rgba(125,211,252,.9))}
+.v-plabel{position:absolute;left:50%;top:-20px;transform:translateX(-50%);white-space:nowrap;font-size:.64rem;font-weight:700;background:#0b1220;border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:1px 6px;color:#e8eefc}
+.v-zone{position:absolute;border:1.5px dashed rgba(255,255,255,.22);border-radius:14px;z-index:1;font-size:.64rem;color:rgba(255,255,255,.55);padding:3px 9px;pointer-events:none}
+.v-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 8px}
+.v-ctl .btn{padding:7px 14px}
+.v-ctl select{font:inherit;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#fff}
+.v-rail{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px}
+.v-rail button{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.78rem;font-weight:600;color:var(--muted)}
+.v-rail button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.v-rail button.seen{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+.v-cap{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:12px 16px;background:#fcfdfc;min-height:96px}
+.v-cap .v-num{font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.v-cap h4{margin:.1em 0 .25em;font-size:1.05rem}
+.v-cap p{margin:.3em 0}
+.v-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.v-chip{border-radius:10px;padding:5px 10px;font-size:.82rem;line-height:1.4}
+.v-chip.law{background:#dbeafe;color:#1e3a8a}
+.v-chip.tip{background:var(--ok-soft);color:#14532d}
+.v-chip.risk{background:var(--bad-soft);color:#7f1d1d}
+.v-outcome{margin-top:10px;border-radius:12px;padding:12px 16px;background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+
+/* ---------- EXPLORER ---------- */
+.v-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:10px;margin:12px 0}
+.v-tile{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:14px 10px;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+.v-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--accent)}
+.v-tile .ic{font-size:2rem;display:block;margin-bottom:4px}
+.v-tile b{display:block;font-size:.9rem;line-height:1.2}
+.v-tile small{color:var(--muted);font-size:.72rem}
+.v-tile.sel{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 0 3px var(--accent-soft)}
+.v-tile.seen::after{content:"✓";position:absolute;top:6px;right:9px;color:var(--ok);font-weight:800}
+.v-detail{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fcfdfc;animation:v-in .35s}
+@keyframes v-in{from{opacity:0;transform:translateY(8px)}}
+.v-detail h3{display:flex;align-items:center;gap:10px}
+.v-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.v-tabs button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.8rem;font-weight:600}
+.v-tabs button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.v-pane ul,.v-pane ol{margin:.3em 0 .3em 1.2em;padding:0}
+.v-pane li{margin:.3em 0}
+.v-sub{margin-top:12px}
+
+/* ---------- MOCK (layar HP / email / web / post) ---------- */
+.v-mockwrap{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:18px;align-items:start}
+.v-phone{background:#0f172a;border-radius:30px;padding:10px;box-shadow:0 14px 34px rgba(15,23,42,.3);max-width:360px;width:100%;margin:0 auto}
+.v-screen{background:#f3f4f6;border-radius:22px;overflow:hidden;min-height:380px;display:flex;flex-direction:column;font-size:.9rem}
+.v-bar{background:#0f766e;color:#fff;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.v-bar .av{width:34px;height:34px;border-radius:50%;background:#ffffff33;display:grid;place-items:center;font-size:1.1rem}
+.v-bar b{display:block;font-size:.9rem;line-height:1.1}.v-bar small{opacity:.8;font-size:.7rem}
+.v-msgs{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1;background:#e5ded5}
+.v-msg{max-width:84%;padding:8px 11px;border-radius:12px;background:#fff;box-shadow:0 1px 1px rgba(0,0,0,.12);line-height:1.45}
+.v-msg.me{align-self:flex-end;background:#d9fdd3}
+.v-msg time{display:block;text-align:right;font-size:.62rem;color:#6b7280;margin-top:2px}
+.v-screen.email,.v-screen.web,.v-screen.post{background:#fff}
+.v-screen.email .v-bar{background:#334155}.v-screen.web .v-bar{background:#e5e7eb;color:#111827}.v-screen.post .v-bar{background:#1d4ed8}
+.v-url{background:#fff;border:1px solid #d1d5db;border-radius:99px;padding:5px 12px;flex:1;font-size:.76rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.v-body{padding:14px 16px;flex:1}.v-body p{margin:.55em 0}
+.v-meta{padding:8px 16px;border-bottom:1px solid #e5e7eb;font-size:.78rem;color:#4b5563}
+.v-meta b{color:#111827}
+.v-cta{display:inline-block;background:#2563eb;color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;margin-top:6px}
+.v-stats{padding:8px 16px;border-top:1px solid #e5e7eb;font-size:.78rem;color:#6b7280}
+.v-hot{cursor:pointer;border-radius:4px;transition:background .2s,box-shadow .2s;border-bottom:2px dotted transparent}
+.v-hint .v-hot{border-bottom-color:#f59e0b;animation:v-blink 1.4s infinite}
+@keyframes v-blink{50%{background:#fde68a}}
+.v-hot:hover{background:#fde68a}
+.v-hot.found{background:#fecaca;box-shadow:0 0 0 2px #ef4444;border-radius:4px;animation:none}
+.v-hot.decoy{background:#dcfce7;box-shadow:0 0 0 2px #22c55e;animation:none}
+.v-finds{display:grid;gap:8px}
+.v-find{border-left:4px solid var(--bad);background:var(--bad-soft);border-radius:0 10px 10px 0;padding:8px 12px;font-size:.88rem;animation:v-in .3s}
+.v-find.ok{border-color:var(--ok);background:var(--ok-soft)}
+.v-find b{display:block}
+.v-prog{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+.v-prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+
+/* ---------- TIMELINE ---------- */
+.v-tl{position:relative;margin:14px 0 6px;overflow-x:auto;padding:22px 6px 10px}
+.v-tl-track{display:flex;gap:0;min-width:max-content;position:relative}
+.v-tl-track::before{content:"";position:absolute;left:30px;right:30px;top:15px;height:4px;background:var(--line);border-radius:4px}
+.v-tl-pt{width:128px;text-align:center;position:relative;background:none;border:0;padding:0 4px}
+.v-tl-pt .dot{width:34px;height:34px;margin:0 auto 6px;border-radius:50%;background:#fff;border:3px solid var(--line);display:grid;place-items:center;position:relative;z-index:1;transition:all .25s;font-size:1rem}
+.v-tl-pt .when{display:block;font-weight:800;font-size:.8rem;color:var(--accent-ink)}
+.v-tl-pt .tt{display:block;font-size:.74rem;color:var(--muted);line-height:1.25}
+.v-tl-pt.seen .dot{border-color:var(--accent)}
+.v-tl-pt.on .dot{background:var(--accent);border-color:var(--accent);transform:scale(1.25);box-shadow:0 0 0 6px var(--accent-soft)}
+
+/* ---------- SPECTRUM ---------- */
+.v-spec-lbl{display:flex;justify-content:space-between;font-weight:700;font-size:.9rem}
+.v-spec input[type=range]{width:100%;accent-color:var(--accent);margin:10px 0 4px;height:28px}
+.v-spec-bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.v-spec-bars .bar{height:14px;background:var(--line);border-radius:99px;overflow:hidden}
+.v-spec-bars .bar i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.v-spec-bars .bar.r i{background:#ea580c}
+
+/* ---------- ORDER ---------- */
+.v-ord{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.v-ord h4{margin:0 0 6px;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.v-ord .col{display:grid;gap:6px;align-content:start;min-height:80px}
+.v-ord .it{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:.9rem}
+.v-ord .it:hover{border-color:var(--accent)}
+.v-ord .it.right{border-color:var(--ok);background:var(--ok-soft)}.v-ord .it.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.v-ord .it i{font-style:normal;font-weight:800;color:var(--accent);margin-right:6px}
+@media(max-width:760px){.v-mockwrap,.v-ord{grid-template-columns:1fr}.v-stage{min-height:340px;aspect-ratio:1.25/1}.v-actor{width:84px}.v-ico{width:50px;height:50px;font-size:24px}}
+@media print{.reveal-on .seg{opacity:1!important;transform:none!important}}
+@media(prefers-reduced-motion:reduce){.hero::after,.v-actor .v-ico,.v-lines line.on,.v-hint .v-hot{animation:none!important}.reveal-on .seg{opacity:1;transform:none}}
+/* ===== [/SHARED:VIZ-CSS] ===== */
+
+</style>
+</head>
+<body>
+
+<header class="topbar"><div class="topbar-in">
+  <div class="brand">Etika Hukum Cyber<small>Pertemuan 7 dari 16</small></div>
+  <div class="progress" title="Progres aktivitas"><i id="pbar"></i></div>
+  <div class="pct" id="ppct">0%</div>
+</div></header>
+
+<div class="layout">
+<nav class="agenda" id="agenda" aria-label="Agenda"><h4>Agenda</h4></nav>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <span class="tag">PERTEMUAN 7 · MINGGU 7</span>
+  <h1>Kejahatan Siber (Cybercrime) I: Hacking, Malware, Ransomware, dan DDoS</h1>
+  <p>Hari ini kita membedah kejahatan siber yang berorientasi pada <em>sistem dan teknis</em> dari kacamata hukum pidana: apa perbuatannya, apa unsur pidananya, dan di mana batas antara peneliti keamanan yang sah dengan pelaku kejahatan. Materi bersifat konseptual; tidak ada instruksi teknis menyerang.</p>
+  <div class="meta">
+    <div><b>Program Studi</b>Bisnis Digital</div>
+    <div><b>Dosen</b>Ibnu Amri Thaher</div>
+    <div><b>Waktu</b>100 menit · Teori & Studi Kasus</div>
+    <div><b>Metode</b>Kuliah & Presentasi</div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Capaian pertemuan ini</h3>
+  <p><span class="chip">CPMK-3</span> Mampu menganalisis bentuk kejahatan siber dan dasar hukum pidananya.</p>
+  <p><b>Kemampuan akhir:</b> mengidentifikasi bentuk kejahatan siber berorientasi sistem dan teknis.</p>
+  <p><b>Pengalaman belajar:</b> mengidentifikasi unsur pidana siber pada kasus peretasan sistem.</p>
+  <p><b>Indikator penilaian:</b> ketepatan klasifikasi jenis tindak pidana siber.</p>
+  <p>Setelah sesi ini kamu mampu: (1) membedakan hacking, cracking, malware, ransomware, DDoS, defacement, dan SQL injection secara konseptual; (2) menguraikan unsur pidana (subjek, perbuatan, tanpa hak atau melawan hukum, akibat) pada satu kasus; (3) membedakan ethical hacking dari cracking berdasarkan izin tertulis dan ruang lingkup; (4) menyusun kronologi dan analisis hukum sebuah insiden ransomware.</p>
+</section>
+
+<!-- ===================== SEGMEN 1 ===================== -->
+<section class="seg" id="s1" data-title="Pembuka & Pemantik" data-min="0–12" data-dur="12">
+  <div class="seg-head"><div class="num">1</div><h2>Pembuka & Pemantik: Niat Baik, Tetap Salah?</h2></div>
+
+  <div class="w" data-widget="poll" id="poll1"><span class="w-label">Pemantik · Polling</span></div>
+
+  <div class="card">
+    <h3>Mengapa topik ini penting bagi calon profesional bisnis digital?</h3>
+    <p>Hampir semua bisnis digital bergantung pada sistem elektronik: toko online, aplikasi pembayaran, basis data pelanggan, dan layanan cloud. Gangguan satu kali dapat menghentikan penjualan, membocorkan data pelanggan, dan merusak kepercayaan. Memahami <b>bagaimana hukum memandang</b> serangan terhadap sistem membantu kamu (a) melindungi bisnis, (b) tahu hak dan kewajiban saat menjadi korban, dan (c) tidak tanpa sengaja melewati garis hukum saat belajar keamanan.</p>
+    <div class="callout warn"><b class="t">Aturan main kelas</b>Materi ini <b>konseptual</b>. Kita membahas apa itu serangan, akibatnya, dan jerat hukumnya. Kita <b>tidak</b> membahas langkah, alat, atau kode untuk menyerang sistem. Jangan mencoba pada sistem milik siapa pun (kampus, tempat magang, situs publik) tanpa izin tertulis.</div>
+  </div>
+</section>
+
+<!-- ===================== SEGMEN 2 ===================== -->
+<section class="seg" id="s2" data-title="Peta Ancaman & Unsur Pidana" data-min="12–32" data-dur="20">
+  <div class="seg-head"><div class="num">2</div><h2>Materi 1: Peta Ancaman dan Unsur Pidana</h2></div>
+
+  <div class="card">
+    <h3>Kejahatan siber berorientasi sistem: peta istilah</h3>
+    <p>Kejahatan siber dapat dibagi dua kelompok besar: (1) kejahatan yang <b>menyerang sistem itu sendiri</b> (inilah fokus hari ini), dan (2) kejahatan biasa yang <b>memakai sistem sebagai sarana</b>, misalnya penipuan online (fokus minggu 9). Wall (2007) menyebut kelompok pertama sebagai <i>cyber-trespass</i>: masuk atau merusak wilayah milik orang lain di ruang siber.</p>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Istilah</th><th>Pengertian konseptual</th><th>Akibat khas bagi korban</th></tr>
+      <tr><td><b>Hacking</b></td><td>Mengakses atau mengutak-atik sistem komputer. Netral secara istilah; menjadi pidana bila dilakukan tanpa hak.</td><td>Sistem/data diakses pihak tak berwenang</td></tr>
+      <tr><td><b>Cracking</b></td><td>Menerobos sistem keamanan dengan niat jahat atau tanpa izin: mencuri, merusak, atau mengambil keuntungan.</td><td>Kebocoran, kerusakan, atau pencurian data</td></tr>
+      <tr><td><b>Malware</b></td><td>Perangkat lunak berbahaya (virus, worm, trojan, spyware, dsb.) yang dipasang tanpa sepengetahuan pemilik untuk merusak, memata-matai, atau mengendalikan perangkat.</td><td>Data dicuri, perangkat rusak/dikendalikan</td></tr>
+      <tr><td><b>Ransomware</b></td><td>Jenis malware yang mengunci atau mengenkripsi data lalu menuntut tebusan. Banyak varian juga mengancam membocorkan data (pemerasan ganda).</td><td>Operasional berhenti, data hilang atau bocor</td></tr>
+      <tr><td><b>DDoS</b> (<i>Distributed Denial of Service</i>)</td><td>Membanjiri layanan dengan lalu lintas dari banyak sumber sehingga pengguna sah tak bisa mengakses.</td><td>Layanan lumpuh sementara; kerugian penjualan dan reputasi</td></tr>
+      <tr><td><b>Defacement</b></td><td>Mengubah tampilan situs web tanpa izin, sering untuk pesan politik atau pamer.</td><td>Reputasi rusak; menandakan situs bisa ditembus</td></tr>
+      <tr><td><b>SQL injection</b> (konseptual)</td><td>Memanfaatkan kelemahan pada cara aplikasi memproses masukan pengguna sehingga basis data mau memberi lebih dari yang seharusnya. Akar masalahnya adalah kelemahan rancangan aplikasi.</td><td>Data pelanggan terbaca atau berubah tanpa hak</td></tr>
+    </table></div>
+    <div class="callout"><b class="t">Ingat</b>Istilah teknis tidak otomatis sama dengan pasal pidana. Hukum menilai <b>perbuatan dan akibatnya</b>, bukan nama alatnya. Karena itu satu insiden (misalnya ransomware) sering memenuhi beberapa ketentuan sekaligus.</div>
+  </div>
+
+  <div class="card">
+    <h3>Empat pertanyaan untuk menemukan unsur pidana</h3>
+    <div class="grid2">
+      <div class="mini"><h3>1. Subjek</h3><p>Siapa pelakunya? Orang perseorangan atau korporasi. Termasuk yang membantu atau menyuruh melakukan.</p></div>
+      <div class="mini"><h3>2. Perbuatan</h3><p>Apa yang dilakukan? Mengakses, mengubah, merusak, memindahkan data, mengganggu sistem, membuat atau menyebarkan perangkat berbahaya.</p></div>
+      <div class="mini"><h3>3. Tanpa hak / melawan hukum</h3><p>Apakah ada izin pemilik atau dasar hukum? Tidak adanya izin adalah inti hampir semua pasal tentang akses ilegal. Unsur kesengajaan juga dibaca di sini.</p></div>
+      <div class="mini"><h3>4. Akibat / objek</h3><p>Apa yang terkena? Komputer atau sistem elektronik milik orang lain, informasi/dokumen elektronik. Ada yang cukup dengan perbuatannya, ada yang mensyaratkan akibat nyata.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Dasar hukum utama di Indonesia</h3>
+    <p>Rumpun pasal pokok dalam UU ITE (UU No. 11 Tahun 2008 sebagaimana diubah terakhir dengan UU No. 1 Tahun 2024) yang relevan hari ini:</p>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Ketentuan</th><th>Intinya (ringkas)</th><th>Kaitan dengan topik</th></tr>
+      <tr><td>Pasal 30</td><td>Mengakses komputer/sistem elektronik milik orang lain tanpa hak atau melawan hukum, dengan cara apa pun; termasuk bila dengan tujuan memperoleh informasi atau dengan menerobos sistem pengamanan</td><td>Hacking/cracking, SQL injection, tahap awal ransomware</td></tr>
+      <tr><td>Pasal 31</td><td>Intersepsi atau penyadapan transmisi informasi elektronik tanpa hak</td><td>Spyware, penyadapan lalu lintas data</td></tr>
+      <tr><td>Pasal 32</td><td>Mengubah, merusak, menghilangkan, memindahkan, atau menyembunyikan informasi/dokumen elektronik milik orang lain tanpa hak</td><td>Defacement, enkripsi data oleh ransomware, perusakan data</td></tr>
+      <tr><td>Pasal 33</td><td>Tindakan yang mengakibatkan sistem elektronik terganggu atau tidak bekerja sebagaimana mestinya</td><td>DDoS, malware perusak sistem</td></tr>
+      <tr><td>Pasal 34</td><td>Memproduksi, menjual, mengadakan, atau memiliki perangkat (termasuk perangkat lunak) atau kode akses yang dirancang untuk melakukan perbuatan di atas, dengan pengecualian untuk keperluan penelitian dan pengujian yang sah</td><td>Pembuatan dan penjualan malware; dasar pembeda dengan pengujian sah</td></tr>
+    </table></div>
+    <div class="callout law"><b class="t">Dasar hukum</b>Ancaman pidana tiap pasal diatur pada bab ketentuan pidana UU ITE dan berbeda-beda (penjara dan/atau denda). Pada kuliah ini kamu cukup memahami <b>perbuatan apa yang dilarang</b>; angka hukuman dirujuk langsung ke teks UU yang berlaku. <i>(Perlu diverifikasi dosen: nomor pasal ketentuan pidana setelah UU 1/2024.)</i></div>
+    <details class="acc"><summary>Kaitan dengan KUHP dan UU lain</summary><div>
+      <p>Insiden siber sering juga melanggar aturan di luar UU ITE: ketentuan tentang <b>pemerasan dan pengancaman</b> (relevan untuk ransomware yang menuntut tebusan), tentang <b>pencurian</b> atau <b>perusakan</b> barang, serta UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi bila data pribadi bocor (penyelenggara sistem wajib menjaga keamanan data dan memberi pemberitahuan kegagalan pelindungan). KUHP baru (UU No. 1 Tahun 2023) mulai berlaku pada 2026, sehingga rujukan pasal KUHP perlu dicek ulang. <i>(Perlu diverifikasi dosen.)</i></p>
+    </div></details>
+    <details class="acc"><summary>Perspektif internasional: Convention on Cybercrime (Budapest, 2001)</summary><div>
+      <p>Konvensi Dewan Eropa ini adalah perjanjian internasional pertama tentang kejahatan siber. Bagian hukum pidana materiilnya memuat kelompok delik yang berpadanan dengan hari ini: <i>illegal access</i>, <i>illegal interception</i>, <i>data interference</i>, <i>system interference</i>, dan <i>misuse of devices</i>. Banyak negara menyusun undang-undang nasional dengan mengacu ke kerangka ini. Posisi keanggotaan Indonesia perlu dicek ulang karena dapat berubah. <i>(Perlu diverifikasi dosen.)</i></p>
+    </div></details>
+    <details class="acc"><summary>Tipologi Wall (2007): empat kategori kejahatan siber</summary><div>
+      <p>David S. Wall mengelompokkan kejahatan siber menjadi <i>cyber-trespass</i> (masuk/merusak sistem; fokus hari ini), <i>cyber-deception/theft</i> (penipuan dan pencurian, minggu 9), <i>cyber-porn/obscenity</i> (konten cabul), dan <i>cyber-violence</i> (kekerasan atau ujaran yang menyakiti). Tipologi ini membantu kamu menjawab "ini termasuk jenis apa?" sebelum mencari pasalnya.</p>
+    </div></details>
+  </div>
+
+  <div class="w" data-widget="explorer" id="peta"><span class="w-label">Peta ancaman · Jelajahi</span></div>
+
+  <div class="w" data-widget="flash" id="flash1"><span class="w-label">Kartu istilah · Flashcard</span></div>
+</section>
+
+<!-- ===================== SEGMEN 3 ===================== -->
+<section class="seg" id="s3" data-title="Aktivitas: Klasifikasi Ancaman" data-min="32–47" data-dur="15">
+  <div class="seg-head"><div class="num">3</div><h2>Aktivitas: Klasifikasi Ancaman</h2><span class="chip act">Aktivitas</span></div>
+  <p>Klik satu kartu insiden, lalu klik kotak jenis ancaman yang menurutmu paling tepat. Tekan <b>Periksa</b> bila semua sudah terisi. Semua skenario di bawah adalah <b>skenario fiktif</b>.</p>
+  <div class="w" data-widget="classify" id="cls1"><span class="w-label">Klasifikasi ancaman</span></div>
+
+  <div class="callout"><b class="t">Refleksi cepat</b>Dari sembilan kartu tadi, tidak satu pun membutuhkan pengetahuan cara menyerang untuk dikenali. Cukup dengan membaca <b>gejala dan akibat</b>, kamu sudah bisa menentukan jenis ancaman dan menuliskannya dalam laporan insiden atau pengaduan.</div>
+</section>
+
+<!-- ===================== SEGMEN 4 ===================== -->
+<section class="seg" id="s4" data-title="Ethical Hacking vs Cracking" data-min="47–65" data-dur="18">
+  <div class="seg-head"><div class="num">4</div><h2>Materi 2: Ethical Hacking vs Cracking</h2></div>
+
+  <div class="card">
+    <h3>Garis pembeda: izin, ruang lingkup, dan pertanggungjawaban</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th></th><th>Ethical hacking (pengujian keamanan sah)</th><th>Cracking (peretasan melawan hukum)</th></tr>
+      <tr><td><b>Izin</b></td><td>Izin <b>tertulis</b> dari pemilik sistem sebelum pengujian</td><td>Tidak ada izin, atau melampaui izin</td></tr>
+      <tr><td><b>Ruang lingkup</b></td><td>Target, waktu, dan batas pengujian disepakati (<i>scope</i>, <i>rules of engagement</i>)</td><td>Menyerang apa pun yang terjangkau</td></tr>
+      <tr><td><b>Tujuan</b></td><td>Menemukan dan memperbaiki kelemahan</td><td>Mencuri, merusak, memeras, atau pamer</td></tr>
+      <tr><td><b>Perlakuan data</b></td><td>Minimal, rahasia, dilaporkan hanya kepada pemilik</td><td>Disalin, dijual, atau disebarkan</td></tr>
+      <tr><td><b>Hasil</b></td><td>Laporan temuan dan rekomendasi perbaikan</td><td>Kerugian bagi korban; potensi pidana bagi pelaku</td></tr>
+      <tr><td><b>Status hukum</b></td><td>Sah bila memenuhi izin dan batas yang disepakati</td><td>Dapat memenuhi unsur Pasal 30 dan pasal terkait</td></tr>
+    </table></div>
+    <div class="callout warn"><b class="t">Jebakan umum</b>"Saya cuma ingin tahu" dan "saya sudah lapor ke pemiliknya" <b>tidak menghapus</b> unsur tanpa hak bila izin tidak ada sebelumnya. Niat baik dapat meringankan dalam proses penegakan, tetapi tidak menjadi izin. Bahkan di program resmi, melampaui lingkup yang ditentukan bisa membuat pengujian kehilangan perlindungannya.</div>
+  </div>
+
+  <div class="card">
+    <h3>Bug bounty dan pengungkapan yang bertanggung jawab</h3>
+    <ul>
+      <li><b>Bug bounty:</b> program resmi perusahaan atau lembaga yang mengundang peneliti melaporkan kerentanan dengan aturan yang tertulis (apa yang boleh diuji, apa yang dilarang, cara melapor), kadang dengan imbalan.</li>
+      <li><b>Responsible (coordinated) disclosure:</b> melapor secara tertutup kepada pemilik, memberi waktu memperbaiki, dan tidak membuka detail kerentanan ke publik sebelum aman.</li>
+      <li><b>Pelajaran bagi bisnis:</b> menyediakan jalur pelaporan yang jelas dan kebijakan "safe harbor" dalam program resmi mengurangi risiko peneliti yang bertindak serampangan.</li>
+    </ul>
+    <details class="acc"><summary>Pengecualian dalam Pasal 34 UU ITE untuk penelitian dan pengujian</summary><div>
+      <p>Ketentuan tentang perangkat/kode akses yang dirancang untuk perbuatan terlarang memuat pengecualian bagi kegiatan <b>penelitian atau pengujian sistem elektronik</b> yang dilakukan secara sah (misalnya untuk melindungi sistem itu sendiri). Pengecualian ini menegaskan arah hukum: yang dipersoalkan adalah <b>keabsahan konteks</b> (izin dan tujuan), bukan sekadar pengetahuan teknisnya. <i>(Perlu diverifikasi dosen: bunyi dan ayat pasal.)</i></p>
+    </div></details>
+    <details class="acc"><summary>Kerangka NIST Cybersecurity Framework: untuk apa dipakai?</summary><div>
+      <p>NIST CSF adalah kerangka sukarela dari Amerika Serikat untuk mengelola risiko siber secara terstruktur. Versi 1.1 memuat lima fungsi: <b>Identify</b> (kenali aset dan risiko), <b>Protect</b> (lindungi), <b>Detect</b> (deteksi kejadian), <b>Respond</b> (tanggapi), dan <b>Recover</b> (pulihkan). Versi 2.0 menambah fungsi <b>Govern</b> (tata kelola). Pengujian keamanan yang sah biasanya berada di fungsi Identify/Protect: menemukan kelemahan sebelum penyerang. Kita memakainya nanti untuk membaca pelajaran dari kasus ransomware.</p>
+    </div></details>
+  </div>
+
+  <div class="w" data-widget="classify" id="cls2"><span class="w-label">Sah atau melanggar? · Klasifikasi</span></div>
+
+  <div class="w" data-widget="scenario" id="scn1"><span class="w-label">Simulasi keputusan · Skenario fiktif</span></div>
+
+  <div class="w" data-widget="checklist" id="ckl1"><span class="w-label">Syarat pengujian sah · Daftar periksa</span></div>
+</section>
+
+<!-- ===================== SEGMEN 5 ===================== -->
+<section class="seg" id="s5" data-title="Studi Kasus: Ransomware PDNS 2024" data-min="65–85" data-dur="20">
+  <div class="seg-head"><div class="num">5</div><h2>Studi Kasus: Insiden Ransomware pada PDNS (2024)</h2><span class="chip act">Studi kasus</span></div>
+
+  <div class="card">
+    <h3>Fakta umum yang dilaporkan</h3>
+    <p>Pusat Data Nasional Sementara (PDNS) adalah fasilitas komputasi pemerintah yang dipakai banyak kementerian dan lembaga untuk menyimpan data dan menjalankan layanan. Pada <b>Juni 2024</b> PDNS dilaporkan terkena serangan <b>ransomware</b> yang mengenkripsi data dan mengganggu sejumlah layanan publik, antara lain layanan keimigrasian di bandara. Media dan pejabat melaporkan bahwa pelaku meminta tebusan dalam jumlah besar (dilaporkan sekitar USD 8 juta) dan bahwa pemerintah menyatakan tidak membayar tebusan. Pemulihan layanan berlangsung berminggu-minggu dan memunculkan perdebatan nasional tentang <b>cadangan data (<i>backup</i>)</b> dan tata kelola keamanan.</p>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Tanggal persis, nama varian ransomware, nominal tebusan, jumlah instansi terdampak, dan status penyelidikan wajib dicek pada sumber resmi (Kominfo/Komdigi, BSSN, Polri) dan media tepercaya sebelum disajikan sebagai fakta pasti. Dalam kelas, sebut angka sebagai "dilaporkan".</div>
+  </div>
+
+  <div class="card">
+    <h3>Kronologi singkat (alur umum insiden ransomware)</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Tahap</th><th>Yang terjadi pada insiden ini (garis besar)</th><th>Fungsi NIST CSF terkait</th></tr>
+      <tr><td>1. Pelaku masuk</td><td>Penyerang memperoleh akses ke lingkungan sistem tanpa hak (cara persisnya hasil investigasi, tidak dibahas rinci di sini)</td><td>Protect (gagal mencegah)</td></tr>
+      <tr><td>2. Enkripsi & permintaan tebusan</td><td>Data dienkripsi; layanan terhenti; muncul pesan tebusan</td><td>Detect</td></tr>
+      <tr><td>3. Dampak layanan</td><td>Layanan publik terganggu karena banyak sistem bergantung pada satu fasilitas</td><td>Respond</td></tr>
+      <tr><td>4. Keputusan tebusan</td><td>Pemerintah menyatakan tidak membayar; fokus ke pemulihan</td><td>Respond</td></tr>
+      <tr><td>5. Pemulihan bertahap</td><td>Layanan dipulihkan bertahap; sebagian data dilaporkan sulit dipulihkan karena cadangan tidak memadai</td><td>Recover</td></tr>
+      <tr><td>6. Evaluasi</td><td>Sorotan pada tata kelola, cadangan, dan akuntabilitas</td><td>Govern / Identify</td></tr>
+    </table></div>
+  </div>
+
+    <div class="w" data-widget="flow" id="flowRansom"><span class="w-label">Animasi proses · Serangan ransomware</span></div>
+
+  <div class="w" data-widget="order" id="urut"><span class="w-label">Urutkan · Respons insiden</span></div>
+
+  <div class="card">
+    <h3>Membedah unsur pidana: kasus ransomware</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Unsur</th><th>Penerapan pada insiden ransomware (analisis umum)</th></tr>
+      <tr><td><b>Subjek</b></td><td>Pelaku peretasan (orang atau kelompok; identitas ditentukan oleh penyidik, bisa lintas negara). Pihak lain yang membantu atau menyediakan perangkat dapat juga dimintai pertanggungjawaban.</td></tr>
+      <tr><td><b>Perbuatan</b></td><td>Mengakses sistem milik pihak lain, mengenkripsi/mengubah data, mengganggu operasi sistem, dan menuntut tebusan sebagai ancaman.</td></tr>
+      <tr><td><b>Tanpa hak / melawan hukum</b></td><td>Tidak ada izin dari pemilik sistem; tujuan memeras jelas bukan pengujian sah.</td></tr>
+      <tr><td><b>Akibat</b></td><td>Data tidak dapat diakses, layanan publik terganggu, kerugian materiil dan non-materiil bagi instansi dan masyarakat.</td></tr>
+    </table></div>
+    <p><b>Ketentuan yang relevan (umum):</b> akses ilegal (Pasal 30), perusakan/perubahan data (Pasal 32), gangguan sistem (Pasal 33), pengadaan perangkat berbahaya (Pasal 34), serta ketentuan tentang pemerasan atau pengancaman melalui sistem elektronik dan dalam KUHP. Pembuktian memakai <b>bukti elektronik</b> (log, salinan forensik) yang harus dijaga keasliannya.</p>
+    <div class="callout law"><b class="t">Dasar hukum</b>Bagi penyelenggara sistem elektronik, UU PDP (UU 27/2022) memuat kewajiban menjaga keamanan data pribadi dan menyampaikan pemberitahuan bila terjadi kegagalan pelindungan. Apakah suatu pihak lalai dan dikenai sanksi administratif ditentukan lewat proses terpisah dari pidana pelaku. <i>(Perlu diverifikasi dosen: ketentuan pemberitahuan dan sanksi, termasuk status berlakunya penuh UU PDP.)</i></div>
+    <details class="acc"><summary>Mengapa membayar tebusan sering tidak dianjurkan?</summary><div>
+      <ul><li>Tidak ada jaminan data dikembalikan utuh atau tidak dibocorkan.</li><li>Mendorong pelaku dan kelompok lain mengulangi serangan.</li><li>Dalam beberapa yurisdiksi, pembayaran dapat menimbulkan masalah hukum bila penerimanya berada dalam daftar sanksi.</li><li>Pendekatan yang lebih sehat adalah <b>pencegahan dan pemulihan</b>: cadangan terpisah, segmentasi, rencana tanggap insiden, dan latihan.</li></ul>
+    </div></details>
+  </div>
+
+  <div class="card">
+    <h3>Pelajaran tata kelola bagi bisnis digital</h3>
+    <ul>
+      <li><b>Jangan taruh semua telur dalam satu keranjang:</b> ketergantungan pada satu fasilitas memperbesar dampak.</li>
+      <li><b>Cadangan yang teruji:</b> cadangan yang terpisah dan pernah diuji pulih adalah pertahanan paling nyata terhadap ransomware.</li>
+      <li><b>Rencana tanggap insiden:</b> siapa menghubungi siapa (BSSN, polisi, regulator, pelanggan) dalam jam pertama.</li>
+      <li><b>Kesadaran pengguna:</b> banyak insiden dimulai dari kelalaian manusia, bukan hanya celah teknis.</li>
+    </ul>
+  </div>
+
+  <div class="w" data-widget="flash" id="flash2"><span class="w-label">Kartu unsur pidana · Flashcard</span></div>
+
+  <div class="w" data-widget="reflect" id="ref1"><span class="w-label">Refleksi tertulis</span></div>
+</section>
+
+<!-- ===================== SEGMEN 6 ===================== -->
+<section class="seg" id="s6" data-title="Kuis & Penutup" data-min="85–100" data-dur="15">
+  <div class="seg-head"><div class="num">6</div><h2>Kuis Penutup & Rangkuman</h2><span class="chip act">Evaluasi</span></div>
+  <div class="w" data-widget="quiz" id="quiz1"><span class="w-label">Kuis penutup</span></div>
+
+  <div class="card">
+    <h3>Rangkuman 1 menit</h3>
+    <ul>
+      <li>Kejahatan siber berorientasi sistem menyerang sistem dan data itu sendiri (<i>cyber-trespass</i>).</li>
+      <li>Empat unsur: subjek, perbuatan, tanpa hak/melawan hukum, akibat.</li>
+      <li>Hacking itu netral; yang membuatnya pidana adalah ketiadaan izin dan niat melawan hukum.</li>
+      <li>Ethical hacking memerlukan izin tertulis dan ruang lingkup; niat baik bukan izin.</li>
+      <li>Satu insiden (ransomware) bisa memenuhi beberapa pasal; pencegahan dan pemulihan lebih penting daripada tebusan.</li>
+    </ul>
+    <h3>Tugas mandiri minggu depan</h3>
+    <p>Persiapan UTS (minggu 8): rangkum satu halaman peta materi minggu 1–7 (etika, hukum siber, privasi/PDP, HKI, UU ITE, cybercrime I). Untuk bagian ini, pilih <b>satu</b> insiden siber yang pernah diberitakan di Indonesia, lalu tuliskan 4 unsur pidananya dengan kata-katamu sendiri dan sebutkan sumber beritanya.</p>
+  </div>
+
+  <div class="card refs">
+    <h3>Referensi</h3>
+    <ol>
+      <li>Sitompul, J. (2012). <i>Cyberspace, Cybercrimes, Cyberlaw: Tinjauan Aspek Hukum Pidana</i>. Tatanusa.</li>
+      <li>Republik Indonesia. (2024). <i>UU No. 1 Tahun 2024 tentang Perubahan Kedua atas UU No. 11 Tahun 2008 tentang Informasi dan Transaksi Elektronik</i>.</li>
+      <li><b>Tambahan:</b> Council of Europe. (2001). <i>Convention on Cybercrime</i> (ETS No. 185), Budapest.</li>
+      <li><b>Tambahan:</b> National Institute of Standards and Technology. <i>Framework for Improving Critical Infrastructure Cybersecurity</i> (v1.1, 2018) dan <i>The NIST Cybersecurity Framework (CSF) 2.0</i> (2024).</li>
+      <li><b>Tambahan:</b> Wall, D. S. (2007). <i>Cybercrime: The Transformation of Crime in the Information Age</i>. Polity Press.</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (2022). <i>UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi</i>.</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (2023). <i>UU No. 1 Tahun 2023 tentang Kitab Undang-Undang Hukum Pidana</i>.</li>
+      <li><b>Tambahan:</b> Pemberitaan dan siaran pers resmi pemerintah (Kominfo/Komdigi, BSSN) tentang insiden PDNS, Juni 2024 (cek tanggal dan sumber asli sebelum dikutip).</li>
+    </ol>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Hal-hal berikut perlu dicek sebelum kelas: (1) bunyi dan ayat Pasal 30–34 UU ITE serta nomor pasal ketentuan pidana setelah UU 1/2024; (2) pengecualian penelitian/pengujian pada Pasal 34; (3) fakta insiden PDNS 2024 (tanggal, varian, nominal tebusan, jumlah instansi, status penyidikan); (4) rujukan pasal KUHP baru (UU 1/2023, berlaku 2026) tentang pemerasan; (5) ketentuan pemberitahuan kegagalan pelindungan data dan sanksi dalam UU PDP; (6) status Indonesia terhadap Convention on Cybercrime; (7) versi terbaru NIST CSF.</div>
+  </div>
+</section>
+
+<footer>Etika Hukum Cyber · Bisnis Digital · Pertemuan 7 · Materi ini untuk tujuan pendidikan; tidak mengandung instruksi menyerang sistem.</footer>
+</main>
+</div>
+
+
+<!-- ===================== DATA HALAMAN (hanya blok ini yang berubah antar pertemuan) ===================== -->
+<script>
+const PAGE = {
+  id: "p07",
+
+  poll1: {
+    q: "Skenario fiktif: Dika menemukan bahwa halaman admin toko online milik orang lain bisa dimasuki tanpa sandi. Ia masuk 'hanya melihat', tidak mengambil apa pun, lalu memberi tahu pemilik toko. Menurutmu…",
+    opts: [
+      {t:"Aman, karena niatnya baik dan tidak ada yang rusak", why:"Belum tentu. Masuk tanpa izin sudah bisa memenuhi unsur akses ilegal walau tidak ada kerusakan. Niat baik tidak menggantikan izin. Hari ini kita pelajari alasannya."},
+      {t:"Tetap berpotensi melanggar hukum karena masuk tanpa izin", why:"Tepat sebagai titik awal. Unsur 'tanpa hak' terpenuhi sejak ia mengakses sistem milik orang lain tanpa persetujuan. Niat baik dan lapor ke pemilik dapat menjadi pertimbangan, tetapi bukan izin."},
+      {t:"Tergantung apakah pemilik toko marah atau berterima kasih", why:"Reaksi pemilik memang mempengaruhi apakah kasus diproses, tetapi tidak mengubah status perbuatannya. Hukum menilai perbuatan dan konteks izin, bukan hanya perasaan korban."},
+      {t:"Seharusnya lapor lewat jalur resmi tanpa masuk sama sekali", why:"Ini praktik terbaik: dokumentasikan hal yang terlihat dari luar (tanpa membuka data), lalu laporkan lewat kontak resmi atau program pelaporan kerentanan. Kita bahas detailnya di segmen 4."}
+    ]
+  },
+
+  flash1: {
+    title: "Uji istilah kunci (klik kartu untuk membalik)",
+    cards: [
+      {f:"Hacking", b:"Mengakses/mengutak-atik sistem. Netral sebagai istilah; pidana jika tanpa hak atau melawan hukum."},
+      {f:"Cracking", b:"Menerobos pengamanan sistem dengan niat jahat atau tanpa izin untuk mencuri, merusak, atau memeras."},
+      {f:"Malware", b:"Perangkat lunak berbahaya yang dipasang tanpa sepengetahuan pemilik: virus, worm, trojan, spyware, dsb."},
+      {f:"Ransomware", b:"Malware yang mengunci/mengenkripsi data lalu menuntut tebusan; sering disertai ancaman membocorkan data."},
+      {f:"DDoS", b:"Membanjiri layanan dengan lalu lintas dari banyak sumber hingga pengguna sah tidak dapat mengakses."},
+      {f:"Defacement", b:"Mengubah tampilan situs web tanpa izin, biasanya untuk pesan politik atau pamer."},
+      {f:"SQL injection (konseptual)", b:"Memanfaatkan kelemahan cara aplikasi memproses masukan sehingga basis data memberi akses lebih dari seharusnya. Akar masalah: rancangan aplikasi yang lemah."},
+      {f:"Cyber-trespass (Wall, 2007)", b:"Kategori kejahatan siber berupa masuk atau merusak wilayah/sistem milik orang lain di ruang siber."}
+    ]
+  },
+
+  cls1: {
+    title: "Kelompokkan insiden fiktif berikut menurut jenis ancamannya",
+    bins: ["Malware (termasuk spyware/trojan)", "Ransomware", "DDoS", "Defacement", "SQL injection"],
+    items: [
+      {t:"Berkas di server kantor terenkripsi dan muncul pesan menuntut tebusan agar bisa dibuka", a:1, why:"Enkripsi data plus tuntutan tebusan adalah ciri ransomware."},
+      {t:"Ribuan permintaan palsu dari banyak perangkat membuat situs toko online tak bisa dibuka pelanggan", a:2, why:"Banjir lalu lintas dari banyak sumber yang melumpuhkan layanan = DDoS (Pasal 33)."},
+      {t:"Beranda situs sebuah pemerintah daerah berubah menjadi gambar dan pesan dari pelaku", a:3, why:"Perubahan tampilan situs tanpa izin = defacement (Pasal 32 dan akses ilegal pada Pasal 30)."},
+      {t:"Formulir pencarian situs ternyata menampilkan seluruh tabel pengguna karena masukan tidak disaring", a:4, why:"Kelemahan penanganan masukan yang membuka basis data = SQL injection (konseptual)."},
+      {t:"Lampiran email palsu yang setelah dibuka diam-diam merekam aktivitas pengetikan korban", a:0, why:"Perangkat lunak yang dipasang diam-diam untuk memata-matai = malware jenis spyware."},
+      {t:"Situs berita lumpuh karena dibanjiri trafik dari jaringan perangkat yang telah terinfeksi", a:2, why:"Jaringan perangkat terinfeksi (botnet) yang membanjiri satu target = DDoS."},
+      {t:"Halaman login situs kampus tiba-tiba menampilkan gambar tengkorak dan slogan peretas", a:3, why:"Tampilan diubah tanpa izin = defacement."},
+      {t:"Aplikasi dari sumber tidak resmi diam-diam memberi pintu belakang ke ponsel korban", a:0, why:"Perangkat lunak berbahaya yang menyamar = malware (trojan/backdoor)."},
+      {t:"Seluruh data pelanggan toko tak bisa dibuka dan pemilik diminta mentransfer kripto agar kuncinya diberikan", a:1, why:"Data terkunci dan tebusan dibayar agar kunci diberikan = ransomware."}
+    ]
+  },
+
+  cls2: {
+    title: "Ethical hacking (sah) atau cracking (melanggar)? Skenario fiktif",
+    bins: ["Pengujian/penelitian sah", "Melanggar hukum atau etika"],
+    items: [
+      {t:"Penguji keamanan menguji sistem bank setelah ada kontrak dan izin tertulis dengan ruang lingkup jelas", a:0, why:"Ada izin tertulis, lingkup, dan tujuan perbaikan."},
+      {t:"Peneliti melaporkan celah lewat program bug bounty resmi dan mengikuti aturan programnya", a:0, why:"Dilakukan dalam kerangka program resmi dengan aturan yang ditulis pemilik."},
+      {t:"Seseorang masuk ke sistem toko 'karena iseng', lalu memberi tahu pemilik setelahnya", a:1, why:"Izin tidak ada sebelum perbuatan. Lapor setelahnya tidak menghapus unsur tanpa hak."},
+      {t:"Mahasiswa menguji situs kampus tanpa izin karena yakin niatnya membantu", a:1, why:"Niat baik bukan izin. Pengujian perlu persetujuan pemilik sistem."},
+      {t:"Staf TI menguji server perusahaannya dengan surat tugas, pada jam dan batas yang disepakati", a:0, why:"Ada surat tugas, batas, dan persetujuan manajemen."},
+      {t:"Peserta bug bounty menyentuh data pengguna lain di luar batas yang diizinkan program", a:1, why:"Melampaui lingkup izin mengubah pengujian sah menjadi pelanggaran."},
+      {t:"Seseorang menjual salinan data hasil menerobos sebuah sistem", a:1, why:"Tidak ada izin dan ada tujuan mengambil keuntungan: cracking."},
+      {t:"Latihan red team internal yang disetujui manajemen dan dilaporkan kepada pemilik sistem", a:0, why:"Dijalankan dengan persetujuan, tujuan peningkatan pertahanan, dan pelaporan."}
+    ]
+  },
+
+  scn1: {
+    title: "Skenario fiktif: Panel admin yang terbuka",
+    start: "n0",
+    nodes: {
+      n0: {text:"Kamu magang di PT Fiktif Digital. Saat membuka tautan dari email vendor, kamu menyadari panel admin sistem keanggotaan vendor itu terbuka tanpa kata sandi. Kamu penasaran seberapa jauh celahnya. Kamu…",
+        choices:[{t:"Masuk dan melihat-lihat data anggota untuk memastikan celahnya serius", to:"n1"},{t:"Berhenti, tidak membuka data apa pun, dan melapor ke atasan serta kontak keamanan vendor", to:"n2"},{t:"Mengunggah tangkapan layar ke media sosial agar vendor cepat memperbaiki", to:"n3"}]},
+      n1: {end:true, text:"Hasil: kamu telah mengakses sistem milik pihak lain tanpa izin dan melihat data pribadi anggota. Walau tidak mengubah apa pun, unsur akses tanpa hak berpotensi terpenuhi, dan kamu menempatkan perusahaan magangmu dalam risiko.",
+        lens:"Hukum: berpotensi masuk Pasal 30 (akses tanpa hak) dan memunculkan isu data pribadi. Etika: melihat data orang tanpa persetujuan melanggar privasi. Profesional: pengujian harus dengan izin tertulis; rasa ingin tahu bukan dasar."},
+      n2: {text:"Atasanmu berterima kasih dan meminta bukti untuk diteruskan ke vendor. Kamu…",
+        choices:[{t:"Mengirim tangkapan layar alamat dan halaman muka saja, tanpa data anggota, plus kronologi singkat", to:"n4"},{t:"Mengirim salinan sebagian data anggota sebagai 'bukti' supaya vendor percaya", to:"n5"}]},
+      n3: {end:true, text:"Hasil: kerentanan terpampang ke publik sebelum diperbaiki. Pihak lain dapat memanfaatkannya dan data anggota ikut terancam; kamu bisa dituduh membuka informasi secara tidak bertanggung jawab.",
+        lens:"Hukum: pengungkapan terbuka dapat memperbesar kerugian dan menimbulkan sengketa. Etika: prinsip jangan membahayakan orang lain dilanggar. Profesional: gunakan pengungkapan yang bertanggung jawab, yaitu lapor tertutup dan beri waktu memperbaiki."},
+      n4: {end:true, text:"Hasil: vendor menerima laporan yang jelas tanpa membuka data pribadi, memperbaiki celah, dan berterima kasih. Perusahaanmu tidak terseret masalah hukum.",
+        lens:"Memenuhi hukum (tidak menyentuh data tanpa hak), etika (meminimalkan dampak), dan praktik profesional (jalur resmi, bukti secukupnya, pelaporan tertutup)."},
+      n5: {end:true, text:"Hasil: kamu memindahkan data pribadi anggota tanpa dasar yang sah. Niat membantu tidak menghapus risiko pelanggaran, dan data itu kini berada di tempat yang tidak semestinya.",
+        lens:"Hukum: memindahkan data tanpa hak berpotensi masuk Pasal 32 dan melanggar prinsip pelindungan data. Etika: bukti yang melibatkan data orang lain harus diminimalkan. Profesional: laporkan sebatas yang perlu."}
+    }
+  },
+
+  ckl1: {
+    title: "Daftar periksa: apa yang harus ada sebelum pengujian keamanan dinyatakan sah?",
+    items: [
+      "Izin tertulis dari pemilik atau penanggung jawab sistem.",
+      "Ruang lingkup jelas: sistem apa, kapan, dan batas pengujiannya.",
+      "Aturan keterlibatan (rules of engagement): hal yang dilarang, misalnya merusak layanan atau menyalin data.",
+      "Saluran pelaporan temuan secara tertutup kepada pemilik.",
+      "Kesepakatan kerahasiaan dan perlakuan data yang ditemukan.",
+      "Berhenti dan melapor bila menemukan data pribadi atau hal di luar lingkup."
+    ],
+    doneMsg: "Daftar lengkap. Tanpa semua ini, 'niat baik' belum cukup menjadi dasar hukum."
+  },
+
+  flash2: {
+    title: "Kartu unsur pidana dan istilah hukum (klik untuk membalik)",
+    cards: [
+      {f:"Subjek", b:"Pelaku tindak pidana: orang perseorangan atau korporasi, termasuk yang membantu atau menyuruh melakukan."},
+      {f:"Perbuatan", b:"Tindakan yang dilarang: mengakses, mengubah, merusak, memindahkan data, mengganggu sistem, atau menyediakan perangkat berbahaya."},
+      {f:"Tanpa hak / melawan hukum", b:"Tidak ada izin pemilik atau dasar hukum. Inti hampir semua delik akses ilegal; kesengajaan juga dinilai di sini."},
+      {f:"Akibat", b:"Dampak pada sistem elektronik, informasi, atau pemilik: data terkunci, layanan terganggu, kerugian."},
+      {f:"Kesengajaan", b:"Pelaku menghendaki atau sadar akan perbuatannya. Banyak pasal siber mensyaratkan 'dengan sengaja'."},
+      {f:"Ethical hacking", b:"Pengujian keamanan dengan izin tertulis, ruang lingkup jelas, dan tujuan memperbaiki."},
+      {f:"Bug bounty", b:"Program resmi yang mengundang peneliti melaporkan kerentanan sesuai aturan tertulis, kadang dengan imbalan."},
+      {f:"Bukti elektronik", b:"Informasi/dokumen elektronik (mis. log, salinan forensik) yang dapat dipakai sebagai alat bukti bila keasliannya terjaga."}
+    ]
+  },
+
+  ref1: {
+    title: "Tulis 4–6 kalimat",
+    prompt: "Bayangkan kamu pemilik usaha digital kecil dan data pelanggan tiba-tiba terenkripsi disertai tuntutan tebusan. Jelaskan: (a) siapa saja yang kamu hubungi dalam jam pertama dan mengapa, (b) satu langkah pencegahan yang paling kamu sesali tidak dilakukan sebelumnya, dan (c) unsur pidana mana pada kasusmu yang paling mudah dibuktikan.",
+    hint: "Tulisan tersimpan otomatis di perangkat ini. Gunakan tombol Salin untuk mengumpulkan ke dosen."
+  },
+
+  flowRansom:{
+    title:"Bagaimana ransomware menyerang sebuah kantor? (animasi)",
+    sub:"Ikuti tujuh langkah dari penyusupan sampai pemulihan. Perhatikan warna ikon: hijau aman, kuning waspada, merah terdampak, ungu terkunci.",
+    actors:[
+      {id:"pelaku",icon:"🧑‍💻",name:"Pelaku",x:11,y:26,role:"attacker"},
+      {id:"dompet",icon:"🪙",name:"Dompet kripto pelaku",x:11,y:76,role:"attacker"},
+      {id:"staf",icon:"🧑‍💼",name:"Karyawan",x:42,y:26,role:"victim",state:"safe"},
+      {id:"server",icon:"🖥️",name:"Server kantor",x:74,y:26,role:"victim",state:"safe"},
+      {id:"data",icon:"🗄️",name:"Data & cadangan",x:74,y:76,role:"victim",state:"safe"}
+    ],
+    steps:[
+      {title:"Pengintaian target",short:"Intai",text:"Pelaku mencari organisasi yang punya data penting dan pertahanan lemah: sistem tak diperbarui, karyawan mudah terkecoh.",from:"pelaku",to:"staf",packet:"🔍",label:"Cari celah",tip:"Perbarui sistem secara berkala dan batasi informasi organisasi yang terbuka di internet."},
+      {title:"Penyusupan lewat email palsu",short:"Susup",text:"Karyawan menerima email yang tampak sah dengan lampiran atau tautan berbahaya. Satu klik cukup untuk memasang malware.",from:"pelaku",to:"staf",packet:"📧",label:"Email berlampiran",set:{staf:["warn","Terkecoh"]},law:"Akses sistem tanpa hak dan penyebaran perangkat berbahaya dapat dijerat ketentuan akses ilegal dan gangguan sistem dalam UU ITE (Pasal 30 dan seterusnya; verifikasi).",tip:"Pelatihan kesadaran phishing, filter email, jangan buka lampiran tak dikenal."},
+      {title:"Malware menyebar",short:"Sebar",text:"Dari komputer karyawan, malware bergerak ke server melalui jaringan internal yang tidak tersegmentasi.",from:"staf",to:"server",packet:"🦠",label:"Menyebar",bad:true,set:{staf:["danger","Terinfeksi"],server:["warn","Diserang"]},tip:"Segmentasi jaringan dan hak akses minimum membatasi ruang gerak malware."},
+      {title:"Data dienkripsi",short:"Kunci",text:"Malware mengunci berkas penting, termasuk cadangan yang tersambung ke jaringan. Layanan berhenti.",from:"server",to:"data",packet:"🔒",label:"Enkripsi",count:3,bad:true,set:{server:["danger","Lumpuh"],data:["lock","Terenkripsi"]},risk:"Layanan berhenti; data pelanggan berpotensi bocor.",law:"Merusak atau mengganggu sistem dan data elektronik: unsur gangguan sistem (UU ITE)."},
+      {title:"Pemerasan",short:"Peras",text:"Muncul catatan tebusan: bayar dengan kripto agar kunci dekripsi diberikan, sering disertai ancaman membocorkan data.",from:"pelaku",to:"server",packet:"💬",label:"Catatan tebusan",bad:true,law:"Ancaman dan permintaan uang memenuhi unsur pemerasan atau pengancaman (KUHP dan UU ITE; verifikasi nomor pasal).",risk:"Membayar tidak menjamin data kembali dan dapat mendorong serangan berikutnya."},
+      {title:"Aliran uang tebusan",short:"Uang",text:"Jika dibayar, uang mengalir ke dompet kripto yang sulit dilacak. Aparat kerap bekerja sama lintas negara untuk menelusuri.",from:"server",to:"dompet",packet:"🪙",label:"Tebusan",bad:true,set:{dompet:["warn","Menerima"]},law:"Aliran dana hasil kejahatan dapat dikaitkan dengan tindak pidana pencucian uang (verifikasi)."},
+      {title:"Respons dan pemulihan",short:"Pulih",text:"Tim memutus jaringan, mengamankan bukti, memulihkan dari cadangan offline bersih, lalu melapor dan memberi tahu pihak terdampak.",from:"data",to:"server",packet:"🛡️",label:"Pulihkan dari backup",set:{staf:["safe","Dibersihkan"],server:["safe","Pulih"],data:["safe","Dipulihkan"]},tip:"Cadangan 3-2-1 (3 salinan, 2 media, 1 offline) dan latihan pemulihan adalah pertahanan terbaik.",law:"Bila data pribadi bocor, pengendali data wajib memberi tahu subjek data dan lembaga berwenang (UU PDP; verifikasi jangka waktu)."}
+    ],
+    outcome:"Satu klik tak bertanggung jawab di ujung rantai dapat melumpuhkan organisasi. Pertahanan berlapis memutus rantai di langkah mana pun."
+  },
+  flowDdos:{
+    title:"Bagaimana serangan DDoS bekerja? (animasi)",
+    sub:"Banyak perangkat terinfeksi dipakai bersamaan untuk membanjiri satu layanan.",
+    actors:[
+      {id:"bos",icon:"🧑‍💻",name:"Pengendali botnet",x:9,y:50,role:"attacker"},
+      {id:"b1",icon:"💻",name:"Perangkat bot",x:34,y:14,role:"attacker"},
+      {id:"b2",icon:"📱",name:"Perangkat bot",x:34,y:38,role:"attacker"},
+      {id:"b3",icon:"📷",name:"Kamera IoT bot",x:34,y:62,role:"attacker"},
+      {id:"b4",icon:"🖨️",name:"Perangkat bot",x:34,y:86,role:"attacker"},
+      {id:"waf",icon:"🛡️",name:"Filter lalu lintas (CDN/WAF)",x:60,y:50,role:"neutral"},
+      {id:"web",icon:"🌐",name:"Situs layanan",x:88,y:50,role:"victim",state:"safe"},
+      {id:"user",icon:"🙋",name:"Pengguna sah",x:88,y:14,role:"victim",state:"safe"}
+    ],
+    steps:[
+      {title:"Merekrut bot",short:"Rekrut",text:"Pelaku menginfeksi ribuan perangkat (komputer, ponsel, kamera) sehingga bisa dikendalikan jarak jauh tanpa sepengetahuan pemiliknya.",from:"bos",to:["b1","b2","b3","b4"],packet:"🦠",label:"Infeksi massal",set:{b1:["warn","Bot"],b2:["warn","Bot"],b3:["warn","Bot"],b4:["warn","Bot"]},law:"Mengakses perangkat orang lain tanpa hak: akses ilegal (UU ITE).",tip:"Ganti sandi bawaan perangkat IoT dan perbarui firmware."},
+      {title:"Perintah serang",short:"Perintah",text:"Pengendali mengirim satu perintah: semua bot menyerang alamat yang sama pada waktu yang sama.",from:"bos",to:["b1","b2","b3","b4"],packet:"📡",label:"Serang sekarang"},
+      {title:"Banjir permintaan",short:"Banjir",text:"Ribuan permintaan palsu mengalir ke situs. Server kehabisan kapasitas sehingga tidak bisa melayani siapa pun.",from:["b1","b2","b3","b4"],to:"web",packet:"📨",label:"Ribuan permintaan",count:3,bad:true,set:{web:["warn","Kewalahan"]},law:"Tindakan yang membuat sistem elektronik terganggu atau tidak bekerja: gangguan sistem (UU ITE, Pasal 33; verifikasi)."},
+      {title:"Pengguna sah tertolak",short:"Down",text:"Pelanggan yang ingin membeli tidak bisa membuka situs. Bisnis kehilangan penjualan dan reputasi.",from:"user",to:"web",packet:"🙋",label:"Ditolak",set:{web:["danger","Tidak bisa diakses"],user:["warn","Gagal masuk"]},risk:"Kerugian pendapatan dan kepercayaan pelanggan."},
+      {title:"Mitigasi",short:"Mitigasi",text:"Lalu lintas dialihkan ke layanan penyaring yang membuang permintaan jahat dan hanya meneruskan yang sah.",from:["b1","b2","b3","b4"],to:"waf",packet:"📨",label:"Disaring",count:2,bad:true,set:{waf:["safe","Menyaring"],web:["safe","Pulih"],user:["safe","Bisa akses"]},tip:"Gunakan CDN/WAF, rate limiting, dan rencana respons insiden yang dilatih."}
+    ],
+    outcome:"DDoS tidak mencuri data, tetapi bisa mematikan bisnis. Kuncinya kapasitas, penyaringan, dan kesiapan tim."
+  },
+  flowBreach:{
+    title:"Dari akses ilegal sampai data dijual (animasi)",
+    sub:"Alur umum pencurian data: tanpa izin masuk, mengambil, lalu menjual.",
+    actors:[
+      {id:"p",icon:"🧑‍💻",name:"Pelaku",x:10,y:50,role:"attacker"},
+      {id:"sis",icon:"🖥️",name:"Sistem target",x:46,y:50,role:"victim",state:"safe"},
+      {id:"db",icon:"🗄️",name:"Database pelanggan",x:84,y:20,role:"victim",state:"safe"},
+      {id:"pasar",icon:"🕳️",name:"Pasar gelap data",x:84,y:80,role:"attacker"},
+      {id:"tim",icon:"🛡️",name:"Tim keamanan",x:46,y:14,role:"neutral"}
+    ],
+    steps:[
+      {title:"Mencari celah atau kredensial lemah",short:"Celah",text:"Pelaku mencoba sandi bocor atau yang mudah ditebak, atau mencari sistem yang belum diperbarui.",from:"p",to:"sis",packet:"🔎",label:"Uji celah",tip:"Sandi unik, autentikasi dua faktor, dan pembaruan rutin."},
+      {title:"Masuk tanpa hak",short:"Masuk",text:"Pelaku berhasil login atau menembus sistem tanpa izin pemiliknya.",from:"p",to:"sis",packet:"🔑",label:"Login ilegal",bad:true,set:{sis:["danger","Dibobol"]},law:"Mengakses sistem elektronik milik orang lain tanpa hak: Pasal 30 UU ITE (verifikasi redaksi terbaru)."},
+      {title:"Menjelajah dan menyalin",short:"Salin",text:"Dari sistem, pelaku menuju database dan menyalin data pelanggan.",from:"sis",to:"db",packet:"🗂️",label:"Menyalin data",bad:true,set:{db:["warn","Diakses"]}},
+      {title:"Data keluar",short:"Bocor",text:"Salinan data dikirim keluar. Dari sisi korban, ini adalah kebocoran data.",from:"db",to:"p",packet:"📦",label:"Data dicuri",bad:true,set:{db:["danger","Bocor"]},law:"Memindahkan informasi elektronik tanpa hak (UU ITE) dan potensi pelanggaran pelindungan data pribadi (UU PDP).",risk:"Data identitas dapat dipakai untuk penipuan dan pencurian identitas."},
+      {title:"Data diperjualbelikan",short:"Dijual",text:"Data dijual atau dibagikan. Korban kemudian diincar penipu dengan modus yang makin meyakinkan.",from:"p",to:"pasar",packet:"💰",label:"Jual data",bad:true,law:"Memperoleh dan memakai data pribadi secara melawan hukum dilarang dalam UU PDP (verifikasi pasal)."},
+      {title:"Deteksi dan penanganan",short:"Tangani",text:"Tim keamanan mendeteksi aktivitas janggal dari log, mengisolasi sistem, mengubah semua kredensial, dan memberi tahu pihak terdampak.",from:"tim",to:"sis",packet:"🚨",label:"Deteksi & isolasi",set:{sis:["safe","Diamankan"],db:["safe","Diaudit"]},tip:"Pemantauan log, enkripsi data, dan latihan respons insiden.",law:"Pengendali data wajib memberi tahu subjek data dan lembaga berwenang saat terjadi kegagalan pelindungan data (UU PDP)."}
+    ],
+    outcome:"Satu sandi lemah bisa berujung data ribuan orang diperjualbelikan. Pertahanan dan kepatuhan hukum saling melengkapi."
+  },
+  peta:{
+    title:"Peta kejahatan siber berorientasi sistem",
+    intro:"Jelajahi enam jenis ancaman. Buka tiap kartu: apa itu, cara kerja, contoh, dampak, dasar hukum, dan pencegahan.",
+    items:[
+      {id:"akses",icon:"🔓",name:"Akses ilegal",tag:"hacking & cracking",summary:"Masuk ke komputer atau sistem elektronik milik orang lain tanpa hak. 'Hacking' sering dipakai secara umum; yang menentukan pidana adalah ada atau tidaknya izin.",how:["Mencari kelemahan: sandi lemah, sistem usang, celah aplikasi.","Memanfaatkan kelemahan untuk masuk.","Bergerak di dalam sistem untuk mengambil atau mengubah data."],ex:"Membobol akun media sosial atau panel admin toko online orang lain.",impact:"Pelanggaran privasi, kerugian finansial, hilangnya kendali atas akun atau sistem.",law:"Ketentuan akses ilegal dalam UU ITE (Pasal 30 dan pidana terkait; verifikasi redaksi setelah UU 1/2024).",prev:["Sandi unik dan panjang","Autentikasi dua faktor","Perbarui perangkat lunak"],flow:"flowBreach"},
+      {id:"malware",icon:"🦠",name:"Malware",tag:"virus, trojan, spyware",summary:"Perangkat lunak berbahaya yang dirancang merusak, memata-matai, atau mengambil alih perangkat.",how:["Disamarkan sebagai aplikasi atau berkas yang tampak sah.","Pengguna memasangnya, sering tanpa sadar.","Malware bekerja diam-diam: mencuri sandi, merekam layar, atau membuka pintu belakang."],ex:["Aplikasi bajakan yang menyisipkan trojan","Lampiran email berisi spyware"],impact:"Pencurian kredensial, penyadapan, perangkat dikendalikan pihak lain.",law:"Membuat atau menyebarkan perangkat lunak berbahaya dapat dijerat ketentuan perangkat atau kode akses berbahaya dalam UU ITE (Pasal 34; verifikasi).",prev:["Unduh dari sumber resmi","Antivirus dan pembaruan","Hindari perangkat lunak bajakan"]},
+      {id:"ransom",icon:"🔒",name:"Ransomware",tag:"mengunci & memeras",summary:"Malware yang mengenkripsi data lalu meminta tebusan agar data dibuka. Sering disertai ancaman membocorkan data.",how:["Masuk lewat email palsu atau celah sistem.","Menyebar dan mengenkripsi data.","Menampilkan catatan tebusan."],ex:"Insiden ransomware pada Pusat Data Nasional Sementara tahun 2024 (fakta rinci perlu diverifikasi dari laporan resmi).",impact:"Layanan berhenti, data bocor, kerugian besar.",law:"Gangguan sistem dan pemerasan atau pengancaman (UU ITE dan KUHP; verifikasi).",prev:["Cadangan 3-2-1 dengan salinan offline","Segmentasi jaringan","Pelatihan anti-phishing"],flow:"flowRansom"},
+      {id:"ddos",icon:"🌐",name:"DDoS",tag:"banjir permintaan",summary:"Membanjiri layanan dengan permintaan dari banyak perangkat sekaligus sehingga tak bisa melayani pengguna sah.",how:["Menginfeksi banyak perangkat menjadi bot.","Mengirim perintah serang serentak.","Server kehabisan kapasitas."],ex:"Situs toko online lumpuh saat promo besar karena dibanjiri lalu lintas palsu.",impact:"Layanan tidak bisa diakses; kehilangan penjualan dan reputasi.",law:"Gangguan terhadap sistem elektronik (UU ITE, Pasal 33; verifikasi).",prev:["CDN/WAF","Rate limiting","Rencana respons insiden"],flow:"flowDdos"},
+      {id:"deface",icon:"🖼️",name:"Defacement",tag:"mengubah tampilan situs",summary:"Mengubah tampilan atau isi situs tanpa izin, biasanya untuk pamer, protes, atau menyebar pesan.",how:["Menemukan celah di aplikasi web atau kredensial admin.","Mengubah berkas halaman.","Menampilkan pesan pelaku."],ex:"Situs instansi atau kampus menampilkan pesan lain di beranda.",impact:"Reputasi rusak; bisa menjadi tanda bahwa sistem sudah dibobol lebih dalam.",law:"Mengubah, merusak, atau menghilangkan informasi elektronik tanpa hak (UU ITE, Pasal 32; verifikasi).",prev:["Perbarui CMS dan plugin","Batasi akses admin","Pantau integritas berkas"]},
+      {id:"theft",icon:"🕵️",name:"Pencurian data",tag:"data breach",summary:"Mengambil data tanpa izin, lalu menyalahgunakan atau menjualnya.",how:["Akses tidak sah ke sistem atau database.","Menyalin data.","Data dijual atau dipakai untuk penipuan."],ex:"Kebocoran data pelanggan sebuah platform yang dijual di forum gelap.",impact:"Kerugian korban, penipuan, sanksi bagi pengelola data.",law:"Akses ilegal dan pemindahan data (UU ITE) serta kewajiban pelindungan (UU PDP).",prev:["Enkripsi data","Pembatasan hak akses","Pemantauan log"],flow:"flowBreach"}
+    ]
+  },
+  urut:{
+    title:"Urutkan: respons insiden ransomware",
+    prompt:"Sebuah toko online terkena ransomware. Susun langkah respons yang paling masuk akal.",
+    items:[
+      {t:"Isolasi perangkat dan jaringan yang terinfeksi",why:"Hentikan penyebaran lebih dulu."},
+      {t:"Aktifkan tim respons dan amankan bukti (log, salinan sistem)",why:"Bukti diperlukan untuk penyidikan dan analisis."},
+      {t:"Nilai dampak dan identifikasi data pribadi yang terdampak",why:"Menentukan kewajiban notifikasi."},
+      {t:"Laporkan ke pihak berwenang dan beri tahu pihak terdampak sesuai ketentuan",why:"Kewajiban hukum, mis. UU PDP bila data pribadi bocor (verifikasi tenggat)."},
+      {t:"Pulihkan dari cadangan yang bersih",why:"Pulihkan setelah ancaman diisolasi dan diverifikasi bersih."},
+      {t:"Evaluasi dan perbaiki celah penyebab",why:"Mencegah terulang."}
+    ]
+  },
+
+  quiz1: {
+    title: "Kuis penutup (9 soal)",
+    items: [
+      {q:"Manakah pernyataan yang paling tepat tentang hacking dan hukum?", o:["Semua hacking pasti pidana","Hacking itu netral sebagai istilah; menjadi pidana jika tanpa hak atau melawan hukum","Hacking tidak pernah diatur hukum","Hacking hanya pidana bila ada kerusakan nyata"], a:1, why:"Yang menentukan adalah izin dan niat melawan hukum, bukan sekadar kegiatan teknisnya."},
+      {q:"Empat pertanyaan untuk menemukan unsur pidana adalah…", o:["Siapa, kapan, dimana, mengapa","Subjek, perbuatan, tanpa hak/melawan hukum, akibat","Alat, waktu, saksi, bukti","Pelaku, korban, hakim, jaksa"], a:1, why:"Kerangka subjek, perbuatan, tanpa hak/melawan hukum, dan akibat dipakai sepanjang pertemuan."},
+      {q:"Pada insiden ransomware, ciri yang membedakannya dari malware biasa adalah…", o:["Hanya menampilkan iklan","Mengenkripsi/mengunci data lalu menuntut tebusan","Hanya memperlambat perangkat","Hanya mengubah tampilan situs"], a:1, why:"Enkripsi atau penguncian data disertai tuntutan tebusan adalah ciri khas ransomware."},
+      {q:"Serangan yang membanjiri layanan dengan lalu lintas dari banyak sumber hingga pengguna sah tak bisa mengakses disebut…", o:["Defacement","DDoS","Phishing","Spyware"], a:1, why:"DDoS menyerang ketersediaan layanan. Dalam UU ITE paling dekat dengan ketentuan gangguan sistem (Pasal 33)."},
+      {q:"Mengubah tampilan beranda situs tanpa izin paling tepat disebut…", o:["Defacement","DDoS","Ransomware","SQL injection"], a:0, why:"Defacement adalah perubahan tampilan situs tanpa hak; dapat terkait Pasal 32 dan Pasal 30."},
+      {q:"SQL injection secara konseptual berakar pada…", o:["Kelemahan cara aplikasi menangani masukan pengguna","Kabel jaringan yang putus","Kata sandi yang terlalu panjang","Listrik padam di pusat data"], a:0, why:"Akar masalahnya ada pada rancangan aplikasi dalam memproses masukan. Itu sebabnya pencegahannya dimulai dari rancangan yang aman."},
+      {q:"Bedanya ethical hacking dengan cracking yang paling mendasar adalah…", o:["Alat yang dipakai berbeda","Ada izin tertulis dan ruang lingkup yang disepakati","Ethical hacking selalu gratis","Cracking selalu merusak data"], a:1, why:"Izin tertulis dan lingkup yang disepakati membuat pengujian sah; tanpa itu, niat baik tidak cukup."},
+      {q:"Seseorang masuk ke sistem toko tanpa izin lalu memberi tahu pemilik. Status perbuatannya…", o:["Sah karena sudah lapor","Tetap berpotensi memenuhi unsur akses tanpa hak","Pasti bebas karena tidak ada kerugian","Hanya urusan etika, bukan hukum"], a:1, why:"Izin harus ada sebelum perbuatan. Lapor setelah masuk tidak menghapus unsur tanpa hak."},
+      {q:"Pelajaran tata kelola yang paling kuat dari insiden ransomware pada sebuah pusat data adalah…", o:["Mengandalkan pembayaran tebusan","Memiliki cadangan data terpisah yang teruji serta rencana tanggap insiden","Menyembunyikan insiden dari publik","Menunggu pelaku menyerah"], a:1, why:"Cadangan teruji dan rencana tanggap insiden mengurangi dampak tanpa bergantung pada pelaku."}
+    ]
+  }
+};
+</script>
+
+<!-- ===== [SHARED:JS] — jangan ubah blok ini antar pertemuan ===== -->
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const K=PAGE.id+":";
+const store={get(k,d){try{const v=localStorage.getItem(K+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(K+k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const widgets=$$(".w[data-widget]"); const done=new Set(store.get("done",[]));
+function markDone(id){done.add(id);store.set("done",[...done]);const el=$("#"+id);if(el)el.classList.add("done");updateProgress()}
+function updateProgress(){const p=widgets.length?Math.round(done.size/widgets.length*100):0;$("#pbar").style.width=p+"%";$("#ppct").textContent=p+"%"}
+const body=(el)=>{const d=document.createElement("div");d.className="wb";el.appendChild(d);return d};
+
+/* ---------- Poll ---------- */
+function poll(el,c){const b=body(el);const saved=store.get(el.id,null);
+  b.innerHTML=`<h3>${esc(c.q)}</h3><div class="opts"></div><div class="fb"></div>`;
+  const o=$(".opts",b),fb=$(".fb",b);
+  c.opts.forEach((x,i)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=x.t;bt.onclick=()=>pick(i);o.appendChild(bt)});
+  function pick(i){$$(".opt",o).forEach((e,j)=>e.classList.toggle("sel",i===j));fb.className="fb show ok";fb.innerHTML="<b>Insight:</b> "+esc(c.opts[i].why);store.set(el.id,i);markDone(el.id)}
+  if(saved!==null)pick(saved)}
+
+/* ---------- Checklist ---------- */
+function checklist(el,c){const b=body(el);const st=store.get(el.id,[]);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="ckl"></div><div class="fb"></div>`;
+  const box=$(".ckl",b),fb=$(".fb",b);
+  c.items.forEach((t,i)=>{const l=document.createElement("label");l.innerHTML=`<input type="checkbox"><span>${esc(t)}</span>`;const cb=$("input",l);cb.checked=st.includes(i);cb.onchange=chk;box.appendChild(l)});
+  function chk(){const v=$$("input",box).map((x,i)=>x.checked?i:-1).filter(i=>i>=0);store.set(el.id,v);if(v.length===c.items.length){fb.className="fb show ok";fb.textContent=c.doneMsg||"Selesai.";markDone(el.id)}else fb.className="fb"}
+  chk()}
+
+/* ---------- Flashcards ---------- */
+function flash(el,c){const b=body(el);let i=0;const known=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="flash"><div class="flash-in"><div class="face f"></div><div class="face b"></div></div></div>
+  <div class="fc-ctl"><button class="btn ghost" data-a="prev">‹ Sebelumnya</button><span class="cnt"></span><button class="btn ghost" data-a="next">Berikutnya ›</button><button class="btn" data-a="know">Saya paham ✓</button></div>`;
+  const fl=$(".flash",b);
+  function draw(){const x=c.cards[i];$(".f",b).textContent=x.f;$(".b",b).textContent=x.b;fl.classList.remove("flip");$(".cnt",b).textContent=`${i+1}/${c.cards.length} · paham ${known.size}`}
+  fl.onclick=()=>fl.classList.toggle("flip");
+  b.onclick=e=>{const a=e.target.dataset.a;if(!a)return;if(a==="next")i=(i+1)%c.cards.length;if(a==="prev")i=(i-1+c.cards.length)%c.cards.length;if(a==="know"){known.add(i);store.set(el.id,[...known]);if(known.size===c.cards.length)markDone(el.id);i=(i+1)%c.cards.length}draw()};
+  draw();if(known.size===c.cards.length)markDone(el.id)}
+
+/* ---------- Classify ---------- */
+function classify(el,c){const b=body(el);let pick=null;const asg={};
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="cls-pool"></div><div class="cls-bins"></div>
+  <p><button class="btn" data-a="chk">Periksa</button> <button class="btn ghost" data-a="rst">Ulangi</button> <span class="score"></span></p><div class="fb"></div>`;
+  const pool=$(".cls-pool",b),bins=$(".cls-bins",b),fb=$(".fb",b);
+  c.bins.forEach((n,bi)=>{const d=document.createElement("div");d.className="bin";d.tabIndex=0;d.dataset.b=bi;d.innerHTML=`<h4>${esc(n)}</h4>`;bins.appendChild(d)});
+  function render(){pool.innerHTML="";$$(".bin .cls-item",bins).forEach(e=>e.remove());
+    c.items.forEach((x,i)=>{const e=document.createElement("button");e.className="cls-item";e.textContent=x.t;e.dataset.i=i;
+      if(pick===i)e.classList.add("pick");
+      if(asg[i]!==undefined)$$(".bin",bins)[asg[i]].appendChild(e);else pool.appendChild(e)})}
+  b.onclick=e=>{const it=e.target.closest(".cls-item");const bin=e.target.closest(".bin");const a=e.target.dataset.a;
+    if(a==="rst"){for(const k in asg)delete asg[k];pick=null;fb.className="fb";$(".score",b).textContent="";render();return}
+    if(a==="chk"){if(Object.keys(asg).length<c.items.length){fb.className="fb show";fb.textContent="Tempatkan semua kartu terlebih dahulu.";return}
+      let s=0,html="<ul>";c.items.forEach((x,i)=>{const ok=asg[i]===x.a;if(ok)s++;html+=`<li>${ok?"✓":"✗"} <b>${esc(x.t)}</b> → <em>${esc(c.bins[x.a])}</em>. ${esc(x.why)}</li>`});html+="</ul>";
+      $$(".cls-item",b).forEach(el2=>{el2.classList.add(asg[el2.dataset.i]===c.items[el2.dataset.i].a?"right":"wrong")});
+      $(".score",b).textContent=`Skor ${s}/${c.items.length}`;fb.className="fb show ok";fb.innerHTML=html;markDone(el.id);return}
+    if(it&&(pool.contains(it)||bins.contains(it))){const i=+it.dataset.i;if(asg[i]!==undefined&&!bin){delete asg[i]}pick=i;render();return}
+    if(bin&&pick!==null){asg[pick]=+bin.dataset.b;pick=null;render()}};
+  render()}
+
+/* ---------- Scenario ---------- */
+function scenario(el,c){const b=body(el);
+  function show(id){const n=c.nodes[id];
+    b.innerHTML=`<h3>${esc(c.title)}</h3><p class="scn-text">${esc(n.text)}</p>`;
+    if(n.end){b.insertAdjacentHTML("beforeend",`<div class="scn-end"><b>Tinjauan 3 kacamata:</b> ${esc(n.lens)}</div><p><button class="btn ghost">Coba jalur lain</button></p>`);$(".btn",b).onclick=()=>show(c.start);markDone(el.id)}
+    else{const o=document.createElement("div");o.className="opts";n.choices.forEach(ch=>{const x=document.createElement("button");x.className="opt";x.textContent=ch.t;x.onclick=()=>show(ch.to);o.appendChild(x)});b.appendChild(o)}}
+  show(c.start)}
+
+/* ---------- Reflection ---------- */
+function reflect(el,c){const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt)}</p><textarea placeholder="Tulis di sini…"></textarea><p><small>${esc(c.hint||"")}</small></p><p><button class="btn" data-a="cp">Salin jawaban</button> <span class="cnt"></span></p>`;
+  const ta=$("textarea",b);ta.value=store.get(el.id,"");
+  const upd=()=>{const n=ta.value.trim().split(/\s+/).filter(Boolean).length;$(".cnt",b).textContent=n+" kata";if(n>=15)markDone(el.id)};
+  ta.oninput=()=>{store.set(el.id,ta.value);upd()};
+  $("[data-a=cp]",b).onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText(ta.value).then(()=>{e.target.textContent="Tersalin ✓";setTimeout(()=>e.target.textContent="Salin jawaban",1500)})};
+  upd()}
+
+/* ---------- Quiz ---------- */
+function quiz(el,c){const b=body(el);const ans=[];let i=0;
+  function show(){if(i>=c.items.length)return fin();const x=c.items[i];
+    b.innerHTML=`<h3>${esc(c.title)} · ${i+1}/${c.items.length}</h3><p><b>${esc(x.q)}</b></p><div class="opts"></div><div class="fb"></div><p><button class="btn" disabled>Lanjut ›</button></p>`;
+    const o=$(".opts",b),fb=$(".fb",b),nx=$(".btn",b);
+    x.o.forEach((t,j)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=t;bt.onclick=()=>{if(ans[i]!==undefined)return;ans[i]=j;$$(".opt",o).forEach((e,k)=>{if(k===x.a)e.classList.add("right");else if(k===j)e.classList.add("wrong")});fb.className="fb show "+(j===x.a?"ok":"");fb.innerHTML=(j===x.a?"<b>Benar.</b> ":"<b>Belum tepat.</b> ")+esc(x.why);nx.disabled=false;nx.textContent=i===c.items.length-1?"Lihat skor":"Lanjut ›"};o.appendChild(bt)});
+    nx.onclick=()=>{i++;show()}}
+  function fin(){const s=c.items.filter((x,k)=>ans[k]===x.a).length;const p=Math.round(s/c.items.length*100);
+    store.set(el.id+":score",p);
+    b.innerHTML=`<h3>Hasil kuis</h3><p class="score">${s}/${c.items.length} (${p}%)</p><p>${p>=80?"Sangat baik. Pemahamanmu kuat.":p>=60?"Cukup. Ulas butir yang salah.":"Perlu ulang. Baca kembali segmen 2–4."}</p><p><button class="btn ghost">Ulangi kuis</button></p>`;
+    $(".btn",b).onclick=()=>{ans.length=0;i=0;show()};markDone(el.id)}
+  show()}
+
+const R={poll,checklist,flash,classify,scenario,reflect,quiz};
+window.EHC={$,$$,store,esc,markDone,body};
+widgets.forEach(el=>{const t=el.dataset.widget;if(R[t]&&PAGE[el.id])R[t](el,PAGE[el.id]);if(done.has(el.id))el.classList.add("done")});
+updateProgress();
+
+/* ---------- Agenda & scrollspy ---------- */
+const ag=$("#agenda");const segs=$$(".seg");
+segs.forEach((s,i)=>{const a=document.createElement("a");a.href="#"+s.id;a.innerHTML=`${esc(s.dataset.title)}`;ag.appendChild(a)});
+const links=$$("a",ag);
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}})},{rootMargin:"-30% 0px -60% 0px"});
+segs.forEach(s=>io.observe(s));
+
+})();
+</script>
+<!-- ===== [/SHARED:JS] ===== -->
+<script>
+/* ===== [SHARED:VIZ-JS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+(function(){
+"use strict";
+const E=window.EHC; if(!E){return}
+const {$,$$,store,esc,markDone,body}=E;
+const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+const arr=x=>x==null?[]:Array.isArray(x)?x:[x];
+const list=(a,tag="ul")=>`<${tag}>${arr(a).map(x=>`<li>${esc(x)}</li>`).join("")}</${tag}>`;
+
+/* =============== FLOW: animasi alur proses antar aktor =============== */
+/* cfg: {title, sub, actors:[{id,icon,name,x,y,role,state,badge}], zones:[{x,y,w,h,label}],
+         steps:[{title,text,from,to,packet,label,count,bad,set:{id:'safe|warn|danger|lock|active'|['danger','teks']},law,tip,risk}], outcome} */
+function flow(el,c,opt){
+  opt=opt||{};const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title||"")}</h3>${c.sub?`<p>${esc(c.sub)}</p>`:""}
+  <div class="v-stage"><svg class="v-lines" viewBox="0 0 100 100" preserveAspectRatio="none"></svg><div class="v-layer"></div></div>
+  <div class="v-ctl"><button class="btn ghost" data-a="rs" title="Ulang dari awal">Ulang</button><button class="btn ghost" data-a="pv">‹ Mundur</button><button class="btn" data-a="pl">Putar otomatis</button><button class="btn ghost" data-a="nx">Lanjut ›</button>
+  <label>Kecepatan <select data-a="sp"><option value="1.6">Lambat</option><option value="1" selected>Normal</option><option value="0.6">Cepat</option></select></label></div>
+  <div class="v-rail"></div><div class="v-cap" aria-live="polite"></div>`;
+  const stage=$(".v-stage",b),svg=$(".v-lines",b),layer=$(".v-layer",b),rail=$(".v-rail",b),cap=$(".v-cap",b),play=$("[data-a=pl]",b);
+  const A={},pos={};
+  (c.zones||[]).forEach(z=>{const d=document.createElement("div");d.className="v-zone";d.style.cssText=`left:${z.x}%;top:${z.y}%;width:${z.w}%;height:${z.h}%`;d.textContent=z.label||"";layer.appendChild(d)});
+  c.actors.forEach(a=>{pos[a.id]=a;const d=document.createElement("div");d.className="v-actor r-"+(a.role||"neutral");d.style.cssText=`left:${a.x}%;top:${a.y}%`;
+    d.innerHTML=`<div class="v-ico">${a.icon}</div><div class="v-name">${esc(a.name)}</div><div class="v-badge"></div>`;layer.appendChild(d);A[a.id]=d});
+  const seenPairs=new Set(),L={};
+  c.steps.forEach(s=>arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const k=f+">"+t;if(f===t||seenPairs.has(k))return;seenPairs.add(k);
+    const ln=document.createElementNS("http://www.w3.org/2000/svg","line");ln.setAttribute("x1",pos[f].x);ln.setAttribute("y1",pos[f].y);ln.setAttribute("x2",pos[t].x);ln.setAttribute("y2",pos[t].y);svg.appendChild(ln);L[k]=ln})));
+  c.steps.forEach((s,i)=>{const r=document.createElement("button");r.textContent=`${i+1}. ${s.short||s.title}`;r.onclick=()=>{halt();go(i,true)};rail.appendChild(r)});
+  let cur=-1,tm=[],auto=false,max=-1,sp=1;
+  const T=(fn,ms)=>{const id=setTimeout(fn,ms);tm.push(id);return id};
+  const clr=()=>{tm.forEach(clearTimeout);tm=[];$$(".v-packet",layer).forEach(p=>p.remove())};
+  function states(i){
+    c.actors.forEach(a=>setSt(a.id,a.state||"",a.badge||""));
+    for(let k=0;k<=i;k++){const st=c.steps[k].set||{};for(const id in st){const v=st[id];Array.isArray(v)?setSt(id,v[0],v[1]||""):setSt(id,v,"")}}}
+  function setSt(id,s,badge){const d=A[id];if(!d)return;d.className=d.className.replace(/\bs-\w+/g,"").trim();if(s)d.classList.add("s-"+s);$(".v-badge",d).textContent=badge}
+  function fire(s){
+    const dur=reduce?1:900*sp,n=s.count||1;let d=0;
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{ if(f===t)return;
+      for(let k=0;k<n;k++){T(()=>{const a=pos[f],z=pos[t],p=document.createElement("div");p.className="v-packet";p.style.cssText=`left:${a.x}%;top:${a.y}%;--dur:${dur}ms`;
+        p.innerHTML=(s.packet||"✉️")+(s.label&&k===0?`<span class="v-plabel">${esc(s.label)}</span>`:"");layer.appendChild(p);void p.offsetWidth;
+        p.style.left=z.x+"%";p.style.top=z.y+"%";T(()=>{p.style.opacity=0;T(()=>p.remove(),320)},dur)},d+k*240*sp)}
+      d+=90*sp}));
+    return dur+(n-1)*240*sp+d}
+  function go(i,animate){
+    if(i<0||i>=c.steps.length)return;clr();cur=i;max=Math.max(max,i);const s=c.steps[i];
+    states(i-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const l=L[f+">"+t];if(l){l.classList.add("on");if(s.bad)l.classList.add("bad")}}));
+    arr(s.from).forEach(f=>{A[f]&&A[f].classList.add("s-active")});
+    const after=animate?fire(s):0;
+    T(()=>{states(i);arr(s.from).forEach(f=>{});},animate?Math.min(after,1100*sp):0);
+    $$("button",rail).forEach((r,k)=>{r.classList.toggle("on",k===i);r.classList.toggle("seen",k<i||k<=max&&k!==i)});
+    cap.innerHTML=`<span class="v-num">Langkah ${i+1} / ${c.steps.length}</span><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p>`
+      +((s.law||s.tip||s.risk)?`<div class="v-chips">${s.risk?`<span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span>`:""}${s.law?`<span class="v-chip law"><b>Dasar hukum</b>${esc(s.law)}</span>`:""}${s.tip?`<span class="v-chip tip"><b>Tips</b>${esc(s.tip)}</span>`:""}</div>`:"")
+      +(i===c.steps.length-1&&c.outcome?`<div class="v-outcome">${esc(c.outcome)}</div>`:"");
+    if(i===c.steps.length-1&&!opt.silent)markDone(el.id);
+    return after}
+  function halt(){auto=false;play.textContent="Putar otomatis"}
+  function step(){if(!auto)return;if(cur>=c.steps.length-1){halt();return}const after=go(cur+1,true);T(step,after+2600*sp)}
+  b.addEventListener("click",e=>{const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==="rs"){halt();clr();cur=-1;states(-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));$$("button",rail).forEach(r=>r.className="");cap.innerHTML="<span class=\"v-num\">Siap</span><h4>Tekan “Putar otomatis” atau “Lanjut”</h4><p>Setiap langkah menampilkan apa yang terjadi, dasar hukumnya, dan cara memutus rantainya.</p>"}
+    if(a==="nx"){halt();go(Math.min(cur+1,c.steps.length-1),true)}
+    if(a==="pv"){halt();go(Math.max(cur-1,0),false)}
+    if(a==="pl"){if(auto){halt();return}auto=true;play.textContent="Jeda";if(cur>=c.steps.length-1){cur=-1}step()}
+  });
+  $("[data-a=sp]",b).onchange=e=>{sp=+e.target.value};
+  b.querySelector("[data-a=rs]").click();
+}
+
+/* =============== EXPLORER: peta jenis / konsep dengan detail =============== */
+/* cfg: {title, intro, items:[{id,icon,name,tag,summary,how[],ex,impact,law,prev[],flow:'kunciFlow'}]} */
+function explorer(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3>${c.intro?`<p>${esc(c.intro)}</p>`:""}<div class="v-grid"></div><div class="v-detail-wrap"><p class="v-hintp"><em>Klik salah satu kartu untuk membuka penjelasan, contoh, dasar hukum, dan cara pencegahannya.</em></p></div>`;
+  const grid=$(".v-grid",b),wrap=$(".v-detail-wrap",b);
+  c.items.forEach((it,i)=>{const t=document.createElement("button");t.className="v-tile"+(seen.has(i)?" seen":"");t.innerHTML=`<span class="ic">${it.icon}</span><b>${esc(it.name)}</b><small>${esc(it.tag||"")}</small>`;t.onclick=()=>open(i);grid.appendChild(t)});
+  function open(i,tab){const it=c.items[i];seen.add(i);store.set(el.id,[...seen]);
+    $$(".v-tile",grid).forEach((t,k)=>{t.classList.toggle("sel",k===i);if(seen.has(k))t.classList.add("seen")});
+    const tabs=[["ap","Apa itu",true],["how","Cara kerja",it.how],["ex","Contoh",it.ex],["im","Dampak",it.impact],["law","Dasar hukum",it.law],["pv","Pencegahan",it.prev]].filter(x=>x[2]);
+    tab=tab||"ap";
+    const pane={ap:()=>`<p>${esc(it.summary)}</p>`,how:()=>list(it.how,"ol"),ex:()=>Array.isArray(it.ex)?list(it.ex):`<p>${esc(it.ex)}</p>`,im:()=>Array.isArray(it.impact)?list(it.impact):`<p>${esc(it.impact)}</p>`,law:()=>Array.isArray(it.law)?list(it.law):`<p>${esc(it.law)}</p>`,pv:()=>list(it.prev)};
+    wrap.innerHTML=`<div class="v-detail"><h3><span style="font-size:1.8rem">${it.icon}</span>${esc(it.name)}</h3><div class="v-tabs">${tabs.map(t=>`<button data-t="${t[0]}" class="${t[0]===tab?"on":""}">${t[1]}</button>`).join("")}</div><div class="v-pane">${pane[tab]()}</div>${it.flow&&PAGE[it.flow]?`<div class="v-sub"><button class="btn" data-f="1">Lihat animasi prosesnya</button><div class="v-flowbox"></div></div>`:""}</div>`;
+    wrap.onclick=e=>{const t=e.target.dataset.t;if(t){open(i,t)}if(e.target.dataset.f){e.target.style.display="none";flow($(".v-flowbox",wrap),PAGE[it.flow],{silent:true})}};
+    if(seen.size===c.items.length)markDone(el.id)}
+  if(seen.size===c.items.length)markDone(el.id)
+}
+
+/* =============== MOCK: layar HP / email / web / postingan dengan titik klik =============== */
+/* cfg: {title, kind:'chat|email|web|post', header:{name,sub,avatar,from,to,subject,url}, messages:[{from,time,parts}], cta, stats,
+         hotspots:[{id,label,why,decoy}], instruct}
+   parts: array string | {t:'teks', h:'idHotspot'} */
+function mock(el,c){
+  const b=body(el);const found=new Set(store.get(el.id,[]));const real=c.hotspots.filter(h=>!h.decoy);const H={};c.hotspots.forEach(h=>H[h.id]=h);
+  const P=parts=>arr(parts).map(p=>typeof p==="string"?esc(p):`<span class="v-hot" data-h="${p.h}" tabindex="0" role="button">${esc(p.t)}</span>`).join("");
+  const h=c.header||{};let inner="";
+  if(c.kind==="email"){inner=`<div class="v-bar"><span>✉️</span><b>Kotak masuk</b></div><div class="v-meta"><div><b>Dari:</b> ${P(h.from)}</div><div><b>Kepada:</b> ${P(h.to)}</div><div><b>Subjek:</b> ${P(h.subject)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="web"){inner=`<div class="v-bar"><span>🔒</span><div class="v-url">${P(h.url)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="post"){inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}</div><div class="v-stats">${esc(c.stats||"")}</div>`}
+  else{inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-msgs">${c.messages.map(m=>`<div class="v-msg ${m.from==="me"?"me":""}">${P(m.parts)}${m.time?`<time>${esc(m.time)}</time>`:""}</div>`).join("")}</div>`}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.instruct||"Klik bagian yang menurutmu mencurigakan. Hati-hati: ada juga bagian yang tampak janggal tetapi wajar.")}</p>
+  <div class="v-mockwrap"><div class="v-phone"><div class="v-screen ${c.kind||"chat"}">${inner}</div></div>
+  <div><div class="v-spec-lbl"><span>Tanda bahaya ditemukan</span><span class="cnt"></span></div><div class="v-prog"><i></i></div><p><button class="btn ghost" data-a="hint">Tampilkan petunjuk</button> <button class="btn ghost" data-a="reset">Ulangi</button></p><div class="v-finds"></div></div></div>`;
+  const scr=$(".v-phone",b),fin=$(".v-finds",b);
+  function upd(){const n=[...found].filter(id=>!H[id].decoy).length;$(".cnt",b).textContent=`${n} / ${real.length}`;$(".v-prog i",b).style.width=(n/real.length*100)+"%";if(n===real.length)markDone(el.id)}
+  function mark(id){const hs=H[id];if(!hs)return;found.add(id);store.set(el.id,[...found]);$$(`[data-h="${id}"]`,b).forEach(x=>x.classList.add(hs.decoy?"decoy":"found"));
+    if(!$(`[data-f="${id}"]`,fin)){const d=document.createElement("div");d.className="v-find"+(hs.decoy?" ok":"");d.dataset.f=id;d.innerHTML=`<b>${hs.decoy?"Ini wajar":"Tanda bahaya: "+esc(hs.label)}</b>${esc(hs.why)}`;fin.appendChild(d)}upd()}
+  b.addEventListener("click",e=>{const x=e.target.closest(".v-hot");if(x){mark(x.dataset.h);return}if(e.target.dataset.a==="hint"){scr.classList.toggle("v-hint")}if(e.target.dataset.a==="reset"){found.clear();store.set(el.id,[]);$$(".v-hot",b).forEach(x=>x.classList.remove("found","decoy"));fin.innerHTML="";scr.classList.remove("v-hint");upd()}});
+  b.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList.contains("v-hot"))mark(e.target.dataset.h)});
+  found.forEach(id=>mark(id));upd();
+}
+
+/* =============== TIMELINE =============== */
+/* cfg: {title, events:[{when,title,text,icon,law}]} */
+function timeline(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));let cur=0;
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="v-tl"><div class="v-tl-track"></div></div><div class="v-cap"></div><p><button class="btn ghost" data-a="p">‹ Sebelumnya</button> <button class="btn" data-a="n">Berikutnya ›</button></p>`;
+  const tr=$(".v-tl-track",b),cap=$(".v-cap",b);
+  c.events.forEach((ev,i)=>{const p=document.createElement("button");p.className="v-tl-pt";p.innerHTML=`<span class="dot">${ev.icon||"•"}</span><span class="when">${esc(ev.when)}</span><span class="tt">${esc(ev.title)}</span>`;p.onclick=()=>show(i);tr.appendChild(p)});
+  function show(i){cur=i;seen.add(i);store.set(el.id,[...seen]);const ev=c.events[i];
+    $$(".v-tl-pt",tr).forEach((p,k)=>{p.classList.toggle("on",k===i);p.classList.toggle("seen",seen.has(k))});
+    const pt=$(".v-tl-pt",tr)[i],sc=tr.parentElement;if(pt&&sc&&sc.scrollTo){sc.scrollTo({left:pt.getBoundingClientRect().left-sc.getBoundingClientRect().left+sc.scrollLeft-sc.clientWidth/2+pt.offsetWidth/2,behavior:reduce?"auto":"smooth"})}
+    cap.innerHTML=`<span class="v-num">${esc(ev.when)}</span><h4>${esc(ev.title)}</h4><p>${esc(ev.text)}</p>${ev.law?`<div class="v-chips"><span class="v-chip law"><b>Dasar hukum</b>${esc(ev.law)}</span></div>`:""}`;
+    if(seen.size===c.events.length)markDone(el.id)}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="n")show(Math.min(cur+1,c.events.length-1));if(a==="p")show(Math.max(cur-1,0))});
+  show(0);
+}
+
+/* =============== SPECTRUM: geser untuk melihat trade-off =============== */
+/* cfg: {title, prompt, left, right, stops:[{at,label,text,risk}]} */
+function spectrum(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"")}</p><div class="v-spec"><div class="v-spec-lbl"><span>‹ ${esc(c.left)}</span><span>${esc(c.right)} ›</span></div><input type="range" min="0" max="100" value="50" aria-label="${esc(c.title)}">
+  <div class="v-spec-bars"><div><small>${esc(c.left)}</small><div class="bar"><i></i></div></div><div><small>${esc(c.right)}</small><div class="bar r"><i></i></div></div></div></div><div class="v-cap"></div>`;
+  const rg=$("input",b),cap=$(".v-cap",b),bl=$(".bar i",b),br=$(".bar.r i",b);
+  function upd(){const v=+rg.value;bl.style.width=(100-v)+"%";br.style.width=v+"%";
+    let best=0,d=1e9;c.stops.forEach((s,i)=>{const x=Math.abs(s.at-v);if(x<d){d=x;best=i}});const s=c.stops[best];
+    cap.innerHTML=`<span class="v-num">${esc(s.label)}</span><p>${esc(s.text)}</p>${s.risk?`<div class="v-chips"><span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span></div>`:""}`;
+    seen.add(best);store.set(el.id,[...seen]);if(seen.size>=Math.min(3,c.stops.length))markDone(el.id)}
+  rg.oninput=upd;upd();
+}
+
+/* =============== ORDER: urutkan langkah =============== */
+/* cfg: {title, prompt, items:[{t,why}]} dalam urutan benar */
+function order(el,c){
+  const b=body(el);const n=c.items.length;
+  const idx=c.items.map((_,i)=>i);const sh=idx.map((_,i)=>idx[(i*3+2)%n]).filter((v,i,a)=>a.indexOf(v)===i);idx.forEach(i=>{if(!sh.includes(i))sh.push(i)});
+  let pool=sh.slice(),ans=[];if(pool.every((v,i)=>v===i)){pool.reverse()}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"Klik langkah satu per satu sesuai urutan yang benar. Klik langkah di kolom jawaban untuk membatalkannya.")}</p><div class="v-ord"><div><h4>Langkah acak</h4><div class="col pool"></div></div><div><h4>Urutan kamu</h4><div class="col ans"></div></div></div><p><button class="btn" data-a="chk" disabled>Periksa urutan</button> <button class="btn ghost" data-a="rst">Ulangi</button></p><div class="fb"></div>`;
+  const P=$(".pool",b),Aw=$(".ans",b),chk=$("[data-a=chk]",b),fb=$(".fb",b);
+  function draw(res){P.innerHTML="";Aw.innerHTML="";pool.forEach(i=>{const x=document.createElement("button");x.className="it";x.textContent=c.items[i].t;x.onclick=()=>{ans.push(i);pool=pool.filter(v=>v!==i);fb.className="fb";draw()};P.appendChild(x)});
+    ans.forEach((i,k)=>{const x=document.createElement("button");x.className="it"+(res?(i===k?" right":" wrong"):"");x.innerHTML=`<i>${k+1}</i>`+esc(c.items[i].t);x.onclick=()=>{if(res)return;ans=ans.filter(v=>v!==i);pool.push(i);draw()};Aw.appendChild(x)});
+    chk.disabled=pool.length>0}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="rst"){pool=sh.slice();ans=[];fb.className="fb";draw()}
+    if(a==="chk"){const ok=ans.filter((v,k)=>v===k).length;draw(true);fb.className="fb show"+(ok===n?" ok":"");fb.innerHTML=`<b>${ok}/${n} posisi tepat.</b><ol>${c.items.map(x=>`<li>${esc(x.t)}${x.why?`: ${esc(x.why)}`:""}</li>`).join("")}</ol>`;markDone(el.id)}});
+  draw();
+}
+
+/* ---------- registrasi ---------- */
+const V={flow,explorer,mock,timeline,spectrum,order};
+$$(".w[data-widget]").forEach(el=>{const t=el.dataset.widget;if(V[t]&&PAGE[el.id])V[t](el,PAGE[el.id])});
+/* reveal on scroll */
+if(!reduce&&"IntersectionObserver" in window){document.documentElement.classList.add("reveal-on");
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{rootMargin:"0px 0px -8% 0px"});
+  $$(".seg").forEach(s=>io.observe(s));
+  setTimeout(()=>$$(".seg").forEach(s=>s.classList.add("in")),2500)}
+})();
+/* ===== [/SHARED:VIZ-JS] ===== */
+</script>
+
+</body>
+</html>

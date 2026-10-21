@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pertemuan 14 — Tata Kelola Siber, Surveillance, dan Etika Big Data | Etika Hukum Cyber</title>
+<style>
+/* ===== [SHARED:CSS] — jangan ubah blok ini antar pertemuan, kecuali --accent ===== */
+:root{
+  --accent:#be123c; --accent-soft:#ffe4e6; --accent-ink:#4c0519;
+  --bg:#f6f7f4; --card:#ffffff; --ink:#1c2321; --muted:#5b6762; --line:#dfe4e0;
+  --ok:#15803d; --ok-soft:#dcfce7; --bad:#b91c1c; --bad-soft:#fee2e2; --warn:#b45309; --warn-soft:#fef3c7;
+  --radius:14px; --shadow:0 1px 2px rgba(20,30,25,.06),0 6px 20px rgba(20,30,25,.06);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16.5px}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;letter-spacing:-.01em}
+h2{font-size:1.55rem} h3{font-size:1.15rem} p{margin:.6em 0}
+a{color:var(--accent)}
+button{font:inherit;cursor:pointer}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(246,247,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-weight:700;font-size:.95rem;white-space:nowrap}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
+.progress{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress>i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+.pct{font-size:.85rem;font-weight:700;min-width:42px;text-align:right}
+.tbtn{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 12px;font-size:.82rem;font-weight:600}
+.tbtn[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.layout{max-width:1180px;margin:0 auto;padding:24px 20px 80px;display:grid;grid-template-columns:230px 1fr;gap:28px}
+nav.agenda{position:sticky;top:76px;align-self:start;max-height:calc(100vh - 96px);overflow:auto}
+nav.agenda h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+nav.agenda a{display:block;text-decoration:none;color:var(--ink);padding:8px 10px;border-radius:10px;font-size:.88rem;border-left:3px solid transparent}
+nav.agenda a span{display:block;font-size:.72rem;color:var(--muted)}
+nav.agenda a:hover{background:var(--card)}
+nav.agenda a.active{background:var(--accent-soft);border-left-color:var(--accent);font-weight:600}
+.hero{background:linear-gradient(135deg,var(--accent-ink),var(--accent));color:#fff;border-radius:22px;padding:34px 34px 28px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border-radius:99px;padding:3px 12px;font-size:.78rem;font-weight:600;letter-spacing:.04em}
+.hero h1{font-size:2.05rem;margin:.5em 0 .3em}
+.hero p{max-width:62ch;opacity:.92}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:18px}
+.meta div{background:rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;font-size:.84rem}
+.meta b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;opacity:.75}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:16px 0;box-shadow:var(--shadow)}
+.seg{margin:34px 0}
+.seg-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.seg-head .num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.seg-head h2{margin:0;flex:1;min-width:200px}
+.chip{display:inline-block;background:var(--accent-soft);color:var(--accent-ink);border-radius:99px;padding:3px 11px;font-size:.76rem;font-weight:700}
+.chip.act{background:#ede9fe;color:#5b21b6}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);color:var(--accent-ink);border-radius:0 12px 12px 0;padding:12px 16px;margin:14px 0}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft);color:#78350f}
+.callout.law{border-color:#1d4ed8;background:#dbeafe;color:#1e3a8a}
+.callout b.t{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfdfc}
+.mini h3{margin-bottom:.3em}
+table.t{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
+table.t th,table.t td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+table.t th{background:var(--accent-soft);color:var(--accent-ink)}
+.tablewrap{overflow-x:auto}
+details.acc{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:#fff}
+details.acc summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details.acc summary::after{content:"+";font-weight:700;color:var(--accent)}
+details.acc[open] summary::after{content:"–"}
+details.acc>div{padding:0 16px 14px}
+/* interactive widgets */
+.w{border:2px solid var(--accent);border-radius:var(--radius);padding:20px 22px;margin:18px 0;background:#fff;position:relative}
+.w>.w-label{position:absolute;top:-12px;left:16px;background:var(--accent);color:#fff;border-radius:99px;font-size:.72rem;font-weight:700;padding:2px 12px;letter-spacing:.05em;text-transform:uppercase}
+.w.done{border-color:var(--ok)} .w.done>.w-label{background:var(--ok)}
+.w h3{margin-top:.2em}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 18px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.opts{display:grid;gap:8px;margin:12px 0}
+.opt{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px}
+.opt:hover{border-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--warn-soft);color:#78350f;font-size:.93rem;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--ok-soft);color:#14532d}
+.flash{perspective:900px;max-width:520px;margin:12px auto}
+.flash-in{position:relative;min-height:190px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.flash.flip .flash-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:22px;display:grid;place-items:center;text-align:center;font-size:1.05rem}
+.face.f{background:var(--accent);color:#fff;font-weight:700;font-size:1.25rem}
+.face.b{background:var(--accent-soft);color:var(--accent-ink);transform:rotateY(180deg)}
+.fc-ctl{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.cls-pool,.cls-bins{display:grid;gap:10px}
+.cls-bins{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:14px}
+.cls-item{border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;text-align:left}
+.cls-item.pick{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.cls-item.right{border-color:var(--ok);background:var(--ok-soft)}
+.cls-item.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.bin{border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:110px;cursor:pointer;background:#fcfdfc}
+.bin:hover{border-color:var(--accent)}
+.bin h4{font-size:.9rem;margin:0 0 8px;color:var(--accent-ink)}
+.bin .cls-item{margin-bottom:6px;font-size:.88rem;cursor:pointer}
+.scn-text{font-size:1.02rem}
+.scn-end{border-radius:12px;padding:14px 16px;background:var(--accent-soft);color:var(--accent-ink);margin-top:10px}
+textarea{width:100%;min-height:96px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;resize:vertical}
+textarea:focus,.opt:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+.score{font-size:1.4rem;font-weight:800;color:var(--accent)}
+.ckl label{display:flex;gap:10px;align-items:flex-start;padding:7px 4px;cursor:pointer}
+.ckl input{margin-top:.38em;accent-color:var(--accent)}
+.bars .bar{margin:8px 0}
+.bars .bar>div{height:26px;border-radius:8px;background:var(--accent-soft);position:relative;overflow:hidden}
+.bars .bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);opacity:.85;width:0;transition:width .5s}
+.bars .bar span{position:absolute;left:10px;top:2px;font-size:.84rem;font-weight:600;color:#0b1f1c;z-index:1}
+.refs li{margin:.5em 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 0 10px}
+@media(max-width:860px){.layout{grid-template-columns:1fr}nav.agenda{display:none}.hero h1{font-size:1.6rem}.brand small{display:none}}
+@media print{.topbar,nav.agenda{display:none!important}.layout{display:block}.card,.w{box-shadow:none;break-inside:avoid}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* ===== [/SHARED:CSS] ===== */
+/* ===== [SHARED:VIZ-CSS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+/* hero hidup */
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 88% 15%,rgba(255,255,255,.22),transparent 42%),radial-gradient(circle at 8% 95%,rgba(255,255,255,.12),transparent 40%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:linear-gradient(115deg,transparent 30%,#000);mask-image:linear-gradient(115deg,transparent 30%,#000);animation:v-grid 22s linear infinite}
+.hero>*{position:relative;z-index:1}
+@keyframes v-grid{to{background-position:36px 36px}}
+/* reveal saat scroll */
+.reveal-on .seg{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal-on .seg.in{opacity:1;transform:none}
+.seg-head .num{box-shadow:0 0 0 5px var(--accent-soft)}
+
+/* ---------- STAGE (flow) ---------- */
+.v-stage{position:relative;aspect-ratio:2/1;min-height:300px;border-radius:16px;overflow:hidden;color:#e8eefc;
+  background:#0a1120;background-image:radial-gradient(ellipse at 50% -10%,#1b2d57 0,transparent 62%),linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:auto,30px 30px,30px 30px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 10px 30px rgba(10,17,32,.28)}
+.v-lines{position:absolute;inset:0;width:100%;height:100%}
+.v-lines line{stroke:rgba(255,255,255,.16);stroke-width:1.5;stroke-dasharray:4 5;vector-effect:non-scaling-stroke;transition:stroke .4s}
+.v-lines line.on{stroke:#7dd3fc;stroke-width:2.5;stroke-dasharray:6 6;animation:v-dash 1s linear infinite}
+.v-lines line.on.bad{stroke:#fb7185}
+@keyframes v-dash{to{stroke-dashoffset:-24}}
+.v-actor{position:absolute;transform:translate(-50%,-50%);width:104px;text-align:center;z-index:2}
+.v-ico{width:60px;height:60px;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;font-size:29px;background:#16213b;border:2px solid #3a4a70;transition:border-color .4s,box-shadow .4s,background .4s,transform .3s}
+.v-name{font-size:.74rem;font-weight:700;line-height:1.15;text-shadow:0 1px 3px #000}
+.v-badge{display:inline-block;margin-top:3px;font-size:.64rem;font-weight:700;padding:1px 8px;border-radius:99px;background:rgba(255,255,255,.12);color:#e8eefc;min-height:0;transition:background .3s}
+.v-badge:empty{display:none}
+.v-actor.r-attacker .v-ico{border-color:#fb7185;background:#2a1220}
+.v-actor.r-victim .v-ico{border-color:#38bdf8}
+.v-actor.s-safe .v-ico{border-color:#4ade80;box-shadow:0 0 20px #4ade8070}
+.v-actor.s-safe .v-badge{background:#14532d}
+.v-actor.s-warn .v-ico{border-color:#fbbf24;box-shadow:0 0 22px #fbbf2480;animation:v-pulse 1.4s infinite}
+.v-actor.s-warn .v-badge{background:#78350f}
+.v-actor.s-danger .v-ico{border-color:#f43f5e;background:#3a1020;box-shadow:0 0 26px #f43f5e90;animation:v-shake .5s 2,v-pulse 1.4s .5s infinite}
+.v-actor.s-danger .v-badge{background:#881337}
+.v-actor.s-lock .v-ico{border-color:#a78bfa;background:#231a45;box-shadow:0 0 22px #a78bfa80}
+.v-actor.s-lock .v-badge{background:#4c1d95}
+.v-actor.s-active .v-ico{border-color:#7dd3fc;box-shadow:0 0 22px #7dd3fc80;transform:scale(1.08)}
+@keyframes v-pulse{50%{box-shadow:0 0 34px currentColor}}
+@keyframes v-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.v-packet{position:absolute;transform:translate(-50%,-50%);font-size:22px;z-index:3;pointer-events:none;
+  transition:left var(--dur,1000ms) cubic-bezier(.5,0,.3,1),top var(--dur,1000ms) cubic-bezier(.5,0,.3,1),opacity .3s;filter:drop-shadow(0 0 7px rgba(125,211,252,.9))}
+.v-plabel{position:absolute;left:50%;top:-20px;transform:translateX(-50%);white-space:nowrap;font-size:.64rem;font-weight:700;background:#0b1220;border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:1px 6px;color:#e8eefc}
+.v-zone{position:absolute;border:1.5px dashed rgba(255,255,255,.22);border-radius:14px;z-index:1;font-size:.64rem;color:rgba(255,255,255,.55);padding:3px 9px;pointer-events:none}
+.v-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 8px}
+.v-ctl .btn{padding:7px 14px}
+.v-ctl select{font:inherit;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#fff}
+.v-rail{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px}
+.v-rail button{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.78rem;font-weight:600;color:var(--muted)}
+.v-rail button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.v-rail button.seen{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+.v-cap{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:12px 16px;background:#fcfdfc;min-height:96px}
+.v-cap .v-num{font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.v-cap h4{margin:.1em 0 .25em;font-size:1.05rem}
+.v-cap p{margin:.3em 0}
+.v-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.v-chip{border-radius:10px;padding:5px 10px;font-size:.82rem;line-height:1.4}
+.v-chip.law{background:#dbeafe;color:#1e3a8a}
+.v-chip.tip{background:var(--ok-soft);color:#14532d}
+.v-chip.risk{background:var(--bad-soft);color:#7f1d1d}
+.v-outcome{margin-top:10px;border-radius:12px;padding:12px 16px;background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+
+/* ---------- EXPLORER ---------- */
+.v-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:10px;margin:12px 0}
+.v-tile{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:14px 10px;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+.v-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--accent)}
+.v-tile .ic{font-size:2rem;display:block;margin-bottom:4px}
+.v-tile b{display:block;font-size:.9rem;line-height:1.2}
+.v-tile small{color:var(--muted);font-size:.72rem}
+.v-tile.sel{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 0 3px var(--accent-soft)}
+.v-tile.seen::after{content:"✓";position:absolute;top:6px;right:9px;color:var(--ok);font-weight:800}
+.v-detail{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fcfdfc;animation:v-in .35s}
+@keyframes v-in{from{opacity:0;transform:translateY(8px)}}
+.v-detail h3{display:flex;align-items:center;gap:10px}
+.v-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.v-tabs button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.8rem;font-weight:600}
+.v-tabs button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.v-pane ul,.v-pane ol{margin:.3em 0 .3em 1.2em;padding:0}
+.v-pane li{margin:.3em 0}
+.v-sub{margin-top:12px}
+
+/* ---------- MOCK (layar HP / email / web / post) ---------- */
+.v-mockwrap{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:18px;align-items:start}
+.v-phone{background:#0f172a;border-radius:30px;padding:10px;box-shadow:0 14px 34px rgba(15,23,42,.3);max-width:360px;width:100%;margin:0 auto}
+.v-screen{background:#f3f4f6;border-radius:22px;overflow:hidden;min-height:380px;display:flex;flex-direction:column;font-size:.9rem}
+.v-bar{background:#0f766e;color:#fff;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.v-bar .av{width:34px;height:34px;border-radius:50%;background:#ffffff33;display:grid;place-items:center;font-size:1.1rem}
+.v-bar b{display:block;font-size:.9rem;line-height:1.1}.v-bar small{opacity:.8;font-size:.7rem}
+.v-msgs{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1;background:#e5ded5}
+.v-msg{max-width:84%;padding:8px 11px;border-radius:12px;background:#fff;box-shadow:0 1px 1px rgba(0,0,0,.12);line-height:1.45}
+.v-msg.me{align-self:flex-end;background:#d9fdd3}
+.v-msg time{display:block;text-align:right;font-size:.62rem;color:#6b7280;margin-top:2px}
+.v-screen.email,.v-screen.web,.v-screen.post{background:#fff}
+.v-screen.email .v-bar{background:#334155}.v-screen.web .v-bar{background:#e5e7eb;color:#111827}.v-screen.post .v-bar{background:#1d4ed8}
+.v-url{background:#fff;border:1px solid #d1d5db;border-radius:99px;padding:5px 12px;flex:1;font-size:.76rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.v-body{padding:14px 16px;flex:1}.v-body p{margin:.55em 0}
+.v-meta{padding:8px 16px;border-bottom:1px solid #e5e7eb;font-size:.78rem;color:#4b5563}
+.v-meta b{color:#111827}
+.v-cta{display:inline-block;background:#2563eb;color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;margin-top:6px}
+.v-stats{padding:8px 16px;border-top:1px solid #e5e7eb;font-size:.78rem;color:#6b7280}
+.v-hot{cursor:pointer;border-radius:4px;transition:background .2s,box-shadow .2s;border-bottom:2px dotted transparent}
+.v-hint .v-hot{border-bottom-color:#f59e0b;animation:v-blink 1.4s infinite}
+@keyframes v-blink{50%{background:#fde68a}}
+.v-hot:hover{background:#fde68a}
+.v-hot.found{background:#fecaca;box-shadow:0 0 0 2px #ef4444;border-radius:4px;animation:none}
+.v-hot.decoy{background:#dcfce7;box-shadow:0 0 0 2px #22c55e;animation:none}
+.v-finds{display:grid;gap:8px}
+.v-find{border-left:4px solid var(--bad);background:var(--bad-soft);border-radius:0 10px 10px 0;padding:8px 12px;font-size:.88rem;animation:v-in .3s}
+.v-find.ok{border-color:var(--ok);background:var(--ok-soft)}
+.v-find b{display:block}
+.v-prog{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+.v-prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+
+/* ---------- TIMELINE ---------- */
+.v-tl{position:relative;margin:14px 0 6px;overflow-x:auto;padding:22px 6px 10px}
+.v-tl-track{display:flex;gap:0;min-width:max-content;position:relative}
+.v-tl-track::before{content:"";position:absolute;left:30px;right:30px;top:15px;height:4px;background:var(--line);border-radius:4px}
+.v-tl-pt{width:128px;text-align:center;position:relative;background:none;border:0;padding:0 4px}
+.v-tl-pt .dot{width:34px;height:34px;margin:0 auto 6px;border-radius:50%;background:#fff;border:3px solid var(--line);display:grid;place-items:center;position:relative;z-index:1;transition:all .25s;font-size:1rem}
+.v-tl-pt .when{display:block;font-weight:800;font-size:.8rem;color:var(--accent-ink)}
+.v-tl-pt .tt{display:block;font-size:.74rem;color:var(--muted);line-height:1.25}
+.v-tl-pt.seen .dot{border-color:var(--accent)}
+.v-tl-pt.on .dot{background:var(--accent);border-color:var(--accent);transform:scale(1.25);box-shadow:0 0 0 6px var(--accent-soft)}
+
+/* ---------- SPECTRUM ---------- */
+.v-spec-lbl{display:flex;justify-content:space-between;font-weight:700;font-size:.9rem}
+.v-spec input[type=range]{width:100%;accent-color:var(--accent);margin:10px 0 4px;height:28px}
+.v-spec-bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.v-spec-bars .bar{height:14px;background:var(--line);border-radius:99px;overflow:hidden}
+.v-spec-bars .bar i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.v-spec-bars .bar.r i{background:#ea580c}
+
+/* ---------- ORDER ---------- */
+.v-ord{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.v-ord h4{margin:0 0 6px;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.v-ord .col{display:grid;gap:6px;align-content:start;min-height:80px}
+.v-ord .it{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:.9rem}
+.v-ord .it:hover{border-color:var(--accent)}
+.v-ord .it.right{border-color:var(--ok);background:var(--ok-soft)}.v-ord .it.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.v-ord .it i{font-style:normal;font-weight:800;color:var(--accent);margin-right:6px}
+@media(max-width:760px){.v-mockwrap,.v-ord{grid-template-columns:1fr}.v-stage{min-height:340px;aspect-ratio:1.25/1}.v-actor{width:84px}.v-ico{width:50px;height:50px;font-size:24px}}
+@media print{.reveal-on .seg{opacity:1!important;transform:none!important}}
+@media(prefers-reduced-motion:reduce){.hero::after,.v-actor .v-ico,.v-lines line.on,.v-hint .v-hot{animation:none!important}.reveal-on .seg{opacity:1;transform:none}}
+/* ===== [/SHARED:VIZ-CSS] ===== */
+
+</style>
+</head>
+<body>
+
+<header class="topbar"><div class="topbar-in">
+  <div class="brand">Etika Hukum Cyber<small>Pertemuan 14 dari 16</small></div>
+  <div class="progress" title="Progres aktivitas"><i id="pbar"></i></div>
+  <div class="pct" id="ppct">0%</div>
+</div></header>
+
+<div class="layout">
+<nav class="agenda" id="agenda" aria-label="Agenda"><h4>Agenda</h4></nav>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <span class="tag">PERTEMUAN 14 · MINGGU 14</span>
+  <h1>Tata Kelola Siber, Surveillance, dan Etika Big Data</h1>
+  <p>Negara ingin aman, warga ingin bebas dari pengintaian, dan perusahaan ingin data. Hari ini kamu belajar menimbang <em>keamanan nasional</em> dan <em>hak privasi</em>, memahami cara data besar diolah secara etis, dan menilai kebijakan tata kelola digital dengan kepala dingin.</p>
+  <div class="meta">
+    <div><b>Program Studi</b>Bisnis Digital</div>
+    <div><b>Dosen</b>Ibnu Amri Thaher</div>
+    <div><b>Waktu</b>100 menit · Teori</div>
+    <div><b>Metode</b>Kuliah & Diskusi</div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Capaian pertemuan ini</h3>
+  <p><span class="chip">CPMK-4</span> Menganalisis isu tata kelola siber global, termasuk cyber warfare, IoT, dan komputasi awan (cloud), serta implikasi etika dan hukumnya.</p>
+  <p><b>Kemampuan akhir:</b> memahami tata kelola siber, surveillance, dan etika Big Data.</p>
+  <p><b>Pokok bahasan:</b> Tata Kelola Siber (<em>Cyber Governance</em>): pengawasan pemerintah, pengumpulan data massal (<em>mass surveillance</em>), dan etika pemrosesan data besar.</p>
+  <p><b>Indikator penilaian:</b> kemampuan mengevaluasi kebijakan tata kelola digital.</p>
+  <p>Setelah sesi ini kamu mampu: (1) menjelaskan apa itu tata kelola siber dan peran empat kelompok pemangku kepentingan; (2) menguraikan argumen keamanan dan privasi dalam debat surveillance; (3) memakai 5V Big Data serta prinsip consent, purpose limitation, dan risiko re-identifikasi untuk menilai pemrosesan data; (4) mengevaluasi satu kebijakan digital memakai daftar uji; (5) menjelaskan secara ringkas cyber warfare dan tanggung jawab data pada IoT dan cloud.</p>
+</section>
+
+<!-- ===================== SEGMEN 1 ===================== -->
+<section class="seg" id="s1" data-title="Pembuka & Pemantik" data-min="0–10" data-dur="10">
+  <div class="seg-head"><div class="num">1</div><h2>Pembuka & Pemantik: Aman atau Bebas?</h2></div>
+
+  <div class="w" data-widget="poll" id="poll1"><span class="w-label">Pemantik · Polling pendirian awal</span></div>
+
+  <div class="card">
+    <h3>Peta hari ini</h3>
+    <div class="grid2">
+      <div class="mini"><h3>Apa yang dipertaruhkan</h3><p>Keamanan nasional dan penegakan hukum versus hak privasi, kebebasan berekspresi, dan kepercayaan warga pada negara serta perusahaan teknologi.</p></div>
+      <div class="mini"><h3>Alat berpikir hari ini</h3><p>Empat pemangku kepentingan, 5V Big Data, uji kebijakan (sah, perlu, proporsional, diawasi), dan prinsip data (consent, purpose limitation).</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SEGMEN 2 ===================== -->
+<section class="seg" id="s2" data-title="Tata Kelola Siber & Surveillance" data-min="10–30" data-dur="20">
+  <div class="seg-head"><div class="num">2</div><h2>Tata Kelola Siber dan Pengawasan Pemerintah</h2></div>
+
+  <div class="card">
+    <h3>Apa itu tata kelola siber (<em>cyber governance</em>)?</h3>
+    <p>Tata kelola siber adalah cara aturan, kebijakan, kelembagaan, dan standar dibuat serta dijalankan untuk mengatur ruang digital: siapa boleh mengumpulkan data, bagaimana keamanan dijaga, siapa bertanggung jawab saat terjadi insiden, dan bagaimana konflik diselesaikan. Berbeda dari sekadar "hukum", tata kelola melibatkan banyak aktor yang saling mengawasi.</p>
+    <div class="grid2">
+      <div class="mini"><h3>Pemerintah</h3><p>Membuat dan menegakkan hukum, mengawasi sektor, menjaga infrastruktur penting, menjalankan intelijen dan penegakan hukum.</p></div>
+      <div class="mini"><h3>Sektor swasta</h3><p>Memiliki sebagian besar infrastruktur dan data (platform, operator, penyedia cloud). Wajib patuh sekaligus punya tanggung jawab etis sendiri.</p></div>
+      <div class="mini"><h3>Masyarakat sipil & akademisi</h3><p>Mengawasi, mengadvokasi, meneliti dampak, dan mewakili kepentingan warga serta kelompok rentan.</p></div>
+      <div class="mini"><h3>Komunitas teknis</h3><p>Pembuat standar, pengembang, peneliti keamanan. Keputusan teknis mereka (misalnya enkripsi) sering menentukan apa yang mungkin dilakukan pihak lain.</p></div>
+    </div>
+    <div class="callout"><b class="t">Multi-stakeholder</b>Model <em>multi-stakeholder</em> berarti keputusan tata kelola idealnya melibatkan keempat kelompok di atas, bukan hanya negara. Kelebihan: legitimasi dan keahlian lebih luas. Kekurangan: lambat dan kekuatan antaraktor tidak setara.</div>
+  </div>
+
+  <div class="card">
+    <h3>Pengawasan: terarah vs massal</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th></th><th>Pengawasan terarah (<em>targeted</em>)</th><th>Pengumpulan massal (<em>mass surveillance</em>)</th></tr>
+      <tr><td><b>Sasaran</b></td><td>Individu atau kelompok tertentu yang dicurigai</td><td>Populasi luas, termasuk orang yang tidak dicurigai apa pun</td></tr>
+      <tr><td><b>Dasar</b></td><td>Biasanya butuh dasar hukum dan izin spesifik</td><td>Sering dibenarkan dengan alasan keamanan nasional yang luas</td></tr>
+      <tr><td><b>Risiko privasi</b></td><td>Lebih terbatas</td><td>Tinggi: semua orang diperlakukan sebagai calon tersangka</td></tr>
+      <tr><td><b>Efek jera (<em>chilling effect</em>)</b></td><td>Terbatas pada sasaran</td><td>Warga menyensor diri karena merasa selalu diawasi</td></tr>
+    </table></div>
+    <p>Contoh bentuk pengawasan modern: CCTV dengan pengenalan wajah, penyadapan komunikasi, pengumpulan metadata telepon, pemantauan media sosial, hingga data lokasi dari aplikasi. Teknologinya netral; yang diperdebatkan adalah <b>batas, tujuan, dan pengawasannya</b>.</p>
+    <details class="acc"><summary>Kasus Snowden (2013): fakta umum</summary><div>
+      <p>Pada Juni 2013, Edward Snowden, mantan kontraktor badan intelijen Amerika Serikat (NSA), membocorkan dokumen yang kemudian diberitakan media seperti The Guardian dan The Washington Post. Dokumen itu mengungkap program pengumpulan data komunikasi dalam skala besar oleh pemerintah AS, termasuk pengumpulan metadata telepon dan program yang disebut PRISM.</p>
+      <p>Dampaknya: debat global tentang batas pengawasan negara, perubahan kebijakan di beberapa negara, dan meningkatnya penggunaan enkripsi oleh perusahaan teknologi. Perdebatan etisnya masih berlangsung: sebagian menilainya pembocor yang melayani kepentingan publik, sebagian menilainya melanggar hukum dan membahayakan keamanan. <b>Pelajaran bagi kita:</b> tanpa transparansi dan pengawasan independen, warga tidak bisa menilai apakah pengawasan itu proporsional.</p></div></details>
+    <details class="acc"><summary>Landasan hukum Indonesia yang relevan (garis besar)</summary><div>
+      <ul>
+        <li><b>UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP):</b> mengatur hak subjek data, kewajiban pengendali dan prosesor data. Ketentuannya memuat pengecualian untuk kepentingan tertentu seperti pertahanan dan keamanan nasional serta penegakan hukum (tulis umum; pasal rinci perlu diverifikasi dosen).</li>
+        <li><b>UU ITE</b> (UU No. 11 Tahun 2008, diubah dengan UU No. 19 Tahun 2016 dan UU No. 1 Tahun 2024): memuat larangan intersepsi (penyadapan) tanpa hak dan ketentuan tentang kewenangan penegak hukum. Pasal rinci perlu diverifikasi.</li>
+        <li><b>UU No. 17 Tahun 2011 tentang Intelijen Negara:</b> dasar kegiatan intelijen negara.</li>
+        <li><b>PP No. 71 Tahun 2019 tentang Penyelenggaraan Sistem dan Transaksi Elektronik:</b> kewajiban penyelenggara sistem elektronik, termasuk tata kelola data.</li>
+        <li>Mahkamah Konstitusi pernah menegaskan bahwa tata cara penyadapan sebaiknya diatur dalam undang-undang, bukan sekadar aturan di bawahnya (putusan dan nomornya perlu diverifikasi dosen).</li>
+      </ul></div></details>
+    <div class="callout law"><b class="t">Uji kebijakan pengawasan</b>Dalam diskusi hak asasi manusia, pembatasan privasi lazim diuji dengan empat pertanyaan: <b>(1) sah</b> (ada dasar hukum yang jelas), <b>(2) perlu</b> (tidak ada cara yang kurang mengganggu), <b>(3) proporsional</b> (manfaat sebanding dengan pelanggaran), <b>(4) diawasi</b> (ada pengawas independen dan jalur pemulihan). Pakailah kerangka ini di segmen 4.</div>
+  </div>
+
+  <div class="w" data-widget="flash" id="flash1"><span class="w-label">Kartu istilah · Flashcard</span></div>
+  <div class="w" data-widget="flow" id="surveillanceFlow"><span class="w-label">Animasi · Alur Pengawasan Digital</span></div>
+</section>
+
+<!-- ===================== SEGMEN 3 ===================== -->
+<section class="seg" id="s3" data-title="Big Data & Etika Pemrosesan" data-min="30–50" data-dur="20">
+  <div class="seg-head"><div class="num">3</div><h2>Big Data: 5V dan Etika Pemrosesan Data</h2></div>
+
+  <div class="card">
+    <h3>5V Big Data</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>V</th><th>Arti</th><th>Pertanyaan etis yang menyertai</th></tr>
+      <tr><td><b>Volume</b></td><td>Jumlah data sangat besar</td><td>Apakah semua data memang perlu disimpan? (minimalisasi data)</td></tr>
+      <tr><td><b>Velocity</b></td><td>Data mengalir dan diolah nyaris seketika</td><td>Apakah ada waktu untuk menilai dampak sebelum keputusan otomatis diambil?</td></tr>
+      <tr><td><b>Variety</b></td><td>Beragam bentuk: teks, lokasi, foto, suara, sensor</td><td>Jika digabung, data tidak sensitif bisa menyingkap hal yang sangat pribadi</td></tr>
+      <tr><td><b>Veracity</b></td><td>Tingkat kebenaran dan kualitas data</td><td>Siapa dirugikan oleh data keliru atau bias? Adakah jalur koreksi?</td></tr>
+      <tr><td><b>Value</b></td><td>Nilai ekonomi atau sosial yang diperoleh</td><td>Siapa menikmati nilai itu, dan siapa menanggung risikonya?</td></tr>
+    </table></div>
+    <p>Awalnya konsep ini dikenal sebagai 3V (volume, velocity, variety) dari analis Doug Laney (2001); veracity dan value ditambahkan kemudian oleh berbagai praktisi dan akademisi.</p>
+  </div>
+
+  <div class="card">
+    <h3>Tiga prinsip etika pemrosesan data</h3>
+    <div class="grid2">
+      <div class="mini"><h3>Persetujuan (<em>consent</em>)</h3><p>Persetujuan yang bermakna: sukarela, spesifik, diinformasikan, dan dapat ditarik kembali. Kotak yang sudah dicentang atau persetujuan "paket semua tujuan" meragukan.</p></div>
+      <div class="mini"><h3>Pembatasan tujuan (<em>purpose limitation</em>)</h3><p>Data yang dikumpulkan untuk tujuan A tidak boleh dengan diam-diam dipakai untuk tujuan B yang tidak sejalan. Prinsip ini juga dikenal dalam kerangka pelindungan data seperti GDPR Uni Eropa dan UU PDP.</p></div>
+      <div class="mini"><h3>Risiko re-identifikasi</h3><p>Data yang dianggap "anonim" bisa dikenali kembali bila digabung dengan data lain. Anonimisasi itu rapuh; ukurannya adalah seberapa sulit orang diidentifikasi kembali, bukan sekadar menghapus nama.</p></div>
+    </div>
+    <details class="acc"><summary>Dua contoh nyata re-identifikasi (internasional)</summary><div>
+      <ul>
+        <li><b>Latanya Sweeney (2000)</b> menunjukkan bahwa kombinasi kode pos, tanggal lahir, dan jenis kelamin dapat mengidentifikasi sebagian besar penduduk Amerika Serikat; ia kemudian menunjukkan data kesehatan "tanpa nama" dapat dicocokkan dengan daftar pemilih.</li>
+        <li><b>Narayanan & Shmatikov (2008)</b> menunjukkan bahwa dataset peringkat film yang dirilis Netflix untuk kompetisi, meski tanpa nama, dapat dicocokkan dengan ulasan publik untuk mengenali sebagian pengguna.</li></ul>
+      <p><b>Pelajaran:</b> "tidak ada nama" tidak sama dengan "tidak bisa dikenali".</p></div></details>
+    <details class="acc"><summary>Pandangan teoretis: konteks dan kapitalisme pengawasan</summary><div>
+      <p><b>Helen Nissenbaum (2010), <em>Privacy in Context</em>:</b> privasi bukan sekadar "rahasia", melainkan aliran informasi yang sesuai norma konteksnya. Data kesehatan yang wajar mengalir dari pasien ke dokter menjadi masalah ketika mengalir ke pemberi kerja. Inilah <em>contextual integrity</em>.</p>
+      <p><b>Shoshana Zuboff (2019), <em>The Age of Surveillance Capitalism</em>:</b> berargumen bahwa sebagian perusahaan teknologi memanen data perilaku (<em>behavioral surplus</em>) untuk memprediksi dan memengaruhi perilaku demi keuntungan. Ini argumen yang diperdebatkan; gunakan sebagai bahan diskusi, bukan kebenaran mutlak.</p>
+      <p><b>Luciano Floridi (2013), <em>The Ethics of Information</em>:</b> mengusulkan etika informasi, yakni memandang data dan informasi sebagai bagian dari identitas seseorang sehingga pelanggaran data adalah pelanggaran terhadap pribadinya.</p></div></details>
+  </div>
+
+  <p>Klik satu kartu kasus, lalu klik prinsip yang paling jelas dilanggar. Tekan <b>Periksa</b> bila semua kartu sudah terisi.</p>
+  <div class="w" data-widget="classify" id="cls1"><span class="w-label">Aktivitas · Prinsip apa yang dilanggar?</span></div>
+  <div class="w" data-widget="explorer" id="bigDataEtikaExplorer"><span class="w-label">Jelajahi · 4 Isu Etika Big Data</span></div>
+</section>
+
+<!-- ===================== SEGMEN 4 ===================== -->
+<section class="seg" id="s4" data-title="Debat Keamanan vs Privasi" data-min="50–70" data-dur="20">
+  <div class="seg-head"><div class="num">4</div><h2>Debat: Keamanan vs Privasi (Skenario Kota Pintar)</h2><span class="chip act">Aktivitas</span></div>
+
+  <div class="card">
+    <h3>Aturan debat</h3>
+    <ul>
+      <li>Kubu <b>Keamanan</b>: pengawasan massal diperlukan untuk mencegah kejahatan dan terorisme; "yang tidak bersalah tidak perlu takut".</li>
+      <li>Kubu <b>Privasi</b>: pengumpulan massal melanggar hak, memicu <em>chilling effect</em>, rawan disalahgunakan; "privasi bukan untuk menyembunyikan kejahatan, melainkan melindungi kebebasan" (tema yang juga dibahas Daniel Solove, <em>Nothing to Hide</em>, 2011).</li>
+      <li>Setiap argumen harus mengacu pada salah satu: uji kebijakan (sah, perlu, proporsional, diawasi), konsekuensi, atau hak.</li>
+    </ul>
+    <div class="callout warn"><b class="t">Catatan</b>Dikotomi "keamanan atau privasi" sering menyesatkan. Pertanyaan yang lebih berguna: pengaman apa yang membuat pengawasan tetap sah, perlu, proporsional, dan diawasi?</div>
+  </div>
+
+  <div class="w" data-widget="scenario" id="scn1"><span class="w-label">Skenario fiktif · Kota pintar & CCTV wajah</span></div>
+
+  <div class="w" data-widget="poll" id="poll2"><span class="w-label">Geser pendirian · Polling akhir debat</span></div>
+
+  <div class="w" data-widget="checklist" id="uji"><span class="w-label">Daftar uji kebijakan</span></div>
+  <div class="w" data-widget="spectrum" id="keamananPrivasiSpectrum"><span class="w-label">Spektrum · Privasi vs Keamanan Nasional</span></div>
+</section>
+
+<!-- ===================== SEGMEN 5 ===================== -->
+<section class="seg" id="s5" data-title="Cyber Warfare, IoT & Cloud" data-min="70–85" data-dur="15">
+  <div class="seg-head"><div class="num">5</div><h2>Cyber Warfare, IoT, dan Cloud: Ringkasan</h2></div>
+
+  <div class="card">
+    <h3>Cyber warfare dan Tallinn Manual (ringkas)</h3>
+    <p>Operasi siber kini bisa menjadi alat konflik antarnegara: serangan terhadap listrik, rumah sakit, perbankan, atau sistem pemerintahan. Pertanyaan hukumnya: apakah hukum internasional yang ada (misalnya larangan penggunaan kekuatan dan hukum humaniter) berlaku di ruang siber?</p>
+    <ul>
+      <li><b>Tallinn Manual</b> disusun oleh kelompok pakar internasional atas undangan pusat keunggulan siber NATO (CCDCOE) di Tallinn, Estonia. Edisi pertama (2013) membahas perang siber; <b>Tallinn Manual 2.0</b> (2017, Schmitt (ed.), Cambridge University Press) diperluas ke operasi siber di bawah ambang konflik bersenjata.</li>
+      <li>Penyusunannya dilatari serangan siber ke Estonia pada 2007.</li>
+      <li>Manual ini <b>bukan perjanjian dan tidak mengikat</b>; ia adalah pendapat para ahli tentang bagaimana hukum internasional yang sudah ada berlaku di ruang siber. Intinya: ruang siber tidak bebas hukum.</li>
+    </ul>
+    <p>Relevansi bagi bisnis digital: infrastruktur penting (energi, keuangan, telekomunikasi) bergantung pada sektor swasta, sehingga perusahaan ikut berada di garis depan. Di Indonesia, pelindungan infrastruktur informasi vital diatur tersendiri (peraturan rinci perlu diverifikasi dosen).</p>
+  </div>
+
+  <div class="card">
+    <h3>IoT dan Cloud: siapa bertanggung jawab atas data?</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th></th><th>IoT (<em>Internet of Things</em>)</th><th>Cloud</th></tr>
+      <tr><td><b>Apa</b></td><td>Perangkat berjaringan dengan sensor: kamera pintar, jam tangan kesehatan, speaker pintar, meter listrik</td><td>Penyimpanan dan pengolahan data di server pihak lain via internet</td></tr>
+      <tr><td><b>Risiko data</b></td><td>Pengumpulan terus-menerus di ruang paling pribadi; keamanan perangkat murah sering lemah; pembaruan berhenti</td><td>Data tersimpan di luar kendali langsung; lokasi server bisa lintas negara; ketergantungan pada satu penyedia</td></tr>
+      <tr><td><b>Pertanyaan etis</b></td><td>Apakah pengguna benar-benar tahu apa yang direkam? Bisakah perangkat dipakai tanpa mengumpulkan data?</td><td>Siapa bisa mengakses data (termasuk atas permintaan pemerintah)? Di mana data berada?</td></tr>
+      <tr><td><b>Tanggung jawab</b></td><td>Produsen (keamanan sejak desain), pengendali data, pengguna (konfigurasi)</td><td>Model <em>tanggung jawab bersama</em>: penyedia mengamankan infrastruktur, pelanggan mengamankan konfigurasi dan akses data mereka</td></tr>
+    </table></div>
+    <div class="callout law"><b class="t">Hukum</b>Dalam UU PDP, pihak yang menentukan tujuan dan cara pemrosesan (pengendali data) tetap bertanggung jawab walau memakai penyedia cloud (prosesor). Menyewa server tidak memindahkan tanggung jawab. Ketentuan pasti tentang penempatan dan transfer data lintas batas dalam PP 71/2019 dan UU PDP perlu diverifikasi dosen.</div>
+    <details class="acc"><summary>Prinsip praktis untuk pelaku bisnis digital</summary><div>
+      <ul><li><b>Privacy by design:</b> pertimbangkan privasi sejak merancang produk.</li><li><b>Minimalisasi:</b> kumpulkan seperlunya.</li><li><b>Enkripsi dan kontrol akses</b> pada data di perangkat maupun di cloud.</li><li><b>Kontrak yang jelas</b> dengan penyedia cloud tentang akses, lokasi, dan penghapusan data.</li><li><b>Rencana respons insiden</b> termasuk pemberitahuan kepada subjek data.</li></ul></div></details>
+  </div>
+
+  <div class="w" data-widget="classify" id="cls2"><span class="w-label">Peran dalam tata kelola · Siapa melakukan apa?</span></div>
+
+  <div class="w" data-widget="reflect" id="ref1"><span class="w-label">Refleksi tertulis</span></div>
+</section>
+
+<!-- ===================== SEGMEN 6 ===================== -->
+<section class="seg" id="s6" data-title="Kuis & Penutup" data-min="85–100" data-dur="15">
+  <div class="seg-head"><div class="num">6</div><h2>Kuis Penutup & Rangkuman</h2><span class="chip act">Evaluasi</span></div>
+  <div class="w" data-widget="quiz" id="quiz1"><span class="w-label">Kuis penutup</span></div>
+
+  <div class="card">
+    <h3>Rangkuman 1 menit</h3>
+    <ul>
+      <li>Tata kelola siber melibatkan pemerintah, swasta, masyarakat sipil, dan komunitas teknis (multi-stakeholder).</li>
+      <li>Pengawasan massal harus diuji: sah, perlu, proporsional, diawasi. Keamanan dan privasi bukan pilihan biner.</li>
+      <li>Etika Big Data: 5V, consent yang bermakna, purpose limitation, dan kewaspadaan terhadap re-identifikasi.</li>
+      <li>Cyber warfare tidak berada di ruang tanpa hukum (Tallinn Manual); IoT dan cloud tidak memindahkan tanggung jawab atas data.</li>
+    </ul>
+    <h3>Tugas mandiri minggu depan</h3>
+    <p>Persiapkan bedah kasus terpadu (Pertemuan 15). Dalam kelompok, pilih satu kasus nyata atau skenario fiktif yang menggabungkan minimal tiga topik dari minggu 1–14, lalu siapkan analisis 5 langkah (fakta, pemangku kepentingan, opsi, uji etika dan hukum, keputusan) untuk dipresentasikan.</p>
+  </div>
+
+  <div class="card refs">
+    <h3>Referensi</h3>
+    <ol>
+      <li>Tavani, H. T. (2016). <i>Ethics and Technology: Controversies, Questions, and Strategies for Ethical Computing</i> (5th ed.). John Wiley & Sons.</li>
+      <li>Spinello, R. A. (2020). <i>Cyberethics: Morality and Law in Cyberspace</i> (7th ed.). Jones & Bartlett Learning.</li>
+      <li>Makarim, E. (2020). <i>Pengantar Hukum Informatika dan Elektronika</i>. Rajawali Pers.</li>
+      <li>Republik Indonesia. (2022). <i>UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi</i>.</li>
+      <li>Republik Indonesia. (2024). <i>UU No. 1 Tahun 2024 tentang Perubahan Kedua atas UU No. 11 Tahun 2008 tentang Informasi dan Transaksi Elektronik</i>.</li>
+      <li>Republik Indonesia. (2019). <i>PP No. 71 Tahun 2019 tentang Penyelenggaraan Sistem dan Transaksi Elektronik</i>.</li>
+      <li>Republik Indonesia. (2011). <i>UU No. 17 Tahun 2011 tentang Intelijen Negara</i>.</li>
+      <li><b>Tambahan:</b> Zuboff, S. (2019). <i>The Age of Surveillance Capitalism</i>. PublicAffairs.</li>
+      <li><b>Tambahan:</b> Schmitt, M. N. (Ed.). (2017). <i>Tallinn Manual 2.0 on the International Law Applicable to Cyber Operations</i>. Cambridge University Press.</li>
+      <li><b>Tambahan:</b> Nissenbaum, H. (2010). <i>Privacy in Context: Technology, Policy, and the Integrity of Social Life</i>. Stanford University Press.</li>
+      <li><b>Tambahan:</b> Floridi, L. (2013). <i>The Ethics of Information</i>. Oxford University Press.</li>
+      <li><b>Tambahan:</b> Solove, D. J. (2011). <i>Nothing to Hide: The False Tradeoff Between Privacy and Security</i>. Yale University Press.</li>
+      <li><b>Tambahan:</b> Sweeney, L. (2000). <i>Simple Demographics Often Identify People Uniquely</i> (Data Privacy Working Paper 3). Carnegie Mellon University.</li>
+      <li><b>Tambahan:</b> Narayanan, A., & Shmatikov, V. (2008). Robust de-anonymization of large sparse datasets. <i>IEEE Symposium on Security and Privacy</i>.</li>
+      <li><b>Tambahan:</b> Laney, D. (2001). <i>3D Data Management: Controlling Data Volume, Velocity, and Variety</i>. META Group.</li>
+      <li><b>Tambahan:</b> Regulation (EU) 2016/679 (General Data Protection Regulation).</li>
+    </ol>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Mohon cek sebelum dipakai di kelas: (1) pasal rinci UU PDP tentang pengecualian untuk pertahanan, keamanan nasional, dan penegakan hukum, serta status lembaga pengawas PDP; (2) pasal UU ITE tentang intersepsi dan kewenangan penegak hukum setelah UU 1/2024; (3) nomor putusan MK tentang pengaturan penyadapan; (4) peraturan pelindungan infrastruktur informasi vital dan ketentuan transfer data lintas batas dalam PP 71/2019; (5) nama kementerian dan lembaga yang berubah (misalnya Kominfo menjadi Komdigi) serta perkembangan terbaru kebijakan CCTV wajah dan biometrik di Indonesia.</div>
+  </div>
+</section>
+
+<footer>Etika Hukum Cyber · Bisnis Digital · Pertemuan 14 · Materi ini untuk tujuan pendidikan.</footer>
+</main>
+</div>
+
+
+<!-- ===================== DATA HALAMAN (hanya blok ini yang berubah antar pertemuan) ===================== -->
+<script>
+const PAGE = {
+  id: "p14",
+
+  poll1: {
+    q: "Pemerintah ingin memasang CCTV dengan pengenalan wajah di ruang publik untuk menekan kejahatan. Pendirian awalmu?",
+    opts: [
+      {t:"Setuju penuh: keamanan lebih penting daripada privasi", why:"Alasan keamanan memang kuat. Tetapi tanyakan: apakah efektif, siapa yang mengakses data, berapa lama disimpan, dan siapa mengawasi pengawasnya? Dukungan penuh tanpa pengaman membuka risiko penyalahgunaan."},
+      {t:"Setuju dengan syarat ketat (dasar hukum, batasan, pengawasan independen)", why:"Posisi yang banyak dipegang pakar: pengawasan bisa sah jika memenuhi uji sah, perlu, proporsional, dan diawasi. Kita akan menguji syarat itu hari ini."},
+      {t:"Ragu: butuh bukti bahwa ini benar-benar efektif dan aman", why:"Sikap berbasis bukti. Kebijakan pengawasan seharusnya disertai penilaian dampak dan evaluasi, bukan sekadar klaim."},
+      {t:"Menolak: risikonya terhadap privasi dan kebebasan terlalu besar", why:"Argumen utamanya: efek jera dan risiko penyalahgunaan. Bayangkan juga biaya jika ada kesalahan identifikasi atau kebocoran data wajah, yang tidak bisa 'diganti' seperti password."}
+    ]
+  },
+
+  poll2: {
+    q: "Setelah debat dan skenario, di mana pendirianmu sekarang tentang pengawasan massal untuk keamanan?",
+    opts: [
+      {t:"Tetap mendukung kuat, keamanan harus diutamakan", why:"Perhatikan apakah argumenmu sudah menjawab empat uji: sah, perlu, proporsional, diawasi. Dukungan yang kuat tetap perlu pengaman."},
+      {t:"Bergeser ke tengah: boleh, tetapi terarah dan diawasi", why:"Pergeseran ke 'terarah dan diawasi' adalah kesimpulan banyak diskusi kebijakan: pengawasan harus spesifik, dibatasi waktu, dan dapat diaudit."},
+      {t:"Bergeser menolak: pengaman yang ada belum cukup meyakinkan", why:"Sikap yang masuk akal bila pengawas independen, transparansi, dan jalur pemulihan belum jelas. Pertanyaan lanjutan: pengaman apa yang akan mengubah pendirianmu?"},
+      {t:"Tetap menolak pengawasan massal dalam bentuk apa pun", why:"Konsisten dengan prinsip privasi sebagai hak dasar. Pastikan kamu juga bisa menjawab: bagaimana negara menangani ancaman nyata tanpa pengumpulan massal?"}
+    ]
+  },
+
+  uji: {
+    title: "Uji kebijakan: centang tiap pertanyaan yang sudah kamu pahami cara menjawabnya",
+    items: [
+      "Sah: apakah ada undang-undang yang jelas yang membolehkan pengumpulan data ini, bukan sekadar kebijakan internal?",
+      "Tujuan sah: apakah tujuannya spesifik (misalnya mencegah kejahatan tertentu), bukan 'berjaga-jaga' secara umum?",
+      "Perlu: adakah cara lain yang kurang mengganggu privasi dan tetap efektif?",
+      "Proporsional: apakah manfaatnya sebanding dengan pelanggaran privasi yang ditimbulkan?",
+      "Minimalisasi & retensi: apakah data dibatasi jumlah dan lama penyimpanannya, lalu dihapus?",
+      "Pengawasan independen: adakah lembaga di luar pelaksana yang mengaudit dan bisa menghentikan penyalahgunaan?",
+      "Transparansi & pemulihan: apakah warga tahu kebijakannya dan punya jalur mengadu atau meminta koreksi?"
+    ],
+    doneMsg: "Tujuh pertanyaan ini bisa dipakai untuk mengevaluasi hampir semua kebijakan tata kelola digital, termasuk saat bedah kasus minggu depan."
+  },
+
+  flash1: {
+    title: "Uji istilah kunci (klik kartu untuk membalik)",
+    cards: [
+      {f:"Tata kelola siber", b:"Cara aturan, kelembagaan, dan standar dibuat dan dijalankan untuk mengatur ruang digital oleh banyak aktor."},
+      {f:"Multi-stakeholder", b:"Pelibatan pemerintah, swasta, masyarakat sipil/akademisi, dan komunitas teknis dalam tata kelola."},
+      {f:"Mass surveillance", b:"Pengumpulan dan pemantauan data dalam skala luas terhadap populasi, termasuk yang tidak dicurigai."},
+      {f:"Chilling effect", b:"Orang menahan diri berbicara atau bertindak karena merasa diawasi."},
+      {f:"Purpose limitation", b:"Data hanya dipakai untuk tujuan yang disampaikan saat dikumpulkan, tidak untuk tujuan lain yang tak sejalan."},
+      {f:"Re-identifikasi", b:"Mengenali kembali individu dari data yang disebut 'anonim' dengan menggabungkannya dengan data lain."},
+      {f:"5V Big Data", b:"Volume, Velocity, Variety, Veracity, Value."},
+      {f:"Contextual integrity", b:"Privasi sebagai aliran informasi yang sesuai norma konteks (Nissenbaum, 2010)."},
+      {f:"Tallinn Manual", b:"Pendapat pakar (tidak mengikat) tentang bagaimana hukum internasional berlaku pada operasi siber."}
+    ]
+  },
+
+  cls1: {
+    title: "Prinsip mana yang paling jelas dilanggar?",
+    bins: ["Persetujuan (consent)", "Pembatasan tujuan (purpose limitation)", "Re-identifikasi / anonimisasi gagal"],
+    items: [
+      {t:"Aplikasi kebugaran sudah mencentang kotak 'bagikan data ke mitra' dan pengguna tidak diberi pilihan menolak.", a:0, why:"Persetujuan harus sukarela dan aktif; kotak yang sudah dicentang bukan persetujuan yang bermakna."},
+      {t:"Data kesehatan dari pendaftaran vaksin dipakai pihak ketiga untuk menilai kelayakan kredit.", a:1, why:"Tujuan awalnya kesehatan; menilai kredit adalah tujuan lain yang tak sejalan."},
+      {t:"Dataset 'anonim' berisi tanggal lahir, kode pos, dan jenis kelamin dirilis ke peneliti tanpa pengamanan tambahan.", a:2, why:"Kombinasi atribut ini dapat mengidentifikasi orang (lihat Sweeney, 2000)."},
+      {t:"Riwayat belanja pelanggan e-commerce yang dikumpulkan untuk pengiriman dipakai menawarkan pinjaman online pihak ketiga.", a:1, why:"Tujuan pengiriman berbeda dari pemasaran pinjaman oleh pihak lain."},
+      {t:"Syarat layanan 40 halaman meminta satu persetujuan untuk semua tujuan sekaligus; pengguna tak bisa menolak sebagian.", a:0, why:"Persetujuan 'paket' tidak spesifik sehingga tidak bermakna."},
+      {t:"Data lokasi 'tanpa nama' dirilis, padahal pola rumah-kantor harian dapat menunjuk satu orang.", a:2, why:"Pola lokasi sangat khas; menghapus nama saja tidak menghilangkan risiko dikenali."},
+      {t:"Kamera toko merekam wajah untuk keamanan, lalu rekamannya dipakai menganalisis emosi pelanggan untuk iklan.", a:1, why:"Tujuan keamanan dipakai untuk tujuan komersial yang berbeda."},
+      {t:"Pengguna tidak diberi cara mudah menarik persetujuan setelah mendaftar.", a:0, why:"Persetujuan yang tidak dapat ditarik kembali melemahkan makna persetujuan itu sendiri."}
+    ]
+  },
+
+  scn1: {
+    title: "Skenario fiktif: Kota Nusa Bahari memasang CCTV wajah",
+    start: "n0",
+    nodes: {
+      n0: {text:"Skenario fiktif. Kota Nusa Bahari ingin menjadi 'kota pintar'. Pemerintah kota mengusulkan 3.000 kamera CCTV dengan pengenalan wajah di jalan, halte, dan pasar. Rekaman dikelola vendor swasta di cloud. Kamu anggota tim penasihat kebijakan. Rekomendasimu?",
+        choices:[{t:"Pasang di seluruh kota segera, simpan semua rekaman tanpa batas waktu agar lengkap", to:"n1"},{t:"Tolak seluruhnya: pengenalan wajah terlalu berbahaya bagi kebebasan warga", to:"n2"},{t:"Usulkan uji coba terbatas dengan penilaian dampak, aturan jelas, dan pengawas independen", to:"n3"}]},
+      n1: {end:true, text:"Hasil: kota memiliki data wajah warga dalam skala besar tanpa batas penyimpanan, tanpa tujuan terukur, dan tanpa pengawas. Risiko: salah identifikasi, kebocoran dari vendor/cloud, penggunaan untuk memantau demonstran atau lawan politik, serta efek jera.",
+        lens:"Utilitarian: manfaat keamanan tak terukur sementara risiko ditanggung semua warga. Deontologi: warga diperlakukan sebagai objek pengawasan tanpa persetujuan. Keutamaan: pemerintah yang bertanggung jawab membatasi kekuasaannya sendiri. Uji kebijakan: gagal di perlu, proporsional, dan diawasi."},
+      n2: {end:true, text:"Hasil: privasi terlindungi, tetapi kota kehilangan peluang menguji teknologi yang mungkin membantu kasus tertentu (misalnya mencari orang hilang) dan debat berhenti tanpa mekanisme pengaman alternatif.",
+        lens:"Penolakan itu sah secara prinsip, tetapi tanpa alternatif, keputusan bisa diambil pihak lain tanpa suara privasi. Pertimbangkan: apakah ada bentuk kurang invasif (CCTV tanpa pengenalan wajah, titik rawan terbatas)? Etis tidak selalu berarti 'tidak sama sekali'."},
+      n3: {text:"Dewan menyetujui uji coba di 20 titik rawan, dengan penilaian dampak privasi, pemberitahuan publik, data wajah dihapus dalam waktu singkat bila tidak ada kejadian, dan komite pengawas independen. Dua bulan kemudian aparat meminta akses ke seluruh rekaman wajah warga, bukan hanya rekaman terkait satu kasus. Kamu menyarankan…",
+        choices:[{t:"Memberi akses penuh karena itu permintaan aparat", to:"n4"},{t:"Menyetujui akses hanya untuk kasus spesifik dengan dasar hukum tertulis, tercatat, dan diaudit komite", to:"n5"}]},
+      n4: {end:true, text:"Hasil: pengaman yang tadinya dirancang runtuh. Akses menyeluruh tanpa dasar hukum spesifik mengubah uji coba terbatas menjadi pengawasan massal terselubung ('function creep': fungsi meluas melampaui tujuan awal).",
+        lens:"Pelanggaran purpose limitation dan proporsionalitas. Utilitarian: kepercayaan publik jangka panjang rusak. Deontologi: janji kepada warga dilanggar. Keutamaan: integritas berarti menepati batas yang disepakati."},
+      n5: {end:true, text:"Hasil: aparat tetap dapat menangani kasus nyata dengan bukti rekaman terkait, sementara warga lain terlindungi. Setiap akses tercatat dan dapat diaudit, kepercayaan publik terjaga, dan kota punya data untuk menilai apakah uji coba layak diperluas.",
+        lens:"Memenuhi keempat uji: sah (dasar tertulis), perlu dan proporsional (akses spesifik), diawasi (komite dan audit). Tiga kacamata sejalan: manfaat nyata, hak dihormati, dan pejabat berkarakter akuntabel. Catatan: ini skenario fiktif; kebijakan nyata perlu dasar hukum yang berlaku."}
+    }
+  },
+
+  cls2: {
+    title: "Kelompokkan kegiatan berikut menurut pemangku kepentingan utamanya",
+    bins: ["Pemerintah", "Sektor swasta", "Masyarakat sipil & akademisi", "Komunitas teknis"],
+    items: [
+      {t:"Menyusun undang-undang dan membentuk lembaga pengawas pelindungan data.", a:0, why:"Pembuatan regulasi dan kelembagaan adalah peran negara."},
+      {t:"Perusahaan penyedia cloud menerbitkan laporan transparansi atas permintaan akses data.", a:1, why:"Transparansi korporat adalah tanggung jawab swasta."},
+      {t:"Lembaga advokasi menggugat kebijakan CCTV wajah karena tidak ada dasar hukum yang jelas.", a:2, why:"Pengawasan kebijakan lewat advokasi dan litigasi adalah peran masyarakat sipil."},
+      {t:"Pengelola standar terbuka merancang protokol enkripsi yang dipakai banyak layanan.", a:3, why:"Standar teknis dan keputusan desain adalah wilayah komunitas teknis."},
+      {t:"Menerbitkan izin dan menegakkan sanksi kepada penyelenggara sistem elektronik.", a:0, why:"Perizinan dan penegakan adalah fungsi pemerintah."},
+      {t:"Perusahaan menunjuk petugas pelindungan data dan menyusun penilaian dampak privasi internal.", a:1, why:"Kepatuhan dan tata kelola internal adalah tanggung jawab perusahaan."},
+      {t:"Dosen dan peneliti universitas menilai bias algoritma pengenalan wajah pada warga Indonesia.", a:2, why:"Riset independen terhadap dampak sosial adalah peran akademisi."},
+      {t:"Peneliti keamanan melaporkan celah sistem secara bertanggung jawab (coordinated disclosure) kepada pengelola sistem.", a:3, why:"Pengungkapan kerentanan secara bertanggung jawab adalah praktik komunitas teknis."}
+    ]
+  },
+
+  ref1: {
+    title: "Tulis 4–6 kalimat: evaluasi satu kebijakan",
+    prompt: "Pilih satu kebijakan atau praktik pengumpulan data yang kamu temui (misalnya kewajiban registrasi SIM dengan NIK, CCTV wajah di kota, aplikasi pelacak, atau program loyalitas toko online). Evaluasi dengan uji sah, perlu, proporsional, dan diawasi: mana yang sudah terpenuhi, mana yang belum, dan apa satu perbaikan yang kamu usulkan?",
+    hint: "Tulisan tersimpan otomatis di perangkat ini. Gunakan tombol Salin untuk mengumpulkan ke dosen. Jangan menyebut fakta yang belum kamu pastikan; tandai sebagai asumsi."
+  },
+
+  quiz1: {
+    title: "Kuis penutup (9 soal)",
+    items: [
+      {q:"Model tata kelola siber 'multi-stakeholder' berarti…", o:["Hanya pemerintah yang membuat aturan","Pemerintah, swasta, masyarakat sipil/akademisi, dan komunitas teknis sama-sama berperan","Hanya perusahaan teknologi yang mengatur","Hanya komunitas teknis yang memutuskan"], a:1, why:"Multi-stakeholder melibatkan empat kelompok pemangku kepentingan agar tata kelola lebih sah dan berpengetahuan luas."},
+      {q:"Perbedaan utama pengawasan massal dengan pengawasan terarah adalah…", o:["Pengawasan massal hanya memantau satu tersangka","Pengawasan massal mengumpulkan data populasi luas termasuk yang tidak dicurigai","Pengawasan terarah selalu ilegal","Tidak ada perbedaan"], a:1, why:"Pengawasan terarah menyasar pihak tertentu yang dicurigai; massal mencakup populasi luas."},
+      {q:"Empat pertanyaan uji pembatasan privasi oleh negara adalah…", o:["Murah, cepat, populer, mudah","Sah, perlu, proporsional, diawasi","Rahasia, cepat, luas, tuntas","Legal, gratis, global, final"], a:1, why:"Kebijakan harus punya dasar hukum, perlu, proporsional, dan memiliki pengawasan."},
+      {q:"Apa yang dimaksud 'chilling effect' dalam konteks pengawasan?", o:["Server menjadi dingin","Orang menahan diri berekspresi karena merasa diawasi","Kamera bekerja lebih baik di malam hari","Data dihapus otomatis"], a:1, why:"Pengawasan luas membuat warga menyensor diri sehingga kebebasan berekspresi melemah."},
+      {q:"Data yang dikumpulkan untuk pengiriman barang dipakai untuk menawarkan produk pihak ketiga tanpa persetujuan. Prinsip yang paling jelas dilanggar adalah…", o:["Volume","Purpose limitation (pembatasan tujuan)","Velocity","Redundansi"], a:1, why:"Data dipakai untuk tujuan lain yang tidak sejalan dengan tujuan semula."},
+      {q:"Mengapa dataset 'anonim' tetap berisiko?", o:["Karena nama selalu terlihat","Karena dapat digabung dengan data lain sehingga individu dikenali kembali","Karena anonimisasi dilarang","Karena data kecil tidak berguna"], a:1, why:"Re-identifikasi memanfaatkan kombinasi atribut atau data lain, seperti ditunjukkan Sweeney (2000) dan Narayanan & Shmatikov (2008)."},
+      {q:"Dalam 5V Big Data, 'Veracity' berkaitan dengan…", o:["Kecepatan aliran data","Kebenaran dan kualitas data","Jumlah data","Beragam bentuk data"], a:1, why:"Veracity menyangkut kebenaran, keandalan, dan bias data."},
+      {q:"Tallinn Manual 2.0 paling tepat digambarkan sebagai…", o:["Perjanjian internasional yang mengikat semua negara","Pendapat para pakar tentang penerapan hukum internasional pada operasi siber, tidak mengikat","Undang-undang Indonesia","Standar enkripsi"], a:1, why:"Tallinn Manual disusun pakar, bukan perjanjian; ia menafsirkan hukum internasional yang sudah ada."},
+      {q:"Perusahaan menyimpan data pelanggan di penyedia cloud lalu terjadi kebocoran akibat konfigurasi akses yang salah oleh perusahaan. Pernyataan paling tepat adalah…", o:["Perusahaan bebas tanggung jawab karena data di cloud","Tanggung jawab bersifat bersama; konfigurasi dan akses data tetap tanggung jawab perusahaan sebagai pengendali data","Hanya penyedia cloud yang bertanggung jawab","Pengguna yang bertanggung jawab sepenuhnya"], a:1, why:"Dalam model tanggung jawab bersama, pelanggan tetap bertanggung jawab atas konfigurasi dan pengelolaan datanya; pengendali data tidak lepas tanggung jawab."}
+    ]
+  },
+
+  surveillanceFlow: {
+    title: "Animasi Alur: Pengawasan Digital oleh Negara",
+    sub: "Ikuti alur 5 langkah: dari aktivitas digital warga hingga potensi penyalahgunaan dan peran lembaga pengawas.",
+    actors: [
+      {id:"warga", icon:"👤", name:"Warga / Pengguna", x:10, y:50, role:"victim"},
+      {id:"isp", icon:"🌐", name:"ISP / Platform Digital", x:35, y:20, role:"neutral"},
+      {id:"intelijen", icon:"🏛️", name:"Badan Intelijen / Pemerintah", x:65, y:50, role:"neutral"},
+      {id:"pengawas", icon:"⚖️", name:"Lembaga Pengawas (DPR/Komnas HAM)", x:88, y:20, role:"neutral"},
+      {id:"data", icon:"🗄️", name:"Data Warga Terkumpul", x:50, y:83, role:"neutral"}
+    ],
+    zones: [
+      {x:2, y:35, w:22, h:32, label:"Ruang Digital Warga"},
+      {x:74, y:7, w:24, h:30, label:"Pengawas Independen"}
+    ],
+    steps: [
+      {
+        title: "Warga Beraktivitas Digital",
+        short: "Aktivitas digital",
+        text: "Warga melakukan browsing, komunikasi pesan, dan transaksi keuangan secara online. Setiap aktivitas meninggalkan jejak digital: metadata (waktu, lokasi, lawan bicara) maupun isi komunikasi.",
+        from: "warga", to: "isp",
+        packet: "📱", label: "jejak digital",
+        set: {warga: "active"},
+        tip: "Sadar digital: setiap klik dan pesan meninggalkan jejak yang dapat dikumpulkan pihak ketiga."
+      },
+      {
+        title: "ISP/Platform Mengumpulkan Metadata dan Konten",
+        short: "Pengumpulan metadata",
+        text: "ISP dan platform digital mengumpulkan metadata dan konten—baik atas permintaan pemerintah maupun untuk kepentingan bisnis sendiri. Pengguna sering tidak menyadari seberapa banyak data yang dikumpulkan.",
+        from: "isp", to: "data",
+        packet: "📊", label: "metadata & konten",
+        set: {isp: "warn"},
+        law: "UU ITE tentang intersepsi sah; UU PDP kewajiban pengendali data (Verifikasi dosen: pasal rinci)."
+      },
+      {
+        title: "Badan Intelijen Mengakses 'atas nama keamanan nasional'",
+        short: "Akses intelijen",
+        text: "Badan intelijen atau aparat mengakses data yang terkumpul dengan justifikasi keamanan nasional. Akses ini bisa sah jika ada dasar hukum, perlu, dan proporsional—atau bermasalah jika tanpa pengawasan yang memadai.",
+        from: "intelijen", to: "data",
+        packet: "🔍", label: "permintaan akses",
+        set: {intelijen: "active", data: "warn"},
+        law: "UU ITE pasal intersepsi sah; UU PDP pengecualian keamanan nasional (Verifikasi dosen: pasal rinci). UU No. 17 Tahun 2011 tentang Intelijen Negara."
+      },
+      {
+        title: "Tanpa Pengawasan: Potensi Penyalahgunaan",
+        short: "Risiko penyalahgunaan",
+        text: "Tanpa pengawasan memadai, data bisa disalahgunakan: profiling politik, penindasan oposisi, diskriminasi kelompok rentan. 'Function creep': data yang awalnya dikumpulkan untuk satu tujuan dipakai untuk tujuan lain yang tidak sah.",
+        from: "data", to: "warga",
+        packet: "⚠️", label: "data disalahgunakan",
+        bad: true,
+        set: {intelijen: ["danger", "Penyalahgunaan!"], warga: "danger", data: "danger"},
+        risk: "Function creep & chilling effect: warga menyensor diri karena merasa selalu diawasi tanpa kepastian tujuan pengawasan."
+      },
+      {
+        title: "Lembaga Pengawas: Check and Balance",
+        short: "Check and balance",
+        text: "Lembaga pengawas yang kuat (DPR, KPU, Komnas HAM, lembaga independen) membatasi penyalahgunaan. Pengawasan memastikan intersepsi hanya untuk tujuan sah, proporsional, dan dapat diaudit—melindungi warga sekaligus memungkinkan keamanan nasional yang sah.",
+        from: "pengawas", to: "intelijen",
+        packet: "🛡️", label: "audit & pembatasan",
+        set: {pengawas: "safe", intelijen: "lock", data: "active", warga: "safe"},
+        tip: "Check and balance: tanpa lembaga pengawas independen, keempat uji (sah, perlu, proporsional, diawasi) tidak dapat dipenuhi.",
+        law: "Uji kebijakan: sah, perlu, proporsional, diawasi—dibahas lebih rinci di segmen debat keamanan vs privasi."
+      }
+    ],
+    outcome: "Pengawasan digital yang sah memerlukan empat syarat: dasar hukum yang jelas, keperluannya terbukti, proporsional, dan diawasi lembaga independen. Tanpa keempat syarat ini, risiko penyalahgunaan terbuka lebar bagi setiap warga."
+  },
+
+  keamananPrivasiSpectrum: {
+    title: "Spektrum: Privasi Individu ↔ Keamanan Nasional",
+    prompt: "Geser slider untuk menjelajahi 5 posisi dalam debat privasi vs keamanan nasional. Setiap titik menunjukkan implikasi nyata terhadap kebebasan sipil, contoh negara, dan risikonya.",
+    left: "Privasi Individu Mutlak",
+    right: "Keamanan Nasional Mutlak",
+    stops: [
+      {
+        at: 0,
+        label: "Titik 1 — Privasi Mutlak",
+        text: "Tidak ada pengawasan sama sekali. Setiap komunikasi dan aktivitas digital sepenuhnya privat. Kelebihan: kebebasan berekspresi dan privasi terjaga penuh. Kelemahan: kejahatan terorganisir, terorisme, dan perdagangan manusia sangat sulit ditangani karena aparat tidak bisa mengakses bukti digital.",
+        risk: "Tanpa pengawasan sama sekali, negara lemah menghadapi ancaman nyata yang beroperasi di ruang digital."
+      },
+      {
+        at: 25,
+        label: "Titik 2 — Pengawasan dengan Warrant",
+        text: "Penyadapan hanya dengan izin pengadilan (judicial warrant). Model demokrasi liberal: aparat harus membuktikan ada dugaan kejahatan sebelum mendapat izin hakim. Contoh negara: Amerika Serikat (Fourth Amendment), Jerman. Banyak pakar hak asasi menganggap posisi ini sebagai keseimbangan terbaik yang ada saat ini.",
+        risk: "Proses mendapatkan warrant bisa lambat dalam situasi darurat; sistem pengadilan butuh kapasitas dan independensi yang kuat agar tidak menjadi formalitas."
+      },
+      {
+        at: 50,
+        label: "Titik 3 — Pengawasan Terbatas dengan Pengawasan Parlemen",
+        text: "Pengawasan lebih luas dari sekedar warrant per kasus, tetapi ada oversight parlemen dan laporan transparansi berkala. Pemerintah dapat mengumpulkan metadata lebih luas dengan dasar hukum, tetapi diaudit parlemen dan lembaga independen. Di Indonesia, diskusi ini relevan dalam konteks UU Intelijen dan UU PDP.",
+        risk: "Efektivitas bergantung pada kekuatan dan kemandirian parlemen serta lembaga pengawas. Risiko scope creep tetap ada jika mekanisme audit lemah."
+      },
+      {
+        at: 75,
+        label: "Titik 4 — Pengawasan Massal 'Dapat Dipercaya'",
+        text: "Pengawasan massal populasi luas dengan janji tidak disalahgunakan—bergantung pada kepercayaan penuh kepada pemerintah yang berkuasa. Risiko tinggi: jika pemerintahan berubah atau korup, seluruh infrastruktur pengawasan bisa disalahgunakan. Contoh: program PRISM AS sebelum reformasi 2015 (Verifikasi dosen: perkembangan kebijakan terkini).",
+        risk: "Kepercayaan pada pemerintah tidak cukup sebagai pengaman. Tanpa check and balance eksternal, penyalahgunaan hanya soal waktu dan pergantian rezim."
+      },
+      {
+        at: 100,
+        label: "Titik 5 — Surveilans Total",
+        text: "Tidak ada privasi sama sekali. Setiap komunikasi, lokasi, dan perilaku dimonitor negara secara real-time. Argumen pendukung: 'jika kamu jujur, kamu tidak perlu sembunyi'. Argumen kontra (Daniel Solove, Nothing to Hide, 2011): privasi bukan tentang menyembunyikan kejahatan, melainkan melindungi kebebasan berpikir, berasosiasi, dan berbicara. Efek jera menghancurkan seluruh kebebasan sipil.",
+        risk: "Chilling effect total: warga tidak dapat berpikir, berbicara, atau berasosiasi bebas. Semua gerakan sipil dan oposisi dapat dipadamkan sebelum berkembang."
+      }
+    ]
+  },
+
+  bigDataEtikaExplorer: {
+    title: "Jelajahi: 4 Isu Etika Big Data",
+    intro: "Klik kartu untuk membuka penjelasan, cara kerja, contoh nyata, dampak, dasar hukum, dan cara melindungi diri. Kaitkan setiap isu dengan UU PDP dan tata kelola digital.",
+    items: [
+      {
+        id: "pengumpulan",
+        icon: "🕸️",
+        name: "Pengumpulan Data Massal",
+        tag: "Consent & Dark Patterns",
+        summary: "Data dikumpulkan dalam skala besar oleh platform, pemerintah, dan pihak ketiga. Masalah utama: apakah pengguna benar-benar memahami apa yang mereka setujui? Dark patterns dalam desain antarmuka sering mengecoh pengguna agar memberikan data lebih banyak dari yang mereka sadari.",
+        how: [
+          "Pengguna mendaftar layanan dan menyetujui syarat panjang yang jarang dibaca.",
+          "Platform mengumpulkan data perilaku (klik, scroll, waktu baca) di luar yang disebutkan eksplisit.",
+          "Dark patterns: tombol 'Setuju Semua' lebih menonjol, tombol 'Pengaturan Privasi' disembunyikan.",
+          "Pengumpulan berlanjut bahkan setelah pengguna meninggalkan aplikasi, melalui tracker pihak ketiga.",
+          "Data dikombinasikan lintas platform untuk membentuk profil yang jauh lebih lengkap."
+        ],
+        ex: [
+          "Syarat layanan 40 halaman yang meminta satu persetujuan untuk semua tujuan sekaligus.",
+          "Aplikasi cuaca yang meminta akses kontak dan kamera—melebihi keperluan fungsi utamanya.",
+          "Kotak persetujuan yang sudah dicentang secara default (opt-out, bukan opt-in aktif)."
+        ],
+        impact: "Pengguna kehilangan kendali atas data mereka. Persetujuan menjadi formalitas, bukan pilihan nyata. Kelompok rentan (anak-anak, lansia) lebih rentan terhadap eksploitasi data.",
+        law: [
+          "UU PDP (UU No. 27/2022): persetujuan harus sukarela, spesifik, diinformasikan, dan dapat ditarik kembali.",
+          "Prinsip minimalisasi data: hanya kumpulkan data yang benar-benar diperlukan untuk tujuan yang dinyatakan.",
+          "GDPR (UE) mewajibkan opt-in aktif, bukan opt-out—sebagai referensi perbandingan internasional."
+        ],
+        prev: [
+          "Baca (setidaknya ringkasan) kebijakan privasi sebelum mendaftar layanan baru.",
+          "Gunakan pengaturan privasi untuk membatasi pengumpulan data tambahan.",
+          "Pilih layanan yang menerapkan privacy by design dan data minimization.",
+          "Waspadai dark patterns: tanya 'mengapa aplikasi ini butuh akses ini untuk fungsinya?'"
+        ]
+      },
+      {
+        id: "profiling",
+        icon: "🎯",
+        name: "Profiling & Micro-targeting",
+        tag: "Algoritma & Demokrasi",
+        summary: "Profiling algoritma membangun gambaran rinci tentang kepribadian, preferensi, dan kerentanan seseorang dari data yang dikumpulkan. Micro-targeting menggunakan profil ini untuk mengirim pesan yang disesuaikan—bisa untuk iklan, kampanye politik, atau penyebaran disinformasi.",
+        how: [
+          "Data perilaku (like, share, waktu tonton) dianalisis untuk memprediksi kepribadian dan nilai-nilai.",
+          "Model machine learning mengklasifikasikan pengguna ke dalam segmen psikografis.",
+          "Iklan atau konten disesuaikan per individu berdasarkan kerentanan yang terdeteksi.",
+          "A/B testing dijalankan pada jutaan pengguna untuk menemukan pesan paling efektif secara emosional.",
+          "Hasilnya: dua orang melihat informasi yang berbeda tentang topik yang sama."
+        ],
+        ex: [
+          "Cambridge Analytica (2018): data 87 juta pengguna Facebook dikumpulkan tanpa persetujuan memadai melalui kuis pihak ketiga, lalu dipakai untuk micro-targeting kampanye politik (Verifikasi dosen: detail kasus dan putusan hukumnya).",
+          "Iklan asuransi jiwa yang hanya ditampilkan kepada orang yang baru saja mencari informasi tentang penyakit serius.",
+          "Konten politik berbeda yang dikirim kepada segmen pemilih yang sama namun memiliki profil emosional berbeda."
+        ],
+        impact: [
+          "Manipulasi preferensi dan pilihan demokratis tanpa sepengetahuan pemilih.",
+          "Polarisasi: pengguna dikurung dalam gelembung pandangan mereka sendiri.",
+          "Eksploitasi kerentanan psikologis: orang dalam kondisi rapuh lebih mudah dimanipulasi.",
+          "Melemahkan otonomi individu—pilihan yang terasa bebas sebenarnya sudah direkayasa."
+        ],
+        law: [
+          "UU PDP: pemrosesan data untuk profiling perlu dasar hukum yang jelas dan persetujuan subjek data.",
+          "Hak subjek data untuk tidak menjadi sasaran keputusan otomatis yang berdampak signifikan.",
+          "Di UE, GDPR membatasi micro-targeting berbasis data sensitif (agama, politik, kesehatan).",
+          "(Verifikasi dosen: apakah ada regulasi spesifik micro-targeting politik di Indonesia?)"
+        ],
+        prev: [
+          "Batasi data yang dibagikan ke platform media sosial, terutama data preferensi politik dan agama.",
+          "Gunakan mode inkognito atau browser tanpa pelacak untuk pencarian sensitif.",
+          "Waspadai konten yang terasa terlalu tepat dengan situasi atau emosi kamu saat ini.",
+          "Verifikasi informasi dari beragam sumber, bukan hanya yang muncul di feed algoritmik."
+        ]
+      },
+      {
+        id: "databroker",
+        icon: "🏪",
+        name: "Data Broker",
+        tag: "Industri Data Tersembunyi",
+        summary: "Data broker adalah perusahaan yang bisnis utamanya mengumpulkan, menganalisis, dan menjual data pribadi—seringkali tanpa sepengetahuan subjek data. Mereka menggabungkan data dari berbagai sumber untuk membuat profil yang sangat rinci tentang jutaan orang.",
+        how: [
+          "Mengumpulkan data dari sumber publik: catatan pengadilan, kepemilikan properti, daftar pemilih.",
+          "Membeli data dari aplikasi, platform, dan retailer yang menjual data penggunanya.",
+          "Menggabungkan dan memperkaya data dari berbagai sumber untuk membuat profil komprehensif.",
+          "Menjual profil kepada pengiklan, perusahaan asuransi, pemberi kerja, bahkan pemerintah.",
+          "Subjek data biasanya tidak tahu profil mereka ada, apalagi siapa yang membelinya."
+        ],
+        ex: [
+          "Acxiom, Experian, dan Oracle Data Cloud dikenal sebagai data broker besar di tingkat global.",
+          "Perusahaan asuransi yang membeli riwayat belanja untuk menilai risiko kesehatan tanpa sepengetahuan nasabah.",
+          "Perusahaan rekrutmen yang membeli profil untuk menyaring kandidat sebelum wawancara.",
+          "Di Indonesia, industri data broker berkembang seiring pertumbuhan e-commerce dan fintech (Verifikasi dosen: kondisi regulasi terkini)."
+        ],
+        impact: [
+          "Privasi: orang tidak dapat mengendalikan bagaimana data mereka dipakai dan oleh siapa.",
+          "Diskriminasi: profil yang tidak akurat bisa merugikan seseorang dalam pinjaman, asuransi, atau pekerjaan.",
+          "Keamanan: profil yang bocor dapat dipakai untuk penipuan identitas dan rekayasa sosial.",
+          "Ketidakseimbangan kuasa: perusahaan tahu jauh lebih banyak tentang konsumen daripada sebaliknya."
+        ],
+        law: [
+          "UU PDP (UU No. 27/2022): mewajibkan dasar hukum untuk pemrosesan dan memberikan hak subjek data untuk mengakses serta menghapus datanya.",
+          "Hak untuk mengetahui siapa yang memproses datamu, untuk tujuan apa, dan berdasarkan dasar hukum apa.",
+          "(Verifikasi dosen: apakah UU PDP atau peraturan pelaksananya secara spesifik mengatur atau mewajibkan pendaftaran data broker?)"
+        ],
+        prev: [
+          "Cari namamu di mesin pencari dan periksa informasi apa saja yang tersedia secara publik.",
+          "Gunakan layanan opt-out dari data broker jika tersedia (di negara yang mengaturnya).",
+          "Batasi data yang dibagikan ke aplikasi pihak ketiga yang terhubung ke akun utamamu.",
+          "Dukung kebijakan yang mewajibkan transparansi dan pendaftaran data broker di Indonesia."
+        ]
+      },
+      {
+        id: "algoritma",
+        icon: "🔄",
+        name: "Algoritma & Filter Bubble",
+        tag: "Echo Chamber & Polarisasi",
+        summary: "Algoritma rekomendasi dirancang untuk memaksimalkan keterlibatan pengguna (engagement) dengan menampilkan konten yang paling mungkin diklik. Tanpa disadari, ini menciptakan 'gelembung filter' (filter bubble) di mana pengguna hanya melihat informasi yang sejalan dengan pandangan mereka—memperdalam polarisasi masyarakat.",
+        how: [
+          "Sistem merekam konten apa yang diklik, di-like, dibagikan, atau ditonton lebih lama.",
+          "Model machine learning memprediksi konten apa yang membuat pengguna tetap di platform.",
+          "Konten yang memicu reaksi emosional kuat (marah, takut, kagum) cenderung mendapat lebih banyak engagement.",
+          "Secara bertahap, feed pengguna semakin sempit menuju konten yang mengkonfirmasi pandangan mereka.",
+          "Pengguna dari kelompok berbeda mendapat realitas informasi yang berbeda tentang topik yang sama."
+        ],
+        ex: [
+          "Dua orang yang mencari topik yang sama di YouTube mendapatkan rekomendasi video yang sangat berbeda berdasarkan riwayat tontonan masing-masing.",
+          "Penelitian MIT (2018) menemukan bahwa berita bohong menyebar lebih cepat dari berita benar di media sosial karena lebih mengejutkan dan memicu emosi (Verifikasi dosen: detail studi).",
+          "Selama Pemilu, algoritma dapat membuat dua pemilih dari wilayah sama memiliki persepsi berbeda tentang kandidat yang sama."
+        ],
+        impact: [
+          "Polarisasi: masyarakat terpecah karena mendapat narasi berbeda tentang realitas yang sama.",
+          "Radikalisasi bertahap: algoritma bisa secara perlahan mengarahkan pengguna ke konten yang semakin ekstrem.",
+          "Disinformasi lebih viral: konten palsu yang emosional menyebar lebih cepat dari koreksi faktual.",
+          "Melemahkan demokrasi: pemilih yang tidak terekspos informasi berimbang sulit membuat pilihan yang terinformasi."
+        ],
+        law: [
+          "UU PDP: pengguna berhak mendapat penjelasan tentang logika pemrosesan data yang berdampak signifikan bagi mereka.",
+          "DSA (Digital Services Act) UE mewajibkan platform besar menjelaskan cara kerja algoritmanya dan menawarkan alternatif non-personalisasi—sebagai referensi komparatif.",
+          "(Verifikasi dosen: apakah ada kewajiban transparansi algoritma dalam regulasi Indonesia?)",
+          "UU ITE dan PP PSTE mengatur kewajiban moderasi konten bagi penyelenggara sistem elektronik."
+        ],
+        prev: [
+          "Aktif mencari sumber informasi dari perspektif berbeda—jangan hanya mengandalkan feed yang dipersonalisasi.",
+          "Gunakan mode tanpa riwayat atau reset preferensi secara berkala.",
+          "Terapkan literasi digital: periksa fakta dari sumber terpercaya sebelum membagikan konten.",
+          "Dukung transparansi algoritma: platform harus menjelaskan cara kerjanya dan memberi opsi non-personalisasi."
+        ]
+      }
+    ]
+  }
+};
+</script>
+
+<!-- ===== [SHARED:JS] — jangan ubah blok ini antar pertemuan ===== -->
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const K=PAGE.id+":";
+const store={get(k,d){try{const v=localStorage.getItem(K+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(K+k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const widgets=$$(".w[data-widget]"); const done=new Set(store.get("done",[]));
+function markDone(id){done.add(id);store.set("done",[...done]);const el=$("#"+id);if(el)el.classList.add("done");updateProgress()}
+function updateProgress(){const p=widgets.length?Math.round(done.size/widgets.length*100):0;$("#pbar").style.width=p+"%";$("#ppct").textContent=p+"%"}
+const body=(el)=>{const d=document.createElement("div");d.className="wb";el.appendChild(d);return d};
+
+/* ---------- Poll ---------- */
+function poll(el,c){const b=body(el);const saved=store.get(el.id,null);
+  b.innerHTML=`<h3>${esc(c.q)}</h3><div class="opts"></div><div class="fb"></div>`;
+  const o=$(".opts",b),fb=$(".fb",b);
+  c.opts.forEach((x,i)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=x.t;bt.onclick=()=>pick(i);o.appendChild(bt)});
+  function pick(i){$$(".opt",o).forEach((e,j)=>e.classList.toggle("sel",i===j));fb.className="fb show ok";fb.innerHTML="<b>Insight:</b> "+esc(c.opts[i].why);store.set(el.id,i);markDone(el.id)}
+  if(saved!==null)pick(saved)}
+
+/* ---------- Checklist ---------- */
+function checklist(el,c){const b=body(el);const st=store.get(el.id,[]);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="ckl"></div><div class="fb"></div>`;
+  const box=$(".ckl",b),fb=$(".fb",b);
+  c.items.forEach((t,i)=>{const l=document.createElement("label");l.innerHTML=`<input type="checkbox"><span>${esc(t)}</span>`;const cb=$("input",l);cb.checked=st.includes(i);cb.onchange=chk;box.appendChild(l)});
+  function chk(){const v=$$("input",box).map((x,i)=>x.checked?i:-1).filter(i=>i>=0);store.set(el.id,v);if(v.length===c.items.length){fb.className="fb show ok";fb.textContent=c.doneMsg||"Selesai.";markDone(el.id)}else fb.className="fb"}
+  chk()}
+
+/* ---------- Flashcards ---------- */
+function flash(el,c){const b=body(el);let i=0;const known=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="flash"><div class="flash-in"><div class="face f"></div><div class="face b"></div></div></div>
+  <div class="fc-ctl"><button class="btn ghost" data-a="prev">‹ Sebelumnya</button><span class="cnt"></span><button class="btn ghost" data-a="next">Berikutnya ›</button><button class="btn" data-a="know">Saya paham ✓</button></div>`;
+  const fl=$(".flash",b);
+  function draw(){const x=c.cards[i];$(".f",b).textContent=x.f;$(".b",b).textContent=x.b;fl.classList.remove("flip");$(".cnt",b).textContent=`${i+1}/${c.cards.length} · paham ${known.size}`}
+  fl.onclick=()=>fl.classList.toggle("flip");
+  b.onclick=e=>{const a=e.target.dataset.a;if(!a)return;if(a==="next")i=(i+1)%c.cards.length;if(a==="prev")i=(i-1+c.cards.length)%c.cards.length;if(a==="know"){known.add(i);store.set(el.id,[...known]);if(known.size===c.cards.length)markDone(el.id);i=(i+1)%c.cards.length}draw()};
+  draw();if(known.size===c.cards.length)markDone(el.id)}
+
+/* ---------- Classify ---------- */
+function classify(el,c){const b=body(el);let pick=null;const asg={};
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="cls-pool"></div><div class="cls-bins"></div>
+  <p><button class="btn" data-a="chk">Periksa</button> <button class="btn ghost" data-a="rst">Ulangi</button> <span class="score"></span></p><div class="fb"></div>`;
+  const pool=$(".cls-pool",b),bins=$(".cls-bins",b),fb=$(".fb",b);
+  c.bins.forEach((n,bi)=>{const d=document.createElement("div");d.className="bin";d.tabIndex=0;d.dataset.b=bi;d.innerHTML=`<h4>${esc(n)}</h4>`;bins.appendChild(d)});
+  function render(){pool.innerHTML="";$$(".bin .cls-item",bins).forEach(e=>e.remove());
+    c.items.forEach((x,i)=>{const e=document.createElement("button");e.className="cls-item";e.textContent=x.t;e.dataset.i=i;
+      if(pick===i)e.classList.add("pick");
+      if(asg[i]!==undefined)$$(".bin",bins)[asg[i]].appendChild(e);else pool.appendChild(e)})}
+  b.onclick=e=>{const it=e.target.closest(".cls-item");const bin=e.target.closest(".bin");const a=e.target.dataset.a;
+    if(a==="rst"){for(const k in asg)delete asg[k];pick=null;fb.className="fb";$(".score",b).textContent="";render();return}
+    if(a==="chk"){if(Object.keys(asg).length<c.items.length){fb.className="fb show";fb.textContent="Tempatkan semua kartu terlebih dahulu.";return}
+      let s=0,html="<ul>";c.items.forEach((x,i)=>{const ok=asg[i]===x.a;if(ok)s++;html+=`<li>${ok?"✓":"✗"} <b>${esc(x.t)}</b> → <em>${esc(c.bins[x.a])}</em>. ${esc(x.why)}</li>`});html+="</ul>";
+      $$(".cls-item",b).forEach(el2=>{el2.classList.add(asg[el2.dataset.i]===c.items[el2.dataset.i].a?"right":"wrong")});
+      $(".score",b).textContent=`Skor ${s}/${c.items.length}`;fb.className="fb show ok";fb.innerHTML=html;markDone(el.id);return}
+    if(it&&(pool.contains(it)||bins.contains(it))){const i=+it.dataset.i;if(asg[i]!==undefined&&!bin){delete asg[i]}pick=i;render();return}
+    if(bin&&pick!==null){asg[pick]=+bin.dataset.b;pick=null;render()}};
+  render()}
+
+/* ---------- Scenario ---------- */
+function scenario(el,c){const b=body(el);
+  function show(id){const n=c.nodes[id];
+    b.innerHTML=`<h3>${esc(c.title)}</h3><p class="scn-text">${esc(n.text)}</p>`;
+    if(n.end){b.insertAdjacentHTML("beforeend",`<div class="scn-end"><b>Tinjauan 3 kacamata:</b> ${esc(n.lens)}</div><p><button class="btn ghost">Coba jalur lain</button></p>`);$(".btn",b).onclick=()=>show(c.start);markDone(el.id)}
+    else{const o=document.createElement("div");o.className="opts";n.choices.forEach(ch=>{const x=document.createElement("button");x.className="opt";x.textContent=ch.t;x.onclick=()=>show(ch.to);o.appendChild(x)});b.appendChild(o)}}
+  show(c.start)}
+
+/* ---------- Reflection ---------- */
+function reflect(el,c){const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt)}</p><textarea placeholder="Tulis di sini…"></textarea><p><small>${esc(c.hint||"")}</small></p><p><button class="btn" data-a="cp">Salin jawaban</button> <span class="cnt"></span></p>`;
+  const ta=$("textarea",b);ta.value=store.get(el.id,"");
+  const upd=()=>{const n=ta.value.trim().split(/\s+/).filter(Boolean).length;$(".cnt",b).textContent=n+" kata";if(n>=15)markDone(el.id)};
+  ta.oninput=()=>{store.set(el.id,ta.value);upd()};
+  $("[data-a=cp]",b).onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText(ta.value).then(()=>{e.target.textContent="Tersalin ✓";setTimeout(()=>e.target.textContent="Salin jawaban",1500)})};
+  upd()}
+
+/* ---------- Quiz ---------- */
+function quiz(el,c){const b=body(el);const ans=[];let i=0;
+  function show(){if(i>=c.items.length)return fin();const x=c.items[i];
+    b.innerHTML=`<h3>${esc(c.title)} · ${i+1}/${c.items.length}</h3><p><b>${esc(x.q)}</b></p><div class="opts"></div><div class="fb"></div><p><button class="btn" disabled>Lanjut ›</button></p>`;
+    const o=$(".opts",b),fb=$(".fb",b),nx=$(".btn",b);
+    x.o.forEach((t,j)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=t;bt.onclick=()=>{if(ans[i]!==undefined)return;ans[i]=j;$$(".opt",o).forEach((e,k)=>{if(k===x.a)e.classList.add("right");else if(k===j)e.classList.add("wrong")});fb.className="fb show "+(j===x.a?"ok":"");fb.innerHTML=(j===x.a?"<b>Benar.</b> ":"<b>Belum tepat.</b> ")+esc(x.why);nx.disabled=false;nx.textContent=i===c.items.length-1?"Lihat skor":"Lanjut ›"};o.appendChild(bt)});
+    nx.onclick=()=>{i++;show()}}
+  function fin(){const s=c.items.filter((x,k)=>ans[k]===x.a).length;const p=Math.round(s/c.items.length*100);
+    store.set(el.id+":score",p);
+    b.innerHTML=`<h3>Hasil kuis</h3><p class="score">${s}/${c.items.length} (${p}%)</p><p>${p>=80?"Sangat baik. Pemahamanmu kuat.":p>=60?"Cukup. Ulas butir yang salah.":"Perlu ulang. Baca kembali segmen 2–4."}</p><p><button class="btn ghost">Ulangi kuis</button></p>`;
+    $(".btn",b).onclick=()=>{ans.length=0;i=0;show()};markDone(el.id)}
+  show()}
+
+const R={poll,checklist,flash,classify,scenario,reflect,quiz};
+window.EHC={$,$$,store,esc,markDone,body};
+widgets.forEach(el=>{const t=el.dataset.widget;if(R[t]&&PAGE[el.id])R[t](el,PAGE[el.id]);if(done.has(el.id))el.classList.add("done")});
+updateProgress();
+
+/* ---------- Agenda & scrollspy ---------- */
+const ag=$("#agenda");const segs=$$(".seg");
+segs.forEach((s,i)=>{const a=document.createElement("a");a.href="#"+s.id;a.innerHTML=`${esc(s.dataset.title)}`;ag.appendChild(a)});
+const links=$$("a",ag);
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}})},{rootMargin:"-30% 0px -60% 0px"});
+segs.forEach(s=>io.observe(s));
+
+})();
+</script>
+<!-- ===== [/SHARED:JS] ===== -->
+<script>
+/* ===== [SHARED:VIZ-JS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+(function(){
+"use strict";
+const E=window.EHC; if(!E){return}
+const {$,$$,store,esc,markDone,body}=E;
+const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+const arr=x=>x==null?[]:Array.isArray(x)?x:[x];
+const list=(a,tag="ul")=>`<${tag}>${arr(a).map(x=>`<li>${esc(x)}</li>`).join("")}</${tag}>`;
+
+/* =============== FLOW: animasi alur proses antar aktor =============== */
+/* cfg: {title, sub, actors:[{id,icon,name,x,y,role,state,badge}], zones:[{x,y,w,h,label}],
+         steps:[{title,text,from,to,packet,label,count,bad,set:{id:'safe|warn|danger|lock|active'|['danger','teks']},law,tip,risk}], outcome} */
+function flow(el,c,opt){
+  opt=opt||{};const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title||"")}</h3>${c.sub?`<p>${esc(c.sub)}</p>`:""}
+  <div class="v-stage"><svg class="v-lines" viewBox="0 0 100 100" preserveAspectRatio="none"></svg><div class="v-layer"></div></div>
+  <div class="v-ctl"><button class="btn ghost" data-a="rs" title="Ulang dari awal">Ulang</button><button class="btn ghost" data-a="pv">‹ Mundur</button><button class="btn" data-a="pl">Putar otomatis</button><button class="btn ghost" data-a="nx">Lanjut ›</button>
+  <label>Kecepatan <select data-a="sp"><option value="1.6">Lambat</option><option value="1" selected>Normal</option><option value="0.6">Cepat</option></select></label></div>
+  <div class="v-rail"></div><div class="v-cap" aria-live="polite"></div>`;
+  const stage=$(".v-stage",b),svg=$(".v-lines",b),layer=$(".v-layer",b),rail=$(".v-rail",b),cap=$(".v-cap",b),play=$("[data-a=pl]",b);
+  const A={},pos={};
+  (c.zones||[]).forEach(z=>{const d=document.createElement("div");d.className="v-zone";d.style.cssText=`left:${z.x}%;top:${z.y}%;width:${z.w}%;height:${z.h}%`;d.textContent=z.label||"";layer.appendChild(d)});
+  c.actors.forEach(a=>{pos[a.id]=a;const d=document.createElement("div");d.className="v-actor r-"+(a.role||"neutral");d.style.cssText=`left:${a.x}%;top:${a.y}%`;
+    d.innerHTML=`<div class="v-ico">${a.icon}</div><div class="v-name">${esc(a.name)}</div><div class="v-badge"></div>`;layer.appendChild(d);A[a.id]=d});
+  const seenPairs=new Set(),L={};
+  c.steps.forEach(s=>arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const k=f+">"+t;if(f===t||seenPairs.has(k))return;seenPairs.add(k);
+    const ln=document.createElementNS("http://www.w3.org/2000/svg","line");ln.setAttribute("x1",pos[f].x);ln.setAttribute("y1",pos[f].y);ln.setAttribute("x2",pos[t].x);ln.setAttribute("y2",pos[t].y);svg.appendChild(ln);L[k]=ln})));
+  c.steps.forEach((s,i)=>{const r=document.createElement("button");r.textContent=`${i+1}. ${s.short||s.title}`;r.onclick=()=>{halt();go(i,true)};rail.appendChild(r)});
+  let cur=-1,tm=[],auto=false,max=-1,sp=1;
+  const T=(fn,ms)=>{const id=setTimeout(fn,ms);tm.push(id);return id};
+  const clr=()=>{tm.forEach(clearTimeout);tm=[];$$(".v-packet",layer).forEach(p=>p.remove())};
+  function states(i){
+    c.actors.forEach(a=>setSt(a.id,a.state||"",a.badge||""));
+    for(let k=0;k<=i;k++){const st=c.steps[k].set||{};for(const id in st){const v=st[id];Array.isArray(v)?setSt(id,v[0],v[1]||""):setSt(id,v,"")}}}
+  function setSt(id,s,badge){const d=A[id];if(!d)return;d.className=d.className.replace(/\bs-\w+/g,"").trim();if(s)d.classList.add("s-"+s);$(".v-badge",d).textContent=badge}
+  function fire(s){
+    const dur=reduce?1:900*sp,n=s.count||1;let d=0;
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{ if(f===t)return;
+      for(let k=0;k<n;k++){T(()=>{const a=pos[f],z=pos[t],p=document.createElement("div");p.className="v-packet";p.style.cssText=`left:${a.x}%;top:${a.y}%;--dur:${dur}ms`;
+        p.innerHTML=(s.packet||"✉️")+(s.label&&k===0?`<span class="v-plabel">${esc(s.label)}</span>`:"");layer.appendChild(p);void p.offsetWidth;
+        p.style.left=z.x+"%";p.style.top=z.y+"%";T(()=>{p.style.opacity=0;T(()=>p.remove(),320)},dur)},d+k*240*sp)}
+      d+=90*sp}));
+    return dur+(n-1)*240*sp+d}
+  function go(i,animate){
+    if(i<0||i>=c.steps.length)return;clr();cur=i;max=Math.max(max,i);const s=c.steps[i];
+    states(i-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const l=L[f+">"+t];if(l){l.classList.add("on");if(s.bad)l.classList.add("bad")}}));
+    arr(s.from).forEach(f=>{A[f]&&A[f].classList.add("s-active")});
+    const after=animate?fire(s):0;
+    T(()=>{states(i);arr(s.from).forEach(f=>{});},animate?Math.min(after,1100*sp):0);
+    $$("button",rail).forEach((r,k)=>{r.classList.toggle("on",k===i);r.classList.toggle("seen",k<i||k<=max&&k!==i)});
+    cap.innerHTML=`<span class="v-num">Langkah ${i+1} / ${c.steps.length}</span><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p>`
+      +((s.law||s.tip||s.risk)?`<div class="v-chips">${s.risk?`<span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span>`:""}${s.law?`<span class="v-chip law"><b>Dasar hukum</b>${esc(s.law)}</span>`:""}${s.tip?`<span class="v-chip tip"><b>Tips</b>${esc(s.tip)}</span>`:""}</div>`:"")
+      +(i===c.steps.length-1&&c.outcome?`<div class="v-outcome">${esc(c.outcome)}</div>`:"");
+    if(i===c.steps.length-1&&!opt.silent)markDone(el.id);
+    return after}
+  function halt(){auto=false;play.textContent="Putar otomatis"}
+  function step(){if(!auto)return;if(cur>=c.steps.length-1){halt();return}const after=go(cur+1,true);T(step,after+2600*sp)}
+  b.addEventListener("click",e=>{const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==="rs"){halt();clr();cur=-1;states(-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));$$("button",rail).forEach(r=>r.className="");cap.innerHTML="<span class=\"v-num\">Siap</span><h4>Tekan “Putar otomatis” atau “Lanjut”</h4><p>Setiap langkah menampilkan apa yang terjadi, dasar hukumnya, dan cara memutus rantainya.</p>"}
+    if(a==="nx"){halt();go(Math.min(cur+1,c.steps.length-1),true)}
+    if(a==="pv"){halt();go(Math.max(cur-1,0),false)}
+    if(a==="pl"){if(auto){halt();return}auto=true;play.textContent="Jeda";if(cur>=c.steps.length-1){cur=-1}step()}
+  });
+  $("[data-a=sp]",b).onchange=e=>{sp=+e.target.value};
+  b.querySelector("[data-a=rs]").click();
+}
+
+/* =============== EXPLORER: peta jenis / konsep dengan detail =============== */
+/* cfg: {title, intro, items:[{id,icon,name,tag,summary,how[],ex,impact,law,prev[],flow:'kunciFlow'}]} */
+function explorer(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3>${c.intro?`<p>${esc(c.intro)}</p>`:""}<div class="v-grid"></div><div class="v-detail-wrap"><p class="v-hintp"><em>Klik salah satu kartu untuk membuka penjelasan, contoh, dasar hukum, dan cara pencegahannya.</em></p></div>`;
+  const grid=$(".v-grid",b),wrap=$(".v-detail-wrap",b);
+  c.items.forEach((it,i)=>{const t=document.createElement("button");t.className="v-tile"+(seen.has(i)?" seen":"");t.innerHTML=`<span class="ic">${it.icon}</span><b>${esc(it.name)}</b><small>${esc(it.tag||"")}</small>`;t.onclick=()=>open(i);grid.appendChild(t)});
+  function open(i,tab){const it=c.items[i];seen.add(i);store.set(el.id,[...seen]);
+    $$(".v-tile",grid).forEach((t,k)=>{t.classList.toggle("sel",k===i);if(seen.has(k))t.classList.add("seen")});
+    const tabs=[["ap","Apa itu",true],["how","Cara kerja",it.how],["ex","Contoh",it.ex],["im","Dampak",it.impact],["law","Dasar hukum",it.law],["pv","Pencegahan",it.prev]].filter(x=>x[2]);
+    tab=tab||"ap";
+    const pane={ap:()=>`<p>${esc(it.summary)}</p>`,how:()=>list(it.how,"ol"),ex:()=>Array.isArray(it.ex)?list(it.ex):`<p>${esc(it.ex)}</p>`,im:()=>Array.isArray(it.impact)?list(it.impact):`<p>${esc(it.impact)}</p>`,law:()=>Array.isArray(it.law)?list(it.law):`<p>${esc(it.law)}</p>`,pv:()=>list(it.prev)};
+    wrap.innerHTML=`<div class="v-detail"><h3><span style="font-size:1.8rem">${it.icon}</span>${esc(it.name)}</h3><div class="v-tabs">${tabs.map(t=>`<button data-t="${t[0]}" class="${t[0]===tab?"on":""}">${t[1]}</button>`).join("")}</div><div class="v-pane">${pane[tab]()}</div>${it.flow&&PAGE[it.flow]?`<div class="v-sub"><button class="btn" data-f="1">Lihat animasi prosesnya</button><div class="v-flowbox"></div></div>`:""}</div>`;
+    wrap.onclick=e=>{const t=e.target.dataset.t;if(t){open(i,t)}if(e.target.dataset.f){e.target.style.display="none";flow($(".v-flowbox",wrap),PAGE[it.flow],{silent:true})}};
+    if(seen.size===c.items.length)markDone(el.id)}
+  if(seen.size===c.items.length)markDone(el.id)
+}
+
+/* =============== MOCK: layar HP / email / web / postingan dengan titik klik =============== */
+/* cfg: {title, kind:'chat|email|web|post', header:{name,sub,avatar,from,to,subject,url}, messages:[{from,time,parts}], cta, stats,
+         hotspots:[{id,label,why,decoy}], instruct}
+   parts: array string | {t:'teks', h:'idHotspot'} */
+function mock(el,c){
+  const b=body(el);const found=new Set(store.get(el.id,[]));const real=c.hotspots.filter(h=>!h.decoy);const H={};c.hotspots.forEach(h=>H[h.id]=h);
+  const P=parts=>arr(parts).map(p=>typeof p==="string"?esc(p):`<span class="v-hot" data-h="${p.h}" tabindex="0" role="button">${esc(p.t)}</span>`).join("");
+  const h=c.header||{};let inner="";
+  if(c.kind==="email"){inner=`<div class="v-bar"><span>✉️</span><b>Kotak masuk</b></div><div class="v-meta"><div><b>Dari:</b> ${P(h.from)}</div><div><b>Kepada:</b> ${P(h.to)}</div><div><b>Subjek:</b> ${P(h.subject)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="web"){inner=`<div class="v-bar"><span>🔒</span><div class="v-url">${P(h.url)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="post"){inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}</div><div class="v-stats">${esc(c.stats||"")}</div>`}
+  else{inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-msgs">${c.messages.map(m=>`<div class="v-msg ${m.from==="me"?"me":""}">${P(m.parts)}${m.time?`<time>${esc(m.time)}</time>`:""}</div>`).join("")}</div>`}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.instruct||"Klik bagian yang menurutmu mencurigakan. Hati-hati: ada juga bagian yang tampak janggal tetapi wajar.")}</p>
+  <div class="v-mockwrap"><div class="v-phone"><div class="v-screen ${c.kind||"chat"}">${inner}</div></div>
+  <div><div class="v-spec-lbl"><span>Tanda bahaya ditemukan</span><span class="cnt"></span></div><div class="v-prog"><i></i></div><p><button class="btn ghost" data-a="hint">Tampilkan petunjuk</button> <button class="btn ghost" data-a="reset">Ulangi</button></p><div class="v-finds"></div></div></div>`;
+  const scr=$(".v-phone",b),fin=$(".v-finds",b);
+  function upd(){const n=[...found].filter(id=>!H[id].decoy).length;$(".cnt",b).textContent=`${n} / ${real.length}`;$(".v-prog i",b).style.width=(n/real.length*100)+"%";if(n===real.length)markDone(el.id)}
+  function mark(id){const hs=H[id];if(!hs)return;found.add(id);store.set(el.id,[...found]);$$(`[data-h="${id}"]`,b).forEach(x=>x.classList.add(hs.decoy?"decoy":"found"));
+    if(!$(`[data-f="${id}"]`,fin)){const d=document.createElement("div");d.className="v-find"+(hs.decoy?" ok":"");d.dataset.f=id;d.innerHTML=`<b>${hs.decoy?"Ini wajar":"Tanda bahaya: "+esc(hs.label)}</b>${esc(hs.why)}`;fin.appendChild(d)}upd()}
+  b.addEventListener("click",e=>{const x=e.target.closest(".v-hot");if(x){mark(x.dataset.h);return}if(e.target.dataset.a==="hint"){scr.classList.toggle("v-hint")}if(e.target.dataset.a==="reset"){found.clear();store.set(el.id,[]);$$(".v-hot",b).forEach(x=>x.classList.remove("found","decoy"));fin.innerHTML="";scr.classList.remove("v-hint");upd()}});
+  b.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList.contains("v-hot"))mark(e.target.dataset.h)});
+  found.forEach(id=>mark(id));upd();
+}
+
+/* =============== TIMELINE =============== */
+/* cfg: {title, events:[{when,title,text,icon,law}]} */
+function timeline(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));let cur=0;
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="v-tl"><div class="v-tl-track"></div></div><div class="v-cap"></div><p><button class="btn ghost" data-a="p">‹ Sebelumnya</button> <button class="btn" data-a="n">Berikutnya ›</button></p>`;
+  const tr=$(".v-tl-track",b),cap=$(".v-cap",b);
+  c.events.forEach((ev,i)=>{const p=document.createElement("button");p.className="v-tl-pt";p.innerHTML=`<span class="dot">${ev.icon||"•"}</span><span class="when">${esc(ev.when)}</span><span class="tt">${esc(ev.title)}</span>`;p.onclick=()=>show(i);tr.appendChild(p)});
+  function show(i){cur=i;seen.add(i);store.set(el.id,[...seen]);const ev=c.events[i];
+    $$(".v-tl-pt",tr).forEach((p,k)=>{p.classList.toggle("on",k===i);p.classList.toggle("seen",seen.has(k))});
+    const pt=$(".v-tl-pt",tr)[i],sc=tr.parentElement;if(pt&&sc&&sc.scrollTo){sc.scrollTo({left:pt.getBoundingClientRect().left-sc.getBoundingClientRect().left+sc.scrollLeft-sc.clientWidth/2+pt.offsetWidth/2,behavior:reduce?"auto":"smooth"})}
+    cap.innerHTML=`<span class="v-num">${esc(ev.when)}</span><h4>${esc(ev.title)}</h4><p>${esc(ev.text)}</p>${ev.law?`<div class="v-chips"><span class="v-chip law"><b>Dasar hukum</b>${esc(ev.law)}</span></div>`:""}`;
+    if(seen.size===c.events.length)markDone(el.id)}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="n")show(Math.min(cur+1,c.events.length-1));if(a==="p")show(Math.max(cur-1,0))});
+  show(0);
+}
+
+/* =============== SPECTRUM: geser untuk melihat trade-off =============== */
+/* cfg: {title, prompt, left, right, stops:[{at,label,text,risk}]} */
+function spectrum(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"")}</p><div class="v-spec"><div class="v-spec-lbl"><span>‹ ${esc(c.left)}</span><span>${esc(c.right)} ›</span></div><input type="range" min="0" max="100" value="50" aria-label="${esc(c.title)}">
+  <div class="v-spec-bars"><div><small>${esc(c.left)}</small><div class="bar"><i></i></div></div><div><small>${esc(c.right)}</small><div class="bar r"><i></i></div></div></div></div><div class="v-cap"></div>`;
+  const rg=$("input",b),cap=$(".v-cap",b),bl=$(".bar i",b),br=$(".bar.r i",b);
+  function upd(){const v=+rg.value;bl.style.width=(100-v)+"%";br.style.width=v+"%";
+    let best=0,d=1e9;c.stops.forEach((s,i)=>{const x=Math.abs(s.at-v);if(x<d){d=x;best=i}});const s=c.stops[best];
+    cap.innerHTML=`<span class="v-num">${esc(s.label)}</span><p>${esc(s.text)}</p>${s.risk?`<div class="v-chips"><span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span></div>`:""}`;
+    seen.add(best);store.set(el.id,[...seen]);if(seen.size>=Math.min(3,c.stops.length))markDone(el.id)}
+  rg.oninput=upd;upd();
+}
+
+/* =============== ORDER: urutkan langkah =============== */
+/* cfg: {title, prompt, items:[{t,why}]} dalam urutan benar */
+function order(el,c){
+  const b=body(el);const n=c.items.length;
+  const idx=c.items.map((_,i)=>i);const sh=idx.map((_,i)=>idx[(i*3+2)%n]).filter((v,i,a)=>a.indexOf(v)===i);idx.forEach(i=>{if(!sh.includes(i))sh.push(i)});
+  let pool=sh.slice(),ans=[];if(pool.every((v,i)=>v===i)){pool.reverse()}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"Klik langkah satu per satu sesuai urutan yang benar. Klik langkah di kolom jawaban untuk membatalkannya.")}</p><div class="v-ord"><div><h4>Langkah acak</h4><div class="col pool"></div></div><div><h4>Urutan kamu</h4><div class="col ans"></div></div></div><p><button class="btn" data-a="chk" disabled>Periksa urutan</button> <button class="btn ghost" data-a="rst">Ulangi</button></p><div class="fb"></div>`;
+  const P=$(".pool",b),Aw=$(".ans",b),chk=$("[data-a=chk]",b),fb=$(".fb",b);
+  function draw(res){P.innerHTML="";Aw.innerHTML="";pool.forEach(i=>{const x=document.createElement("button");x.className="it";x.textContent=c.items[i].t;x.onclick=()=>{ans.push(i);pool=pool.filter(v=>v!==i);fb.className="fb";draw()};P.appendChild(x)});
+    ans.forEach((i,k)=>{const x=document.createElement("button");x.className="it"+(res?(i===k?" right":" wrong"):"");x.innerHTML=`<i>${k+1}</i>`+esc(c.items[i].t);x.onclick=()=>{if(res)return;ans=ans.filter(v=>v!==i);pool.push(i);draw()};Aw.appendChild(x)});
+    chk.disabled=pool.length>0}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="rst"){pool=sh.slice();ans=[];fb.className="fb";draw()}
+    if(a==="chk"){const ok=ans.filter((v,k)=>v===k).length;draw(true);fb.className="fb show"+(ok===n?" ok":"");fb.innerHTML=`<b>${ok}/${n} posisi tepat.</b><ol>${c.items.map(x=>`<li>${esc(x.t)}${x.why?`: ${esc(x.why)}`:""}</li>`).join("")}</ol>`;markDone(el.id)}});
+  draw();
+}
+
+/* ---------- registrasi ---------- */
+const V={flow,explorer,mock,timeline,spectrum,order};
+$$(".w[data-widget]").forEach(el=>{const t=el.dataset.widget;if(V[t]&&PAGE[el.id])V[t](el,PAGE[el.id])});
+/* reveal on scroll */
+if(!reduce&&"IntersectionObserver" in window){document.documentElement.classList.add("reveal-on");
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{rootMargin:"0px 0px -8% 0px"});
+  $$(".seg").forEach(s=>io.observe(s));
+  setTimeout(()=>$$(".seg").forEach(s=>s.classList.add("in")),2500)}
+})();
+/* ===== [/SHARED:VIZ-JS] ===== */
+</script>
+
+</body>
+</html>

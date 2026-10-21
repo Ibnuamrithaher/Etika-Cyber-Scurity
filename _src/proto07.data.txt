@@ -1,0 +1,87 @@
+  flowRansom:{
+    title:"Bagaimana ransomware menyerang sebuah kantor? (animasi)",
+    sub:"Ikuti tujuh langkah dari penyusupan sampai pemulihan. Perhatikan warna ikon: hijau aman, kuning waspada, merah terdampak, ungu terkunci.",
+    actors:[
+      {id:"pelaku",icon:"🧑‍💻",name:"Pelaku",x:11,y:26,role:"attacker"},
+      {id:"dompet",icon:"🪙",name:"Dompet kripto pelaku",x:11,y:76,role:"attacker"},
+      {id:"staf",icon:"🧑‍💼",name:"Karyawan",x:42,y:26,role:"victim",state:"safe"},
+      {id:"server",icon:"🖥️",name:"Server kantor",x:74,y:26,role:"victim",state:"safe"},
+      {id:"data",icon:"🗄️",name:"Data & cadangan",x:74,y:76,role:"victim",state:"safe"}
+    ],
+    steps:[
+      {title:"Pengintaian target",short:"Intai",text:"Pelaku mencari organisasi yang punya data penting dan pertahanan lemah: sistem tak diperbarui, karyawan mudah terkecoh.",from:"pelaku",to:"staf",packet:"🔍",label:"Cari celah",tip:"Perbarui sistem secara berkala dan batasi informasi organisasi yang terbuka di internet."},
+      {title:"Penyusupan lewat email palsu",short:"Susup",text:"Karyawan menerima email yang tampak sah dengan lampiran atau tautan berbahaya. Satu klik cukup untuk memasang malware.",from:"pelaku",to:"staf",packet:"📧",label:"Email berlampiran",set:{staf:["warn","Terkecoh"]},law:"Akses sistem tanpa hak dan penyebaran perangkat berbahaya dapat dijerat ketentuan akses ilegal dan gangguan sistem dalam UU ITE (Pasal 30 dan seterusnya; verifikasi).",tip:"Pelatihan kesadaran phishing, filter email, jangan buka lampiran tak dikenal."},
+      {title:"Malware menyebar",short:"Sebar",text:"Dari komputer karyawan, malware bergerak ke server melalui jaringan internal yang tidak tersegmentasi.",from:"staf",to:"server",packet:"🦠",label:"Menyebar",bad:true,set:{staf:["danger","Terinfeksi"],server:["warn","Diserang"]},tip:"Segmentasi jaringan dan hak akses minimum membatasi ruang gerak malware."},
+      {title:"Data dienkripsi",short:"Kunci",text:"Malware mengunci berkas penting, termasuk cadangan yang tersambung ke jaringan. Layanan berhenti.",from:"server",to:"data",packet:"🔒",label:"Enkripsi",count:3,bad:true,set:{server:["danger","Lumpuh"],data:["lock","Terenkripsi"]},risk:"Layanan berhenti; data pelanggan berpotensi bocor.",law:"Merusak atau mengganggu sistem dan data elektronik: unsur gangguan sistem (UU ITE)."},
+      {title:"Pemerasan",short:"Peras",text:"Muncul catatan tebusan: bayar dengan kripto agar kunci dekripsi diberikan, sering disertai ancaman membocorkan data.",from:"pelaku",to:"server",packet:"💬",label:"Catatan tebusan",bad:true,law:"Ancaman dan permintaan uang memenuhi unsur pemerasan atau pengancaman (KUHP dan UU ITE; verifikasi nomor pasal).",risk:"Membayar tidak menjamin data kembali dan dapat mendorong serangan berikutnya."},
+      {title:"Aliran uang tebusan",short:"Uang",text:"Jika dibayar, uang mengalir ke dompet kripto yang sulit dilacak. Aparat kerap bekerja sama lintas negara untuk menelusuri.",from:"server",to:"dompet",packet:"🪙",label:"Tebusan",bad:true,set:{dompet:["warn","Menerima"]},law:"Aliran dana hasil kejahatan dapat dikaitkan dengan tindak pidana pencucian uang (verifikasi)."},
+      {title:"Respons dan pemulihan",short:"Pulih",text:"Tim memutus jaringan, mengamankan bukti, memulihkan dari cadangan offline bersih, lalu melapor dan memberi tahu pihak terdampak.",from:"data",to:"server",packet:"🛡️",label:"Pulihkan dari backup",set:{staf:["safe","Dibersihkan"],server:["safe","Pulih"],data:["safe","Dipulihkan"]},tip:"Cadangan 3-2-1 (3 salinan, 2 media, 1 offline) dan latihan pemulihan adalah pertahanan terbaik.",law:"Bila data pribadi bocor, pengendali data wajib memberi tahu subjek data dan lembaga berwenang (UU PDP; verifikasi jangka waktu)."}
+    ],
+    outcome:"Satu klik tak bertanggung jawab di ujung rantai dapat melumpuhkan organisasi. Pertahanan berlapis memutus rantai di langkah mana pun."
+  },
+  flowDdos:{
+    title:"Bagaimana serangan DDoS bekerja? (animasi)",
+    sub:"Banyak perangkat terinfeksi dipakai bersamaan untuk membanjiri satu layanan.",
+    actors:[
+      {id:"bos",icon:"🧑‍💻",name:"Pengendali botnet",x:9,y:50,role:"attacker"},
+      {id:"b1",icon:"💻",name:"Perangkat bot",x:34,y:14,role:"attacker"},
+      {id:"b2",icon:"📱",name:"Perangkat bot",x:34,y:38,role:"attacker"},
+      {id:"b3",icon:"📷",name:"Kamera IoT bot",x:34,y:62,role:"attacker"},
+      {id:"b4",icon:"🖨️",name:"Perangkat bot",x:34,y:86,role:"attacker"},
+      {id:"waf",icon:"🛡️",name:"Filter lalu lintas (CDN/WAF)",x:60,y:50,role:"neutral"},
+      {id:"web",icon:"🌐",name:"Situs layanan",x:88,y:50,role:"victim",state:"safe"},
+      {id:"user",icon:"🙋",name:"Pengguna sah",x:88,y:14,role:"victim",state:"safe"}
+    ],
+    steps:[
+      {title:"Merekrut bot",short:"Rekrut",text:"Pelaku menginfeksi ribuan perangkat (komputer, ponsel, kamera) sehingga bisa dikendalikan jarak jauh tanpa sepengetahuan pemiliknya.",from:"bos",to:["b1","b2","b3","b4"],packet:"🦠",label:"Infeksi massal",set:{b1:["warn","Bot"],b2:["warn","Bot"],b3:["warn","Bot"],b4:["warn","Bot"]},law:"Mengakses perangkat orang lain tanpa hak: akses ilegal (UU ITE).",tip:"Ganti sandi bawaan perangkat IoT dan perbarui firmware."},
+      {title:"Perintah serang",short:"Perintah",text:"Pengendali mengirim satu perintah: semua bot menyerang alamat yang sama pada waktu yang sama.",from:"bos",to:["b1","b2","b3","b4"],packet:"📡",label:"Serang sekarang"},
+      {title:"Banjir permintaan",short:"Banjir",text:"Ribuan permintaan palsu mengalir ke situs. Server kehabisan kapasitas sehingga tidak bisa melayani siapa pun.",from:["b1","b2","b3","b4"],to:"web",packet:"📨",label:"Ribuan permintaan",count:3,bad:true,set:{web:["warn","Kewalahan"]},law:"Tindakan yang membuat sistem elektronik terganggu atau tidak bekerja: gangguan sistem (UU ITE, Pasal 33; verifikasi)."},
+      {title:"Pengguna sah tertolak",short:"Down",text:"Pelanggan yang ingin membeli tidak bisa membuka situs. Bisnis kehilangan penjualan dan reputasi.",from:"user",to:"web",packet:"🙋",label:"Ditolak",set:{web:["danger","Tidak bisa diakses"],user:["warn","Gagal masuk"]},risk:"Kerugian pendapatan dan kepercayaan pelanggan."},
+      {title:"Mitigasi",short:"Mitigasi",text:"Lalu lintas dialihkan ke layanan penyaring yang membuang permintaan jahat dan hanya meneruskan yang sah.",from:["b1","b2","b3","b4"],to:"waf",packet:"📨",label:"Disaring",count:2,bad:true,set:{waf:["safe","Menyaring"],web:["safe","Pulih"],user:["safe","Bisa akses"]},tip:"Gunakan CDN/WAF, rate limiting, dan rencana respons insiden yang dilatih."}
+    ],
+    outcome:"DDoS tidak mencuri data, tetapi bisa mematikan bisnis. Kuncinya kapasitas, penyaringan, dan kesiapan tim."
+  },
+  flowBreach:{
+    title:"Dari akses ilegal sampai data dijual (animasi)",
+    sub:"Alur umum pencurian data: tanpa izin masuk, mengambil, lalu menjual.",
+    actors:[
+      {id:"p",icon:"🧑‍💻",name:"Pelaku",x:10,y:50,role:"attacker"},
+      {id:"sis",icon:"🖥️",name:"Sistem target",x:46,y:50,role:"victim",state:"safe"},
+      {id:"db",icon:"🗄️",name:"Database pelanggan",x:84,y:20,role:"victim",state:"safe"},
+      {id:"pasar",icon:"🕳️",name:"Pasar gelap data",x:84,y:80,role:"attacker"},
+      {id:"tim",icon:"🛡️",name:"Tim keamanan",x:46,y:14,role:"neutral"}
+    ],
+    steps:[
+      {title:"Mencari celah atau kredensial lemah",short:"Celah",text:"Pelaku mencoba sandi bocor atau yang mudah ditebak, atau mencari sistem yang belum diperbarui.",from:"p",to:"sis",packet:"🔎",label:"Uji celah",tip:"Sandi unik, autentikasi dua faktor, dan pembaruan rutin."},
+      {title:"Masuk tanpa hak",short:"Masuk",text:"Pelaku berhasil login atau menembus sistem tanpa izin pemiliknya.",from:"p",to:"sis",packet:"🔑",label:"Login ilegal",bad:true,set:{sis:["danger","Dibobol"]},law:"Mengakses sistem elektronik milik orang lain tanpa hak: Pasal 30 UU ITE (verifikasi redaksi terbaru)."},
+      {title:"Menjelajah dan menyalin",short:"Salin",text:"Dari sistem, pelaku menuju database dan menyalin data pelanggan.",from:"sis",to:"db",packet:"🗂️",label:"Menyalin data",bad:true,set:{db:["warn","Diakses"]}},
+      {title:"Data keluar",short:"Bocor",text:"Salinan data dikirim keluar. Dari sisi korban, ini adalah kebocoran data.",from:"db",to:"p",packet:"📦",label:"Data dicuri",bad:true,set:{db:["danger","Bocor"]},law:"Memindahkan informasi elektronik tanpa hak (UU ITE) dan potensi pelanggaran pelindungan data pribadi (UU PDP).",risk:"Data identitas dapat dipakai untuk penipuan dan pencurian identitas."},
+      {title:"Data diperjualbelikan",short:"Dijual",text:"Data dijual atau dibagikan. Korban kemudian diincar penipu dengan modus yang makin meyakinkan.",from:"p",to:"pasar",packet:"💰",label:"Jual data",bad:true,law:"Memperoleh dan memakai data pribadi secara melawan hukum dilarang dalam UU PDP (verifikasi pasal)."},
+      {title:"Deteksi dan penanganan",short:"Tangani",text:"Tim keamanan mendeteksi aktivitas janggal dari log, mengisolasi sistem, mengubah semua kredensial, dan memberi tahu pihak terdampak.",from:"tim",to:"sis",packet:"🚨",label:"Deteksi & isolasi",set:{sis:["safe","Diamankan"],db:["safe","Diaudit"]},tip:"Pemantauan log, enkripsi data, dan latihan respons insiden.",law:"Pengendali data wajib memberi tahu subjek data dan lembaga berwenang saat terjadi kegagalan pelindungan data (UU PDP)."}
+    ],
+    outcome:"Satu sandi lemah bisa berujung data ribuan orang diperjualbelikan. Pertahanan dan kepatuhan hukum saling melengkapi."
+  },
+  peta:{
+    title:"Peta kejahatan siber berorientasi sistem",
+    intro:"Jelajahi enam jenis ancaman. Buka tiap kartu: apa itu, cara kerja, contoh, dampak, dasar hukum, dan pencegahan.",
+    items:[
+      {id:"akses",icon:"🔓",name:"Akses ilegal",tag:"hacking & cracking",summary:"Masuk ke komputer atau sistem elektronik milik orang lain tanpa hak. 'Hacking' sering dipakai secara umum; yang menentukan pidana adalah ada atau tidaknya izin.",how:["Mencari kelemahan: sandi lemah, sistem usang, celah aplikasi.","Memanfaatkan kelemahan untuk masuk.","Bergerak di dalam sistem untuk mengambil atau mengubah data."],ex:"Membobol akun media sosial atau panel admin toko online orang lain.",impact:"Pelanggaran privasi, kerugian finansial, hilangnya kendali atas akun atau sistem.",law:"Ketentuan akses ilegal dalam UU ITE (Pasal 30 dan pidana terkait; verifikasi redaksi setelah UU 1/2024).",prev:["Sandi unik dan panjang","Autentikasi dua faktor","Perbarui perangkat lunak"],flow:"flowBreach"},
+      {id:"malware",icon:"🦠",name:"Malware",tag:"virus, trojan, spyware",summary:"Perangkat lunak berbahaya yang dirancang merusak, memata-matai, atau mengambil alih perangkat.",how:["Disamarkan sebagai aplikasi atau berkas yang tampak sah.","Pengguna memasangnya, sering tanpa sadar.","Malware bekerja diam-diam: mencuri sandi, merekam layar, atau membuka pintu belakang."],ex:["Aplikasi bajakan yang menyisipkan trojan","Lampiran email berisi spyware"],impact:"Pencurian kredensial, penyadapan, perangkat dikendalikan pihak lain.",law:"Membuat atau menyebarkan perangkat lunak berbahaya dapat dijerat ketentuan perangkat atau kode akses berbahaya dalam UU ITE (Pasal 34; verifikasi).",prev:["Unduh dari sumber resmi","Antivirus dan pembaruan","Hindari perangkat lunak bajakan"]},
+      {id:"ransom",icon:"🔒",name:"Ransomware",tag:"mengunci & memeras",summary:"Malware yang mengenkripsi data lalu meminta tebusan agar data dibuka. Sering disertai ancaman membocorkan data.",how:["Masuk lewat email palsu atau celah sistem.","Menyebar dan mengenkripsi data.","Menampilkan catatan tebusan."],ex:"Insiden ransomware pada Pusat Data Nasional Sementara tahun 2024 (fakta rinci perlu diverifikasi dari laporan resmi).",impact:"Layanan berhenti, data bocor, kerugian besar.",law:"Gangguan sistem dan pemerasan atau pengancaman (UU ITE dan KUHP; verifikasi).",prev:["Cadangan 3-2-1 dengan salinan offline","Segmentasi jaringan","Pelatihan anti-phishing"],flow:"flowRansom"},
+      {id:"ddos",icon:"🌐",name:"DDoS",tag:"banjir permintaan",summary:"Membanjiri layanan dengan permintaan dari banyak perangkat sekaligus sehingga tak bisa melayani pengguna sah.",how:["Menginfeksi banyak perangkat menjadi bot.","Mengirim perintah serang serentak.","Server kehabisan kapasitas."],ex:"Situs toko online lumpuh saat promo besar karena dibanjiri lalu lintas palsu.",impact:"Layanan tidak bisa diakses; kehilangan penjualan dan reputasi.",law:"Gangguan terhadap sistem elektronik (UU ITE, Pasal 33; verifikasi).",prev:["CDN/WAF","Rate limiting","Rencana respons insiden"],flow:"flowDdos"},
+      {id:"deface",icon:"🖼️",name:"Defacement",tag:"mengubah tampilan situs",summary:"Mengubah tampilan atau isi situs tanpa izin, biasanya untuk pamer, protes, atau menyebar pesan.",how:["Menemukan celah di aplikasi web atau kredensial admin.","Mengubah berkas halaman.","Menampilkan pesan pelaku."],ex:"Situs instansi atau kampus menampilkan pesan lain di beranda.",impact:"Reputasi rusak; bisa menjadi tanda bahwa sistem sudah dibobol lebih dalam.",law:"Mengubah, merusak, atau menghilangkan informasi elektronik tanpa hak (UU ITE, Pasal 32; verifikasi).",prev:["Perbarui CMS dan plugin","Batasi akses admin","Pantau integritas berkas"]},
+      {id:"theft",icon:"🕵️",name:"Pencurian data",tag:"data breach",summary:"Mengambil data tanpa izin, lalu menyalahgunakan atau menjualnya.",how:["Akses tidak sah ke sistem atau database.","Menyalin data.","Data dijual atau dipakai untuk penipuan."],ex:"Kebocoran data pelanggan sebuah platform yang dijual di forum gelap.",impact:"Kerugian korban, penipuan, sanksi bagi pengelola data.",law:"Akses ilegal dan pemindahan data (UU ITE) serta kewajiban pelindungan (UU PDP).",prev:["Enkripsi data","Pembatasan hak akses","Pemantauan log"],flow:"flowBreach"}
+    ]
+  },
+  urut:{
+    title:"Urutkan: respons insiden ransomware",
+    prompt:"Sebuah toko online terkena ransomware. Susun langkah respons yang paling masuk akal.",
+    items:[
+      {t:"Isolasi perangkat dan jaringan yang terinfeksi",why:"Hentikan penyebaran lebih dulu."},
+      {t:"Aktifkan tim respons dan amankan bukti (log, salinan sistem)",why:"Bukti diperlukan untuk penyidikan dan analisis."},
+      {t:"Nilai dampak dan identifikasi data pribadi yang terdampak",why:"Menentukan kewajiban notifikasi."},
+      {t:"Laporkan ke pihak berwenang dan beri tahu pihak terdampak sesuai ketentuan",why:"Kewajiban hukum, mis. UU PDP bila data pribadi bocor (verifikasi tenggat)."},
+      {t:"Pulihkan dari cadangan yang bersih",why:"Pulihkan setelah ancaman diisolasi dan diverifikasi bersih."},
+      {t:"Evaluasi dan perbaiki celah penyebab",why:"Mencegah terulang."}
+    ]
+  },

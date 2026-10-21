@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pertemuan 5 — HKI di Era Digital: Hak Cipta, Lisensi, dan Paten | Etika Hukum Cyber</title>
+<style>
+/* ===== [SHARED:CSS] — jangan ubah blok ini antar pertemuan, kecuali --accent ===== */
+:root{
+  --accent:#be123c; --accent-soft:#ffe4e6; --accent-ink:#881337;
+  --bg:#f6f7f4; --card:#ffffff; --ink:#1c2321; --muted:#5b6762; --line:#dfe4e0;
+  --ok:#15803d; --ok-soft:#dcfce7; --bad:#b91c1c; --bad-soft:#fee2e2; --warn:#b45309; --warn-soft:#fef3c7;
+  --radius:14px; --shadow:0 1px 2px rgba(20,30,25,.06),0 6px 20px rgba(20,30,25,.06);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16.5px}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;letter-spacing:-.01em}
+h2{font-size:1.55rem} h3{font-size:1.15rem} p{margin:.6em 0}
+a{color:var(--accent)}
+button{font:inherit;cursor:pointer}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(246,247,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-weight:700;font-size:.95rem;white-space:nowrap}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
+.progress{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress>i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+.pct{font-size:.85rem;font-weight:700;min-width:42px;text-align:right}
+.tbtn{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 12px;font-size:.82rem;font-weight:600}
+.tbtn[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.layout{max-width:1180px;margin:0 auto;padding:24px 20px 80px;display:grid;grid-template-columns:230px 1fr;gap:28px}
+nav.agenda{position:sticky;top:76px;align-self:start;max-height:calc(100vh - 96px);overflow:auto}
+nav.agenda h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+nav.agenda a{display:block;text-decoration:none;color:var(--ink);padding:8px 10px;border-radius:10px;font-size:.88rem;border-left:3px solid transparent}
+nav.agenda a span{display:block;font-size:.72rem;color:var(--muted)}
+nav.agenda a:hover{background:var(--card)}
+nav.agenda a.active{background:var(--accent-soft);border-left-color:var(--accent);font-weight:600}
+.hero{background:linear-gradient(135deg,var(--accent-ink),var(--accent));color:#fff;border-radius:22px;padding:34px 34px 28px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border-radius:99px;padding:3px 12px;font-size:.78rem;font-weight:600;letter-spacing:.04em}
+.hero h1{font-size:2.05rem;margin:.5em 0 .3em}
+.hero p{max-width:62ch;opacity:.92}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:18px}
+.meta div{background:rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;font-size:.84rem}
+.meta b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;opacity:.75}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:16px 0;box-shadow:var(--shadow)}
+.seg{margin:34px 0}
+.seg-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.seg-head .num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.seg-head h2{margin:0;flex:1;min-width:200px}
+.chip{display:inline-block;background:var(--accent-soft);color:var(--accent-ink);border-radius:99px;padding:3px 11px;font-size:.76rem;font-weight:700}
+.chip.act{background:#ede9fe;color:#5b21b6}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);color:var(--accent-ink);border-radius:0 12px 12px 0;padding:12px 16px;margin:14px 0}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft);color:#78350f}
+.callout.law{border-color:#1d4ed8;background:#dbeafe;color:#1e3a8a}
+.callout b.t{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfdfc}
+.mini h3{margin-bottom:.3em}
+table.t{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
+table.t th,table.t td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+table.t th{background:var(--accent-soft);color:var(--accent-ink)}
+.tablewrap{overflow-x:auto}
+details.acc{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:#fff}
+details.acc summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details.acc summary::after{content:"+";font-weight:700;color:var(--accent)}
+details.acc[open] summary::after{content:"–"}
+details.acc>div{padding:0 16px 14px}
+/* interactive widgets */
+.w{border:2px solid var(--accent);border-radius:var(--radius);padding:20px 22px;margin:18px 0;background:#fff;position:relative}
+.w>.w-label{position:absolute;top:-12px;left:16px;background:var(--accent);color:#fff;border-radius:99px;font-size:.72rem;font-weight:700;padding:2px 12px;letter-spacing:.05em;text-transform:uppercase}
+.w.done{border-color:var(--ok)} .w.done>.w-label{background:var(--ok)}
+.w h3{margin-top:.2em}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 18px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.opts{display:grid;gap:8px;margin:12px 0}
+.opt{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px}
+.opt:hover{border-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--warn-soft);color:#78350f;font-size:.93rem;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--ok-soft);color:#14532d}
+.flash{perspective:900px;max-width:520px;margin:12px auto}
+.flash-in{position:relative;min-height:190px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.flash.flip .flash-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:22px;display:grid;place-items:center;text-align:center;font-size:1.05rem}
+.face.f{background:var(--accent);color:#fff;font-weight:700;font-size:1.25rem}
+.face.b{background:var(--accent-soft);color:var(--accent-ink);transform:rotateY(180deg)}
+.fc-ctl{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.cls-pool,.cls-bins{display:grid;gap:10px}
+.cls-bins{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:14px}
+.cls-item{border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;text-align:left}
+.cls-item.pick{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.cls-item.right{border-color:var(--ok);background:var(--ok-soft)}
+.cls-item.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.bin{border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:110px;cursor:pointer;background:#fcfdfc}
+.bin:hover{border-color:var(--accent)}
+.bin h4{font-size:.9rem;margin:0 0 8px;color:var(--accent-ink)}
+.bin .cls-item{margin-bottom:6px;font-size:.88rem;cursor:pointer}
+.scn-text{font-size:1.02rem}
+.scn-end{border-radius:12px;padding:14px 16px;background:var(--accent-soft);color:var(--accent-ink);margin-top:10px}
+textarea{width:100%;min-height:96px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;resize:vertical}
+textarea:focus,.opt:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+.score{font-size:1.4rem;font-weight:800;color:var(--accent)}
+.ckl label{display:flex;gap:10px;align-items:flex-start;padding:7px 4px;cursor:pointer}
+.ckl input{margin-top:.38em;accent-color:var(--accent)}
+.bars .bar{margin:8px 0}
+.bars .bar>div{height:26px;border-radius:8px;background:var(--accent-soft);position:relative;overflow:hidden}
+.bars .bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);opacity:.85;width:0;transition:width .5s}
+.bars .bar span{position:absolute;left:10px;top:2px;font-size:.84rem;font-weight:600;color:#0b1f1c;z-index:1}
+.refs li{margin:.5em 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 0 10px}
+@media(max-width:860px){.layout{grid-template-columns:1fr}nav.agenda{display:none}.hero h1{font-size:1.6rem}.brand small{display:none}}
+@media print{.topbar,nav.agenda{display:none!important}.layout{display:block}.card,.w{box-shadow:none;break-inside:avoid}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* ===== [/SHARED:CSS] ===== */
+/* ===== [SHARED:VIZ-CSS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+/* hero hidup */
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 88% 15%,rgba(255,255,255,.22),transparent 42%),radial-gradient(circle at 8% 95%,rgba(255,255,255,.12),transparent 40%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:linear-gradient(115deg,transparent 30%,#000);mask-image:linear-gradient(115deg,transparent 30%,#000);animation:v-grid 22s linear infinite}
+.hero>*{position:relative;z-index:1}
+@keyframes v-grid{to{background-position:36px 36px}}
+/* reveal saat scroll */
+.reveal-on .seg{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal-on .seg.in{opacity:1;transform:none}
+.seg-head .num{box-shadow:0 0 0 5px var(--accent-soft)}
+
+/* ---------- STAGE (flow) ---------- */
+.v-stage{position:relative;aspect-ratio:2/1;min-height:300px;border-radius:16px;overflow:hidden;color:#e8eefc;
+  background:#0a1120;background-image:radial-gradient(ellipse at 50% -10%,#1b2d57 0,transparent 62%),linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:auto,30px 30px,30px 30px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 10px 30px rgba(10,17,32,.28)}
+.v-lines{position:absolute;inset:0;width:100%;height:100%}
+.v-lines line{stroke:rgba(255,255,255,.16);stroke-width:1.5;stroke-dasharray:4 5;vector-effect:non-scaling-stroke;transition:stroke .4s}
+.v-lines line.on{stroke:#7dd3fc;stroke-width:2.5;stroke-dasharray:6 6;animation:v-dash 1s linear infinite}
+.v-lines line.on.bad{stroke:#fb7185}
+@keyframes v-dash{to{stroke-dashoffset:-24}}
+.v-actor{position:absolute;transform:translate(-50%,-50%);width:104px;text-align:center;z-index:2}
+.v-ico{width:60px;height:60px;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;font-size:29px;background:#16213b;border:2px solid #3a4a70;transition:border-color .4s,box-shadow .4s,background .4s,transform .3s}
+.v-name{font-size:.74rem;font-weight:700;line-height:1.15;text-shadow:0 1px 3px #000}
+.v-badge{display:inline-block;margin-top:3px;font-size:.64rem;font-weight:700;padding:1px 8px;border-radius:99px;background:rgba(255,255,255,.12);color:#e8eefc;min-height:0;transition:background .3s}
+.v-badge:empty{display:none}
+.v-actor.r-attacker .v-ico{border-color:#fb7185;background:#2a1220}
+.v-actor.r-victim .v-ico{border-color:#38bdf8}
+.v-actor.s-safe .v-ico{border-color:#4ade80;box-shadow:0 0 20px #4ade8070}
+.v-actor.s-safe .v-badge{background:#14532d}
+.v-actor.s-warn .v-ico{border-color:#fbbf24;box-shadow:0 0 22px #fbbf2480;animation:v-pulse 1.4s infinite}
+.v-actor.s-warn .v-badge{background:#78350f}
+.v-actor.s-danger .v-ico{border-color:#f43f5e;background:#3a1020;box-shadow:0 0 26px #f43f5e90;animation:v-shake .5s 2,v-pulse 1.4s .5s infinite}
+.v-actor.s-danger .v-badge{background:#881337}
+.v-actor.s-lock .v-ico{border-color:#a78bfa;background:#231a45;box-shadow:0 0 22px #a78bfa80}
+.v-actor.s-lock .v-badge{background:#4c1d95}
+.v-actor.s-active .v-ico{border-color:#7dd3fc;box-shadow:0 0 22px #7dd3fc80;transform:scale(1.08)}
+@keyframes v-pulse{50%{box-shadow:0 0 34px currentColor}}
+@keyframes v-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.v-packet{position:absolute;transform:translate(-50%,-50%);font-size:22px;z-index:3;pointer-events:none;
+  transition:left var(--dur,1000ms) cubic-bezier(.5,0,.3,1),top var(--dur,1000ms) cubic-bezier(.5,0,.3,1),opacity .3s;filter:drop-shadow(0 0 7px rgba(125,211,252,.9))}
+.v-plabel{position:absolute;left:50%;top:-20px;transform:translateX(-50%);white-space:nowrap;font-size:.64rem;font-weight:700;background:#0b1220;border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:1px 6px;color:#e8eefc}
+.v-zone{position:absolute;border:1.5px dashed rgba(255,255,255,.22);border-radius:14px;z-index:1;font-size:.64rem;color:rgba(255,255,255,.55);padding:3px 9px;pointer-events:none}
+.v-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 8px}
+.v-ctl .btn{padding:7px 14px}
+.v-ctl select{font:inherit;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#fff}
+.v-rail{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px}
+.v-rail button{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.78rem;font-weight:600;color:var(--muted)}
+.v-rail button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.v-rail button.seen{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+.v-cap{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:12px 16px;background:#fcfdfc;min-height:96px}
+.v-cap .v-num{font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.v-cap h4{margin:.1em 0 .25em;font-size:1.05rem}
+.v-cap p{margin:.3em 0}
+.v-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.v-chip{border-radius:10px;padding:5px 10px;font-size:.82rem;line-height:1.4}
+.v-chip.law{background:#dbeafe;color:#1e3a8a}
+.v-chip.tip{background:var(--ok-soft);color:#14532d}
+.v-chip.risk{background:var(--bad-soft);color:#7f1d1d}
+.v-outcome{margin-top:10px;border-radius:12px;padding:12px 16px;background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+
+/* ---------- EXPLORER ---------- */
+.v-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:10px;margin:12px 0}
+.v-tile{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:14px 10px;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+.v-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--accent)}
+.v-tile .ic{font-size:2rem;display:block;margin-bottom:4px}
+.v-tile b{display:block;font-size:.9rem;line-height:1.2}
+.v-tile small{color:var(--muted);font-size:.72rem}
+.v-tile.sel{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 0 3px var(--accent-soft)}
+.v-tile.seen::after{content:"✓";position:absolute;top:6px;right:9px;color:var(--ok);font-weight:800}
+.v-detail{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fcfdfc;animation:v-in .35s}
+@keyframes v-in{from{opacity:0;transform:translateY(8px)}}
+.v-detail h3{display:flex;align-items:center;gap:10px}
+.v-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.v-tabs button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.8rem;font-weight:600}
+.v-tabs button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.v-pane ul,.v-pane ol{margin:.3em 0 .3em 1.2em;padding:0}
+.v-pane li{margin:.3em 0}
+.v-sub{margin-top:12px}
+
+/* ---------- MOCK (layar HP / email / web / post) ---------- */
+.v-mockwrap{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:18px;align-items:start}
+.v-phone{background:#0f172a;border-radius:30px;padding:10px;box-shadow:0 14px 34px rgba(15,23,42,.3);max-width:360px;width:100%;margin:0 auto}
+.v-screen{background:#f3f4f6;border-radius:22px;overflow:hidden;min-height:380px;display:flex;flex-direction:column;font-size:.9rem}
+.v-bar{background:#0f766e;color:#fff;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.v-bar .av{width:34px;height:34px;border-radius:50%;background:#ffffff33;display:grid;place-items:center;font-size:1.1rem}
+.v-bar b{display:block;font-size:.9rem;line-height:1.1}.v-bar small{opacity:.8;font-size:.7rem}
+.v-msgs{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1;background:#e5ded5}
+.v-msg{max-width:84%;padding:8px 11px;border-radius:12px;background:#fff;box-shadow:0 1px 1px rgba(0,0,0,.12);line-height:1.45}
+.v-msg.me{align-self:flex-end;background:#d9fdd3}
+.v-msg time{display:block;text-align:right;font-size:.62rem;color:#6b7280;margin-top:2px}
+.v-screen.email,.v-screen.web,.v-screen.post{background:#fff}
+.v-screen.email .v-bar{background:#334155}.v-screen.web .v-bar{background:#e5e7eb;color:#111827}.v-screen.post .v-bar{background:#1d4ed8}
+.v-url{background:#fff;border:1px solid #d1d5db;border-radius:99px;padding:5px 12px;flex:1;font-size:.76rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.v-body{padding:14px 16px;flex:1}.v-body p{margin:.55em 0}
+.v-meta{padding:8px 16px;border-bottom:1px solid #e5e7eb;font-size:.78rem;color:#4b5563}
+.v-meta b{color:#111827}
+.v-cta{display:inline-block;background:#2563eb;color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;margin-top:6px}
+.v-stats{padding:8px 16px;border-top:1px solid #e5e7eb;font-size:.78rem;color:#6b7280}
+.v-hot{cursor:pointer;border-radius:4px;transition:background .2s,box-shadow .2s;border-bottom:2px dotted transparent}
+.v-hint .v-hot{border-bottom-color:#f59e0b;animation:v-blink 1.4s infinite}
+@keyframes v-blink{50%{background:#fde68a}}
+.v-hot:hover{background:#fde68a}
+.v-hot.found{background:#fecaca;box-shadow:0 0 0 2px #ef4444;border-radius:4px;animation:none}
+.v-hot.decoy{background:#dcfce7;box-shadow:0 0 0 2px #22c55e;animation:none}
+.v-finds{display:grid;gap:8px}
+.v-find{border-left:4px solid var(--bad);background:var(--bad-soft);border-radius:0 10px 10px 0;padding:8px 12px;font-size:.88rem;animation:v-in .3s}
+.v-find.ok{border-color:var(--ok);background:var(--ok-soft)}
+.v-find b{display:block}
+.v-prog{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+.v-prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+
+/* ---------- TIMELINE ---------- */
+.v-tl{position:relative;margin:14px 0 6px;overflow-x:auto;padding:22px 6px 10px}
+.v-tl-track{display:flex;gap:0;min-width:max-content;position:relative}
+.v-tl-track::before{content:"";position:absolute;left:30px;right:30px;top:15px;height:4px;background:var(--line);border-radius:4px}
+.v-tl-pt{width:128px;text-align:center;position:relative;background:none;border:0;padding:0 4px}
+.v-tl-pt .dot{width:34px;height:34px;margin:0 auto 6px;border-radius:50%;background:#fff;border:3px solid var(--line);display:grid;place-items:center;position:relative;z-index:1;transition:all .25s;font-size:1rem}
+.v-tl-pt .when{display:block;font-weight:800;font-size:.8rem;color:var(--accent-ink)}
+.v-tl-pt .tt{display:block;font-size:.74rem;color:var(--muted);line-height:1.25}
+.v-tl-pt.seen .dot{border-color:var(--accent)}
+.v-tl-pt.on .dot{background:var(--accent);border-color:var(--accent);transform:scale(1.25);box-shadow:0 0 0 6px var(--accent-soft)}
+
+/* ---------- SPECTRUM ---------- */
+.v-spec-lbl{display:flex;justify-content:space-between;font-weight:700;font-size:.9rem}
+.v-spec input[type=range]{width:100%;accent-color:var(--accent);margin:10px 0 4px;height:28px}
+.v-spec-bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.v-spec-bars .bar{height:14px;background:var(--line);border-radius:99px;overflow:hidden}
+.v-spec-bars .bar i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.v-spec-bars .bar.r i{background:#ea580c}
+
+/* ---------- ORDER ---------- */
+.v-ord{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.v-ord h4{margin:0 0 6px;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.v-ord .col{display:grid;gap:6px;align-content:start;min-height:80px}
+.v-ord .it{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:.9rem}
+.v-ord .it:hover{border-color:var(--accent)}
+.v-ord .it.right{border-color:var(--ok);background:var(--ok-soft)}.v-ord .it.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.v-ord .it i{font-style:normal;font-weight:800;color:var(--accent);margin-right:6px}
+@media(max-width:760px){.v-mockwrap,.v-ord{grid-template-columns:1fr}.v-stage{min-height:340px;aspect-ratio:1.25/1}.v-actor{width:84px}.v-ico{width:50px;height:50px;font-size:24px}}
+@media print{.reveal-on .seg{opacity:1!important;transform:none!important}}
+@media(prefers-reduced-motion:reduce){.hero::after,.v-actor .v-ico,.v-lines line.on,.v-hint .v-hot{animation:none!important}.reveal-on .seg{opacity:1;transform:none}}
+/* ===== [/SHARED:VIZ-CSS] ===== */
+
+</style>
+</head>
+<body>
+
+<header class="topbar"><div class="topbar-in">
+  <div class="brand">Etika Hukum Cyber<small>Pertemuan 5 dari 16</small></div>
+  <div class="progress" title="Progres aktivitas"><i id="pbar"></i></div>
+  <div class="pct" id="ppct">0%</div>
+</div></header>
+
+<div class="layout">
+<nav class="agenda" id="agenda" aria-label="Agenda"><h4>Agenda</h4></nav>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <span class="tag">PERTEMUAN 5 · MINGGU 5</span>
+  <h1>Hak Kekayaan Intelektual di Era Digital</h1>
+  <p>Kode yang kamu tulis, gambar yang kamu unduh, dan lagu yang kamu pasang di video jualan semuanya punya pemilik. Hari ini kamu belajar membedakan hak cipta, paten, merek, dan rahasia dagang, lalu "membedah" lisensi MIT, Apache 2.0, GPL, Creative Commons, dan proprietary supaya tahu persis: <em>bolehkah saya...?</em></p>
+  <div class="meta">
+    <div><b>Program Studi</b>Bisnis Digital</div>
+    <div><b>Dosen</b>Ibnu Amri Thaher</div>
+    <div><b>Waktu</b>100 menit · Teori</div>
+    <div><b>Metode</b>Kuliah & Bedah Lisensi</div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Capaian pertemuan ini</h3>
+  <p><span class="chip">CPMK-2</span> Menerapkan ketentuan hukum siber Indonesia (termasuk HKI) pada kasus-kasus aktivitas digital.</p>
+  <p><b>Kemampuan akhir:</b> memahami penerapan Hak Kekayaan Intelektual (HKI) di ruang siber.</p>
+  <p><b>Pengalaman belajar:</b> memeriksa jenis-jenis lisensi perangkat lunak (MIT, GPL, Creative Commons).</p>
+  <p><b>Indikator penilaian:</b> ketepatan membedakan jenis lisensi dan aturan penggunaannya.</p>
+  <p>Setelah sesi ini kamu mampu: (1) membedakan hak cipta, paten, merek, dan rahasia dagang pada contoh digital; (2) menjelaskan bagaimana hak cipta melindungi perangkat lunak menurut UU No. 28 Tahun 2014; (3) membandingkan lisensi open source (permisif dan copyleft), Creative Commons, dan proprietary berdasarkan izin, kewajiban, dan larangannya; (4) memutuskan "boleh atau tidak" untuk penggunaan gambar, musik, dan kode dalam skenario bisnis digital; (5) menjelaskan secara garis besar mengapa algoritma sulit dipatenkan.</p>
+</section>
+
+<!-- ===================== SEGMEN 1 ===================== -->
+<section class="seg" id="s1" data-title="Pembuka & Pemantik" data-min="0–12" data-dur="12">
+  <div class="seg-head"><div class="num">1</div><h2>Pembuka & Pemantik: "Ambil Saja dari Internet?"</h2></div>
+
+  <div class="w" data-widget="poll" id="poll1"><span class="w-label">Pemantik · Polling</span></div>
+
+  <div class="card">
+    <h3>Mengapa HKI penting untuk bisnis digital?</h3>
+    <ul>
+      <li>Hampir semua aset bisnis digital adalah karya intelektual: kode, desain antarmuka, konten, merek, basis data, model AI.</li>
+      <li>Di ruang siber, <b>menyalin itu nyaris gratis dan instan</b> (ingat "reproduksi nol biaya" di Pertemuan 1), sehingga pelanggaran mudah terjadi, sering tanpa sadar.</li>
+      <li>Memakai aset orang lain tanpa izin berisiko: takedown konten, gugatan ganti rugi, bahkan pidana, selain merusak reputasi usaha.</li>
+      <li>Sebaliknya, memahami lisensi membuka akses ke jutaan aset yang <b>boleh dipakai gratis</b> dengan syarat tertentu.</li>
+    </ul>
+    <div class="callout"><b class="t">Pertanyaan inti hari ini</b>"Bolehkah saya memakai ini? Untuk apa? Apa syaratnya?" Jawabannya hampir selalu ada di <b>lisensi</b> atau di <b>undang-undang</b>, bukan pada perasaan "kan cuma dipakai sedikit".</div>
+  </div>
+</section>
+
+<!-- ===================== SEGMEN 2 ===================== -->
+<section class="seg" id="s2" data-title="HKI & Hak Cipta Perangkat Lunak" data-min="12–32" data-dur="20">
+  <div class="seg-head"><div class="num">2</div><h2>Konsep Inti: HKI dan Hak Cipta Perangkat Lunak</h2></div>
+
+  <div class="card">
+    <h3>Apa itu Hak Kekayaan Intelektual (HKI)?</h3>
+    <p>HKI adalah hak eksklusif atas hasil kreasi pikiran manusia. Dengan hak itu, pemilik bisa mengontrol siapa yang boleh memakai, menyalin, atau memperjualbelikan karyanya, dan bisa memperoleh manfaat ekonominya. Dalam teori, alasannya dua: <b>penghargaan atas kerja kreatif</b> (agar orang mau berkarya) dan <b>insentif ekonomi</b> (agar inovasi terus dibiayai). Tavani (2016) dan Spinello (2020) menekankan bahwa HKI selalu berada dalam <b>ketegangan</b>: memberi hak pemilik, tetapi juga perlu menjaga kepentingan publik untuk belajar dan berbagi pengetahuan.</p>
+    <h3>Empat jenis HKI yang paling sering bersinggungan dengan dunia digital</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Jenis</th><th>Melindungi apa</th><th>Cara memperoleh</th><th>Contoh digital</th></tr>
+      <tr><td><b>Hak cipta</b></td><td>Ekspresi karya (bukan ide): tulisan, gambar, musik, video, <b>program komputer</b>, basis data tertentu</td><td>Timbul otomatis saat karya diwujudkan (prinsip deklaratif); pencatatan tidak wajib tetapi berguna sebagai bukti</td><td>Kode sumber aplikasi, desain UI, foto produk, jingle, video</td></tr>
+      <tr><td><b>Paten</b></td><td>Invensi baru di bidang teknologi yang punya langkah inventif dan dapat diterapkan di industri</td><td>Harus didaftarkan dan diperiksa (UU No. 13 Tahun 2016); perlindungan terbatas waktu</td><td>Mekanisme teknis baru pada perangkat, metode proses industri</td></tr>
+      <tr><td><b>Merek</b></td><td>Tanda pembeda barang/jasa: nama, logo, kata, susunan warna</td><td>Didaftarkan (UU No. 20 Tahun 2016 tentang Merek dan Indikasi Geografis); siapa yang mendaftar lebih dulu cenderung diutamakan</td><td>Nama dan logo aplikasi, nama toko online</td></tr>
+      <tr><td><b>Rahasia dagang</b></td><td>Informasi bisnis/teknologi yang tidak diketahui umum, bernilai ekonomi, dan dijaga kerahasiaannya</td><td>Tanpa pendaftaran, asalkan benar-benar dijaga (UU No. 30 Tahun 2000)</td><td>Daftar pelanggan, formula harga, kode/algoritma internal yang tidak dipublikasi</td></tr>
+    </table></div>
+    <div class="callout warn"><b class="t">Satu produk, banyak hak</b>Sebuah aplikasi dapat dilindungi sekaligus oleh hak cipta (kodenya), merek (nama dan logonya), rahasia dagang (algoritma internalnya), dan kadang paten (jika ada inovasi teknis yang memenuhi syarat). Jangan bayangkan HKI sebagai satu hal tunggal.</div>
+  </div>
+
+  <div class="w" data-widget="classify" id="cls1"><span class="w-label">Klasifikasi jenis HKI</span></div>
+
+  <div class="card">
+    <h3>Hak cipta atas perangkat lunak menurut UU No. 28 Tahun 2014</h3>
+    <div class="callout law"><b class="t">Dasar hukum</b>UU No. 28 Tahun 2014 tentang Hak Cipta mengakui <b>program komputer</b> sebagai ciptaan yang dilindungi. Hak cipta timbul secara otomatis setelah ciptaan diwujudkan dalam bentuk nyata, tanpa kewajiban mendaftar. Pencatatan ciptaan dilakukan melalui kementerian yang menangani HKI (DJKI) dan berfungsi sebagai alat bukti, bukan syarat lahirnya hak.</div>
+    <div class="grid2">
+      <div class="mini"><h3>Hak moral</h3><p>Melekat pada pencipta: hak dicantumkan namanya dan hak mempertahankan integritas karyanya. Pada dasarnya tidak dapat dialihkan selama pencipta hidup.</p></div>
+      <div class="mini"><h3>Hak ekonomi</h3><p>Hak untuk memperoleh manfaat ekonomi: menggandakan, mendistribusikan, mengadaptasi, mengumumkan, menyewakan. Bisa dilisensikan atau dialihkan kepada pihak lain.</p></div>
+    </div>
+    <details class="acc"><summary>Apa yang dilindungi dan apa yang tidak (kode vs ide)</summary><div>
+      <ul>
+        <li><b>Dilindungi:</b> kode sumber, kode objek (hasil kompilasi), dokumentasi, tampilan visual/antarmuka yang orisinal, basis data yang memenuhi syarat orisinalitas.</li>
+        <li><b>Tidak dilindungi hak cipta:</b> ide, konsep, metode kerja, dan algoritma sebagai gagasan abstrak. Orang lain boleh menulis program <i>sendiri</i> yang melakukan hal yang sama (misalnya mengurutkan data) asal tidak menyalin kode Anda.</li>
+        <li>Itulah mengapa dua aplikasi dengan fitur mirip tidak otomatis melanggar hak cipta; yang dilarang adalah <b>menyalin ekspresinya</b> (kode, desain khas, teks).</li>
+      </ul></div></details>
+    <details class="acc"><summary>Siapa pemilik kode yang ditulis karyawan, freelancer, atau mahasiswa magang?</summary><div>
+      <p>Prinsip umum UU Hak Cipta: pencipta adalah orang yang melahirkan karya, tetapi ada ketentuan khusus untuk <b>ciptaan dalam hubungan dinas/kerja</b> dan <b>pesanan</b>. Karena detailnya bergantung pada kontrak dan situasi, <b>selalu tulis klausul kepemilikan HKI</b> dalam kontrak kerja, kontrak freelance, atau perjanjian magang. Contoh fiktif: freelancer membuat situs toko tanpa kontrak tertulis; setelah bayaran dilunasi, klien dan freelancer berselisih siapa yang berhak memakai ulang kodenya. Konflik semacam ini bisa dicegah dengan satu halaman perjanjian. (Skenario fiktif. Rincian pasal: perlu diverifikasi dosen.)</p></div></details>
+    <details class="acc"><summary>Pengecualian dan penggunaan wajar menurut UU Hak Cipta Indonesia</summary><div>
+      <p>UU 28/2014 memuat ketentuan tentang pembatasan/pengecualian hak cipta, misalnya pemakaian untuk pendidikan, penelitian, kritik, atau pelaporan dengan <b>menyebut sumber</b> dan <b>tidak merugikan kepentingan wajar</b> pencipta. Ada pula ketentuan mengenai pembuatan salinan cadangan program komputer oleh pemilik yang sah. Pengecualian ini <b>sempit</b>. "Untuk tugas kuliah" tidak otomatis membolehkan mengunggah ulang seluruh film atau buku ke internet. (Pasal dan syarat rinci: perlu diverifikasi dosen.)</p></div></details>
+    <details class="acc"><summary>Sanksi bila melanggar</summary><div>
+      <p>Pelanggaran hak cipta dapat berujung pada <b>gugatan perdata</b> (ganti rugi, penghentian pelanggaran) dan, pada kasus tertentu seperti pembajakan untuk tujuan komersial, <b>pidana</b>. UU 28/2014 mengatur ketentuan pidana dan juga ketentuan terkait pemblokiran konten melanggar hak cipta di sistem elektronik. (Besaran sanksi: perlu diverifikasi dosen.)</p></div></details>
+  </div>
+
+  <div class="w" data-widget="flash" id="flash1"><span class="w-label">Kartu istilah HKI · Flashcard</span></div>
+</section>
+
+<!-- ===================== SEGMEN 3 ===================== -->
+<section class="seg" id="s3" data-title="Lisensi: Open Source vs Proprietary" data-min="32–52" data-dur="20">
+  <div class="seg-head"><div class="num">3</div><h2>Lisensi: Open Source, Creative Commons, dan Proprietary</h2></div>
+
+  <div class="card">
+    <h3>Lisensi itu apa?</h3>
+    <p><b>Lisensi</b> adalah izin tertulis dari pemegang hak cipta kepada pihak lain untuk memakai karyanya dengan syarat tertentu. Tanpa lisensi, default hukum adalah <b>"semua hak dilindungi"</b>: kamu tidak boleh menyalin, mengubah, atau menyebarkan. Itu sebabnya repositori di GitHub <i>tanpa file lisensi</i> sebenarnya <b>belum boleh</b> dipakai ulang secara bebas, meskipun kodenya terlihat publik.</p>
+    <div class="grid2">
+      <div class="mini"><h3>Open source</h3><p>Kode sumber terbuka dan lisensi memberi kebebasan memakai, mempelajari, mengubah, dan membagikan, dengan syarat tertentu. Contoh lisensi: MIT, Apache 2.0, GPL. Lisensi diakui oleh organisasi seperti Open Source Initiative (opensource.org).</p></div>
+      <div class="mini"><h3>Proprietary</h3><p>Pemilik mempertahankan kendali. Pengguna biasanya hanya memperoleh hak <b>menggunakan</b> lewat perjanjian (EULA/syarat layanan), tanpa akses kode sumber dan dengan larangan menyalin, membongkar (<i>reverse engineering</i>), atau menjual ulang.</p></div>
+      <div class="mini"><h3>Creative Commons (CC)</h3><p>Kumpulan lisensi standar untuk <b>karya kreatif non-perangkat lunak</b> (gambar, tulisan, musik, materi ajar). Pencipta memilih syarat: atribusi (BY), non-komersial (NC), tanpa turunan (ND), berbagi serupa (SA). CC sendiri tidak menyarankan memakainya untuk perangkat lunak.</p></div>
+    </div>
+    <div class="callout warn"><b class="t">Salah kaprah umum</b>"Open source = gratis = bebas apa saja." Salah. Open source punya syarat yang <b>mengikat secara hukum</b>. Melanggar syarat lisensi (misalnya menghapus pemberitahuan hak cipta atau menolak membuka kode turunan GPL) bisa dianggap pelanggaran hak cipta.</div>
+  </div>
+
+  <div class="card">
+    <h3>Dua keluarga besar lisensi open source</h3>
+    <div class="grid2">
+      <div class="mini"><h3>Permisif (MIT, Apache 2.0)</h3><p>Sangat longgar: boleh dipakai di produk komersial <b>tertutup</b>. Syarat utamanya hanya menyertakan teks lisensi dan pemberitahuan hak cipta. Apache 2.0 menambahkan pemberian lisensi paten dari kontributor dan kewajiban menandai perubahan.</p></div>
+      <div class="mini"><h3>Copyleft (GPL)</h3><p>Boleh dipakai dan diubah, tetapi jika kamu <b>mendistribusikan</b> karya turunan, turunannya wajib dilisensikan dengan lisensi yang sama dan kode sumbernya dapat diminta penerima. Efeknya: kebebasan "menular" ke turunan.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Tabel bedah lisensi: izin, kewajiban, larangan</h3>
+    <p>Ringkasan untuk belajar, bukan pengganti membaca teks lisensi resmi (opensource.org untuk lisensi perangkat lunak; creativecommons.org untuk lisensi CC).</p>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Lisensi</th><th>Diizinkan</th><th>Kewajiban</th><th>Larangan / batasan</th></tr>
+      <tr><td><b>MIT</b></td><td>Pakai, salin, ubah, gabungkan, publikasikan, jual, termasuk di produk tertutup/komersial</td><td>Sertakan pemberitahuan hak cipta dan teks lisensi MIT pada salinan atau bagian penting karya</td><td>Tanpa garansi; pemilik tidak bertanggung jawab atas kerugian</td></tr>
+      <tr><td><b>Apache 2.0</b></td><td>Seperti MIT, ditambah pemberian hak paten dari kontributor atas kontribusinya</td><td>Sertakan lisensi dan pemberitahuan (NOTICE), tandai file yang kamu ubah</td><td>Tidak boleh memakai nama/merek pemilik untuk promosi; hak paten dapat berakhir bagi yang menggugat paten atas karya itu</td></tr>
+      <tr><td><b>GPL (v2/v3)</b></td><td>Pakai, ubah, bagikan, boleh dijual</td><td>Bila mendistribusikan karya turunan: lisensikan sebagai GPL, sediakan kode sumber, pertahankan pemberitahuan hak cipta</td><td>Tidak boleh dijadikan bagian dari produk tertutup yang didistribusikan; tidak boleh menambah pembatasan lain</td></tr>
+      <tr><td><b>CC BY</b></td><td>Salin, bagikan, adaptasi, termasuk untuk tujuan komersial</td><td>Cantumkan pencipta (atribusi), tautkan/sebut lisensi, tandai bila diubah</td><td>Tidak boleh menyiratkan pencipta mendukung penggunaanmu</td></tr>
+      <tr><td><b>CC BY-NC</b></td><td>Salin, bagikan, adaptasi untuk tujuan <b>non-komersial</b></td><td>Atribusi seperti CC BY</td><td><b>Dilarang</b> penggunaan komersial tanpa izin tambahan dari pencipta</td></tr>
+      <tr><td><b>Proprietary (EULA)</b></td><td>Menggunakan sesuai jumlah/jenis lisensi yang dibeli atau syarat layanan</td><td>Membayar (bila berbayar), mematuhi batas pemakaian</td><td>Umumnya dilarang menyalin, membagikan, membongkar, memodifikasi, atau menjual ulang tanpa izin</td></tr>
+    </table></div>
+    <details class="acc"><summary>Varian lain yang perlu kamu kenal</summary><div>
+      <ul>
+        <li><b>LGPL:</b> copyleft yang lebih lunak; umumnya memungkinkan menautkan pustaka ke aplikasi tertutup dengan syarat tertentu.</li>
+        <li><b>AGPL:</b> copyleft yang juga mencakup penggunaan lewat jaringan (misalnya layanan web), bukan hanya distribusi.</li>
+        <li><b>CC BY-SA:</b> atribusi plus berbagi serupa (turunan harus memakai lisensi sama). <b>CC BY-ND:</b> tidak boleh membuat turunan. <b>CC0:</b> pencipta melepaskan hak sejauh yang dimungkinkan hukum.</li>
+        <li><b>Freeware/shareware/freemium:</b> gratis dipakai bukan berarti open source; umumnya tetap proprietary.</li>
+        <li><b>Dual licensing:</b> proyek menawarkan versi open source (mis. GPL) dan versi komersial berbayar untuk yang tidak mau terikat copyleft.</li>
+      </ul></div></details>
+    <details class="acc"><summary>Mengapa perusahaan memilih tiap model?</summary><div>
+      <p>Permisif memudahkan adopsi seluas-luasnya. Copyleft menjaga agar perbaikan komunitas tidak "dikurung" jadi produk tertutup. Proprietary menjaga keunggulan kompetitif dan aliran pendapatan lisensi. Tidak ada yang "paling benar"; yang ada adalah <b>paling cocok dengan model bisnis dan nilai</b> pembuatnya.</p></div></details>
+  </div>
+
+  <div class="w" data-widget="flash" id="flash2"><span class="w-label">Kartu lisensi · Flashcard</span></div>
+  <div class="w" data-widget="explorer" id="lisensiExplorer"><span class="w-label">Jelajahi · Jenis-Jenis Lisensi</span></div>
+</section>
+
+<!-- ===================== SEGMEN 4 ===================== -->
+<section class="seg" id="s4" data-title="Aktivitas: Bedah Lisensi" data-min="52–72" data-dur="20">
+  <div class="seg-head"><div class="num">4</div><h2>Aktivitas: Bedah Lisensi "Bolehkah Saya...?"</h2><span class="chip act">Aktivitas</span></div>
+  <p>Mulai dengan mengelompokkan karakteristik lisensi, lalu jawab dua pertanyaan "bolehkah saya...?", dan terakhir gunakan daftar periksa sebelum memakai aset orang lain.</p>
+  <div class="w" data-widget="classify" id="cls2"><span class="w-label">Bedah lisensi · Klasifikasi</span></div>
+  <div class="w" data-widget="poll" id="poll2"><span class="w-label">Bolehkah saya...? (1)</span></div>
+  <div class="w" data-widget="poll" id="poll3"><span class="w-label">Bolehkah saya...? (2)</span></div>
+  <div class="w" data-widget="checklist" id="chk1"><span class="w-label">Daftar periksa sebelum memakai aset</span></div>
+</section>
+
+<!-- ===================== SEGMEN 5 ===================== -->
+<section class="seg" id="s5" data-title="Studi Kasus: Gambar, Musik, Kode, Paten" data-min="72–87" data-dur="15">
+  <div class="seg-head"><div class="num">5</div><h2>Studi Kasus: Gambar, Musik, Kode, dan Paten Algoritma</h2></div>
+
+  <div class="card">
+    <h3>Tiga kasus penggunaan yang paling sering terjadi</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Aset</th><th>Situasi ("bolehkah saya...?")</th><th>Analisis singkat</th></tr>
+      <tr><td><b>Gambar</b></td><td>Memakai foto dari hasil pencarian gambar untuk banner toko online</td><td>Hasil pencarian bukan tanda bebas pakai. Cek lisensi gambarnya. Foto tanpa lisensi jelas = hak cipta fotografer. Cari di sumber berlisensi (CC0, CC BY dengan atribusi, atau stok berbayar), atau buat/foto sendiri.</td></tr>
+      <tr><td><b>Musik</b></td><td>Memasang lagu populer sebagai musik latar video promosi produk</td><td>Ada beberapa lapis hak: pencipta lagu, penerbit, dan pelaku pertunjukan/produser rekaman. Penggunaan komersial umumnya butuh izin atau lisensi. Pakai musik bebas royalti atau berlisensi yang jelas. Platform mungkin memblokir atau memonetisasi ulang konten.</td></tr>
+      <tr><td><b>Kode</b></td><td>Menyalin potongan kode dari forum tanya-jawab atau repositori ke produk berbayar</td><td>Periksa lisensi sumbernya. Kode berlisensi MIT/Apache: boleh dengan atribusi. GPL: bisa memaksa kode proyekmu ikut dibuka. Tanpa lisensi: default "semua hak dilindungi". Catat sumber dan lisensi tiap potongan kode.</td></tr>
+    </table></div>
+    <div class="callout law"><b class="t">Kasus nyata: Google LLC v. Oracle America (2021)</b>Mahkamah Agung Amerika Serikat memutuskan bahwa penyalinan sebagian deklarasi API Java oleh Google untuk Android merupakan <i>fair use</i> dalam keadaan kasus tersebut. Putusan ini menunjukkan bahwa batas perlindungan hak cipta atas antarmuka perangkat lunak sangat diperdebatkan. Perhatikan: itu hukum AS, bukan hukum Indonesia, dan Indonesia tidak memakai doktrin <i>fair use</i> dengan rumusan yang sama (lihat ketentuan pengecualian UU 28/2014).</div>
+  </div>
+
+  <div class="card">
+    <h3>Paten algoritma: bisakah rumus dipatenkan?</h3>
+    <p><b>Paten</b> memberi hak eksklusif atas <b>invensi</b> teknis (UU No. 13 Tahun 2016): harus <b>baru</b>, mengandung <b>langkah inventif</b>, dan <b>dapat diterapkan di industri</b>. Perlindungan bersifat terbatas waktu (paten umumnya 20 tahun; paten sederhana lebih singkat) dan harus didaftarkan.</p>
+    <ul>
+      <li><b>Algoritma murni = ide/metode matematis.</b> Secara umum, rumus matematika, aturan, dan metode semata-mata berupa program komputer <b>tidak</b> dapat dipatenkan di Indonesia. Alasannya: ide abstrak harus tetap bebas dipakai semua orang.</li>
+      <li><b>Invensi yang memakai perangkat lunak</b> dapat dipertimbangkan bila ia memberi <b>efek teknis</b> nyata (misalnya cara baru mengendalikan perangkat keras sehingga hemat daya), bukan sekadar metode bisnis atau perhitungan.</li>
+      <li>Di AS, perdebatan serupa: dalam <i>Alice Corp. v. CLS Bank</i> (2014), Mahkamah Agung AS menolak paten pada gagasan abstrak yang hanya "diterapkan di komputer".</li>
+      <li><b>Alternatif bagi pemilik algoritma:</b> lindungi kodenya dengan hak cipta, jaga algoritmanya sebagai rahasia dagang, dan lindungi mereknya.</li>
+    </ul>
+    <div class="callout warn"><b class="t">Kenapa penting bagi bisnis digital?</b>Startup yang membangun algoritma rekomendasi sering ragu: patenkan atau rahasiakan? Paten menuntut pengungkapan (publik bisa membaca), sementara rahasia dagang bisa abadi selama dijaga, tetapi tidak melindungi dari penemuan independen. Strategi biasanya <b>kombinasi</b>.</div>
+    <details class="acc"><summary>Etika di balik HKI: dua sudut pandang</summary><div>
+      <ul>
+        <li><b>Pro-kepemilikan:</b> pencipta berhak atas buah kerjanya; tanpa insentif, orang enggan berinovasi.</li>
+        <li><b>Pro-akses:</b> pengetahuan berkembang bila dibagikan; HKI yang terlalu ketat menghambat pendidikan, riset, dan kreator kecil. Gerakan perangkat lunak bebas dan Creative Commons lahir dari sudut pandang ini (Lessig, 2004).</li>
+        <li>Hukum HKI berusaha menyeimbangkan keduanya, dan lisensi terbuka adalah cara pemilik <i>secara sukarela</i> memilih berbagi.</li>
+      </ul></div></details>
+  </div>
+
+  <div class="w" data-widget="scenario" id="scn1"><span class="w-label">Simulasi keputusan · Studi kasus</span></div>
+  <div class="w" data-widget="reflect" id="ref1"><span class="w-label">Refleksi tertulis</span></div>
+  <div class="w" data-widget="flow" id="hakCiptaFlow"><span class="w-label">Animasi · Alur Pelanggaran Hak Cipta</span></div>
+</section>
+
+<!-- ===================== SEGMEN 6 ===================== -->
+<section class="seg" id="s6" data-title="Kuis & Penutup" data-min="87–100" data-dur="13">
+  <div class="seg-head"><div class="num">6</div><h2>Kuis Penutup & Rangkuman</h2><span class="chip act">Evaluasi</span></div>
+  <div class="w" data-widget="spectrum" id="openVsPropSpectrum"><span class="w-label">Spektrum · Open Source vs Proprietary</span></div>
+  <div class="w" data-widget="quiz" id="quiz1"><span class="w-label">Kuis penutup</span></div>
+
+  <div class="card">
+    <h3>Rangkuman 1 menit</h3>
+    <ul>
+      <li>Empat jenis HKI: hak cipta (ekspresi), paten (invensi teknis), merek (tanda pembeda), rahasia dagang (informasi rahasia bernilai).</li>
+      <li>Hak cipta atas program komputer timbul otomatis; ide dan algoritma abstrak tidak dilindungi hak cipta.</li>
+      <li>Lisensi = izin bersyarat. MIT/Apache: permisif; GPL: copyleft; CC: untuk karya kreatif; proprietary: kendali pemilik.</li>
+      <li>CC BY-NC melarang pemakaian komersial; "tanpa lisensi" berarti semua hak dilindungi.</li>
+      <li>Selalu cek lisensi, penuhi syarat atribusi, dan dokumentasikan sumber.</li>
+    </ul>
+    <h3>Tugas mandiri minggu depan</h3>
+    <p>Pilih <b>satu proyek open source</b> atau <b>satu set gambar/musik berlisensi CC</b> yang kamu sukai. Tulis 1 halaman: (a) nama dan lisensinya, (b) tiga hal yang boleh dilakukan, (c) tiga kewajiban/larangan, (d) bagaimana kamu mencantumkan atribusinya jika dipakai pada proyek bisnis digital kelompokmu. Siapkan juga bahan bacaan Pertemuan 6 tentang kebebasan berpendapat dan UU ITE.</p>
+  </div>
+
+  <div class="card refs">
+    <h3>Referensi</h3>
+    <ol>
+      <li>Tavani, H. T. (2016). <i>Ethics and Technology: Controversies, Questions, and Strategies for Ethical Computing</i> (5th ed.). John Wiley & Sons. (bagian tentang hak kekayaan intelektual di ruang siber)</li>
+      <li>Spinello, R. A. (2020). <i>Cyberethics: Morality and Law in Cyberspace</i> (7th ed.). Jones & Bartlett Learning. (bagian tentang hak kekayaan intelektual)</li>
+      <li>Republik Indonesia. (2014). <i>Undang-Undang No. 28 Tahun 2014 tentang Hak Cipta</i>.</li>
+      <li>Republik Indonesia. (2016). <i>Undang-Undang No. 13 Tahun 2016 tentang Paten</i>.</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (2016). <i>Undang-Undang No. 20 Tahun 2016 tentang Merek dan Indikasi Geografis</i>.</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (2000). <i>Undang-Undang No. 30 Tahun 2000 tentang Rahasia Dagang</i>.</li>
+      <li><b>Tambahan:</b> Teks lisensi pada situs Open Source Initiative (opensource.org): MIT License, Apache License 2.0, GNU General Public License.</li>
+      <li><b>Tambahan:</b> Teks dan ringkasan lisensi pada situs Creative Commons (creativecommons.org): CC BY, CC BY-NC.</li>
+      <li><b>Tambahan:</b> Lessig, L. (2004). <i>Free Culture: How Big Media Uses Technology and the Law to Lock Down Culture and Control Creativity</i>. Penguin Press.</li>
+      <li><b>Tambahan:</b> St. Laurent, A. M. (2004). <i>Understanding Open Source and Free Software Licensing</i>. O'Reilly Media.</li>
+      <li><b>Tambahan:</b> Supreme Court of the United States. (2021). <i>Google LLC v. Oracle America, Inc.</i>; (2014). <i>Alice Corp. v. CLS Bank International</i>.</li>
+    </ol>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Mohon cek sebelum dipakai di kelas: (1) nomor pasal UU 28/2014 untuk perlindungan program komputer, pengecualian/penggunaan wajar, hak moral, ketentuan karya dalam hubungan kerja, dan ketentuan pidana; (2) masa perlindungan hak cipta atas program komputer dan masa paten (20 tahun/paten sederhana); (3) rumusan ketentuan UU 13/2016 tentang invensi yang tidak dapat dipatenkan terkait program komputer; (4) nama kementerian/lembaga pengelola HKI (DJKI) pasca-perubahan nomenklatur; (5) versi terbaru teks lisensi (GPL v2/v3, CC 4.0) pada situs resmi. Ringkasan lisensi pada tabel hanya untuk tujuan belajar.</div>
+  </div>
+</section>
+
+<footer>Etika Hukum Cyber · Bisnis Digital · Pertemuan 5 · Materi ini untuk tujuan pendidikan, bukan nasihat hukum.</footer>
+</main>
+</div>
+
+
+<!-- ===================== DATA HALAMAN (hanya blok ini yang berubah antar pertemuan) ===================== -->
+<script>
+const PAGE = {
+  id: "p05",
+
+  poll1: {
+    q: "Kamu butuh foto 'kopi di meja kayu' untuk banner toko online. Kamu menemukan foto bagus lewat pencarian gambar. Apa yang paling tepat?",
+    opts: [
+      {t:"Langsung pakai, kan sudah ada di internet", why:"Berisiko. Muncul di hasil pencarian tidak berarti bebas pakai. Foto itu umumnya dilindungi hak cipta fotografernya, dan untuk tujuan komersial risikonya lebih besar."},
+      {t:"Pakai tetapi tambahkan tulisan 'sumber: Google'", why:"Menyebut sumber tidak sama dengan izin. Atribusi hanya cukup bila lisensinya memang mensyaratkan atribusi (mis. CC BY) dan pemiliknya memberi izin."},
+      {t:"Periksa lisensi fotonya; pakai bila CC0/CC BY (dengan atribusi) atau beli lisensinya; jika ragu, cari foto lain", why:"Tepat. Lisensi menentukan boleh atau tidaknya, apalagi untuk penggunaan komersial. Dokumentasikan sumber dan lisensinya."},
+      {t:"Pakai saja, toh tokoku masih kecil", why:"Skala usaha tidak menghapus hak cipta. Usaha kecil juga bisa menerima takedown atau tuntutan ganti rugi."}
+    ]
+  },
+
+  poll2: {
+    q: "Bolehkah saya memakai library berlisensi MIT di dalam aplikasi berbayar yang kode sumbernya tertutup?",
+    opts: [
+      {t:"Tidak boleh, karena library itu open source", why:"Keliru. Lisensi MIT bersifat permisif dan tidak mewajibkan produk turunanmu dibuka."},
+      {t:"Boleh, asal menyertakan pemberitahuan hak cipta dan teks lisensi MIT", why:"Tepat. MIT mengizinkan pemakaian komersial dan tertutup, dengan kewajiban menyertakan notice dan teks lisensinya (mis. di halaman 'Tentang/Lisensi' aplikasi)."},
+      {t:"Boleh, dan notice boleh dihapus karena sudah kuubah", why:"Tidak. Kewajiban mempertahankan pemberitahuan hak cipta tetap berlaku pada salinan atau bagian penting karya, walau kamu mengubahnya."},
+      {t:"Boleh hanya jika aplikasinya gratis", why:"Tidak ada syarat itu. MIT mengizinkan penjualan; kewajiban utamanya ada pada atribusi dan teks lisensi."}
+    ]
+  },
+
+  poll3: {
+    q: "Bolehkah saya memakai ilustrasi berlisensi CC BY-NC untuk poster promosi toko kopi saya yang berbayar?",
+    opts: [
+      {t:"Boleh, asalkan mencantumkan nama pembuatnya", why:"Belum cukup. Atribusi (BY) hanya satu syarat; syarat NC (non-komersial) tetap melarang penggunaan komersial tanpa izin tambahan."},
+      {t:"Tidak boleh tanpa izin tambahan, karena promosi toko berbayar termasuk komersial", why:"Tepat. CC BY-NC melarang pemakaian yang terutama ditujukan untuk keuntungan komersial. Mintalah izin/lisensi komersial kepada pembuatnya atau cari ilustrasi CC BY/CC0."},
+      {t:"Boleh, karena posternya dibagikan gratis", why:"Gratis dibagikan tidak otomatis non-komersial. Bila tujuannya mempromosikan usaha berbayar, umumnya dianggap penggunaan komersial."},
+      {t:"Boleh, karena CC berarti bebas dipakai siapa saja", why:"Salah kaprah. CC adalah keluarga lisensi dengan syarat berbeda-beda; baca kode lisensinya."}
+    ]
+  },
+
+  chk1: {
+    title: "Sebelum memakai gambar/musik/kode orang lain, pastikan kamu sudah...",
+    items: [
+      "Menemukan pernyataan lisensi resmi dari pemilik atau sumber aslinya (bukan dari situs perantara yang tidak jelas).",
+      "Membaca syarat lisensi: apakah boleh komersial? boleh diubah? wajib atribusi? wajib berbagi serupa?",
+      "Memastikan tujuan pemakaianku (komersial atau non-komersial, didistribusikan atau internal) sesuai dengan lisensi.",
+      "Mencatat sumber, nama pencipta, tautan, dan versi lisensi dalam sebuah berkas dokumentasi (mis. CREDITS atau LICENSES).",
+      "Menyiapkan atribusi yang benar (judul, pencipta, sumber, lisensi) di tempat yang mudah terlihat.",
+      "Mengecek apakah ada lisensi yang saling bertentangan, misalnya GPL dicampur ke produk tertutup.",
+      "Bila ragu atau tidak ada lisensi, meminta izin tertulis kepada pemilik atau memilih aset alternatif."
+    ],
+    doneMsg: "Daftar periksa lengkap. Kebiasaan ini melindungi usahamu dari risiko hukum dan reputasi."
+  },
+
+  flash1: {
+    title: "Uji istilah kunci HKI (klik kartu untuk membalik)",
+    cards: [
+      {f:"HKI", b:"Hak eksklusif atas hasil kreasi pikiran: hak cipta, paten, merek, rahasia dagang, dan lainnya."},
+      {f:"Hak cipta", b:"Hak eksklusif pencipta atas ekspresi karyanya; timbul otomatis saat karya diwujudkan; program komputer termasuk ciptaan yang dilindungi."},
+      {f:"Hak moral vs hak ekonomi", b:"Hak moral: nama dan integritas karya melekat pada pencipta. Hak ekonomi: hak memperoleh manfaat ekonomi (menggandakan, mendistribusikan, dll.) dan dapat dilisensikan."},
+      {f:"Paten", b:"Hak eksklusif atas invensi teknis yang baru, inventif, dan dapat diterapkan di industri; harus didaftarkan (UU 13/2016)."},
+      {f:"Merek", b:"Tanda pembeda barang/jasa (nama, logo); hak diperoleh melalui pendaftaran."},
+      {f:"Rahasia dagang", b:"Informasi bisnis/teknologi tidak diketahui umum yang bernilai ekonomi dan dijaga kerahasiaannya."},
+      {f:"Ide vs ekspresi", b:"Hak cipta melindungi cara sebuah ide diungkapkan (kode, teks, gambar), bukan idenya itu sendiri."},
+      {f:"Prinsip deklaratif", b:"Hak cipta timbul otomatis ketika karya diwujudkan; pencatatan hanya membantu pembuktian."}
+    ]
+  },
+
+  flash2: {
+    title: "Uji pemahaman lisensi (klik kartu untuk membalik)",
+    cards: [
+      {f:"Lisensi", b:"Izin bersyarat dari pemegang hak cipta kepada pihak lain; bukan pelepasan hak cipta."},
+      {f:"MIT License", b:"Permisif. Boleh dipakai komersial dan tertutup; wajib menyertakan notice hak cipta dan teks lisensi; tanpa garansi."},
+      {f:"Apache 2.0", b:"Permisif dengan pemberian hak paten dari kontributor; wajib menyertakan lisensi/NOTICE dan menandai perubahan."},
+      {f:"GPL / copyleft", b:"Karya turunan yang didistribusikan wajib berlisensi sama dan kode sumbernya tersedia; kebebasan 'menular'."},
+      {f:"CC BY", b:"Boleh dipakai, diadaptasi, termasuk komersial, asalkan mencantumkan atribusi kepada pencipta."},
+      {f:"CC BY-NC", b:"Seperti CC BY tetapi hanya untuk tujuan non-komersial; komersial perlu izin tambahan."},
+      {f:"Proprietary / EULA", b:"Pemilik menahan kendali; pengguna hanya memperoleh hak pakai dengan larangan menyalin, membongkar, atau menjual ulang."},
+      {f:"Atribusi", b:"Kewajiban menyebut pencipta, sumber, dan lisensi pada karya yang dipakai."}
+    ]
+  },
+
+  cls1: {
+    title: "Kelompokkan contoh berikut menurut jenis HKI yang paling relevan",
+    bins: ["Hak cipta", "Paten", "Merek", "Rahasia dagang"],
+    items: [
+      {t:"Kode sumber aplikasi kasir yang kamu tulis sendiri", a:0, why:"Program komputer adalah ciptaan yang dilindungi hak cipta secara otomatis."},
+      {t:"Nama dan logo aplikasi e-commerce yang didaftarkan ke DJKI", a:2, why:"Tanda pembeda barang/jasa dilindungi sebagai merek melalui pendaftaran."},
+      {t:"Daftar pelanggan dan strategi penetapan harga internal yang dijaga lewat perjanjian kerahasiaan", a:3, why:"Informasi bisnis tidak diketahui umum yang dijaga kerahasiaannya adalah rahasia dagang."},
+      {t:"Mekanisme teknis baru pada perangkat IoT yang menghemat daya dan didaftarkan untuk perlindungan 20 tahun", a:1, why:"Invensi teknis baru dan inventif yang didaftarkan adalah objek paten."},
+      {t:"Foto produk yang kamu ambil untuk katalog toko", a:0, why:"Foto adalah karya fotografi yang dilindungi hak cipta."},
+      {t:"Jingle iklan 30 detik untuk kanal YouTube usahamu", a:0, why:"Lagu/musik adalah ciptaan yang dilindungi hak cipta."},
+      {t:"Nama dagang dan slogan toko daring yang didaftarkan", a:2, why:"Nama dan slogan sebagai tanda pembeda dapat dilindungi sebagai merek."},
+      {t:"Kode algoritma rekomendasi internal yang tidak pernah dipublikasikan dan hanya diakses tim inti", a:3, why:"Selama dijaga kerahasiaannya, algoritma internal dapat menjadi rahasia dagang (kodenya juga tetap dilindungi hak cipta)."},
+      {t:"Rancangan mesin penyortir paket dengan susunan mekanis baru yang memenuhi syarat invensi", a:1, why:"Invensi teknis di bidang mekanik adalah contoh klasik objek paten."}
+    ]
+  },
+
+  cls2: {
+    title: "Tempatkan tiap pernyataan pada keluarga lisensi yang paling sesuai",
+    bins: ["Permisif (MIT / Apache 2.0)", "Copyleft (GPL)", "Creative Commons (karya kreatif)", "Proprietary"],
+    items: [
+      {t:"Boleh dipakai di produk tertutup berbayar asal menyertakan teks lisensi dan pemberitahuan hak cipta", a:0, why:"Ciri khas lisensi permisif seperti MIT."},
+      {t:"Memuat pemberian lisensi paten secara tegas dari kontributor", a:0, why:"Salah satu ciri khas Apache 2.0, lisensi permisif."},
+      {t:"Jika kamu mendistribusikan karya turunan, kode turunan harus dibuka dengan lisensi yang sama", a:1, why:"Inilah copyleft: kebebasan menular ke turunan (GPL)."},
+      {t:"Perangkat lunak yang hanya memberi hak menggunakan lewat EULA dan melarang membongkar atau menjual ulang", a:3, why:"Model proprietary: kendali tetap di pemilik."},
+      {t:"Foto yang boleh kamu pakai komersial asalkan mencantumkan nama fotografernya (CC BY)", a:2, why:"CC BY adalah lisensi untuk karya kreatif dengan syarat atribusi."},
+      {t:"Ilustrasi yang boleh dipakai untuk poster seminar kampus gratis, tetapi tidak untuk iklan produk (CC BY-NC)", a:2, why:"NC melarang penggunaan komersial."},
+      {t:"Aplikasi berlangganan yang melarang kamu menyalin atau mengubah kodenya", a:3, why:"Larangan menyalin/memodifikasi dan tanpa kode sumber adalah ciri proprietary."},
+      {t:"Lisensi yang menjamin kebebasan menjalankan, mempelajari, membagikan, dan mengubah, serta menjaga kebebasan itu pada turunannya", a:1, why:"Rumusan kebebasan perangkat lunak yang dijaga oleh copyleft seperti GPL."}
+    ]
+  },
+
+  scn1: {
+    title: "Kasus (skenario fiktif): Aplikasi pemesanan kopi",
+    start: "n0",
+    nodes: {
+      n0: {text:"Kamu CTO startup 'KopiKita' (skenario fiktif). Menjelang peluncuran versi berbayar, kamu menyadari seorang programmer memakai library pembuat PDF berlisensi GPL, dan aplikasi akan dijual dengan kode tertutup lewat toko aplikasi. Tim bilang, 'Tidak ada yang akan tahu.' Kamu...",
+        choices:[{t:"Tetap rilis; kodenya tidak akan diperiksa", to:"n1"},{t:"Mengganti dengan library berlisensi permisif (MIT/Apache) atau membeli lisensi komersial bila pemiliknya menawarkan", to:"n2"},{t:"Membuka seluruh kode aplikasi di bawah GPL dan menjual layanan pendukung", to:"n3"}]},
+      n1: {end:true, text:"Hasil: aplikasi rilis, tetapi kamu berisiko melanggar syarat lisensi GPL. Pemegang hak cipta dapat menuntut penghentian pelanggaran atau ganti rugi, dan temuan seperti ini kerap terungkap saat audit investor atau due diligence.",
+        lens:"Etika: tidak jujur terhadap pembuat library yang berbagi dengan syarat. Hukum: syarat lisensi mengikat; melanggarnya dapat dianggap pelanggaran hak cipta. Bisnis: utang kepatuhan bisa menggagalkan pendanaan atau akuisisi."},
+      n2: {end:true, text:"Hasil: kamu menjaga model bisnis tertutup dan memenuhi lisensi. Ongkosnya: waktu pengembangan dan mungkin biaya lisensi, tetapi risikonya jauh lebih kecil. Kamu juga membuat berkas daftar lisensi untuk komponen lain.",
+        lens:"Etika: menghormati syarat pembuat. Hukum: sesuai lisensi. Bisnis: audit lisensi (software bill of materials sederhana) adalah praktik baik."},
+      n3: {end:true, text:"Hasil: patuh GPL dan membangun reputasi komunitas, tetapi model bisnis berubah drastis: pesaing boleh memakai kodemu dengan syarat GPL yang sama. Cocok bila nilai usahamu ada di layanan, bukan di kode tertutup.",
+        lens:"Sah secara hukum dan etis, dengan konsekuensi strategi bisnis. Pilihan ini sebaiknya diputuskan sadar oleh pemilik usaha, bukan terjadi karena 'kecelakaan lisensi'."}
+    }
+  },
+
+  ref1: {
+    title: "Tulis 3–5 kalimat",
+    prompt: "Ingat satu kebiasaan kamu atau temanmu terkait aset digital (mengunduh film/lagu dari situs tidak resmi, memakai font atau gambar tanpa cek lisensi, menyalin kode dari internet, memakai software bajakan). Jelaskan: (a) jenis HKI dan lisensi yang terlibat, (b) mengapa itu bermasalah atau aman, dan (c) satu langkah konkret yang akan kamu lakukan agar tetap patuh sebagai pelaku bisnis digital.",
+    hint: "Tulisan tersimpan otomatis di perangkat ini. Gunakan tombol Salin untuk mengumpulkan ke dosen."
+  },
+
+  quiz1: {
+    title: "Kuis penutup (10 soal)",
+    items: [
+      {q:"Hak cipta atas program komputer menurut UU 28/2014 pada dasarnya timbul…", o:["Setelah didaftarkan dan dibayar biaya pendaftarannya","Secara otomatis setelah karya diwujudkan dalam bentuk nyata","Hanya jika kode sumbernya dipublikasikan","Setelah mendapat izin pemerintah"], a:1, why:"Prinsip deklaratif: hak timbul otomatis; pencatatan hanya berfungsi sebagai alat bukti."},
+      {q:"Manakah yang TIDAK dilindungi oleh hak cipta?", o:["Kode sumber aplikasi","Dokumentasi program","Ide atau konsep metode kerja yang abstrak","Desain antarmuka yang orisinal"], a:2, why:"Hak cipta melindungi ekspresi, bukan ide atau konsep abstrak."},
+      {q:"Nama dan logo aplikasimu paling tepat dilindungi sebagai…", o:["Paten","Merek","Rahasia dagang","Hak moral saja"], a:1, why:"Tanda pembeda barang/jasa dilindungi sebagai merek melalui pendaftaran."},
+      {q:"Daftar pelanggan yang dijaga kerahasiaannya dan bernilai ekonomi termasuk…", o:["Merek","Paten","Rahasia dagang","Domain publik"], a:2, why:"Informasi bisnis rahasia yang bernilai ekonomi dan dijaga adalah rahasia dagang."},
+      {q:"Repositori kode di GitHub yang tidak memiliki berkas lisensi sama sekali berarti…", o:["Bebas dipakai siapa saja","Berada di domain publik","Pada dasarnya semua hak masih dimiliki pencipta sehingga belum bebas dipakai ulang","Hanya boleh dipakai untuk non-komersial"], a:2, why:"Tanpa lisensi, default hukum adalah semua hak dilindungi; mintalah izin atau cari alternatif."},
+      {q:"Perbedaan utama lisensi permisif (MIT) dan copyleft (GPL) adalah…", o:["MIT berbayar, GPL gratis","MIT mengizinkan produk turunan tertutup, GPL mewajibkan turunan yang didistribusikan tetap terbuka dengan lisensi sama","GPL melarang penggunaan komersial","MIT tidak punya syarat apa pun"], a:1, why:"Copyleft membuat kebebasan menular ke turunan; permisif tidak."},
+      {q:"Kewajiban utama saat memakai kode berlisensi MIT adalah…", o:["Membuka seluruh kode produkmu","Membayar royalti tahunan","Menyertakan pemberitahuan hak cipta dan teks lisensi","Meminta izin tertulis setiap kali memakai"], a:2, why:"MIT hanya mensyaratkan notice hak cipta dan teks lisensi disertakan."},
+      {q:"Apa arti 'NC' pada CC BY-NC?", o:["Tanpa turunan","Non-komersial","Tanpa atribusi","Berbagi serupa"], a:1, why:"NC = NonCommercial; penggunaan komersial memerlukan izin tambahan."},
+      {q:"Alasan utama algoritma murni sulit dipatenkan di Indonesia adalah…", o:["Algoritma selalu rahasia","Aturan/metode yang semata-mata program komputer atau gagasan matematis umumnya bukan invensi yang dapat dipatenkan","Algoritma hanya bisa dilindungi merek","Paten hanya untuk perusahaan besar"], a:1, why:"Ide abstrak dijaga tetap bebas; invensi berbasis perangkat lunak harus punya efek teknis. (Rincian pasal: verifikasi dosen.)"},
+      {q:"Kamu ingin memakai lagu populer sebagai musik latar iklan produkmu di media sosial. Langkah paling tepat?", o:["Pakai saja, durasinya hanya 15 detik","Cantumkan nama penyanyi di deskripsi","Gunakan musik bebas royalti/berlisensi jelas atau minta lisensi dari pemegang haknya","Unduh dari situs gratis agar aman"], a:2, why:"Penggunaan komersial butuh lisensi; durasi pendek dan pencantuman nama tidak otomatis menjadi izin."}
+    ]
+  },
+
+  lisensiExplorer: {
+    title: "Jelajahi: Jenis-Jenis Lisensi Perangkat Lunak & Kreatif",
+    intro: "Klik kartu lisensi untuk membuka apa yang boleh, tidak boleh, contoh penggunaan nyata, dan implikasi hukumnya di Indonesia.",
+    items: [
+      {
+        id:"proprietary", icon:"🔒", name:"Proprietary / Tertutup", tag:"Kendali penuh pemilik",
+        summary:"Lisensi proprietary mempertahankan kendali penuh pada pemegang hak cipta. Pengguna hanya memperoleh hak pakai terbatas melalui EULA (End-User License Agreement). Kode sumber tidak tersedia untuk umum dan tidak boleh disalin, diubah, atau dijual ulang tanpa izin eksplisit.",
+        how:["Pengguna membayar atau menyetujui syarat untuk memperoleh hak memakai","Kode sumber tidak dibagikan; perangkat lunak diserahkan dalam bentuk biner","Lisensi bersifat personal atau per-perangkat; tidak boleh dipindahtangankan kecuali diizinkan","Pembuat dapat mencabut lisensi bila syarat dilanggar","Pembaruan dan dukungan tergantung kebijakan dan keberlangsungan pembuat"],
+        ex:["Microsoft Office, Adobe Photoshop, Autodesk — aplikasi berbayar dengan EULA","Perangkat lunak akuntansi enterprise seperti SAP (versi standar berbayar)","Game berbayar yang didistribusikan lewat toko digital","Mayoritas aplikasi mobile berbayar di App Store dan Google Play"],
+        impact:"Di Indonesia, memakai perangkat lunak tanpa lisensi sah (pembajakan) dapat melanggar UU No. 28 Tahun 2014 tentang Hak Cipta, yang mengatur sanksi perdata (ganti rugi) dan ketentuan pidana untuk pembajakan komersial. EULA juga mengikat sebagai perjanjian. (Verifikasi dosen: nomor pasal sanksi pidana dan perdata UU 28/2014.)",
+        law:["UU No. 28 Tahun 2014 Pasal 9 — hak ekonomi pencipta meliputi penggandaan dan distribusi","Pelanggaran EULA dapat dijadikan dasar gugatan perdata karena melanggar perjanjian","Pembajakan untuk tujuan komersial berpotensi memicu ketentuan pidana (Verifikasi dosen: nomor pasal)","Hak moral pencipta tidak dapat dialihkan meski hak ekonomi sudah dilisensikan"],
+        prev:["Beli lisensi resmi dari vendor atau reseller yang sah","Manfaatkan program lisensi pendidikan atau akademik bila tersedia","Catat dan audit lisensi yang dimiliki secara berkala (Software Asset Management)","Pertimbangkan alternatif open source yang memenuhi kebutuhan fungsional"]
+      },
+      {
+        id:"mit", icon:"📄", name:"MIT License", tag:"Open source paling permisif",
+        summary:"MIT License adalah salah satu lisensi open source paling permisif. Memberikan kebebasan hampir tanpa batas: boleh dipakai, diubah, digabungkan, dijual, bahkan dalam produk tertutup berbayar. Kewajiban utamanya hanya menyertakan pemberitahuan hak cipta dan teks lisensi MIT.",
+        how:["Pemegang hak cipta menyertakan file LICENSE dengan teks MIT pada distribusi","Pengguna bebas memakai, menyalin, memodifikasi, menggabungkan, atau menjual","Produk turunan boleh tertutup dan tidak wajib membuka kode sumber","Kewajiban satu-satunya: sertakan teks lisensi MIT dan pemberitahuan hak cipta pada salinan","Tidak ada garansi; risiko pemakaian ditanggung pengguna sepenuhnya"],
+        ex:["React, Vue.js, jQuery — pustaka web dipakai di jutaan produk komersial","Bootstrap — kerangka antarmuka yang lazim digabung ke produk berbayar","Node.js (inti), Ruby on Rails, dan banyak pustaka ekosistem npm","Banyak startup memakai MIT agar komponen internal mudah digabung dengan kode proprietary"],
+        impact:"Di Indonesia, menghapus atau tidak menyertakan pemberitahuan hak cipta dan teks lisensi MIT dapat dianggap pelanggaran hak cipta berdasarkan UU No. 28 Tahun 2014. Kewajiban atribusi ini mengikat secara hukum meski terasa kecil. (Verifikasi dosen: relevansi pasal hak moral dan hak ekonomi UU 28/2014.)",
+        law:["UU No. 28 Tahun 2014 — izin bersyarat dari pemegang hak cipta; syarat mengikat","Menghapus notice hak cipta berpotensi menjadi pelanggaran karena mencabut izin yang diberikan lisensi","Lisensi MIT diakui oleh Open Source Initiative (opensource.org)","Hak moral pencipta (pencantuman nama) tetap relevan walau lisensi sangat permisif"],
+        prev:["Selalu sertakan file LICENSE atau bagian Lisensi di dokumentasi dan aplikasi","Untuk aplikasi mobile, cantumkan daftar lisensi komponen di halaman Tentang atau Lisensi","Gunakan alat seperti license-checker atau FOSSA untuk audit komponen otomatis","Dokumentasikan setiap pustaka MIT dalam Software Bill of Materials (SBOM) proyek"]
+      },
+      {
+        id:"gpl", icon:"🔄", name:"GPL (GNU General Public License)", tag:"Copyleft kuat — kebebasan menular",
+        summary:"GPL adalah lisensi copyleft kuat yang memastikan perangkat lunak dan semua turunannya tetap bebas dan terbuka. Bila kamu mendistribusikan karya turunan GPL, turunan itu wajib dilisensikan GPL dan kode sumbernya harus tersedia bagi penerima. Kebebasan ini bersifat menular ke setiap karya turunan yang didistribusikan.",
+        how:["Kamu bebas memakai, mempelajari, memodifikasi, dan mendistribusikan perangkat lunak","Jika mendistribusikan karya turunan, lisensinya wajib GPL dan kode sumber harus disediakan","Penerima distribusi berhak meminta kode sumber secara penuh","Tidak boleh menambahkan pembatasan di luar yang ada dalam teks GPL","GPL v3 menambahkan perlindungan paten eksplisit dan klausul melarang penguncian perangkat keras"],
+        ex:["Linux Kernel — sistem operasi open source terbesar berlisensi GPL v2","WordPress — CMS terbesar; inti berlisensi GPL, tema dan plugin pun terdampak","VLC media player — pemutar media lintas platform berlisensi GPL","GCC (GNU Compiler Collection) — kompilator yang dipakai luas dalam pengembangan perangkat lunak"],
+        impact:"Menyertakan kode GPL dalam produk tertutup yang didistribusikan merupakan pelanggaran lisensi yang di Indonesia dapat berarti pelanggaran hak cipta (UU No. 28 Tahun 2014). Lisensi GPL mencabut izin pengguna yang melanggar syaratnya. Beberapa perusahaan internasional telah digugat karena melanggar GPL. (Verifikasi dosen: mekanisme penegakan lisensi di Indonesia.)",
+        law:["UU No. 28 Tahun 2014 — syarat lisensi copyleft mengikat sebagai izin bersyarat dari pemegang hak cipta","Melanggar syarat GPL (tidak membuka kode turunan) berpotensi mencabut izin yang diberikan dan menjadi pelanggaran hak cipta","GPL v2 dan v3 diakui oleh Free Software Foundation dan Open Source Initiative","Dual licensing (versi GPL dan versi komersial) adalah solusi sah yang banyak dipakai vendor perangkat lunak"],
+        prev:["Audit semua komponen sebelum memasukkan kode GPL ke produk tertutup yang akan didistribusikan","Pertimbangkan LGPL atau lisensi permisif sebagai alternatif bila ingin menyertakan ke produk tertutup","Jika pakai GPL, pilih secara sadar: buka seluruh kode atau beli lisensi komersial (dual licensing)","Pahami perbedaan memakai sendiri dengan mendistribusikan agar tidak terjebak kewajiban copyleft"]
+      },
+      {
+        id:"apache", icon:"🛡️", name:"Apache 2.0", tag:"Permisif dengan perlindungan paten",
+        summary:"Apache License 2.0 adalah lisensi open source permisif mirip MIT, tetapi dengan dua tambahan penting: pemberian hak paten secara eksplisit dari kontributor kepada pengguna, dan klausul penghentian hak paten bagi siapa pun yang menggugat paten atas karya ini. Cocok untuk proyek yang berhadapan dengan risiko sengketa paten.",
+        how:["Bebas memakai, memodifikasi, mendistribusikan, bahkan dalam produk tertutup berbayar","Setiap kontributor secara eksplisit memberikan hak paten terkait kontribusinya","Wajib menyertakan file LICENSE (dan NOTICE bila ada) pada setiap distribusi","Harus menandai file yang diubah agar pengguna tahu mana versi asli mana modifikasi","Bila pengguna menggugat kontributor atas pelanggaran paten terkait karya ini, hak paten mereka berakhir"],
+        ex:["Android (AOSP) menggunakan Apache 2.0 untuk banyak komponen intinya","Apache HTTP Server — salah satu web server paling banyak dipakai di dunia","TensorFlow, Kubernetes, Apache Kafka — proyek infrastruktur teknologi besar","Banyak perusahaan besar memilih Apache 2.0 karena perlindungan paten yang lebih eksplisit dari MIT"],
+        impact:"Di Indonesia, kewajiban menyertakan file NOTICE (bila ada) dan menandai perubahan berlaku sebagai syarat lisensi yang mengikat. Klausul paten Apache 2.0 terutama relevan di yurisdiksi yang mengakui paten perangkat lunak secara luas (seperti AS). Di Indonesia, paten perangkat lunak masih sangat terbatas. (Verifikasi dosen: status paten perangkat lunak UU 13/2016.)",
+        law:["UU No. 28 Tahun 2014 — syarat lisensi (NOTICE, tanda modifikasi) mengikat secara hukum","UU No. 13 Tahun 2016 tentang Paten — relevan untuk konteks paten perangkat lunak di Indonesia","Lisensi Apache 2.0 diakui oleh Open Source Initiative (opensource.org)","Klausul paten Apache 2.0 berbeda signifikan dari MIT; penting bagi perusahaan berportofolio paten"],
+        prev:["Sertakan file LICENSE dan NOTICE dalam setiap distribusi, bukan hanya menyebut nama lisensi","Tandai semua file yang diubah dengan komentar modifikasi dan tanggal perubahan","Dokumentasikan semua komponen Apache 2.0 dalam SBOM proyek untuk keperluan audit","Manfaatkan perlindungan paten Apache 2.0 sebagai argumen keamanan saat memilih komponen"]
+      },
+      {
+        id:"cc", icon:"🎨", name:"Creative Commons (CC)", tag:"Karya kreatif non-perangkat lunak",
+        summary:"Creative Commons adalah kumpulan lisensi standar untuk karya kreatif selain perangkat lunak: gambar, musik, tulisan, video, materi ajar. Pencipta memilih kombinasi empat elemen: BY (atribusi), SA (berbagi serupa), NC (non-komersial), ND (tanpa turunan). Creative Commons sendiri tidak menyarankan pemakaiannya untuk kode perangkat lunak.",
+        how:["BY (Atribusi): wajib menyebut nama pencipta, sumber, dan lisensi pada setiap pemakaian","SA (ShareAlike/Berbagi Serupa): karya turunan harus berlisensi CC yang sama — efek copyleft untuk konten","NC (NonCommercial/Non-Komersial): hanya untuk tujuan non-komersial; penggunaan komersial butuh izin tambahan","ND (NoDerivatives/Tanpa Turunan): tidak boleh membuat dan menyebarkan karya turunan","CC0: pencipta melepaskan semua hak sejauh yang diperbolehkan hukum, mendekati domain publik"],
+        ex:["Foto CC BY atau CC0 dari Unsplash, Pexels — boleh dipakai di materi pemasaran dengan atribusi","Wikipedia menggunakan CC BY-SA untuk seluruh kontennya; turunan harus CC BY-SA pula","Musik CC0 atau CC BY dari Free Music Archive — bebas dipakai sebagai musik latar video promosi","Materi ajar CC BY-SA dari MIT OpenCourseWare dan berbagai platform edukasi terbuka"],
+        impact:"Di Indonesia, memakai karya berlisensi CC BY-NC untuk keperluan komersial tanpa izin tambahan dapat melanggar hak cipta pencipta berdasarkan UU No. 28 Tahun 2014. Banyak pelaku bisnis kecil tidak menyadari bahwa ada di internet dan gratis bukan berarti boleh dipakai komersial. (Verifikasi dosen: pasal hak ekonomi dan sanksi UU 28/2014 terkait penggunaan karya non-software.)",
+        law:["UU No. 28 Tahun 2014 — karya foto, musik, dan tulisan dilindungi hak cipta secara otomatis","Syarat lisensi CC (NC, ND, SA) mengikat secara hukum; pelanggaran dapat berujung gugatan perdata","CC BY-SA memiliki efek copyleft konten: turunan wajib berlisensi sama","Teks lisensi resmi di creativecommons.org; selalu rujuk versi terbaru (CC 4.0) (Verifikasi dosen)"],
+        prev:["Baca kode lisensi CC secara lengkap (BY, SA, NC, ND), bukan hanya tulisan Creative Commons","Untuk keperluan komersial, cari aset CC0 atau CC BY, atau beli lisensi dari platform stok berbayar","Cantumkan atribusi yang benar: judul, nama pencipta, URL sumber, nama dan tautan lisensi","Simpan bukti lisensi untuk setiap aset digital dalam dokumen CREDITS atau LICENSES proyek"]
+      }
+    ]
+  },
+
+  hakCiptaFlow: {
+    title: "Animasi: Alur Pelanggaran Hak Cipta Perangkat Lunak",
+    sub: "Ikuti lima langkah, dari peluncuran software berlisensi hingga proses hukum dan sanksi. Klik Putar otomatis atau Lanjut untuk memulai.",
+    actors: [
+      {id:"pembuat", icon:"💻", name:"Pembuat Software", x:18, y:20},
+      {id:"platform", icon:"🏪", name:"Platform / Toko Aplikasi", x:62, y:18},
+      {id:"pelanggar", icon:"🦹", name:"Pelanggar (Pengguna Bajakan)", x:82, y:55, role:"attacker"},
+      {id:"djki", icon:"🏛️", name:"DJKI / Tim Hukum", x:22, y:76},
+      {id:"pengadilan", icon:"⚖️", name:"Pengadilan", x:62, y:78}
+    ],
+    steps: [
+      {
+        title:"Pembuat merilis software berlisensi berbayar",
+        short:"Rilis software resmi",
+        text:"Pembuat meluncurkan perangkat lunak komersial melalui platform distribusi resmi (toko aplikasi, situs web resmi). Hak cipta timbul otomatis atas kode tersebut sejak diwujudkan dalam bentuk nyata, sesuai prinsip deklaratif UU No. 28 Tahun 2014.",
+        from:"pembuat", to:"platform",
+        packet:"📦", label:"Software resmi",
+        set:{pembuat:"safe", platform:"active"},
+        law:"UU 28/2014 — hak cipta program komputer timbul otomatis saat diwujudkan",
+        tip:"Pencatatan ciptaan ke DJKI memperkuat posisi pembuktian hak"
+      },
+      {
+        title:"Pelanggar mendistribusikan versi bajakan",
+        short:"Distribusi bajakan",
+        text:"Pelanggar menyalin dan mendistribusikan software tanpa izin pemegang hak cipta melalui situs bajakan, media sosial, atau forum. Ini merupakan pelanggaran hak ekonomi pemegang hak cipta — hak menggandakan dan mendistribusikan.",
+        from:"pelanggar", to:"platform",
+        packet:"🏴‍☠️", label:"Software bajakan",
+        bad:true,
+        set:{pelanggar:"danger", platform:["warn","Bajakan terdeteksi"]},
+        law:"UU 28/2014 — distribusi tanpa izin melanggar hak ekonomi pencipta",
+        risk:"Distribusi komersial bajakan berpotensi memicu ketentuan pidana (Verifikasi dosen: nomor pasal UU 28/2014)"
+      },
+      {
+        title:"Pembuat menemukan pelanggaran dan melapor ke DJKI",
+        short:"Laporan ke DJKI",
+        text:"Pembuat mengetahui adanya pelanggaran melalui monitoring, laporan pengguna, atau pemindaian otomatis. Laporan diajukan ke Direktorat Jenderal Kekayaan Intelektual (DJKI) atau kepada penyidik yang berwenang, disertai bukti pelanggaran.",
+        from:"pembuat", to:"djki",
+        packet:"📋", label:"Laporan pelanggaran",
+        set:{pembuat:"warn", djki:"active"},
+        law:"DJKI di bawah Kementerian Hukum menerima aduan dan pencatatan HKI",
+        tip:"Tangkapan layar distribusi bajakan, metadata, dan log akses penting disertakan sebagai bukti"
+      },
+      {
+        title:"Investigasi dan penindakan oleh DJKI / aparat hukum",
+        short:"Investigasi",
+        text:"DJKI bersama penyidik melakukan investigasi untuk mengumpulkan bukti. Dapat diikuti penindakan seperti pemblokiran konten, penyitaan, atau pemanggilan tersangka. Kasus dapat diselesaikan melalui jalur perdata, pidana, atau mediasi.",
+        from:"djki", to:"pelanggar",
+        packet:"🔍", label:"Investigasi",
+        set:{djki:"safe", pelanggar:"lock"},
+        law:"Penyidik PPNS HKI berwenang melakukan penyidikan pelanggaran hak cipta",
+        tip:"Penyelesaian di luar pengadilan (mediasi) dimungkinkan dan sering lebih cepat"
+      },
+      {
+        title:"Putusan pengadilan: sanksi pidana dan/atau perdata",
+        short:"Sanksi hukum",
+        text:"Pengadilan menjatuhkan putusan. Pelanggar dapat dikenai kewajiban ganti rugi (perdata) dan/atau hukuman pidana untuk pembajakan komersial. Putusan juga dapat mencakup penghentian peredaran dan penghapusan konten bajakan.",
+        from:"djki", to:"pengadilan",
+        packet:"🔨", label:"Putusan",
+        set:{pengadilan:"safe", pelanggar:["danger","Sanksi dijatuhkan"]},
+        law:"UU 28/2014 — ketentuan pidana untuk pembajakan komersial (Verifikasi dosen: nomor pasal dan besaran sanksi)",
+        risk:"Sanksi dapat berupa penjara, denda, dan ganti rugi perdata (Verifikasi dosen: besaran sesuai pasal UU 28/2014)"
+      }
+    ],
+    outcome:"Hak cipta bukan hanya soal moral — ada mekanisme hukum nyata yang dapat ditempuh pemegang hak. Pahami lisensi dengan benar di awal untuk menghindari seluruh proses ini."
+  },
+
+  openVsPropSpectrum: {
+    title: "Spektrum: Open Source Sepenuhnya ↔ Proprietary Sepenuhnya",
+    prompt: "Geser slider untuk menjelajahi lima titik di spektrum keterbukaan perangkat lunak. Setiap posisi membawa implikasi berbeda bagi bisnis, pengguna, dan komunitas pengembang.",
+    left: "Open Source Sepenuhnya",
+    right: "Proprietary Sepenuhnya",
+    stops: [
+      {
+        at:0,
+        label:"Copyleft Ketat (GPL)",
+        text:"Semua kode dan turunannya yang didistribusikan harus terbuka. Kebebasan menular ke setiap karya turunan. Contoh software: Linux Kernel, WordPress, GCC, VLC. Manfaat bisnis: komunitas kontributor besar, kepercayaan tinggi, tidak ada biaya lisensi. Risiko bisnis: tidak bisa dijadikan produk tertutup yang didistribusikan tanpa dual licensing atau membuka seluruh kode.",
+        risk:"Produk tertutup tidak boleh menyertakan kode GPL yang didistribusikan; risiko litigasi bila melanggar"
+      },
+      {
+        at:25,
+        label:"Open Source Permisif (MIT / Apache 2.0)",
+        text:"Kode terbuka dan boleh dipakai dalam produk tertutup komersial. Kewajiban utama hanya atribusi dan menyertakan teks lisensi. Contoh software: React, Angular, TensorFlow, Bootstrap, Kubernetes. Manfaat bisnis: adopsi maksimal, mudah diintegrasikan ke produk berbayar, ekosistem besar. Risiko bisnis: pesaing juga bebas memakai tanpa kewajiban berkontribusi balik.",
+        risk:"Pesaing dapat memanfaatkan kode tanpa kewajiban berbagi peningkatan yang mereka buat"
+      },
+      {
+        at:50,
+        label:"Source-Available (Bisa Dilihat, Tidak Bebas Dimodifikasi)",
+        text:"Kode sumber dapat dilihat publik, tetapi lisensinya membatasi penggunaan komersial atau distribusi. Contoh software: Elasticsearch dan Kibana setelah perubahan lisensi 2021, HashiCorp Vault (BSL). Manfaat bisnis: transparansi tanpa kehilangan kendali komersial penuh. Risiko bisnis: komunitas open source dapat membuat fork berlisensi bebas sebagai respons.",
+        risk:"Komunitas dapat membuat fork bebas — contoh: OpenSearch sebagai fork Elasticsearch setelah perubahan lisensi"
+      },
+      {
+        at:75,
+        label:"Freemium (Inti Gratis, Fitur Lanjut Berbayar)",
+        text:"Versi dasar gratis (kadang open source), fitur lanjut atau enterprise berbayar. Contoh software: Slack, GitHub, Notion, Dropbox, Figma, Zoom. Manfaat bisnis: akuisisi pengguna murah, monetisasi pengguna power, efek jaringan. Risiko bisnis: sulit mengonversi pengguna gratis ke berbayar, rentan disaingi alternatif open source penuh.",
+        risk:"Bergantung pada tingkat konversi pengguna gratis; fitur gratis yang terlalu baik mengurangi insentif upgrade"
+      },
+      {
+        at:100,
+        label:"Proprietary Tertutup (Kode Tidak Dapat Dilihat)",
+        text:"Kode tidak tersedia publik; hak penggunaan terbatas pada yang diizinkan EULA. Contoh software: Microsoft Office, Adobe Creative Suite, SAP, mayoritas game komersial. Manfaat bisnis: kendali penuh atas produk, perlindungan IP kuat, pendapatan lisensi stabil. Risiko bisnis: vendor lock-in bagi pengguna, pengguna tidak bisa memverifikasi keamanan kode secara independen.",
+        risk:"Vendor lock-in bagi pengguna; bergantung penuh pada kelangsungan vendor; reputasi bisa rusak bila ada celah keamanan tersembunyi"
+      }
+    ]
+  }
+};
+</script>
+
+
+<!-- ===== [SHARED:JS] — jangan ubah blok ini antar pertemuan ===== -->
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const K=PAGE.id+":";
+const store={get(k,d){try{const v=localStorage.getItem(K+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(K+k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const widgets=$$(".w[data-widget]"); const done=new Set(store.get("done",[]));
+function markDone(id){done.add(id);store.set("done",[...done]);const el=$("#"+id);if(el)el.classList.add("done");updateProgress()}
+function updateProgress(){const p=widgets.length?Math.round(done.size/widgets.length*100):0;$("#pbar").style.width=p+"%";$("#ppct").textContent=p+"%"}
+const body=(el)=>{const d=document.createElement("div");d.className="wb";el.appendChild(d);return d};
+
+/* ---------- Poll ---------- */
+function poll(el,c){const b=body(el);const saved=store.get(el.id,null);
+  b.innerHTML=`<h3>${esc(c.q)}</h3><div class="opts"></div><div class="fb"></div>`;
+  const o=$(".opts",b),fb=$(".fb",b);
+  c.opts.forEach((x,i)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=x.t;bt.onclick=()=>pick(i);o.appendChild(bt)});
+  function pick(i){$$(".opt",o).forEach((e,j)=>e.classList.toggle("sel",i===j));fb.className="fb show ok";fb.innerHTML="<b>Insight:</b> "+esc(c.opts[i].why);store.set(el.id,i);markDone(el.id)}
+  if(saved!==null)pick(saved)}
+
+/* ---------- Checklist ---------- */
+function checklist(el,c){const b=body(el);const st=store.get(el.id,[]);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="ckl"></div><div class="fb"></div>`;
+  const box=$(".ckl",b),fb=$(".fb",b);
+  c.items.forEach((t,i)=>{const l=document.createElement("label");l.innerHTML=`<input type="checkbox"><span>${esc(t)}</span>`;const cb=$("input",l);cb.checked=st.includes(i);cb.onchange=chk;box.appendChild(l)});
+  function chk(){const v=$$("input",box).map((x,i)=>x.checked?i:-1).filter(i=>i>=0);store.set(el.id,v);if(v.length===c.items.length){fb.className="fb show ok";fb.textContent=c.doneMsg||"Selesai.";markDone(el.id)}else fb.className="fb"}
+  chk()}
+
+/* ---------- Flashcards ---------- */
+function flash(el,c){const b=body(el);let i=0;const known=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="flash"><div class="flash-in"><div class="face f"></div><div class="face b"></div></div></div>
+  <div class="fc-ctl"><button class="btn ghost" data-a="prev">‹ Sebelumnya</button><span class="cnt"></span><button class="btn ghost" data-a="next">Berikutnya ›</button><button class="btn" data-a="know">Saya paham ✓</button></div>`;
+  const fl=$(".flash",b);
+  function draw(){const x=c.cards[i];$(".f",b).textContent=x.f;$(".b",b).textContent=x.b;fl.classList.remove("flip");$(".cnt",b).textContent=`${i+1}/${c.cards.length} · paham ${known.size}`}
+  fl.onclick=()=>fl.classList.toggle("flip");
+  b.onclick=e=>{const a=e.target.dataset.a;if(!a)return;if(a==="next")i=(i+1)%c.cards.length;if(a==="prev")i=(i-1+c.cards.length)%c.cards.length;if(a==="know"){known.add(i);store.set(el.id,[...known]);if(known.size===c.cards.length)markDone(el.id);i=(i+1)%c.cards.length}draw()};
+  draw();if(known.size===c.cards.length)markDone(el.id)}
+
+/* ---------- Classify ---------- */
+function classify(el,c){const b=body(el);let pick=null;const asg={};
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="cls-pool"></div><div class="cls-bins"></div>
+  <p><button class="btn" data-a="chk">Periksa</button> <button class="btn ghost" data-a="rst">Ulangi</button> <span class="score"></span></p><div class="fb"></div>`;
+  const pool=$(".cls-pool",b),bins=$(".cls-bins",b),fb=$(".fb",b);
+  c.bins.forEach((n,bi)=>{const d=document.createElement("div");d.className="bin";d.tabIndex=0;d.dataset.b=bi;d.innerHTML=`<h4>${esc(n)}</h4>`;bins.appendChild(d)});
+  function render(){pool.innerHTML="";$$(".bin .cls-item",bins).forEach(e=>e.remove());
+    c.items.forEach((x,i)=>{const e=document.createElement("button");e.className="cls-item";e.textContent=x.t;e.dataset.i=i;
+      if(pick===i)e.classList.add("pick");
+      if(asg[i]!==undefined)$$(".bin",bins)[asg[i]].appendChild(e);else pool.appendChild(e)})}
+  b.onclick=e=>{const it=e.target.closest(".cls-item");const bin=e.target.closest(".bin");const a=e.target.dataset.a;
+    if(a==="rst"){for(const k in asg)delete asg[k];pick=null;fb.className="fb";$(".score",b).textContent="";render();return}
+    if(a==="chk"){if(Object.keys(asg).length<c.items.length){fb.className="fb show";fb.textContent="Tempatkan semua kartu terlebih dahulu.";return}
+      let s=0,html="<ul>";c.items.forEach((x,i)=>{const ok=asg[i]===x.a;if(ok)s++;html+=`<li>${ok?"✓":"✗"} <b>${esc(x.t)}</b> → <em>${esc(c.bins[x.a])}</em>. ${esc(x.why)}</li>`});html+="</ul>";
+      $$(".cls-item",b).forEach(el2=>{el2.classList.add(asg[el2.dataset.i]===c.items[el2.dataset.i].a?"right":"wrong")});
+      $(".score",b).textContent=`Skor ${s}/${c.items.length}`;fb.className="fb show ok";fb.innerHTML=html;markDone(el.id);return}
+    if(it&&(pool.contains(it)||bins.contains(it))){const i=+it.dataset.i;if(asg[i]!==undefined&&!bin){delete asg[i]}pick=i;render();return}
+    if(bin&&pick!==null){asg[pick]=+bin.dataset.b;pick=null;render()}};
+  render()}
+
+/* ---------- Scenario ---------- */
+function scenario(el,c){const b=body(el);
+  function show(id){const n=c.nodes[id];
+    b.innerHTML=`<h3>${esc(c.title)}</h3><p class="scn-text">${esc(n.text)}</p>`;
+    if(n.end){b.insertAdjacentHTML("beforeend",`<div class="scn-end"><b>Tinjauan 3 kacamata:</b> ${esc(n.lens)}</div><p><button class="btn ghost">Coba jalur lain</button></p>`);$(".btn",b).onclick=()=>show(c.start);markDone(el.id)}
+    else{const o=document.createElement("div");o.className="opts";n.choices.forEach(ch=>{const x=document.createElement("button");x.className="opt";x.textContent=ch.t;x.onclick=()=>show(ch.to);o.appendChild(x)});b.appendChild(o)}}
+  show(c.start)}
+
+/* ---------- Reflection ---------- */
+function reflect(el,c){const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt)}</p><textarea placeholder="Tulis di sini…"></textarea><p><small>${esc(c.hint||"")}</small></p><p><button class="btn" data-a="cp">Salin jawaban</button> <span class="cnt"></span></p>`;
+  const ta=$("textarea",b);ta.value=store.get(el.id,"");
+  const upd=()=>{const n=ta.value.trim().split(/\s+/).filter(Boolean).length;$(".cnt",b).textContent=n+" kata";if(n>=15)markDone(el.id)};
+  ta.oninput=()=>{store.set(el.id,ta.value);upd()};
+  $("[data-a=cp]",b).onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText(ta.value).then(()=>{e.target.textContent="Tersalin ✓";setTimeout(()=>e.target.textContent="Salin jawaban",1500)})};
+  upd()}
+
+/* ---------- Quiz ---------- */
+function quiz(el,c){const b=body(el);const ans=[];let i=0;
+  function show(){if(i>=c.items.length)return fin();const x=c.items[i];
+    b.innerHTML=`<h3>${esc(c.title)} · ${i+1}/${c.items.length}</h3><p><b>${esc(x.q)}</b></p><div class="opts"></div><div class="fb"></div><p><button class="btn" disabled>Lanjut ›</button></p>`;
+    const o=$(".opts",b),fb=$(".fb",b),nx=$(".btn",b);
+    x.o.forEach((t,j)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=t;bt.onclick=()=>{if(ans[i]!==undefined)return;ans[i]=j;$$(".opt",o).forEach((e,k)=>{if(k===x.a)e.classList.add("right");else if(k===j)e.classList.add("wrong")});fb.className="fb show "+(j===x.a?"ok":"");fb.innerHTML=(j===x.a?"<b>Benar.</b> ":"<b>Belum tepat.</b> ")+esc(x.why);nx.disabled=false;nx.textContent=i===c.items.length-1?"Lihat skor":"Lanjut ›"};o.appendChild(bt)});
+    nx.onclick=()=>{i++;show()}}
+  function fin(){const s=c.items.filter((x,k)=>ans[k]===x.a).length;const p=Math.round(s/c.items.length*100);
+    store.set(el.id+":score",p);
+    b.innerHTML=`<h3>Hasil kuis</h3><p class="score">${s}/${c.items.length} (${p}%)</p><p>${p>=80?"Sangat baik. Pemahamanmu kuat.":p>=60?"Cukup. Ulas butir yang salah.":"Perlu ulang. Baca kembali segmen 2–4."}</p><p><button class="btn ghost">Ulangi kuis</button></p>`;
+    $(".btn",b).onclick=()=>{ans.length=0;i=0;show()};markDone(el.id)}
+  show()}
+
+const R={poll,checklist,flash,classify,scenario,reflect,quiz};
+window.EHC={$,$$,store,esc,markDone,body};
+widgets.forEach(el=>{const t=el.dataset.widget;if(R[t]&&PAGE[el.id])R[t](el,PAGE[el.id]);if(done.has(el.id))el.classList.add("done")});
+updateProgress();
+
+/* ---------- Agenda & scrollspy ---------- */
+const ag=$("#agenda");const segs=$$(".seg");
+segs.forEach((s,i)=>{const a=document.createElement("a");a.href="#"+s.id;a.innerHTML=`${esc(s.dataset.title)}`;ag.appendChild(a)});
+const links=$$("a",ag);
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}})},{rootMargin:"-30% 0px -60% 0px"});
+segs.forEach(s=>io.observe(s));
+
+})();
+</script>
+<!-- ===== [/SHARED:JS] ===== -->
+<script>
+/* ===== [SHARED:VIZ-JS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+(function(){
+"use strict";
+const E=window.EHC; if(!E){return}
+const {$,$$,store,esc,markDone,body}=E;
+const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+const arr=x=>x==null?[]:Array.isArray(x)?x:[x];
+const list=(a,tag="ul")=>`<${tag}>${arr(a).map(x=>`<li>${esc(x)}</li>`).join("")}</${tag}>`;
+
+/* =============== FLOW: animasi alur proses antar aktor =============== */
+/* cfg: {title, sub, actors:[{id,icon,name,x,y,role,state,badge}], zones:[{x,y,w,h,label}],
+         steps:[{title,text,from,to,packet,label,count,bad,set:{id:'safe|warn|danger|lock|active'|['danger','teks']},law,tip,risk}], outcome} */
+function flow(el,c,opt){
+  opt=opt||{};const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title||"")}</h3>${c.sub?`<p>${esc(c.sub)}</p>`:""}
+  <div class="v-stage"><svg class="v-lines" viewBox="0 0 100 100" preserveAspectRatio="none"></svg><div class="v-layer"></div></div>
+  <div class="v-ctl"><button class="btn ghost" data-a="rs" title="Ulang dari awal">Ulang</button><button class="btn ghost" data-a="pv">‹ Mundur</button><button class="btn" data-a="pl">Putar otomatis</button><button class="btn ghost" data-a="nx">Lanjut ›</button>
+  <label>Kecepatan <select data-a="sp"><option value="1.6">Lambat</option><option value="1" selected>Normal</option><option value="0.6">Cepat</option></select></label></div>
+  <div class="v-rail"></div><div class="v-cap" aria-live="polite"></div>`;
+  const stage=$(".v-stage",b),svg=$(".v-lines",b),layer=$(".v-layer",b),rail=$(".v-rail",b),cap=$(".v-cap",b),play=$("[data-a=pl]",b);
+  const A={},pos={};
+  (c.zones||[]).forEach(z=>{const d=document.createElement("div");d.className="v-zone";d.style.cssText=`left:${z.x}%;top:${z.y}%;width:${z.w}%;height:${z.h}%`;d.textContent=z.label||"";layer.appendChild(d)});
+  c.actors.forEach(a=>{pos[a.id]=a;const d=document.createElement("div");d.className="v-actor r-"+(a.role||"neutral");d.style.cssText=`left:${a.x}%;top:${a.y}%`;
+    d.innerHTML=`<div class="v-ico">${a.icon}</div><div class="v-name">${esc(a.name)}</div><div class="v-badge"></div>`;layer.appendChild(d);A[a.id]=d});
+  const seenPairs=new Set(),L={};
+  c.steps.forEach(s=>arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const k=f+">"+t;if(f===t||seenPairs.has(k))return;seenPairs.add(k);
+    const ln=document.createElementNS("http://www.w3.org/2000/svg","line");ln.setAttribute("x1",pos[f].x);ln.setAttribute("y1",pos[f].y);ln.setAttribute("x2",pos[t].x);ln.setAttribute("y2",pos[t].y);svg.appendChild(ln);L[k]=ln})));
+  c.steps.forEach((s,i)=>{const r=document.createElement("button");r.textContent=`${i+1}. ${s.short||s.title}`;r.onclick=()=>{halt();go(i,true)};rail.appendChild(r)});
+  let cur=-1,tm=[],auto=false,max=-1,sp=1;
+  const T=(fn,ms)=>{const id=setTimeout(fn,ms);tm.push(id);return id};
+  const clr=()=>{tm.forEach(clearTimeout);tm=[];$$(".v-packet",layer).forEach(p=>p.remove())};
+  function states(i){
+    c.actors.forEach(a=>setSt(a.id,a.state||"",a.badge||""));
+    for(let k=0;k<=i;k++){const st=c.steps[k].set||{};for(const id in st){const v=st[id];Array.isArray(v)?setSt(id,v[0],v[1]||""):setSt(id,v,"")}}}
+  function setSt(id,s,badge){const d=A[id];if(!d)return;d.className=d.className.replace(/\bs-\w+/g,"").trim();if(s)d.classList.add("s-"+s);$(".v-badge",d).textContent=badge}
+  function fire(s){
+    const dur=reduce?1:900*sp,n=s.count||1;let d=0;
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{ if(f===t)return;
+      for(let k=0;k<n;k++){T(()=>{const a=pos[f],z=pos[t],p=document.createElement("div");p.className="v-packet";p.style.cssText=`left:${a.x}%;top:${a.y}%;--dur:${dur}ms`;
+        p.innerHTML=(s.packet||"✉️")+(s.label&&k===0?`<span class="v-plabel">${esc(s.label)}</span>`:"");layer.appendChild(p);void p.offsetWidth;
+        p.style.left=z.x+"%";p.style.top=z.y+"%";T(()=>{p.style.opacity=0;T(()=>p.remove(),320)},dur)},d+k*240*sp)}
+      d+=90*sp}));
+    return dur+(n-1)*240*sp+d}
+  function go(i,animate){
+    if(i<0||i>=c.steps.length)return;clr();cur=i;max=Math.max(max,i);const s=c.steps[i];
+    states(i-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const l=L[f+">"+t];if(l){l.classList.add("on");if(s.bad)l.classList.add("bad")}}));
+    arr(s.from).forEach(f=>{A[f]&&A[f].classList.add("s-active")});
+    const after=animate?fire(s):0;
+    T(()=>{states(i);arr(s.from).forEach(f=>{});},animate?Math.min(after,1100*sp):0);
+    $$("button",rail).forEach((r,k)=>{r.classList.toggle("on",k===i);r.classList.toggle("seen",k<i||k<=max&&k!==i)});
+    cap.innerHTML=`<span class="v-num">Langkah ${i+1} / ${c.steps.length}</span><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p>`
+      +((s.law||s.tip||s.risk)?`<div class="v-chips">${s.risk?`<span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span>`:""}${s.law?`<span class="v-chip law"><b>Dasar hukum</b>${esc(s.law)}</span>`:""}${s.tip?`<span class="v-chip tip"><b>Tips</b>${esc(s.tip)}</span>`:""}</div>`:"")
+      +(i===c.steps.length-1&&c.outcome?`<div class="v-outcome">${esc(c.outcome)}</div>`:"");
+    if(i===c.steps.length-1&&!opt.silent)markDone(el.id);
+    return after}
+  function halt(){auto=false;play.textContent="Putar otomatis"}
+  function step(){if(!auto)return;if(cur>=c.steps.length-1){halt();return}const after=go(cur+1,true);T(step,after+2600*sp)}
+  b.addEventListener("click",e=>{const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==="rs"){halt();clr();cur=-1;states(-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));$$("button",rail).forEach(r=>r.className="");cap.innerHTML="<span class=\"v-num\">Siap</span><h4>Tekan “Putar otomatis” atau “Lanjut”</h4><p>Setiap langkah menampilkan apa yang terjadi, dasar hukumnya, dan cara memutus rantainya.</p>"}
+    if(a==="nx"){halt();go(Math.min(cur+1,c.steps.length-1),true)}
+    if(a==="pv"){halt();go(Math.max(cur-1,0),false)}
+    if(a==="pl"){if(auto){halt();return}auto=true;play.textContent="Jeda";if(cur>=c.steps.length-1){cur=-1}step()}
+  });
+  $("[data-a=sp]",b).onchange=e=>{sp=+e.target.value};
+  b.querySelector("[data-a=rs]").click();
+}
+
+/* =============== EXPLORER: peta jenis / konsep dengan detail =============== */
+/* cfg: {title, intro, items:[{id,icon,name,tag,summary,how[],ex,impact,law,prev[],flow:'kunciFlow'}]} */
+function explorer(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3>${c.intro?`<p>${esc(c.intro)}</p>`:""}<div class="v-grid"></div><div class="v-detail-wrap"><p class="v-hintp"><em>Klik salah satu kartu untuk membuka penjelasan, contoh, dasar hukum, dan cara pencegahannya.</em></p></div>`;
+  const grid=$(".v-grid",b),wrap=$(".v-detail-wrap",b);
+  c.items.forEach((it,i)=>{const t=document.createElement("button");t.className="v-tile"+(seen.has(i)?" seen":"");t.innerHTML=`<span class="ic">${it.icon}</span><b>${esc(it.name)}</b><small>${esc(it.tag||"")}</small>`;t.onclick=()=>open(i);grid.appendChild(t)});
+  function open(i,tab){const it=c.items[i];seen.add(i);store.set(el.id,[...seen]);
+    $$(".v-tile",grid).forEach((t,k)=>{t.classList.toggle("sel",k===i);if(seen.has(k))t.classList.add("seen")});
+    const tabs=[["ap","Apa itu",true],["how","Cara kerja",it.how],["ex","Contoh",it.ex],["im","Dampak",it.impact],["law","Dasar hukum",it.law],["pv","Pencegahan",it.prev]].filter(x=>x[2]);
+    tab=tab||"ap";
+    const pane={ap:()=>`<p>${esc(it.summary)}</p>`,how:()=>list(it.how,"ol"),ex:()=>Array.isArray(it.ex)?list(it.ex):`<p>${esc(it.ex)}</p>`,im:()=>Array.isArray(it.impact)?list(it.impact):`<p>${esc(it.impact)}</p>`,law:()=>Array.isArray(it.law)?list(it.law):`<p>${esc(it.law)}</p>`,pv:()=>list(it.prev)};
+    wrap.innerHTML=`<div class="v-detail"><h3><span style="font-size:1.8rem">${it.icon}</span>${esc(it.name)}</h3><div class="v-tabs">${tabs.map(t=>`<button data-t="${t[0]}" class="${t[0]===tab?"on":""}">${t[1]}</button>`).join("")}</div><div class="v-pane">${pane[tab]()}</div>${it.flow&&PAGE[it.flow]?`<div class="v-sub"><button class="btn" data-f="1">Lihat animasi prosesnya</button><div class="v-flowbox"></div></div>`:""}</div>`;
+    wrap.onclick=e=>{const t=e.target.dataset.t;if(t){open(i,t)}if(e.target.dataset.f){e.target.style.display="none";flow($(".v-flowbox",wrap),PAGE[it.flow],{silent:true})}};
+    if(seen.size===c.items.length)markDone(el.id)}
+  if(seen.size===c.items.length)markDone(el.id)
+}
+
+/* =============== MOCK: layar HP / email / web / postingan dengan titik klik =============== */
+/* cfg: {title, kind:'chat|email|web|post', header:{name,sub,avatar,from,to,subject,url}, messages:[{from,time,parts}], cta, stats,
+         hotspots:[{id,label,why,decoy}], instruct}
+   parts: array string | {t:'teks', h:'idHotspot'} */
+function mock(el,c){
+  const b=body(el);const found=new Set(store.get(el.id,[]));const real=c.hotspots.filter(h=>!h.decoy);const H={};c.hotspots.forEach(h=>H[h.id]=h);
+  const P=parts=>arr(parts).map(p=>typeof p==="string"?esc(p):`<span class="v-hot" data-h="${p.h}" tabindex="0" role="button">${esc(p.t)}</span>`).join("");
+  const h=c.header||{};let inner="";
+  if(c.kind==="email"){inner=`<div class="v-bar"><span>✉️</span><b>Kotak masuk</b></div><div class="v-meta"><div><b>Dari:</b> ${P(h.from)}</div><div><b>Kepada:</b> ${P(h.to)}</div><div><b>Subjek:</b> ${P(h.subject)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="web"){inner=`<div class="v-bar"><span>🔒</span><div class="v-url">${P(h.url)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="post"){inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}</div><div class="v-stats">${esc(c.stats||"")}</div>`}
+  else{inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-msgs">${c.messages.map(m=>`<div class="v-msg ${m.from==="me"?"me":""}">${P(m.parts)}${m.time?`<time>${esc(m.time)}</time>`:""}</div>`).join("")}</div>`}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.instruct||"Klik bagian yang menurutmu mencurigakan. Hati-hati: ada juga bagian yang tampak janggal tetapi wajar.")}</p>
+  <div class="v-mockwrap"><div class="v-phone"><div class="v-screen ${c.kind||"chat"}">${inner}</div></div>
+  <div><div class="v-spec-lbl"><span>Tanda bahaya ditemukan</span><span class="cnt"></span></div><div class="v-prog"><i></i></div><p><button class="btn ghost" data-a="hint">Tampilkan petunjuk</button> <button class="btn ghost" data-a="reset">Ulangi</button></p><div class="v-finds"></div></div></div>`;
+  const scr=$(".v-phone",b),fin=$(".v-finds",b);
+  function upd(){const n=[...found].filter(id=>!H[id].decoy).length;$(".cnt",b).textContent=`${n} / ${real.length}`;$(".v-prog i",b).style.width=(n/real.length*100)+"%";if(n===real.length)markDone(el.id)}
+  function mark(id){const hs=H[id];if(!hs)return;found.add(id);store.set(el.id,[...found]);$$(`[data-h="${id}"]`,b).forEach(x=>x.classList.add(hs.decoy?"decoy":"found"));
+    if(!$(`[data-f="${id}"]`,fin)){const d=document.createElement("div");d.className="v-find"+(hs.decoy?" ok":"");d.dataset.f=id;d.innerHTML=`<b>${hs.decoy?"Ini wajar":"Tanda bahaya: "+esc(hs.label)}</b>${esc(hs.why)}`;fin.appendChild(d)}upd()}
+  b.addEventListener("click",e=>{const x=e.target.closest(".v-hot");if(x){mark(x.dataset.h);return}if(e.target.dataset.a==="hint"){scr.classList.toggle("v-hint")}if(e.target.dataset.a==="reset"){found.clear();store.set(el.id,[]);$$(".v-hot",b).forEach(x=>x.classList.remove("found","decoy"));fin.innerHTML="";scr.classList.remove("v-hint");upd()}});
+  b.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList.contains("v-hot"))mark(e.target.dataset.h)});
+  found.forEach(id=>mark(id));upd();
+}
+
+/* =============== TIMELINE =============== */
+/* cfg: {title, events:[{when,title,text,icon,law}]} */
+function timeline(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));let cur=0;
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="v-tl"><div class="v-tl-track"></div></div><div class="v-cap"></div><p><button class="btn ghost" data-a="p">‹ Sebelumnya</button> <button class="btn" data-a="n">Berikutnya ›</button></p>`;
+  const tr=$(".v-tl-track",b),cap=$(".v-cap",b);
+  c.events.forEach((ev,i)=>{const p=document.createElement("button");p.className="v-tl-pt";p.innerHTML=`<span class="dot">${ev.icon||"•"}</span><span class="when">${esc(ev.when)}</span><span class="tt">${esc(ev.title)}</span>`;p.onclick=()=>show(i);tr.appendChild(p)});
+  function show(i){cur=i;seen.add(i);store.set(el.id,[...seen]);const ev=c.events[i];
+    $$(".v-tl-pt",tr).forEach((p,k)=>{p.classList.toggle("on",k===i);p.classList.toggle("seen",seen.has(k))});
+    const pt=$(".v-tl-pt",tr)[i],sc=tr.parentElement;if(pt&&sc&&sc.scrollTo){sc.scrollTo({left:pt.getBoundingClientRect().left-sc.getBoundingClientRect().left+sc.scrollLeft-sc.clientWidth/2+pt.offsetWidth/2,behavior:reduce?"auto":"smooth"})}
+    cap.innerHTML=`<span class="v-num">${esc(ev.when)}</span><h4>${esc(ev.title)}</h4><p>${esc(ev.text)}</p>${ev.law?`<div class="v-chips"><span class="v-chip law"><b>Dasar hukum</b>${esc(ev.law)}</span></div>`:""}`;
+    if(seen.size===c.events.length)markDone(el.id)}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="n")show(Math.min(cur+1,c.events.length-1));if(a==="p")show(Math.max(cur-1,0))});
+  show(0);
+}
+
+/* =============== SPECTRUM: geser untuk melihat trade-off =============== */
+/* cfg: {title, prompt, left, right, stops:[{at,label,text,risk}]} */
+function spectrum(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"")}</p><div class="v-spec"><div class="v-spec-lbl"><span>‹ ${esc(c.left)}</span><span>${esc(c.right)} ›</span></div><input type="range" min="0" max="100" value="50" aria-label="${esc(c.title)}">
+  <div class="v-spec-bars"><div><small>${esc(c.left)}</small><div class="bar"><i></i></div></div><div><small>${esc(c.right)}</small><div class="bar r"><i></i></div></div></div></div><div class="v-cap"></div>`;
+  const rg=$("input",b),cap=$(".v-cap",b),bl=$(".bar i",b),br=$(".bar.r i",b);
+  function upd(){const v=+rg.value;bl.style.width=(100-v)+"%";br.style.width=v+"%";
+    let best=0,d=1e9;c.stops.forEach((s,i)=>{const x=Math.abs(s.at-v);if(x<d){d=x;best=i}});const s=c.stops[best];
+    cap.innerHTML=`<span class="v-num">${esc(s.label)}</span><p>${esc(s.text)}</p>${s.risk?`<div class="v-chips"><span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span></div>`:""}`;
+    seen.add(best);store.set(el.id,[...seen]);if(seen.size>=Math.min(3,c.stops.length))markDone(el.id)}
+  rg.oninput=upd;upd();
+}
+
+/* =============== ORDER: urutkan langkah =============== */
+/* cfg: {title, prompt, items:[{t,why}]} dalam urutan benar */
+function order(el,c){
+  const b=body(el);const n=c.items.length;
+  const idx=c.items.map((_,i)=>i);const sh=idx.map((_,i)=>idx[(i*3+2)%n]).filter((v,i,a)=>a.indexOf(v)===i);idx.forEach(i=>{if(!sh.includes(i))sh.push(i)});
+  let pool=sh.slice(),ans=[];if(pool.every((v,i)=>v===i)){pool.reverse()}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"Klik langkah satu per satu sesuai urutan yang benar. Klik langkah di kolom jawaban untuk membatalkannya.")}</p><div class="v-ord"><div><h4>Langkah acak</h4><div class="col pool"></div></div><div><h4>Urutan kamu</h4><div class="col ans"></div></div></div><p><button class="btn" data-a="chk" disabled>Periksa urutan</button> <button class="btn ghost" data-a="rst">Ulangi</button></p><div class="fb"></div>`;
+  const P=$(".pool",b),Aw=$(".ans",b),chk=$("[data-a=chk]",b),fb=$(".fb",b);
+  function draw(res){P.innerHTML="";Aw.innerHTML="";pool.forEach(i=>{const x=document.createElement("button");x.className="it";x.textContent=c.items[i].t;x.onclick=()=>{ans.push(i);pool=pool.filter(v=>v!==i);fb.className="fb";draw()};P.appendChild(x)});
+    ans.forEach((i,k)=>{const x=document.createElement("button");x.className="it"+(res?(i===k?" right":" wrong"):"");x.innerHTML=`<i>${k+1}</i>`+esc(c.items[i].t);x.onclick=()=>{if(res)return;ans=ans.filter(v=>v!==i);pool.push(i);draw()};Aw.appendChild(x)});
+    chk.disabled=pool.length>0}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="rst"){pool=sh.slice();ans=[];fb.className="fb";draw()}
+    if(a==="chk"){const ok=ans.filter((v,k)=>v===k).length;draw(true);fb.className="fb show"+(ok===n?" ok":"");fb.innerHTML=`<b>${ok}/${n} posisi tepat.</b><ol>${c.items.map(x=>`<li>${esc(x.t)}${x.why?`: ${esc(x.why)}`:""}</li>`).join("")}</ol>`;markDone(el.id)}});
+  draw();
+}
+
+/* ---------- registrasi ---------- */
+const V={flow,explorer,mock,timeline,spectrum,order};
+$$(".w[data-widget]").forEach(el=>{const t=el.dataset.widget;if(V[t]&&PAGE[el.id])V[t](el,PAGE[el.id])});
+/* reveal on scroll */
+if(!reduce&&"IntersectionObserver" in window){document.documentElement.classList.add("reveal-on");
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{rootMargin:"0px 0px -8% 0px"});
+  $$(".seg").forEach(s=>io.observe(s));
+  setTimeout(()=>$$(".seg").forEach(s=>s.classList.add("in")),2500)}
+})();
+/* ===== [/SHARED:VIZ-JS] ===== */
+</script>
+
+</body>
+</html>

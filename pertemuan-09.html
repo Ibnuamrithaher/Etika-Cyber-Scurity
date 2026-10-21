@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pertemuan 9 — Kejahatan Siber II: Manipulasi Sosial & Finansial | Etika Hukum Cyber</title>
+<style>
+/* ===== [SHARED:CSS] — jangan ubah blok ini antar pertemuan, kecuali --accent ===== */
+:root{
+  --accent:#be123c; --accent-soft:#ffe4e6; --accent-ink:#881337;
+  --bg:#f6f7f4; --card:#ffffff; --ink:#1c2321; --muted:#5b6762; --line:#dfe4e0;
+  --ok:#15803d; --ok-soft:#dcfce7; --bad:#b91c1c; --bad-soft:#fee2e2; --warn:#b45309; --warn-soft:#fef3c7;
+  --radius:14px; --shadow:0 1px 2px rgba(20,30,25,.06),0 6px 20px rgba(20,30,25,.06);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16.5px}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;letter-spacing:-.01em}
+h2{font-size:1.55rem} h3{font-size:1.15rem} p{margin:.6em 0}
+a{color:var(--accent)}
+button{font:inherit;cursor:pointer}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(246,247,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-weight:700;font-size:.95rem;white-space:nowrap}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
+.progress{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress>i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+.pct{font-size:.85rem;font-weight:700;min-width:42px;text-align:right}
+.tbtn{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 12px;font-size:.82rem;font-weight:600}
+.tbtn[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.layout{max-width:1180px;margin:0 auto;padding:24px 20px 80px;display:grid;grid-template-columns:230px 1fr;gap:28px}
+nav.agenda{position:sticky;top:76px;align-self:start;max-height:calc(100vh - 96px);overflow:auto}
+nav.agenda h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+nav.agenda a{display:block;text-decoration:none;color:var(--ink);padding:8px 10px;border-radius:10px;font-size:.88rem;border-left:3px solid transparent}
+nav.agenda a span{display:block;font-size:.72rem;color:var(--muted)}
+nav.agenda a:hover{background:var(--card)}
+nav.agenda a.active{background:var(--accent-soft);border-left-color:var(--accent);font-weight:600}
+.hero{background:linear-gradient(135deg,var(--accent-ink),var(--accent));color:#fff;border-radius:22px;padding:34px 34px 28px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border-radius:99px;padding:3px 12px;font-size:.78rem;font-weight:600;letter-spacing:.04em}
+.hero h1{font-size:2.05rem;margin:.5em 0 .3em}
+.hero p{max-width:62ch;opacity:.92}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:18px}
+.meta div{background:rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;font-size:.84rem}
+.meta b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;opacity:.75}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:16px 0;box-shadow:var(--shadow)}
+.seg{margin:34px 0}
+.seg-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.seg-head .num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.seg-head h2{margin:0;flex:1;min-width:200px}
+.chip{display:inline-block;background:var(--accent-soft);color:var(--accent-ink);border-radius:99px;padding:3px 11px;font-size:.76rem;font-weight:700}
+.chip.act{background:#ede9fe;color:#5b21b6}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);color:var(--accent-ink);border-radius:0 12px 12px 0;padding:12px 16px;margin:14px 0}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft);color:#78350f}
+.callout.law{border-color:#1d4ed8;background:#dbeafe;color:#1e3a8a}
+.callout b.t{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfdfc}
+.mini h3{margin-bottom:.3em}
+table.t{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
+table.t th,table.t td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+table.t th{background:var(--accent-soft);color:var(--accent-ink)}
+.tablewrap{overflow-x:auto}
+details.acc{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:#fff}
+details.acc summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details.acc summary::after{content:"+";font-weight:700;color:var(--accent)}
+details.acc[open] summary::after{content:"–"}
+details.acc>div{padding:0 16px 14px}
+/* interactive widgets */
+.w{border:2px solid var(--accent);border-radius:var(--radius);padding:20px 22px;margin:18px 0;background:#fff;position:relative}
+.w>.w-label{position:absolute;top:-12px;left:16px;background:var(--accent);color:#fff;border-radius:99px;font-size:.72rem;font-weight:700;padding:2px 12px;letter-spacing:.05em;text-transform:uppercase}
+.w.done{border-color:var(--ok)} .w.done>.w-label{background:var(--ok)}
+.w h3{margin-top:.2em}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 18px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.opts{display:grid;gap:8px;margin:12px 0}
+.opt{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px}
+.opt:hover{border-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--warn-soft);color:#78350f;font-size:.93rem;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--ok-soft);color:#14532d}
+.flash{perspective:900px;max-width:520px;margin:12px auto}
+.flash-in{position:relative;min-height:190px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.flash.flip .flash-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:22px;display:grid;place-items:center;text-align:center;font-size:1.05rem}
+.face.f{background:var(--accent);color:#fff;font-weight:700;font-size:1.25rem}
+.face.b{background:var(--accent-soft);color:var(--accent-ink);transform:rotateY(180deg)}
+.fc-ctl{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.cls-pool,.cls-bins{display:grid;gap:10px}
+.cls-bins{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:14px}
+.cls-item{border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;text-align:left}
+.cls-item.pick{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.cls-item.right{border-color:var(--ok);background:var(--ok-soft)}
+.cls-item.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.bin{border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:110px;cursor:pointer;background:#fcfdfc}
+.bin:hover{border-color:var(--accent)}
+.bin h4{font-size:.9rem;margin:0 0 8px;color:var(--accent-ink)}
+.bin .cls-item{margin-bottom:6px;font-size:.88rem;cursor:pointer}
+.scn-text{font-size:1.02rem}
+.scn-end{border-radius:12px;padding:14px 16px;background:var(--accent-soft);color:var(--accent-ink);margin-top:10px}
+textarea{width:100%;min-height:96px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;resize:vertical}
+textarea:focus,.opt:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+.score{font-size:1.4rem;font-weight:800;color:var(--accent)}
+.ckl label{display:flex;gap:10px;align-items:flex-start;padding:7px 4px;cursor:pointer}
+.ckl input{margin-top:.38em;accent-color:var(--accent)}
+.bars .bar{margin:8px 0}
+.bars .bar>div{height:26px;border-radius:8px;background:var(--accent-soft);position:relative;overflow:hidden}
+.bars .bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);opacity:.85;width:0;transition:width .5s}
+.bars .bar span{position:absolute;left:10px;top:2px;font-size:.84rem;font-weight:600;color:#0b1f1c;z-index:1}
+.refs li{margin:.5em 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 0 10px}
+@media(max-width:860px){.layout{grid-template-columns:1fr}nav.agenda{display:none}.hero h1{font-size:1.6rem}.brand small{display:none}}
+@media print{.topbar,nav.agenda{display:none!important}.layout{display:block}.card,.w{box-shadow:none;break-inside:avoid}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* ===== [/SHARED:CSS] ===== */
+/* ===== [SHARED:VIZ-CSS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+/* hero hidup */
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 88% 15%,rgba(255,255,255,.22),transparent 42%),radial-gradient(circle at 8% 95%,rgba(255,255,255,.12),transparent 40%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:linear-gradient(115deg,transparent 30%,#000);mask-image:linear-gradient(115deg,transparent 30%,#000);animation:v-grid 22s linear infinite}
+.hero>*{position:relative;z-index:1}
+@keyframes v-grid{to{background-position:36px 36px}}
+/* reveal saat scroll */
+.reveal-on .seg{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal-on .seg.in{opacity:1;transform:none}
+.seg-head .num{box-shadow:0 0 0 5px var(--accent-soft)}
+
+/* ---------- STAGE (flow) ---------- */
+.v-stage{position:relative;aspect-ratio:2/1;min-height:300px;border-radius:16px;overflow:hidden;color:#e8eefc;
+  background:#0a1120;background-image:radial-gradient(ellipse at 50% -10%,#1b2d57 0,transparent 62%),linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:auto,30px 30px,30px 30px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 10px 30px rgba(10,17,32,.28)}
+.v-lines{position:absolute;inset:0;width:100%;height:100%}
+.v-lines line{stroke:rgba(255,255,255,.16);stroke-width:1.5;stroke-dasharray:4 5;vector-effect:non-scaling-stroke;transition:stroke .4s}
+.v-lines line.on{stroke:#7dd3fc;stroke-width:2.5;stroke-dasharray:6 6;animation:v-dash 1s linear infinite}
+.v-lines line.on.bad{stroke:#fb7185}
+@keyframes v-dash{to{stroke-dashoffset:-24}}
+.v-actor{position:absolute;transform:translate(-50%,-50%);width:104px;text-align:center;z-index:2}
+.v-ico{width:60px;height:60px;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;font-size:29px;background:#16213b;border:2px solid #3a4a70;transition:border-color .4s,box-shadow .4s,background .4s,transform .3s}
+.v-name{font-size:.74rem;font-weight:700;line-height:1.15;text-shadow:0 1px 3px #000}
+.v-badge{display:inline-block;margin-top:3px;font-size:.64rem;font-weight:700;padding:1px 8px;border-radius:99px;background:rgba(255,255,255,.12);color:#e8eefc;min-height:0;transition:background .3s}
+.v-badge:empty{display:none}
+.v-actor.r-attacker .v-ico{border-color:#fb7185;background:#2a1220}
+.v-actor.r-victim .v-ico{border-color:#38bdf8}
+.v-actor.s-safe .v-ico{border-color:#4ade80;box-shadow:0 0 20px #4ade8070}
+.v-actor.s-safe .v-badge{background:#14532d}
+.v-actor.s-warn .v-ico{border-color:#fbbf24;box-shadow:0 0 22px #fbbf2480;animation:v-pulse 1.4s infinite}
+.v-actor.s-warn .v-badge{background:#78350f}
+.v-actor.s-danger .v-ico{border-color:#f43f5e;background:#3a1020;box-shadow:0 0 26px #f43f5e90;animation:v-shake .5s 2,v-pulse 1.4s .5s infinite}
+.v-actor.s-danger .v-badge{background:#881337}
+.v-actor.s-lock .v-ico{border-color:#a78bfa;background:#231a45;box-shadow:0 0 22px #a78bfa80}
+.v-actor.s-lock .v-badge{background:#4c1d95}
+.v-actor.s-active .v-ico{border-color:#7dd3fc;box-shadow:0 0 22px #7dd3fc80;transform:scale(1.08)}
+@keyframes v-pulse{50%{box-shadow:0 0 34px currentColor}}
+@keyframes v-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.v-packet{position:absolute;transform:translate(-50%,-50%);font-size:22px;z-index:3;pointer-events:none;
+  transition:left var(--dur,1000ms) cubic-bezier(.5,0,.3,1),top var(--dur,1000ms) cubic-bezier(.5,0,.3,1),opacity .3s;filter:drop-shadow(0 0 7px rgba(125,211,252,.9))}
+.v-plabel{position:absolute;left:50%;top:-20px;transform:translateX(-50%);white-space:nowrap;font-size:.64rem;font-weight:700;background:#0b1220;border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:1px 6px;color:#e8eefc}
+.v-zone{position:absolute;border:1.5px dashed rgba(255,255,255,.22);border-radius:14px;z-index:1;font-size:.64rem;color:rgba(255,255,255,.55);padding:3px 9px;pointer-events:none}
+.v-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 8px}
+.v-ctl .btn{padding:7px 14px}
+.v-ctl select{font:inherit;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#fff}
+.v-rail{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px}
+.v-rail button{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.78rem;font-weight:600;color:var(--muted)}
+.v-rail button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.v-rail button.seen{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+.v-cap{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:12px 16px;background:#fcfdfc;min-height:96px}
+.v-cap .v-num{font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.v-cap h4{margin:.1em 0 .25em;font-size:1.05rem}
+.v-cap p{margin:.3em 0}
+.v-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.v-chip{border-radius:10px;padding:5px 10px;font-size:.82rem;line-height:1.4}
+.v-chip.law{background:#dbeafe;color:#1e3a8a}
+.v-chip.tip{background:var(--ok-soft);color:#14532d}
+.v-chip.risk{background:var(--bad-soft);color:#7f1d1d}
+.v-outcome{margin-top:10px;border-radius:12px;padding:12px 16px;background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+
+/* ---------- EXPLORER ---------- */
+.v-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:10px;margin:12px 0}
+.v-tile{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:14px 10px;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+.v-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--accent)}
+.v-tile .ic{font-size:2rem;display:block;margin-bottom:4px}
+.v-tile b{display:block;font-size:.9rem;line-height:1.2}
+.v-tile small{color:var(--muted);font-size:.72rem}
+.v-tile.sel{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 0 3px var(--accent-soft)}
+.v-tile.seen::after{content:"✓";position:absolute;top:6px;right:9px;color:var(--ok);font-weight:800}
+.v-detail{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fcfdfc;animation:v-in .35s}
+@keyframes v-in{from{opacity:0;transform:translateY(8px)}}
+.v-detail h3{display:flex;align-items:center;gap:10px}
+.v-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.v-tabs button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:4px 12px;font-size:.8rem;font-weight:600}
+.v-tabs button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.v-pane ul,.v-pane ol{margin:.3em 0 .3em 1.2em;padding:0}
+.v-pane li{margin:.3em 0}
+.v-sub{margin-top:12px}
+
+/* ---------- MOCK (layar HP / email / web / post) ---------- */
+.v-mockwrap{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:18px;align-items:start}
+.v-phone{background:#0f172a;border-radius:30px;padding:10px;box-shadow:0 14px 34px rgba(15,23,42,.3);max-width:360px;width:100%;margin:0 auto}
+.v-screen{background:#f3f4f6;border-radius:22px;overflow:hidden;min-height:380px;display:flex;flex-direction:column;font-size:.9rem}
+.v-bar{background:#0f766e;color:#fff;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.v-bar .av{width:34px;height:34px;border-radius:50%;background:#ffffff33;display:grid;place-items:center;font-size:1.1rem}
+.v-bar b{display:block;font-size:.9rem;line-height:1.1}.v-bar small{opacity:.8;font-size:.7rem}
+.v-msgs{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1;background:#e5ded5}
+.v-msg{max-width:84%;padding:8px 11px;border-radius:12px;background:#fff;box-shadow:0 1px 1px rgba(0,0,0,.12);line-height:1.45}
+.v-msg.me{align-self:flex-end;background:#d9fdd3}
+.v-msg time{display:block;text-align:right;font-size:.62rem;color:#6b7280;margin-top:2px}
+.v-screen.email,.v-screen.web,.v-screen.post{background:#fff}
+.v-screen.email .v-bar{background:#334155}.v-screen.web .v-bar{background:#e5e7eb;color:#111827}.v-screen.post .v-bar{background:#1d4ed8}
+.v-url{background:#fff;border:1px solid #d1d5db;border-radius:99px;padding:5px 12px;flex:1;font-size:.76rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.v-body{padding:14px 16px;flex:1}.v-body p{margin:.55em 0}
+.v-meta{padding:8px 16px;border-bottom:1px solid #e5e7eb;font-size:.78rem;color:#4b5563}
+.v-meta b{color:#111827}
+.v-cta{display:inline-block;background:#2563eb;color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;margin-top:6px}
+.v-stats{padding:8px 16px;border-top:1px solid #e5e7eb;font-size:.78rem;color:#6b7280}
+.v-hot{cursor:pointer;border-radius:4px;transition:background .2s,box-shadow .2s;border-bottom:2px dotted transparent}
+.v-hint .v-hot{border-bottom-color:#f59e0b;animation:v-blink 1.4s infinite}
+@keyframes v-blink{50%{background:#fde68a}}
+.v-hot:hover{background:#fde68a}
+.v-hot.found{background:#fecaca;box-shadow:0 0 0 2px #ef4444;border-radius:4px;animation:none}
+.v-hot.decoy{background:#dcfce7;box-shadow:0 0 0 2px #22c55e;animation:none}
+.v-finds{display:grid;gap:8px}
+.v-find{border-left:4px solid var(--bad);background:var(--bad-soft);border-radius:0 10px 10px 0;padding:8px 12px;font-size:.88rem;animation:v-in .3s}
+.v-find.ok{border-color:var(--ok);background:var(--ok-soft)}
+.v-find b{display:block}
+.v-prog{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+.v-prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+
+/* ---------- TIMELINE ---------- */
+.v-tl{position:relative;margin:14px 0 6px;overflow-x:auto;padding:22px 6px 10px}
+.v-tl-track{display:flex;gap:0;min-width:max-content;position:relative}
+.v-tl-track::before{content:"";position:absolute;left:30px;right:30px;top:15px;height:4px;background:var(--line);border-radius:4px}
+.v-tl-pt{width:128px;text-align:center;position:relative;background:none;border:0;padding:0 4px}
+.v-tl-pt .dot{width:34px;height:34px;margin:0 auto 6px;border-radius:50%;background:#fff;border:3px solid var(--line);display:grid;place-items:center;position:relative;z-index:1;transition:all .25s;font-size:1rem}
+.v-tl-pt .when{display:block;font-weight:800;font-size:.8rem;color:var(--accent-ink)}
+.v-tl-pt .tt{display:block;font-size:.74rem;color:var(--muted);line-height:1.25}
+.v-tl-pt.seen .dot{border-color:var(--accent)}
+.v-tl-pt.on .dot{background:var(--accent);border-color:var(--accent);transform:scale(1.25);box-shadow:0 0 0 6px var(--accent-soft)}
+
+/* ---------- SPECTRUM ---------- */
+.v-spec-lbl{display:flex;justify-content:space-between;font-weight:700;font-size:.9rem}
+.v-spec input[type=range]{width:100%;accent-color:var(--accent);margin:10px 0 4px;height:28px}
+.v-spec-bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.v-spec-bars .bar{height:14px;background:var(--line);border-radius:99px;overflow:hidden}
+.v-spec-bars .bar i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.v-spec-bars .bar.r i{background:#ea580c}
+
+/* ---------- ORDER ---------- */
+.v-ord{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.v-ord h4{margin:0 0 6px;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.v-ord .col{display:grid;gap:6px;align-content:start;min-height:80px}
+.v-ord .it{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:.9rem}
+.v-ord .it:hover{border-color:var(--accent)}
+.v-ord .it.right{border-color:var(--ok);background:var(--ok-soft)}.v-ord .it.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.v-ord .it i{font-style:normal;font-weight:800;color:var(--accent);margin-right:6px}
+@media(max-width:760px){.v-mockwrap,.v-ord{grid-template-columns:1fr}.v-stage{min-height:340px;aspect-ratio:1.25/1}.v-actor{width:84px}.v-ico{width:50px;height:50px;font-size:24px}}
+@media print{.reveal-on .seg{opacity:1!important;transform:none!important}}
+@media(prefers-reduced-motion:reduce){.hero::after,.v-actor .v-ico,.v-lines line.on,.v-hint .v-hot{animation:none!important}.reveal-on .seg{opacity:1;transform:none}}
+/* ===== [/SHARED:VIZ-CSS] ===== */
+
+</style>
+</head>
+<body>
+
+<header class="topbar"><div class="topbar-in">
+  <div class="brand">Etika Hukum Cyber<small>Pertemuan 9 dari 16</small></div>
+  <div class="progress" title="Progres aktivitas"><i id="pbar"></i></div>
+  <div class="pct" id="ppct">0%</div>
+</div></header>
+
+<div class="layout">
+<nav class="agenda" id="agenda" aria-label="Agenda"><h4>Agenda</h4></nav>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <span class="tag">PERTEMUAN 9 · MINGGU 9</span>
+  <h1>Kejahatan Siber II: Phishing, Rekayasa Sosial, Pencurian Identitas, Penipuan Daring, dan Cyberbullying</h1>
+  <p>Pertemuan 7 membahas serangan yang menyasar sistem. Hari ini kita membahas serangan yang menyasar <b>manusianya</b>: dibujuk, ditakuti, atau dibuat tergesa-gesa sampai menyerahkan uang, kode, dan data sendiri. Kamu akan berlatih membedah modus, memilah pesan asli dan palsu, serta menyusun langkah respons bila menjadi korban.</p>
+  <div class="meta">
+    <div><b>Program Studi</b>Bisnis Digital</div>
+    <div><b>Dosen</b>Ibnu Amri Thaher</div>
+    <div><b>Waktu</b>100 menit · Teori</div>
+    <div><b>Metode</b>Kuliah & Diskusi</div>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Capaian pertemuan ini</h3>
+  <p><span class="chip">CPMK-3</span> Menganalisis berbagai bentuk kejahatan siber beserta dasar hukum dan dampaknya terhadap bisnis digital.</p>
+  <p><b>Kemampuan akhir:</b> mengidentifikasi bentuk kejahatan siber berorientasi manipulasi sosial dan finansial.</p>
+  <p><b>Indikator penilaian:</b> ketajaman analisis modus kejahatan siber finansial.</p>
+  <p>Setelah sesi ini kamu mampu: (1) menjelaskan rekayasa sosial dan prinsip persuasi yang dieksploitasinya; (2) membedakan phishing, smishing, vishing, dan spear phishing; (3) mengenali ciri (<em>red flags</em>) pesan penipuan dan menilai pesan fiktif secara tajam; (4) menjelaskan pencurian identitas, penipuan daring, dan cyberbullying beserta unsur hukumnya secara garis besar; (5) menyusun langkah respons bagi korban penipuan OTP.</p>
+</section>
+
+<!-- ===================== SEGMEN 1 ===================== -->
+<section class="seg" id="s1" data-title="Apersepsi & Pemantik" data-min="0–10" data-dur="10">
+  <div class="seg-head"><div class="num">1</div><h2>Apersepsi: Dari UTS ke Paruh Kedua</h2></div>
+
+  <div class="card">
+    <h3>Melihat kembali: yang sudah kita punya, yang akan kita pakai</h3>
+    <p>UTS adalah titik tengah semester. Hasilnya bukan sekadar nilai, tetapi umpan balik: konsep mana yang sudah kokoh dan mana yang perlu diperkuat sebelum kita masuk ke topik yang lebih teknis dan lebih dekat dengan bisnis digital. Kamu akan memakai alat-alat dari paruh pertama untuk membedah kejahatan siber hari ini.</p>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Bekal paruh pertama</th><th>Dipakai hari ini untuk…</th></tr>
+      <tr><td>Etika vs moral vs hukum (Minggu 1–2)</td><td>Menilai: penipu melanggar hukum, tetapi apa yang etis dilakukan korban, saksi, dan platform?</td></tr>
+      <tr><td>Privasi & pelindungan data pribadi (Minggu 4)</td><td>Memahami bagaimana data bocor menjadi bahan baku pencurian identitas dan penipuan terarah.</td></tr>
+      <tr><td>UU ITE dan perubahannya (Minggu 6)</td><td>Menemukan dasar hukum untuk penipuan daring, manipulasi informasi, dan perundungan.</td></tr>
+      <tr><td>Cybercrime sistem/teknis (Minggu 7)</td><td>Membandingkan: serangan ke mesin vs serangan ke manusia.</td></tr>
+    </table></div>
+    <div class="callout"><b class="t">Arah paruh kedua</b>Minggu 9 (hari ini) kejahatan manipulasi sosial dan finansial; lalu e-commerce, AI, keamanan siber, yurisdiksi internasional, tata kelola siber; Minggu 15 bedah kasus terpadu; Minggu 16 UAS. Pola kerjanya sama, tetapi tuntutan analisisnya lebih tinggi: kamu diminta menilai, bukan sekadar menghafal.</div>
+  </div>
+
+  <div class="w" data-widget="poll" id="poll1"><span class="w-label">Pemantik · Refleksi UTS</span></div>
+</section>
+
+<!-- ===================== SEGMEN 2 ===================== -->
+<section class="seg" id="s2" data-title="Materi: Phishing & Rekayasa Sosial" data-min="10–32" data-dur="22">
+  <div class="seg-head"><div class="num">2</div><h2>Materi: Rekayasa Sosial dan Phishing</h2></div>
+
+  <div class="card">
+    <h3>Rekayasa sosial: meretas manusia, bukan mesin</h3>
+    <p><b>Rekayasa sosial</b> (<em>social engineering</em>) adalah teknik memanipulasi orang agar memberikan informasi, uang, atau akses yang seharusnya tidak mereka berikan. Kevin Mitnick (2002) dalam <i>The Art of Deception</i> menggambarkan bahwa banyak pembobolan berhasil bukan karena sistemnya lemah, tetapi karena orangnya dibujuk. Untuk bisnis digital ini penting: firewall paling mahal tidak berguna bila karyawan menyerahkan kata sandi lewat telepon.</p>
+    <p><b>Phishing</b> adalah bentuk rekayasa sosial paling umum: pelaku menyamar sebagai pihak tepercaya (bank, kurir, kampus, atasan, instansi) untuk memancing korban membuka tautan palsu, memasang berkas berbahaya, atau menyerahkan data sensitif seperti PIN, kata sandi, dan OTP (<em>one-time password</em>, kode sekali pakai).</p>
+    <div class="callout"><b class="t">Mengapa berhasil</b>Penipu hampir selalu menciptakan kombinasi tiga hal: <b>urgensi</b> ("1 jam lagi diblokir"), <b>otoritas/identitas palsu</b> ("petugas bank"), dan <b>permintaan tindakan</b> ("klik/kirim kode sekarang"). Tujuannya membuat korban berhenti berpikir.</div>
+  </div>
+
+  <div class="card">
+    <h3>Prinsip persuasi yang dieksploitasi (Cialdini, 2009)</h3>
+    <p>Robert Cialdini dalam <i>Influence</i> menjelaskan prinsip-prinsip yang membuat orang mudah dipengaruhi. Prinsip yang sama dipakai pemasar jujur, tetapi juga disalahgunakan penipu.</p>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Prinsip</th><th>Inti</th><th>Contoh pada penipuan (ilustrasi)</th></tr>
+      <tr><td><b>Otoritas</b></td><td>Kita patuh pada yang tampak berwenang</td><td>"Kami dari petugas bank/kepolisian/pajak"</td></tr>
+      <tr><td><b>Kelangkaan & urgensi</b></td><td>Yang langka atau mendesak terasa berharga</td><td>"Hanya 10 kuota, bayar dalam 15 menit"</td></tr>
+      <tr><td><b>Bukti sosial</b></td><td>Kita meniru banyak orang</td><td>Testimoni dan tangkapan layar "untung besar" di grup investasi</td></tr>
+      <tr><td><b>Timbal balik</b></td><td>Kita merasa berutang setelah diberi sesuatu</td><td>Hadiah kecil atau "bonus" gratis sebelum diminta setor dana</td></tr>
+      <tr><td><b>Komitmen & konsistensi</b></td><td>Setelah setuju kecil, kita sulit menolak yang lebih besar</td><td>Tugas kecil dibayar dulu, lalu diminta "deposit" makin besar</td></tr>
+      <tr><td><b>Kesukaan</b></td><td>Kita menuruti orang yang kita sukai</td><td>Kenalan daring yang manis lalu meminta pinjaman</td></tr>
+    </table></div>
+    <p><small>Catatan: Cialdini kemudian menambahkan prinsip ketujuh (<em>unity</em>/kebersamaan) dalam karyanya yang lebih baru; untuk kuliah ini enam prinsip di atas cukup.</small></p>
+  </div>
+
+  <div class="card">
+    <h3>Peta varian phishing</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Varian</th><th>Saluran</th><th>Ciri khas</th></tr>
+      <tr><td><b>Phishing massal</b></td><td>Email</td><td>Dikirim ke ribuan orang sekaligus; desain meniru merek; bahasa sering generik</td></tr>
+      <tr><td><b>Smishing</b></td><td>SMS / chat</td><td>Pesan pendek berisi tautan atau berkas; sering berkedok paket, tagihan, atau hadiah</td></tr>
+      <tr><td><b>Vishing</b></td><td>Telepon</td><td>Penelepon berpura-pura petugas; memakai tekanan suara dan skrip; meminta OTP</td></tr>
+      <tr><td><b>Spear phishing</b></td><td>Email / chat</td><td>Ditargetkan ke satu orang atau perusahaan memakai data pribadi nyata, sehingga terasa meyakinkan</td></tr>
+      <tr><td><b>Whaling / BEC</b></td><td>Email / chat</td><td>Menyamar sebagai pimpinan atau vendor untuk meminta transfer; disebut <em>business email compromise</em></td></tr>
+      <tr><td><b>Quishing</b></td><td>Kode QR</td><td>QR palsu yang mengarah ke laman tiruan; korban tidak melihat alamat sebelum memindai</td></tr>
+      <tr><td><b>Aplikasi / berkas berbahaya</b></td><td>Chat</td><td>Korban dibujuk memasang berkas pemasangan aplikasi (mis. berformat .apk) dari luar toko resmi; modus ini marak dilaporkan di Indonesia</td></tr>
+    </table></div>
+    <details class="acc"><summary>Tahapan khas serangan rekayasa sosial</summary><div>
+      <ol><li><b>Riset</b> — pelaku mengumpulkan data (media sosial, data bocor).</li>
+      <li><b>Pretexting</b> — menyusun cerita/identitas palsu yang masuk akal.</li>
+      <li><b>Kontak & kepercayaan</b> — memakai nama, logo, atau nomor yang tampak sah.</li>
+      <li><b>Tekanan</b> — memotong waktu berpikir lewat urgensi atau ketakutan.</li>
+      <li><b>Permintaan & eksploitasi</b> — kode, uang, atau akses diambil; jejak dihapus.</li></ol></div></details>
+    <details class="acc"><summary>Seberapa besar masalahnya? (tren secara umum)</summary><div>
+      <p>Anti-Phishing Working Group (APWG) menerbitkan laporan tren phishing berkala yang secara umum menunjukkan bahwa serangan terus berulang dalam jumlah besar dan sektor keuangan serta layanan daring termasuk sasaran utama. Angka persisnya berubah tiap periode, jadi ambil dari laporan terbaru bila diperlukan, jangan dari ingatan. <i>(Dosen: verifikasi angka terbaru bila akan ditampilkan.)</i></p></div></details>
+    <div class="callout law"><b class="t">Dasar hukum (garis besar)</b>Tidak ada satu pasal bernama "phishing". Perbuatannya dijerat lewat beberapa ketentuan, antara lain: ketentuan UU ITE tentang akses ilegal ke sistem elektronik, tentang manipulasi atau penciptaan informasi elektronik seolah-olah otentik, dan tentang berita bohong yang merugikan konsumen dalam transaksi elektronik; serta ketentuan penipuan dalam KUHP. Nomor pasal dapat berubah antara UU 11/2008, UU 19/2016, dan UU 1/2024 (perubahan kedua UU ITE). <i>(Dosen: verifikasi nomor pasal sebelum dikutip.)</i></div>
+  </div>
+
+  <div class="w" data-widget="checklist" id="cek1"><span class="w-label">Daftar periksa · Red flags</span></div>
+  <div class="w" data-widget="flash" id="flash1"><span class="w-label">Kartu istilah · Flashcard</span></div>
+  <div class="w" data-widget="flow" id="socialEngFlow"><span class="w-label">Animasi · Alur Rekayasa Sosial</span></div>
+</section>
+
+<!-- ===================== SEGMEN 3 ===================== -->
+<section class="seg" id="s3" data-title="Aktivitas: Tebak Penipuan" data-min="32–47" data-dur="15">
+  <div class="seg-head"><div class="num">3</div><h2>Aktivitas: Tebak Penipuan</h2><span class="chip act">Aktivitas</span></div>
+  <p>Bacalah setiap pesan fiktif. Klik satu kartu lalu klik kotak kategorinya. Tekan <b>Periksa</b> bila semua sudah terisi. Perhatikan kata-kata dan pola, bukan sekadar "terdengar resmi".</p>
+  <div class="callout warn"><b class="t">Keamanan latihan</b>Semua teks di bawah rekaan untuk belajar. Tanda <code>[tautan palsu]</code> berarti tautan sengaja tidak dibuat. Di kehidupan nyata, jangan pernah membuka tautan dari pesan yang tidak kamu minta.</div>
+  <div class="w" data-widget="classify" id="cls1"><span class="w-label">Tebak penipuan · Klasifikasi</span></div>
+  <div class="w" data-widget="mock" id="phishingMock"><span class="w-label">Simulasi · Email Phishing</span></div>
+</section>
+
+<!-- ===================== SEGMEN 4 ===================== -->
+<section class="seg" id="s4" data-title="Materi: Identitas, Penipuan, Cyberbullying" data-min="47–67" data-dur="20">
+  <div class="seg-head"><div class="num">4</div><h2>Materi: Pencurian Identitas, Penipuan Daring, dan Cyberbullying</h2></div>
+
+  <div class="card">
+    <h3>1. Pencurian identitas (<em>identity theft</em>)</h3>
+    <p>Pelaku memakai identitas orang lain (nama, NIK, foto KTP, swafoto, nomor telepon, akun) tanpa hak untuk keuntungan sendiri. Bahan bakunya sering berasal dari kebocoran data, unggahan sembarangan, atau hasil phishing.</p>
+    <div class="grid2">
+      <div class="mini"><h3>Bentuk umum</h3><ul><li>Mengajukan pinjaman atau membuka rekening/dompet digital atas nama orang lain.</li><li>Mengambil alih akun media sosial atau marketplace.</li><li>Menggandakan atau mengambil alih nomor telepon agar bisa menerima OTP korban (sering disebut <em>SIM swap</em>).</li><li>Membuat akun tiruan (impersonasi) untuk menipu kontak korban.</li></ul></div>
+      <div class="mini"><h3>Dampak bagi korban dan bisnis</h3><ul><li>Tagihan atau catatan kredit yang bukan milik korban.</li><li>Kerugian reputasi dan waktu pemulihan yang panjang.</li><li>Bagi perusahaan: kewajiban pelindungan data, biaya penanganan insiden, hilangnya kepercayaan pelanggan.</li></ul></div>
+    </div>
+    <div class="callout law"><b class="t">Dasar hukum (garis besar)</b>UU PDP (UU 27/2022) memuat larangan memperoleh atau mengumpulkan data pribadi milik orang lain secara melawan hukum untuk keuntungan diri, serta larangan membuat data pribadi palsu. UU ITE (diubah UU 1/2024) mengatur antara lain akses ilegal dan manipulasi informasi elektronik. <i>(Dosen: verifikasi nomor pasal dan ancaman pidananya sebelum dikutip.)</i></div>
+  </div>
+
+  <div class="card">
+    <h3>2. Penipuan daring (<em>online fraud</em>)</h3>
+    <p>Penipuan daring memakai internet untuk membuat korban menyerahkan uang atau barang berdasarkan janji, identitas, atau keadaan palsu. Berikut pola yang lazim ditemui, dipelajari dari sisi modusnya (bukan menunjuk kasus tertentu):</p>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Modus</th><th>Pola</th><th>Titik waspada</th></tr>
+      <tr><td><b>Toko / penjual fiktif</b></td><td>Barang dipajang murah, pembayaran diminta di luar sistem platform</td><td>Harga tak masuk akal; menolak rekening bersama atau fitur pembayaran platform</td></tr>
+      <tr><td><b>Investasi palsu</b></td><td>Janji imbal hasil tinggi, pasti, dan cepat; testimoni berantai</td><td>Tidak jelas izin; mengejar anggota baru; sulit menarik dana</td></tr>
+      <tr><td><b>Tugas paruh waktu palsu</b></td><td>Diberi "tugas" ringan berbayar, lalu diminta setor dana untuk "membuka tugas berikutnya"</td><td>Pekerja yang diminta membayar; komunikasi lewat chat pribadi</td></tr>
+      <tr><td><b>Penipuan asmara / pertemanan</b></td><td>Hubungan dibangun lama, lalu muncul "darurat" yang butuh uang</td><td>Menolak video call; selalu ada alasan mendesak</td></tr>
+      <tr><td><b>Pinjaman daring ilegal</b></td><td>Pencairan cepat tanpa syarat jelas; data kontak diakses dan dipakai menagih kasar</td><td>Meminta izin akses kontak/galeri; tidak terdaftar resmi</td></tr>
+      <tr><td><b>Mengaku petugas / "salah transfer"</b></td><td>Telepon atau pesan meminta OTP atau tindakan di ATM/aplikasi</td><td>Petugas resmi tidak pernah meminta OTP/PIN</td></tr>
+    </table></div>
+    <div class="callout law"><b class="t">Dasar hukum (garis besar)</b>Penipuan dijerat lewat ketentuan penipuan dalam KUHP (KUHP lama; KUHP baru UU 1/2023 mulai berlaku pada 2026) dan ketentuan UU ITE tentang berita bohong yang merugikan konsumen dalam transaksi elektronik. Penawaran investasi atau pinjaman tanpa izin juga dapat melanggar ketentuan sektor jasa keuangan. <i>(Dosen: verifikasi nomor pasal KUHP baru dan UU ITE terbaru.)</i></div>
+    <details class="acc"><summary>Sudut pandang bisnis digital: siapa ikut bertanggung jawab?</summary><div>
+      <p>Penipuan jarang hanya menyangkut pelaku dan korban. Platform, bank, penyedia pembayaran, dan operator telekomunikasi punya peran pencegahan: verifikasi penjual, peringatan transaksi tak lazim, penyaringan pesan, dan kanal pengaduan yang cepat. Spinello (2020) mengajak kita menilai tanggung jawab moral pihak perantara, tidak hanya pelaku langsung. Pertanyaan diskusi: apa yang wajar dibebankan ke platform, dan apa yang tetap tanggung jawab pengguna?</p></div></details>
+  </div>
+
+  <div class="card">
+    <h3>3. Cyberbullying (perundungan siber)</h3>
+    <p><b>Cyberbullying</b> adalah perilaku agresif yang berulang atau menyebar luas melalui media digital untuk menyakiti, mempermalukan, atau mengintimidasi seseorang. Bedanya dengan bercanda: ada <b>niat atau dampak merugikan</b>, ketimpangan kuasa (mis. diserbu banyak orang), dan korban merasa terancam atau terhina.</p>
+    <div class="grid2">
+      <div class="mini"><h3>Bentuk umum</h3><ul><li>Penghinaan dan ejekan berulang di komentar/grup.</li><li>Menyebarkan aib atau foto/video tanpa izin.</li><li><em>Doxing</em>: membuka data pribadi (alamat, nomor HP) untuk menyerang.</li><li>Impersonasi: akun palsu atas nama korban.</li><li>Pengucilan dari grup dan ancaman.</li></ul></div>
+      <div class="mini"><h3>Tiga peran</h3><ul><li><b>Korban</b>: perlu didengar dan dilindungi; menyimpan bukti; melapor.</li><li><b>Pelaku</b>: bertanggung jawab atas tindakannya; "cuma iseng" bukan pembenaran.</li><li><b>Saksi</b> (<em>bystander</em>): bisa memperburuk (ikut menyebar/menertawakan) atau menolong (tidak menyebarkan, mendukung korban, melapor).</li></ul></div>
+    </div>
+    <div class="callout law"><b class="t">Unsur hukum (garis besar)</b>Indonesia tidak punya satu pasal khusus bernama "cyberbullying". Perbuatannya dijerat melalui ketentuan yang relevan, misalnya: UU ITE (perubahan UU 1/2024) tentang penyerangan kehormatan atau nama baik, pengancaman, pemerasan, dan pengiriman ancaman kekerasan; UU 12/2022 tentang Tindak Pidana Kekerasan Seksual untuk kekerasan seksual berbasis elektronik; KUHP; dan UU Perlindungan Anak bila korban anak. Unsur yang biasa ditelaah: ada perbuatan, dilakukan <b>dengan sengaja</b>, <b>tanpa hak</b>, melalui sistem elektronik, ditujukan pada orang tertentu, serta menimbulkan akibat. Sebagian pasal penyerangan nama baik berupa delik aduan dan memiliki pengecualian (mis. untuk kepentingan umum atau pembelaan diri). <i>(Dosen: verifikasi nomor pasal, ancaman pidana, dan bunyi pengecualian pada UU 1/2024.)</i></div>
+    <div class="callout warn"><b class="t">Etika di luar hukum</b>Banyak perundungan tidak sampai pidana, tetapi tetap melanggar etika: merendahkan martabat orang. Menyalahkan korban (<em>victim blaming</em>) juga tidak etis: "kamu sih terlalu terbuka" tidak menghapus tanggung jawab pelaku.</div>
+  </div>
+
+  <div class="w" data-widget="classify" id="cls2"><span class="w-label">Peran dalam cyberbullying · Klasifikasi</span></div>
+  <div class="w" data-widget="explorer" id="fraudExplorer"><span class="w-label">Jelajahi · Kejahatan Siber Finansial</span></div>
+</section>
+
+<!-- ===================== SEGMEN 5 ===================== -->
+<section class="seg" id="s5" data-title="Studi Kasus: Korban Phishing/OTP" data-min="67–85" data-dur="18">
+  <div class="seg-head"><div class="num">5</div><h2>Studi Kasus: Korban Phishing dan OTP</h2><span class="chip act">Studi kasus</span></div>
+
+  <div class="card">
+    <h3>Skenario fiktif: Rina dan telepon "petugas bank"</h3>
+    <p>Tokoh dan kejadian di bawah ini <b>skenario fiktif</b> yang disusun berdasarkan pola modus umum. Putuskan langkah Rina, lalu lihat akibatnya dari beberapa sudut pandang.</p>
+  </div>
+  <div class="w" data-widget="scenario" id="scn1"><span class="w-label">Simulasi keputusan · Skenario fiktif</span></div>
+
+  <div class="card">
+    <h3>Langkah respons bila menjadi korban penipuan finansial</h3>
+    <div class="tablewrap"><table class="t">
+      <tr><th>Kapan</th><th>Langkah</th><th>Alasan</th></tr>
+      <tr><td><b>Segera (menit pertama)</b></td><td>Hubungi bank/penyedia dompet digital lewat nomor resmi di kartu atau aplikasi; minta blokir kartu/rekening dan penahanan transaksi bila memungkinkan.</td><td>Kecepatan sangat menentukan peluang dana dapat ditahan.</td></tr>
+      <tr><td><b>Segera</b></td><td>Ganti kata sandi dan PIN; keluarkan akun dari perangkat lain; aktifkan verifikasi dua langkah; copot aplikasi mencurigakan atau reset perangkat bila sudah memasang berkas asing.</td><td>Menutup akses yang mungkin masih dimiliki pelaku.</td></tr>
+      <tr><td><b>Hari yang sama</b></td><td>Kumpulkan bukti: tangkapan layar pesan, nomor penelepon, nomor rekening tujuan, bukti transfer, waktu kejadian.</td><td>Bahan laporan; pesan dapat dihapus pelaku.</td></tr>
+      <tr><td><b>Hari yang sama / berikutnya</b></td><td>Laporkan ke pusat pengaduan penipuan keuangan yang tersedia (mis. Indonesia Anti-Scam Centre di bawah OJK) dan ke OJK untuk pengaduan konsumen sektor jasa keuangan; periksa rekening tujuan lewat layanan pengecekan rekening seperti cekrekening.id; laporkan akun/nomor ke platform terkait.</td><td>Membantu pemblokiran dan memutus korban berikutnya.</td></tr>
+      <tr><td><b>Tindak lanjut</b></td><td>Buat laporan polisi (unit siber) bila kerugian nyata; waspadai "pemulih dana" palsu yang menawarkan jasa mengembalikan uang.</td><td>Proses hukum; korban sering ditipu dua kali.</td></tr>
+    </table></div>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Nama, alamat situs, nomor kontak, dan mekanisme layanan IASC, OJK, dan cekrekening.id dapat berubah. Dosen diminta memverifikasi kanal resmi terkini sebelum diumumkan kepada mahasiswa; mahasiswa dianjurkan mencari kontak langsung dari situs atau aplikasi resmi, bukan dari pesan yang diterima.</div>
+    <details class="acc"><summary>Perspektif etika: bukan salah korban, tetapi tetap perlu kebiasaan aman</summary><div>
+      <p>Penipuan dirancang oleh profesional untuk mengalahkan kewaspadaan orang cerdas. Karena itu respons yang etis terhadap korban adalah empati dan bantuan, bukan celaan. Pada saat yang sama, kebiasaan aman (tidak membagikan OTP, memverifikasi lewat kanal resmi, memakai verifikasi dua langkah) adalah bentuk tanggung jawab pribadi dan bagian dari etika profesional bagi siapa pun yang mengelola data pelanggan.</p></div></details>
+  </div>
+
+  <div class="w" data-widget="reflect" id="ref1"><span class="w-label">Refleksi tertulis</span></div>
+</section>
+
+<!-- ===================== SEGMEN 6 ===================== -->
+<section class="seg" id="s6" data-title="Kuis & Penutup" data-min="85–100" data-dur="15">
+  <div class="seg-head"><div class="num">6</div><h2>Kuis Penutup & Rangkuman</h2><span class="chip act">Evaluasi</span></div>
+  <div class="w" data-widget="quiz" id="quiz1"><span class="w-label">Kuis penutup</span></div>
+
+  <div class="card">
+    <h3>Rangkuman 1 menit</h3>
+    <ul>
+      <li>Rekayasa sosial menyerang manusia lewat urgensi, otoritas palsu, dan permintaan tindakan; phishing adalah bentuk yang paling umum.</li>
+      <li>OTP, PIN, dan kata sandi tidak pernah diminta oleh pihak resmi.</li>
+      <li>Pencurian identitas dan penipuan daring dijerat lewat gabungan UU ITE, UU PDP, dan KUHP; cyberbullying tidak punya satu pasal khusus tetapi dapat dijerat lewat beberapa ketentuan.</li>
+      <li>Bila menjadi korban: bertindak cepat (bank), amankan akun, kumpulkan bukti, laporkan ke kanal resmi.</li>
+      <li>Saksi yang tidak ikut menyebarkan dan berani menolong adalah bagian dari solusi.</li>
+    </ul>
+    <h3>Tugas mandiri minggu depan</h3>
+    <p>Kumpulkan <b>satu</b> contoh pesan atau modus penipuan yang pernah kamu terima atau temukan di berita tepercaya. Samarkan data pribadi, lalu tulis analisis 6–8 kalimat: (a) red flags yang tampak, (b) prinsip persuasi yang dipakai, (c) dasar hukum garis besar, dan (d) langkah respons yang tepat. Siapkan juga satu pertanyaan tentang transaksi elektronik untuk Minggu 10.</p>
+  </div>
+
+  <div class="card refs">
+    <h3>Referensi</h3>
+    <ol>
+      <li>Sitompul, J. (2012). <i>Cyberspace, Cybercrimes, Cyberlaw: Tinjauan Aspek Hukum Pidana</i>. Tatanusa.</li>
+      <li>Spinello, R. A. (2020). <i>Cyberethics: Morality and Law in Cyberspace</i> (7th ed.). Jones & Bartlett Learning.</li>
+      <li>Republik Indonesia. (2024). <i>UU No. 1 Tahun 2024 tentang Perubahan Kedua atas UU No. 11 Tahun 2008 tentang Informasi dan Transaksi Elektronik</i>.</li>
+      <li><b>Tambahan:</b> Mitnick, K. D., & Simon, W. L. (2002). <i>The Art of Deception: Controlling the Human Element of Security</i>. Wiley.</li>
+      <li><b>Tambahan:</b> Cialdini, R. B. (2009). <i>Influence: Science and Practice</i> (5th ed.). Pearson.</li>
+      <li><b>Tambahan:</b> Anti-Phishing Working Group (APWG). <i>Phishing Activity Trends Reports</i> (laporan berkala; gunakan edisi terbaru).</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (2022). <i>UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi</i>.</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (2022). <i>UU No. 12 Tahun 2022 tentang Tindak Pidana Kekerasan Seksual</i>.</li>
+      <li><b>Tambahan:</b> Republik Indonesia. (2023). <i>UU No. 1 Tahun 2023 tentang Kitab Undang-Undang Hukum Pidana</i>.</li>
+    </ol>
+    <div class="callout warn"><b class="t">Verifikasi dosen</b>Periksa sebelum kelas: (1) nomor pasal UU ITE pada UU 1/2024 (akses ilegal, manipulasi informasi, berita bohong konsumen, penyerangan nama baik, pengancaman/pemerasan) beserta pengecualian dan sifat delik aduan; (2) nomor pasal penipuan pada KUHP baru (UU 1/2023, berlaku 2026) dan pasal larangan terkait data pribadi pada UU PDP; (3) nama, fungsi, dan kanal resmi IASC, OJK, dan cekrekening.id; (4) angka tren terbaru APWG bila ditampilkan; (5) data hasil UTS yang disampaikan pada apersepsi.</div>
+  </div>
+</section>
+
+<footer>Etika Hukum Cyber · Bisnis Digital · Pertemuan 9 · Materi ini untuk tujuan pendidikan. Semua pesan dan tokoh dalam latihan bersifat fiktif.</footer>
+</main>
+</div>
+
+
+<!-- ===================== DATA HALAMAN (hanya blok ini yang berubah antar pertemuan) ===================== -->
+<script>
+const PAGE = {
+  id: "p09",
+
+  poll1: {
+    q: "Setelah UTS, bagian mana yang paling menantang bagimu?",
+    opts: [
+      {t:"Membedakan konsep (etika, moral, hukum, privasi)", why:"Konsep itu fondasi. Hari ini kita memakainya lagi: penipu melanggar hukum, tetapi penilaian etis tetap perlu untuk korban, saksi, dan platform. Catat istilah yang masih goyah dan cek lagi di flashcard."},
+      {t:"Mengingat dasar hukum (UU ITE, UU PDP, dan lainnya)", why:"Wajar; yang dinilai bukan hafalan nomor pasal, tetapi kemampuan menemukan dasar hukum yang tepat. Pola hari ini: satu perbuatan sering dijerat beberapa aturan sekaligus."},
+      {t:"Menganalisis kasus dengan runtut", why:"Alur 5 langkah dari Pertemuan 1 (fakta, pemangku kepentingan, opsi, uji, putuskan) tetap berlaku. Kita pakai lagi di studi kasus OTP."},
+      {t:"Mengatur waktu dan menulis jawaban", why:"Latihan interaktif dengan batas waktu di kelas ini membantu melatih ketepatan dan kecepatan. Manfaatkan timer segmen."}
+    ]
+  },
+
+  cek1: {
+    title: "Red flags pesan penipuan: centang yang menurutmu benar-benar tanda bahaya",
+    items: [
+      "Urgensi ekstrem: 'dalam 1 jam', 'hari ini juga', ancaman diblokir/ditutup.",
+      "Meminta OTP, PIN, CVV, atau kata sandi (pihak resmi tidak pernah meminta).",
+      "Pengirim atau nomor tidak dikenal, tetapi mengaku institusi/atasan/kerabat.",
+      "Hadiah atau keuntungan yang tidak pernah kamu ikuti atau minta.",
+      "Meminta transfer untuk 'pajak hadiah', 'biaya administrasi', atau 'deposit' di muka.",
+      "Menyuruh memasang aplikasi atau berkas dari luar toko aplikasi resmi.",
+      "Tautan dengan alamat aneh atau sengaja diperpendek, bukan alamat resmi yang kamu kenal.",
+      "Melarang menelepon atau memverifikasi ('rahasiakan', 'jangan hubungi siapa pun').",
+      "Bahasa janggal, salah ketik, atau logo/format yang sedikit berbeda dari biasanya."
+    ],
+    doneMsg: "Semua centang. Satu tanda saja sudah cukup untuk berhenti dan memverifikasi lewat kanal resmi yang kamu cari sendiri; kombinasi beberapa tanda hampir pasti penipuan."
+  },
+
+  flash1: {
+    title: "Uji istilah kunci (klik kartu untuk membalik)",
+    cards: [
+      {f:"Rekayasa sosial", b:"Teknik memanipulasi orang agar memberikan informasi, uang, atau akses; menyerang faktor manusia (Mitnick, 2002)."},
+      {f:"Phishing", b:"Menyamar sebagai pihak tepercaya untuk memancing korban membuka tautan palsu atau menyerahkan data sensitif."},
+      {f:"Smishing", b:"Phishing lewat SMS atau pesan singkat/chat."},
+      {f:"Vishing", b:"Phishing lewat telepon; penelepon berpura-pura petugas dan meminta kode atau tindakan."},
+      {f:"Spear phishing", b:"Phishing yang menyasar individu atau organisasi tertentu dengan data pribadi nyata sehingga terasa meyakinkan."},
+      {f:"OTP (one-time password)", b:"Kode sekali pakai untuk memverifikasi transaksi atau login. Rahasiakan; pihak resmi tidak pernah memintanya."},
+      {f:"Pencurian identitas", b:"Memakai identitas orang lain (nama, NIK, foto, akun) tanpa hak untuk keuntungan sendiri."},
+      {f:"Doxing", b:"Menyebarkan data pribadi seseorang (alamat, nomor HP) untuk mempermalukan atau menyerang."},
+      {f:"Prinsip otoritas (Cialdini)", b:"Kita cenderung patuh pada yang tampak berwenang; dieksploitasi lewat 'petugas bank/polisi' palsu."},
+      {f:"Bystander (saksi)", b:"Orang yang melihat perundungan; sikapnya bisa memperparah (ikut menyebar) atau menolong (mendukung korban, melapor)."}
+    ]
+  },
+
+  cls1: {
+    title: "Pesan fiktif berikut: penipuan, sah, atau belum jelas?",
+    bins: ["Phishing / penipuan", "Sah / wajar", "Belum jelas: verifikasi lewat kanal resmi"],
+    items: [
+      {t:"SMS: 'Bank Contoh: rekening Anda DIBLOKIR dalam 1 jam. Klik [tautan palsu] lalu masukkan PIN dan kode OTP untuk membuka blokir.'", a:0, why:"Urgensi + ancaman + tautan + permintaan PIN/OTP. Bank resmi tidak meminta OTP lewat tautan."},
+      {t:"SMS dari bank: 'Kode OTP 123456 untuk pembayaran Rp150.000. Jangan berikan kepada siapa pun.' (kamu baru saja menekan Bayar di aplikasi belanja)", a:1, why:"Kode ini muncul karena tindakanmu sendiri dan tidak meminta apa pun; sah. Bila kamu tidak bertransaksi, itu tanda ada yang mencoba memakai akunmu, bukan alasan untuk meneruskan kode."},
+      {t:"Chat: 'SELAMAT! Nomormu terpilih memenangkan mobil dari Undian Nasional. Transfer Rp2.500.000 ke rekening [nomor fiktif] untuk pajak hadiah hari ini.'", a:0, why:"Hadiah dari undian yang tak pernah kamu ikuti + biaya di muka. Pola klasik penipuan hadiah."},
+      {t:"Chat dari nomor baru: 'Halo, saya Dirut. Segera transfer Rp50 juta ke rekening vendor baru ini, saya sedang rapat, jangan telepon.'", a:0, why:"Mengaku pimpinan (otoritas), mendesak, melarang verifikasi, dan nomor baru. Ciri BEC/whaling."},
+      {t:"Chat: 'Paket Anda tertahan. Pasang resi.apk dari [tautan palsu] untuk melacak.'", a:0, why:"Kurir resmi tidak mengharuskan memasang berkas aplikasi dari tautan; berkas seperti itu dapat membaca pesan, termasuk OTP."},
+      {t:"Email 'Layanan Akademik': 'Kata sandi portal Anda kedaluwarsa. Perbarui di [tautan palsu] dalam 24 jam atau akun dinonaktifkan.'", a:0, why:"Urgensi + ancaman penonaktifan + tautan untuk memasukkan kata sandi. Buka portal lewat alamat yang kamu ketik sendiri."},
+      {t:"Notifikasi di aplikasi bank resmi di ponselmu: 'Login baru terdeteksi dari perangkat lain. Jika bukan Anda, ganti PIN di menu Pengaturan.'", a:1, why:"Muncul di dalam aplikasi resmi dan menyuruhmu bertindak lewat menu aplikasi, bukan lewat tautan atau permintaan kode. Wajar."},
+      {t:"Chat dari nomor baru: 'Ini aku, Dina, nomor lamaku hilang. Bisa pinjam Rp500 ribu dulu? Besok kuganti.'", a:2, why:"Bisa jadi benar, tetapi pola impersonasi sangat umum. Hubungi Dina lewat nomor lama atau kontak lain yang kamu yakini sebelum mengirim uang."},
+      {t:"Pesan: 'Kami dari layanan BPJS. Ada pembaruan data. Mohon balas pesan ini dengan NIK Anda.'", a:2, why:"Belum tentu sah, belum tentu palsu. Jangan membalas dengan data pribadi; buka aplikasi atau situs resmi BPJS yang kamu cari sendiri."},
+      {t:"Email konfirmasi pesanan setelah kamu belanja di marketplace; isinya ringkasan pesanan, tanpa meminta kata sandi atau pembayaran tambahan.", a:1, why:"Sesuai dengan tindakanmu dan tidak meminta apa pun. Tetap cocokkan status pesanan di aplikasi."}
+    ]
+  },
+
+  cls2: {
+    title: "Perilaku apa dan siapa? Kelompokkan",
+    bins: ["Tindakan pelaku", "Langkah tepat korban", "Peran tepat saksi", "Respons yang memperburuk"],
+    items: [
+      {t:"Mengunggah foto editan teman dengan keterangan menghina, berulang kali", a:0, why:"Perundungan: penghinaan yang diulang dan disebarkan."},
+      {t:"Membuat akun anonim untuk meneror seseorang", a:0, why:"Anonimitas tidak menghapus tanggung jawab; ini perilaku pelaku dan bisa berimplikasi hukum."},
+      {t:"Menyimpan tangkapan layar, tautan, dan tanggal kejadian, lalu melapor ke platform", a:1, why:"Bukti membantu pelaporan ke platform, kampus, atau polisi."},
+      {t:"Memberi tahu orang tepercaya atau pihak kampus dan memblokir akun pelaku", a:1, why:"Mencari dukungan dan membatasi paparan adalah langkah sehat bagi korban."},
+      {t:"Mengirim pesan pribadi kepada korban untuk menanyakan kabar dan membantu melaporkan konten", a:2, why:"Dukungan langsung dari saksi sangat berarti dan mengurangi rasa terisolasi korban."},
+      {t:"Tidak ikut menyebarkan konten perundungan dan melaporkannya ke platform", a:2, why:"Memutus penyebaran dan memanfaatkan mekanisme pelaporan adalah peran saksi yang tepat."},
+      {t:"Berkomentar 'wkwk' dan membagikan ulang meme yang mempermalukan korban", a:3, why:"Ikut menyebarkan memperluas jangkauan dan memperparah dampak, meski 'hanya ikut-ikutan'."},
+      {t:"Membalas dengan hinaan lebih keras dan membuka alamat rumah pelaku (doxing)", a:3, why:"Membalas dengan kekerasan serupa menambah masalah dan dapat membuat korban menjadi pelaku; doxing bahkan berisiko pelanggaran hukum."}
+    ]
+  },
+
+  scn1: {
+    title: "Kasus fiktif: Rina menerima telepon dari 'petugas bank'",
+    start: "n0",
+    nodes: {
+      n0: {text:"Siang hari, Rina (mahasiswa, penjual daring) menerima telepon: 'Kami dari Bank Contoh. Ada transaksi mencurigakan Rp8.000.000 dari rekening Anda. Untuk membatalkan, sebutkan kode OTP yang baru kami kirim lewat SMS.' Suara penelepon tegas dan menyebut nama lengkap Rina. Rina…",
+        choices:[{t:"Menyebutkan kode OTP supaya transaksi dibatalkan", to:"n1"},{t:"Menutup telepon, lalu menghubungi bank lewat nomor resmi di kartu atau aplikasi", to:"n2"},{t:"Mengikuti arahan penelepon untuk membuka tautan 'verifikasi' yang dikirim lewat chat", to:"n3"}]},
+      n1: {text:"Kode disebutkan. Beberapa menit kemudian masuk notifikasi: saldo berkurang Rp8.000.000 dan kartu virtual baru dibuat. Penelepon menghilang. Rina panik dan merasa malu. Langkah pertama Rina…",
+        choices:[{t:"Menunggu besok karena sudah malam, lalu cerita ke teman dulu", to:"n4"},{t:"Segera menghubungi bank lewat kanal resmi untuk memblokir akses dan melaporkan, lalu mengamankan akun dan mengumpulkan bukti", to:"n5"},{t:"Memposting kejadian di media sosial dan menunggu bantuan warganet", to:"n6"}]},
+      n2: {end:true, text:"Hasil: bank resmi menyatakan tidak ada transaksi mencurigakan dan tidak pernah meminta OTP lewat telepon. Rina menyimpan nomor penelepon, melaporkannya ke bank, dan memperingatkan teman. Kerugian: nol.",
+        lens:"Etika: Rina bertanggung jawab atas kehati-hatiannya dan membantu orang lain dengan berbagi peringatan. Hukum: usaha penipuan tetap dapat dilaporkan meski belum ada kerugian. Praktik bisnis: kebiasaan 'tutup, cari kontak resmi sendiri, hubungi balik' menyelamatkan pelaku usaha kecil dari kerugian besar."},
+      n3: {end:true, text:"Hasil: tautan mengarah ke laman tiruan atau memasang berkas berbahaya. Data login dan pesan (termasuk OTP) dapat dibaca pelaku, dan akun dapat dikuras. Rina baru sadar setelah saldo hilang; ia perlu mengamankan perangkat dan semua akun.",
+        lens:"Etika: korban perlu empati, bukan celaan; pelaku yang memanfaatkan ketakutan itu bersalah. Hukum: pelaku berpotensi melanggar ketentuan akses ilegal dan penipuan. Praktik bisnis: perangkat yang dipakai berjualan sebaiknya dipisah dari akun pribadi dan dilindungi verifikasi dua langkah."},
+      n4: {end:true, text:"Hasil: menunda memperkecil peluang dana ditahan; pelaku biasanya segera memindahkan uang ke banyak rekening. Rina juga terlambat mengumpulkan bukti, dan akun lain mungkin masih terbuka.",
+        lens:"Etika: rasa malu itu manusiawi, tetapi menunda melapor merugikan diri dan calon korban lain. Hukum: laporan yang cepat dan bukti yang lengkap membantu proses pelacakan. Praktik: siapkan prosedur insiden (nomor resmi bank, cara memblokir) sebelum kejadian."},
+      n5: {end:true, text:"Hasil: bank memblokir kartu dan akses, mencatat laporan, dan menginformasikan tahapan lanjut. Rina mengganti kata sandi, mencabut aplikasi mencurigakan, menyimpan bukti, lalu melapor ke kanal pengaduan penipuan keuangan dan ke polisi. Dana belum tentu kembali sepenuhnya, tetapi peluangnya terbesar dan kerugian lanjutan dicegah.",
+        lens:"Etika: bertindak cepat, jujur, dan membantu mencegah korban berikutnya adalah sikap bertanggung jawab. Hukum: laporan resmi ke bank, lembaga pengaduan, dan polisi membuka jalur pemblokiran dan penegakan hukum. Praktik: pisahkan rekening usaha dan pribadi, batasi limit transaksi, aktifkan notifikasi."},
+      n6: {end:true, text:"Hasil: postingan menyebar tetapi tidak menghentikan transaksi. Rina juga menerima tawaran 'jasa pemulih dana' dari akun asing yang meminta biaya di muka, yaitu penipuan kedua. Bank baru dihubungi sehari kemudian.",
+        lens:"Etika: berbagi pengalaman bermanfaat, tetapi bukan pengganti tindakan langsung. Hukum: bukti di media sosial tidak menggantikan laporan resmi. Praktik: waspadai jasa 'pemulih dana' yang meminta bayaran di muka; urus lewat bank dan kanal resmi."}
+    }
+  },
+
+  ref1: {
+    title: "Tulis 4–6 kalimat",
+    prompt: "Pilih satu modus dari materi hari ini (phishing OTP, penipuan investasi/tugas paruh waktu, pencurian identitas, atau cyberbullying). Jelaskan: (a) modusnya dan prinsip persuasi yang dipakai, (b) dasar hukum garis besar yang relevan, dan (c) satu kebiasaan atau kebijakan yang akan kamu terapkan agar usaha digitalmu (atau dirimu) tidak jadi korban atau pelaku.",
+    hint: "Tulisan tersimpan otomatis di perangkat ini. Jangan mencantumkan data pribadi nyata. Gunakan tombol Salin untuk mengumpulkan ke dosen."
+  },
+
+  quiz1: {
+    title: "Kuis penutup (9 soal)",
+    items: [
+      {q:"Rekayasa sosial paling tepat didefinisikan sebagai…", o:["Peretasan sistem lewat celah perangkat lunak","Teknik memanipulasi orang agar memberikan informasi, uang, atau akses","Pembuatan virus komputer","Penyadapan jaringan Wi-Fi"], a:1, why:"Rekayasa sosial menyerang faktor manusia lewat bujukan, ketakutan, atau tekanan."},
+      {q:"Penipuan lewat telepon dengan penelepon yang mengaku petugas bank dan meminta OTP disebut…", o:["Smishing","Vishing","Quishing","Spoofing perangkat keras"], a:1, why:"Vishing = voice phishing. Smishing lewat pesan singkat; quishing lewat kode QR."},
+      {q:"Ciri yang paling kuat menandakan pesan phishing adalah…", o:["Memakai bahasa Indonesia","Mengirim lewat SMS","Mendesak bertindak cepat dan meminta OTP/PIN atau kata sandi","Menampilkan logo bank"], a:2, why:"Urgensi plus permintaan data rahasia adalah pola inti; logo mudah ditiru."},
+      {q:"Pesan 'Hanya 10 kuota tersisa, bayar dalam 15 menit' terutama memanfaatkan prinsip Cialdini…", o:["Timbal balik","Kelangkaan dan urgensi","Kesukaan","Komitmen dan konsistensi"], a:1, why:"Kelangkaan/urgensi membuat orang tergesa dan berhenti berpikir kritis."},
+      {q:"Perbedaan phishing massal dan spear phishing adalah…", o:["Spear phishing selalu lewat telepon","Spear phishing menyasar target tertentu dengan data pribadi nyata","Phishing massal tidak memakai tautan","Keduanya sama persis"], a:1, why:"Penyesuaian dengan data nyata target membuat spear phishing lebih meyakinkan dan berbahaya."},
+      {q:"Seorang karyawan menerima pesan dari nomor baru yang mengaku direktur dan meminta transfer mendesak serta melarang menelepon. Tindakan terbaik adalah…", o:["Segera mentransfer karena atasan","Membalas dan menanyakan alasan lewat chat yang sama","Memverifikasi lewat kanal lain yang sudah dikenal (telepon langsung ke nomor resmi) sebelum bertindak","Mengabaikan selamanya tanpa melapor"], a:2, why:"Verifikasi di luar jalur pesan dan melapor ke bagian terkait adalah prosedur standar menghadapi BEC."},
+      {q:"Pernyataan yang paling tepat tentang dasar hukum cyberbullying di Indonesia adalah…", o:["Ada satu pasal khusus bernama cyberbullying","Tidak ada pasal khusus; perbuatannya dijerat lewat beberapa ketentuan, misalnya UU ITE dan KUHP, sesuai unsurnya","Cyberbullying tidak pernah dapat dipidana","Hanya UU Perlindungan Konsumen yang berlaku"], a:1, why:"Penegak hukum menyesuaikan perbuatan dengan pasal yang relevan; ketentuan pastinya perlu diverifikasi pada UU terbaru."},
+      {q:"Dalam kasus perundungan di grup, tindakan saksi yang paling membantu adalah…", o:["Membagikan ulang agar semua tahu","Berkomentar mendukung pelaku supaya aman","Tidak menyebarkan, mendukung korban, dan melaporkan konten","Diam dan menonton saja"], a:2, why:"Saksi aktif yang menolak ikut menyebarkan dan melapor dapat menghentikan eskalasi."},
+      {q:"Setelah OTP terlanjur diberikan kepada penipu, langkah paling awal yang tepat adalah…", o:["Menunggu hingga keesokan hari","Menghubungi bank lewat kanal resmi untuk memblokir akses/transaksi, lalu mengamankan akun dan menyimpan bukti","Memposting di media sosial dan menunggu bantuan","Membayar 'jasa pemulih dana' yang menghubungi lewat chat"], a:1, why:"Kecepatan menghubungi bank menentukan peluang dana ditahan; jasa pemulih dana berbayar sering penipuan kedua."}
+    ]
+  },
+
+  phishingMock: {
+    title: "Identifikasi tanda bahaya: email phishing dari 'bank'",
+    kind: "email",
+    instruct: "Bacalah email fiktif di bawah. Klik setiap bagian yang kamu curigai. Ada 4 tanda bahaya nyata dan 2 bagian yang tampak janggal tetapi punya penjelasan tersendiri — temukan semuanya.",
+    header: {
+      from: [{t:"bank-support@bca-indonesia-secure.com", h:"hd1"}],
+      to: "nasabah@email.com",
+      subject: "PENTING: Verifikasi Akun Anda — Tindakan Diperlukan"
+    },
+    messages: [
+      {parts: [{t:"Yth. Nasabah", h:"hd6"}, " yang terhormat,"]},
+      {parts: ["Akun internet banking Anda terdeteksi aktivitas tidak biasa. ", {t:"Akun Anda akan diblokir dalam 24 jam", h:"hd2"}, " jika tidak segera diverifikasi."]},
+      {parts: ["Silakan klik tautan berikut untuk verifikasi: ", {t:"www.bankku-verifikasi-akun.net/login", h:"hd3"}]},
+      {parts: ["Setelah login, ", {t:"masukkan PIN dan kata sandi internet banking Anda", h:"hd4"}, " untuk mengonfirmasi kepemilikan akun."]},
+      {parts: [{t:"[LOGO BANK RESMI]", h:"hd5"}, " — Layanan Perbankan Digital Terpercaya"]}
+    ],
+    cta: [{t:"Verifikasi Akun Sekarang", h:"hd3"}],
+    hotspots: [
+      {id:"hd1", label:"Domain pengirim tidak resmi", why:"Alamat 'bca-indonesia-secure.com' bukan domain resmi bank. Penipu membuat nama yang mirip agar terlihat sah. Selalu periksa domain asli pengirim, bukan nama tampil."},
+      {id:"hd2", label:"Urgensi palsu — ancaman blokir 24 jam", why:"Frasa ini dirancang untuk memotong waktu berpikir korban. Bank resmi tidak mengancam pemblokiran lewat email; selalu ada kanal resmi untuk konfirmasi jika ada masalah akun."},
+      {id:"hd3", label:"URL tidak resmi — bukan domain bank", why:"'bankku-verifikasi-akun.net' bukan domain lembaga keuangan resmi. Jangan klik; selalu buka situs bank langsung dari browser dengan mengetik sendiri atau lewat aplikasi resmi."},
+      {id:"hd4", label:"Meminta PIN dan kata sandi lewat email", why:"Bank atau lembaga keuangan resmi TIDAK PERNAH meminta PIN, kata sandi, atau OTP melalui email, tautan, atau telepon. Siapa pun yang memintanya adalah penipu."},
+      {id:"hd5", label:"Logo bank dapat dipalsukan — bukan bukti keaslian", why:"Logo, desain, dan tata letak email mudah disalin dari sumber publik. Logo bukan bukti keaslian email. Verifikasi selalu dari domain pengirim dan kanal resmi bank.", decoy:true},
+      {id:"hd6", label:"Sapaan generik 'Yth. Nasabah' — bukan nama Anda", why:"Bank yang benar-benar memiliki data Anda akan menyebut nama lengkap Anda, bukan sapaan generik. Sapaan impersonal menandakan email ini dikirim massal ke ribuan alamat, bukan ditujukan khusus pada Anda.", decoy:true}
+    ]
+  },
+
+  socialEngFlow: {
+    title: "Animasi: Alur Serangan Rekayasa Sosial (Pretexting / Vishing)",
+    sub: "Ikuti setiap langkah serangan, temukan titik di mana rantai bisa diputus, dan pelajari dasar hukumnya.",
+    actors: [
+      {id:"penyerang",   icon:"🎭", name:"Penyerang",          x:12, y:28, role:"attacker", state:""},
+      {id:"korban",      icon:"👤", name:"Korban (Karyawan)",  x:50, y:22, role:"victim",   state:""},
+      {id:"perusahaan",  icon:"🏢", name:"Sistem Perusahaan",  x:84, y:28, role:"neutral",  state:"safe"},
+      {id:"data",        icon:"💾", name:"Data Sensitif",      x:84, y:72, role:"neutral",  state:"safe"}
+    ],
+    zones: [
+      {x:2, y:10, w:30, h:60, label:"Zona Penyerang"},
+      {x:68, y:10, w:30, h:80, label:"Zona Target"}
+    ],
+    steps: [
+      {
+        title:"Langkah 1: Riset target (OSINT)",
+        short:"Riset OSINT",
+        text:"Penyerang mengumpulkan informasi korban dari LinkedIn, media sosial, dan sumber publik: nama atasan, jabatan, proyek aktif, nomor internal perusahaan. Semakin banyak data nyata, semakin meyakinkan cerita palsu yang akan dibangun.",
+        from:"penyerang", to:"korban", packet:"🔍", label:"OSINT",
+        set:{penyerang:"active", korban:"warn"},
+        tip:"Cara putus: batasi informasi sensitif di profil publik; kebijakan keamanan informasi perusahaan perlu mengatur apa yang boleh dibagikan secara daring."
+      },
+      {
+        title:"Langkah 2: Penyerang menelepon — berpura-pura IT support",
+        short:"Panggilan palsu",
+        text:"Penyerang menelepon korban dengan identitas palsu ('IT support pusat') dan menggunakan data OSINT untuk meyakinkan — menyebut nama atasan dan proyek nyata. Ia menciptakan urgensi: 'Ada insiden keamanan, butuh kredensial Anda sekarang untuk maintenance.'",
+        from:"penyerang", to:"korban", packet:"📞", label:"Vishing",
+        set:{penyerang:"active", korban:"warn"},
+        tip:"Cara putus: tutup telepon, cari nomor resmi IT support dari intranet atau kartu identitas perusahaan, hubungi balik — jangan percaya nomor yang diberikan penelepon tak dikenal."
+      },
+      {
+        title:"Langkah 3: Korban memberikan kredensial",
+        short:"Kredensial diserahkan",
+        text:"Terdesak urgensi dan otoritas palsu, korban menyerahkan nama pengguna dan kata sandi 'untuk keperluan maintenance'. Serangan sosial selesai — penyerang kini memegang akses sah secara teknis, tanpa perlu meretas sistem.",
+        from:"korban", to:"penyerang", packet:"🔑", label:"Kredensial", bad:true,
+        set:{korban:"danger", penyerang:"warn"},
+        risk:"Serangan berhasil. Penyerang memegang kunci akses ke sistem.",
+        law:"UU ITE: penipuan yang mengakibatkan kerugian; KUHP: penipuan. (Verifikasi dosen: nomor pasal UU 1/2024 dan KUHP baru UU 1/2023)"
+      },
+      {
+        title:"Langkah 4: Penyerang login ke sistem perusahaan",
+        short:"Akses ilegal",
+        text:"Dengan kredensial yang didapat, penyerang masuk ke sistem internal. Karena memakai akun sah milik korban, log sistem tidak langsung memperlihatkan anomali — inilah yang membuat serangan berbasis kredensial sangat berbahaya dan sering terlambat dideteksi.",
+        from:"penyerang", to:"perusahaan", packet:"🚪", label:"Login ilegal", bad:true,
+        set:{penyerang:"danger", perusahaan:"warn"},
+        law:"UU ITE: akses ilegal ke sistem elektronik orang lain tanpa hak. (Verifikasi dosen: nomor pasal UU 1/2024)"
+      },
+      {
+        title:"Langkah 5: Data sensitif dieksfiltrasi",
+        short:"Data bocor",
+        text:"Penyerang mengunduh data pelanggan, laporan keuangan, atau rahasia dagang ke server eksternal. Proses berlangsung diam-diam karena aktivitas terlihat seperti pengguna biasa yang sedang bekerja.",
+        from:"perusahaan", to:"penyerang", packet:"💾", label:"Eksfiltrasi", bad:true,
+        set:{perusahaan:"danger", data:"danger", penyerang:"danger"},
+        risk:"Pelanggaran data pribadi, kerugian bisnis, potensi pemerasan.",
+        law:"UU PDP (UU 27/2022): pemrosesan data pribadi secara melawan hukum; UU ITE: mengambil atau merusak sistem/data elektronik tanpa hak. (Verifikasi dosen)"
+      },
+      {
+        title:"Langkah 6: Perusahaan mendeteksi — setelah kerugian",
+        short:"Deteksi terlambat",
+        text:"Perusahaan baru mendeteksi insiden setelah data muncul di forum gelap atau pelanggan melapor. Waktu deteksi rata-rata pelanggaran data bisa mencapai berbulan-bulan. Biaya pemulihan reputasi dan hukum jauh melebihi biaya pencegahan.",
+        from:"perusahaan", to:"korban", packet:"🚨", label:"Alert",
+        set:{perusahaan:"warn", korban:"warn", penyerang:"safe"},
+        tip:"Cara putus: terapkan monitoring anomali, prinsip least privilege (hak akses minimal), verifikasi multi-faktor (MFA), dan pelatihan kesadaran keamanan secara rutin untuk semua karyawan."
+      }
+    ],
+    outcome:"Rekayasa sosial berhasil bukan karena sistem teknis lemah, tetapi karena kepercayaan manusia dieksploitasi. Setiap langkah memiliki titik pemutus — kewaspadaan individu adalah lini pertahanan pertama dan sering yang paling efektif."
+  },
+
+  fraudExplorer: {
+    title: "Jelajahi: Jenis Kejahatan Siber Finansial & Manipulasi Sosial",
+    intro: "Klik setiap kartu untuk membuka penjelasan lengkap: cara kerja, dampak, dasar hukum, dan langkah pencegahan.",
+    items: [
+      {
+        id:"phishing2",
+        icon:"🎣",
+        name:"Phishing",
+        tag:"Email, SMS, telepon palsu",
+        summary:"Phishing adalah upaya menyamar sebagai pihak tepercaya (bank, kurir, instansi, atasan) untuk memancing korban menyerahkan data sensitif atau mengklik tautan palsu. Merupakan bentuk rekayasa sosial yang paling umum dan terus berkembang variannya.",
+        how:[
+          "Pelaku membuat pesan atau laman tiruan yang menyerupai entitas tepercaya",
+          "Pesan dikirim massal (phishing) atau ditargetkan (spear phishing) lewat email, SMS (smishing), atau telepon (vishing)",
+          "Korban diberi urgensi atau iming-iming untuk mengklik tautan, mengunduh berkas, atau menyerahkan kode OTP",
+          "Setelah data masuk, pelaku menggunakannya untuk menguras rekening, mengambil alih akun, atau menjual data"
+        ],
+        ex:[
+          "Email 'bank' meminta verifikasi akun lewat tautan yang mengarah ke laman login tiruan",
+          "SMS kurir meminta unduh berkas .apk yang sesungguhnya adalah malware pencuri OTP",
+          "Telepon 'petugas' mengklaim ada transaksi mencurigakan dan meminta korban menyebutkan kode OTP"
+        ],
+        impact:[
+          "Kehilangan akses akun dan saldo rekening secara tiba-tiba",
+          "Data pribadi dijual di forum gelap atau dipakai untuk pencurian identitas",
+          "Kerugian finansial langsung; pemulihan membutuhkan waktu dan biaya besar",
+          "APWG melaporkan ratusan ribu serangan phishing setiap kuartal secara global (Verifikasi dosen: angka terbaru laporan APWG)"
+        ],
+        law:[
+          "UU ITE (diubah UU 1/2024): ketentuan akses ilegal, manipulasi informasi elektronik, dan berita bohong yang merugikan konsumen dalam transaksi elektronik",
+          "KUHP: ketentuan penipuan",
+          "(Verifikasi dosen: nomor pasal spesifik dan ancaman pidana terbaru)"
+        ],
+        prev:[
+          "Selalu verifikasi domain pengirim sebelum mengklik tautan apapun",
+          "Pihak resmi tidak pernah meminta OTP, PIN, atau kata sandi",
+          "Buka situs bank atau layanan resmi dengan mengetik langsung di browser, bukan dari tautan pesan",
+          "Aktifkan autentikasi dua faktor (2FA) di semua akun penting"
+        ]
+      },
+      {
+        id:"idtheft",
+        icon:"🪪",
+        name:"Pencurian Identitas",
+        tag:"Penyalahgunaan data pribadi",
+        summary:"Pencurian identitas terjadi ketika pelaku memakai data pribadi seseorang (nama, NIK, foto KTP, nomor telepon, akun) tanpa hak untuk keuntungan sendiri. Bahan bakunya sering berasal dari kebocoran data, phishing, atau data yang diunggah sembarangan.",
+        how:[
+          "Pelaku mengumpulkan data dari kebocoran database, phishing, atau profil publik dan unggahan korban",
+          "Data dipakai untuk membuka rekening bank, pinjaman online, atau dompet digital atas nama korban tanpa sepengetahuannya",
+          "Atau dipakai untuk mengambil alih akun media sosial, marketplace, atau melakukan SIM swap (memindahkan nomor telepon korban)",
+          "Korban baru menyadari ketika ada tagihan tak dikenal, rekening baru, atau reputasi rusak akibat akun yang disalahgunakan"
+        ],
+        ex:[
+          "Foto KTP yang tersebar di grup WA dipakai untuk mendaftar pinjaman online ilegal",
+          "SIM swap: penyerang memindahkan nomor telepon korban ke SIM barunya agar bisa menerima OTP untuk menguras rekening",
+          "Akun marketplace korban diambil alih dan dipakai menipu pembeli dengan barang fiktif"
+        ],
+        impact:[
+          "Tagihan pinjaman atau kartu kredit atas nama korban yang tidak pernah diajukan",
+          "Catatan kredit rusak; pemulihan bisa memakan waktu bertahun-tahun",
+          "Bagi perusahaan: kewajiban pelindungan data, potensi denda regulasi, hilangnya kepercayaan pelanggan",
+          "Dampak psikologis: stres, rasa tidak aman, dan hilangnya rasa kontrol atas identitas sendiri"
+        ],
+        law:[
+          "UU PDP (UU 27/2022): larangan memperoleh atau menggunakan data pribadi orang lain secara melawan hukum; larangan membuat data pribadi palsu",
+          "UU ITE: akses ilegal dan manipulasi informasi elektronik",
+          "(Verifikasi dosen: nomor pasal dan ancaman pidana spesifik)"
+        ],
+        prev:[
+          "Batasi penyebaran foto KTP, NIK, atau data sensitif lain di media sosial atau grup chat",
+          "Pantau riwayat kredit dan rekening secara berkala untuk mendeteksi aktivitas tak dikenal",
+          "Gunakan kata sandi unik dan kuat untuk tiap akun; aktifkan autentikasi dua faktor",
+          "Laporkan segera jika menemukan akun, pinjaman, atau rekening yang tidak pernah Anda daftarkan"
+        ]
+      },
+      {
+        id:"fraud",
+        icon:"💸",
+        name:"Penipuan Daring",
+        tag:"Online fraud & modus terkini",
+        summary:"Penipuan daring menggunakan internet untuk membuat korban menyerahkan uang atau barang berdasarkan janji, identitas, atau keadaan palsu. Modusnya terus berkembang: dari toko fiktif, investasi bodong, tugas paruh waktu palsu, hingga romance scam.",
+        how:[
+          "Toko/penjual fiktif: barang dipajang murah, pembayaran diminta di luar fitur perlindungan platform",
+          "Investasi palsu: janji imbal hasil tinggi, pasti, dan cepat; korban didorong merekrut anggota baru",
+          "Tugas paruh waktu palsu: tugas ringan dibayar dulu, lalu korban diminta setor 'deposit' yang semakin besar",
+          "Romance scam: hubungan asmara dibangun lewat chat, lalu muncul 'darurat' yang membutuhkan uang",
+          "Pinjaman online ilegal: pencairan cepat tanpa syarat jelas; kontak dan foto diakses untuk penagihan kasar"
+        ],
+        ex:[
+          "Grup investasi dengan testimoni 'untung besar' yang sesungguhnya adalah tangkapan layar palsu atau direkayasa",
+          "Kenalan daring menarik yang selalu punya alasan menolak video call, lalu mengajukan 'pinjaman darurat' mendesak",
+          "Tawaran kerja mengulas produk daring: tugas pertama dibayar, kemudian semakin besar deposit yang diminta untuk lanjut"
+        ],
+        impact:[
+          "Kerugian finansial langsung yang sering tidak bisa dipulihkan sepenuhnya",
+          "Dampak psikologis: malu, kehilangan kepercayaan, isolasi sosial",
+          "Bagi platform: risiko reputasi dan potensi tanggung jawab hukum jika tidak cukup melindungi pengguna",
+          "OJK dan Satgas Waspada Investasi secara rutin memblokir entitas investasi ilegal (Verifikasi dosen: data terbaru dari OJK)"
+        ],
+        law:[
+          "KUHP: ketentuan penipuan (KUHP lama; KUHP baru UU 1/2023 berlaku 2026 — verifikasi nomor pasal)",
+          "UU ITE: berita bohong yang merugikan konsumen dalam transaksi elektronik",
+          "Penawaran investasi atau pinjaman tanpa izin: ketentuan sektor jasa keuangan (OJK)",
+          "(Verifikasi dosen: nomor pasal terbaru dan mekanisme pelaporan resmi)"
+        ],
+        prev:[
+          "Harga jauh di bawah pasaran dan imbal hasil 'pasti tinggi' adalah tanda bahaya utama",
+          "Selalu gunakan fitur rekening bersama (escrow) atau pembayaran dalam platform marketplace",
+          "Cek legalitas investasi di situs resmi OJK sebelum menanamkan dana",
+          "Verifikasi identitas kenalan daring lewat video call; jangan kirim uang kepada orang yang belum pernah bertemu langsung"
+        ]
+      },
+      {
+        id:"cyberbully",
+        icon:"💬",
+        name:"Cyberbullying",
+        tag:"Perundungan siber & dampaknya",
+        summary:"Cyberbullying adalah perilaku agresif yang berulang atau menyebar luas melalui media digital untuk menyakiti, mempermalukan, atau mengintimidasi seseorang. Bentuknya beragam: ejekan di komentar, doxing, stalking siber, impersonasi, hingga penyebaran konten intim tanpa izin. Dampaknya nyata — termasuk secara psikologis.",
+        how:[
+          "Penghinaan dan ejekan berulang di komentar, grup chat, atau unggahan publik yang menyerang secara personal",
+          "Doxing: menyebarkan data pribadi (alamat, nomor HP, tempat kerja) disertai ajakan untuk menyerang korban",
+          "Impersonasi: membuat akun palsu atas nama korban untuk merusak reputasi atau menipu kenalan korban",
+          "Stalking siber: memantau dan mengikuti aktivitas online korban secara obsesif dan mengancam",
+          "Kekerasan berbasis gambar (NCII/revenge porn): menyebarkan foto atau video intim tanpa izin"
+        ],
+        ex:[
+          "Korban di-mention berulang dengan komentar merendahkan di berbagai platform hingga viral",
+          "Data pribadi dan alamat rumah korban dibagikan di forum publik disertai seruan untuk 'menyerang'",
+          "Foto atau video intim disebarkan sebagai bentuk pembalasan dendam setelah hubungan berakhir"
+        ],
+        impact:[
+          "Dampak psikologis: kecemasan, depresi, isolasi sosial, bahkan risiko menyakiti diri sendiri",
+          "Kehilangan peluang kerja, pertemanan, atau reputasi akibat konten yang menyebar dan sulit dihapus",
+          "Korban sering mengalami victim blaming dari lingkungan — ini tidak etis dan tidak benar",
+          "Jejak digital hampir mustahil dihapus sepenuhnya; dampak dapat berlangsung bertahun-tahun"
+        ],
+        law:[
+          "UU ITE (UU 1/2024): ketentuan penyerangan kehormatan/nama baik, pengancaman, pemerasan, pengiriman ancaman lewat sistem elektronik",
+          "UU 12/2022 tentang Tindak Pidana Kekerasan Seksual: untuk kekerasan seksual berbasis elektronik (KSBE) termasuk penyebaran konten intim tanpa izin",
+          "UU Perlindungan Anak bila korban anak",
+          "Kanal pelaporan: IASC (Indonesia Anti-Scam Centre, di bawah OJK), OJK untuk pengaduan keuangan, cekrekening.id untuk cek rekening mencurigakan, unit siber Polri, dan mekanisme laporan di tiap platform",
+          "(Verifikasi dosen: kanal resmi IASC, OJK, cekrekening.id, serta nomor kontak terkini; nomor pasal UU 1/2024)"
+        ],
+        prev:[
+          "Simpan bukti (tangkapan layar, tautan, tanggal) sebelum melaporkan — konten bisa dihapus pelaku kapan saja",
+          "Laporkan konten ke platform menggunakan fitur report yang tersedia; laporkan ke unit siber Polri jika ada ancaman nyata",
+          "Hubungi orang tepercaya atau layanan konseling; korban berhak mendapat dukungan tanpa disalahkan",
+          "Sebagai saksi: jangan ikut menyebarkan konten; tunjukkan dukungan langsung ke korban dan laporkan konten"
+        ]
+      }
+    ]
+  }
+};
+</script>
+
+<!-- ===== [SHARED:JS] — jangan ubah blok ini antar pertemuan ===== -->
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const K=PAGE.id+":";
+const store={get(k,d){try{const v=localStorage.getItem(K+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(K+k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const widgets=$$(".w[data-widget]"); const done=new Set(store.get("done",[]));
+function markDone(id){done.add(id);store.set("done",[...done]);const el=$("#"+id);if(el)el.classList.add("done");updateProgress()}
+function updateProgress(){const p=widgets.length?Math.round(done.size/widgets.length*100):0;$("#pbar").style.width=p+"%";$("#ppct").textContent=p+"%"}
+const body=(el)=>{const d=document.createElement("div");d.className="wb";el.appendChild(d);return d};
+
+/* ---------- Poll ---------- */
+function poll(el,c){const b=body(el);const saved=store.get(el.id,null);
+  b.innerHTML=`<h3>${esc(c.q)}</h3><div class="opts"></div><div class="fb"></div>`;
+  const o=$(".opts",b),fb=$(".fb",b);
+  c.opts.forEach((x,i)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=x.t;bt.onclick=()=>pick(i);o.appendChild(bt)});
+  function pick(i){$$(".opt",o).forEach((e,j)=>e.classList.toggle("sel",i===j));fb.className="fb show ok";fb.innerHTML="<b>Insight:</b> "+esc(c.opts[i].why);store.set(el.id,i);markDone(el.id)}
+  if(saved!==null)pick(saved)}
+
+/* ---------- Checklist ---------- */
+function checklist(el,c){const b=body(el);const st=store.get(el.id,[]);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="ckl"></div><div class="fb"></div>`;
+  const box=$(".ckl",b),fb=$(".fb",b);
+  c.items.forEach((t,i)=>{const l=document.createElement("label");l.innerHTML=`<input type="checkbox"><span>${esc(t)}</span>`;const cb=$("input",l);cb.checked=st.includes(i);cb.onchange=chk;box.appendChild(l)});
+  function chk(){const v=$$("input",box).map((x,i)=>x.checked?i:-1).filter(i=>i>=0);store.set(el.id,v);if(v.length===c.items.length){fb.className="fb show ok";fb.textContent=c.doneMsg||"Selesai.";markDone(el.id)}else fb.className="fb"}
+  chk()}
+
+/* ---------- Flashcards ---------- */
+function flash(el,c){const b=body(el);let i=0;const known=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="flash"><div class="flash-in"><div class="face f"></div><div class="face b"></div></div></div>
+  <div class="fc-ctl"><button class="btn ghost" data-a="prev">‹ Sebelumnya</button><span class="cnt"></span><button class="btn ghost" data-a="next">Berikutnya ›</button><button class="btn" data-a="know">Saya paham ✓</button></div>`;
+  const fl=$(".flash",b);
+  function draw(){const x=c.cards[i];$(".f",b).textContent=x.f;$(".b",b).textContent=x.b;fl.classList.remove("flip");$(".cnt",b).textContent=`${i+1}/${c.cards.length} · paham ${known.size}`}
+  fl.onclick=()=>fl.classList.toggle("flip");
+  b.onclick=e=>{const a=e.target.dataset.a;if(!a)return;if(a==="next")i=(i+1)%c.cards.length;if(a==="prev")i=(i-1+c.cards.length)%c.cards.length;if(a==="know"){known.add(i);store.set(el.id,[...known]);if(known.size===c.cards.length)markDone(el.id);i=(i+1)%c.cards.length}draw()};
+  draw();if(known.size===c.cards.length)markDone(el.id)}
+
+/* ---------- Classify ---------- */
+function classify(el,c){const b=body(el);let pick=null;const asg={};
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="cls-pool"></div><div class="cls-bins"></div>
+  <p><button class="btn" data-a="chk">Periksa</button> <button class="btn ghost" data-a="rst">Ulangi</button> <span class="score"></span></p><div class="fb"></div>`;
+  const pool=$(".cls-pool",b),bins=$(".cls-bins",b),fb=$(".fb",b);
+  c.bins.forEach((n,bi)=>{const d=document.createElement("div");d.className="bin";d.tabIndex=0;d.dataset.b=bi;d.innerHTML=`<h4>${esc(n)}</h4>`;bins.appendChild(d)});
+  function render(){pool.innerHTML="";$$(".bin .cls-item",bins).forEach(e=>e.remove());
+    c.items.forEach((x,i)=>{const e=document.createElement("button");e.className="cls-item";e.textContent=x.t;e.dataset.i=i;
+      if(pick===i)e.classList.add("pick");
+      if(asg[i]!==undefined)$$(".bin",bins)[asg[i]].appendChild(e);else pool.appendChild(e)})}
+  b.onclick=e=>{const it=e.target.closest(".cls-item");const bin=e.target.closest(".bin");const a=e.target.dataset.a;
+    if(a==="rst"){for(const k in asg)delete asg[k];pick=null;fb.className="fb";$(".score",b).textContent="";render();return}
+    if(a==="chk"){if(Object.keys(asg).length<c.items.length){fb.className="fb show";fb.textContent="Tempatkan semua kartu terlebih dahulu.";return}
+      let s=0,html="<ul>";c.items.forEach((x,i)=>{const ok=asg[i]===x.a;if(ok)s++;html+=`<li>${ok?"✓":"✗"} <b>${esc(x.t)}</b> → <em>${esc(c.bins[x.a])}</em>. ${esc(x.why)}</li>`});html+="</ul>";
+      $$(".cls-item",b).forEach(el2=>{el2.classList.add(asg[el2.dataset.i]===c.items[el2.dataset.i].a?"right":"wrong")});
+      $(".score",b).textContent=`Skor ${s}/${c.items.length}`;fb.className="fb show ok";fb.innerHTML=html;markDone(el.id);return}
+    if(it&&(pool.contains(it)||bins.contains(it))){const i=+it.dataset.i;if(asg[i]!==undefined&&!bin){delete asg[i]}pick=i;render();return}
+    if(bin&&pick!==null){asg[pick]=+bin.dataset.b;pick=null;render()}};
+  render()}
+
+/* ---------- Scenario ---------- */
+function scenario(el,c){const b=body(el);
+  function show(id){const n=c.nodes[id];
+    b.innerHTML=`<h3>${esc(c.title)}</h3><p class="scn-text">${esc(n.text)}</p>`;
+    if(n.end){b.insertAdjacentHTML("beforeend",`<div class="scn-end"><b>Tinjauan 3 kacamata:</b> ${esc(n.lens)}</div><p><button class="btn ghost">Coba jalur lain</button></p>`);$(".btn",b).onclick=()=>show(c.start);markDone(el.id)}
+    else{const o=document.createElement("div");o.className="opts";n.choices.forEach(ch=>{const x=document.createElement("button");x.className="opt";x.textContent=ch.t;x.onclick=()=>show(ch.to);o.appendChild(x)});b.appendChild(o)}}
+  show(c.start)}
+
+/* ---------- Reflection ---------- */
+function reflect(el,c){const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt)}</p><textarea placeholder="Tulis di sini…"></textarea><p><small>${esc(c.hint||"")}</small></p><p><button class="btn" data-a="cp">Salin jawaban</button> <span class="cnt"></span></p>`;
+  const ta=$("textarea",b);ta.value=store.get(el.id,"");
+  const upd=()=>{const n=ta.value.trim().split(/\s+/).filter(Boolean).length;$(".cnt",b).textContent=n+" kata";if(n>=15)markDone(el.id)};
+  ta.oninput=()=>{store.set(el.id,ta.value);upd()};
+  $("[data-a=cp]",b).onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText(ta.value).then(()=>{e.target.textContent="Tersalin ✓";setTimeout(()=>e.target.textContent="Salin jawaban",1500)})};
+  upd()}
+
+/* ---------- Quiz ---------- */
+function quiz(el,c){const b=body(el);const ans=[];let i=0;
+  function show(){if(i>=c.items.length)return fin();const x=c.items[i];
+    b.innerHTML=`<h3>${esc(c.title)} · ${i+1}/${c.items.length}</h3><p><b>${esc(x.q)}</b></p><div class="opts"></div><div class="fb"></div><p><button class="btn" disabled>Lanjut ›</button></p>`;
+    const o=$(".opts",b),fb=$(".fb",b),nx=$(".btn",b);
+    x.o.forEach((t,j)=>{const bt=document.createElement("button");bt.className="opt";bt.textContent=t;bt.onclick=()=>{if(ans[i]!==undefined)return;ans[i]=j;$$(".opt",o).forEach((e,k)=>{if(k===x.a)e.classList.add("right");else if(k===j)e.classList.add("wrong")});fb.className="fb show "+(j===x.a?"ok":"");fb.innerHTML=(j===x.a?"<b>Benar.</b> ":"<b>Belum tepat.</b> ")+esc(x.why);nx.disabled=false;nx.textContent=i===c.items.length-1?"Lihat skor":"Lanjut ›"};o.appendChild(bt)});
+    nx.onclick=()=>{i++;show()}}
+  function fin(){const s=c.items.filter((x,k)=>ans[k]===x.a).length;const p=Math.round(s/c.items.length*100);
+    store.set(el.id+":score",p);
+    b.innerHTML=`<h3>Hasil kuis</h3><p class="score">${s}/${c.items.length} (${p}%)</p><p>${p>=80?"Sangat baik. Pemahamanmu kuat.":p>=60?"Cukup. Ulas butir yang salah.":"Perlu ulang. Baca kembali segmen 2–4."}</p><p><button class="btn ghost">Ulangi kuis</button></p>`;
+    $(".btn",b).onclick=()=>{ans.length=0;i=0;show()};markDone(el.id)}
+  show()}
+
+const R={poll,checklist,flash,classify,scenario,reflect,quiz};
+window.EHC={$,$$,store,esc,markDone,body};
+widgets.forEach(el=>{const t=el.dataset.widget;if(R[t]&&PAGE[el.id])R[t](el,PAGE[el.id]);if(done.has(el.id))el.classList.add("done")});
+updateProgress();
+
+/* ---------- Agenda & scrollspy ---------- */
+const ag=$("#agenda");const segs=$$(".seg");
+segs.forEach((s,i)=>{const a=document.createElement("a");a.href="#"+s.id;a.innerHTML=`${esc(s.dataset.title)}`;ag.appendChild(a)});
+const links=$$("a",ag);
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}})},{rootMargin:"-30% 0px -60% 0px"});
+segs.forEach(s=>io.observe(s));
+
+})();
+</script>
+<!-- ===== [/SHARED:JS] ===== -->
+<script>
+/* ===== [SHARED:VIZ-JS], pustaka visual bersama, jangan ubah antar pertemuan ===== */
+(function(){
+"use strict";
+const E=window.EHC; if(!E){return}
+const {$,$$,store,esc,markDone,body}=E;
+const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+const arr=x=>x==null?[]:Array.isArray(x)?x:[x];
+const list=(a,tag="ul")=>`<${tag}>${arr(a).map(x=>`<li>${esc(x)}</li>`).join("")}</${tag}>`;
+
+/* =============== FLOW: animasi alur proses antar aktor =============== */
+/* cfg: {title, sub, actors:[{id,icon,name,x,y,role,state,badge}], zones:[{x,y,w,h,label}],
+         steps:[{title,text,from,to,packet,label,count,bad,set:{id:'safe|warn|danger|lock|active'|['danger','teks']},law,tip,risk}], outcome} */
+function flow(el,c,opt){
+  opt=opt||{};const b=body(el);
+  b.innerHTML=`<h3>${esc(c.title||"")}</h3>${c.sub?`<p>${esc(c.sub)}</p>`:""}
+  <div class="v-stage"><svg class="v-lines" viewBox="0 0 100 100" preserveAspectRatio="none"></svg><div class="v-layer"></div></div>
+  <div class="v-ctl"><button class="btn ghost" data-a="rs" title="Ulang dari awal">Ulang</button><button class="btn ghost" data-a="pv">‹ Mundur</button><button class="btn" data-a="pl">Putar otomatis</button><button class="btn ghost" data-a="nx">Lanjut ›</button>
+  <label>Kecepatan <select data-a="sp"><option value="1.6">Lambat</option><option value="1" selected>Normal</option><option value="0.6">Cepat</option></select></label></div>
+  <div class="v-rail"></div><div class="v-cap" aria-live="polite"></div>`;
+  const stage=$(".v-stage",b),svg=$(".v-lines",b),layer=$(".v-layer",b),rail=$(".v-rail",b),cap=$(".v-cap",b),play=$("[data-a=pl]",b);
+  const A={},pos={};
+  (c.zones||[]).forEach(z=>{const d=document.createElement("div");d.className="v-zone";d.style.cssText=`left:${z.x}%;top:${z.y}%;width:${z.w}%;height:${z.h}%`;d.textContent=z.label||"";layer.appendChild(d)});
+  c.actors.forEach(a=>{pos[a.id]=a;const d=document.createElement("div");d.className="v-actor r-"+(a.role||"neutral");d.style.cssText=`left:${a.x}%;top:${a.y}%`;
+    d.innerHTML=`<div class="v-ico">${a.icon}</div><div class="v-name">${esc(a.name)}</div><div class="v-badge"></div>`;layer.appendChild(d);A[a.id]=d});
+  const seenPairs=new Set(),L={};
+  c.steps.forEach(s=>arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const k=f+">"+t;if(f===t||seenPairs.has(k))return;seenPairs.add(k);
+    const ln=document.createElementNS("http://www.w3.org/2000/svg","line");ln.setAttribute("x1",pos[f].x);ln.setAttribute("y1",pos[f].y);ln.setAttribute("x2",pos[t].x);ln.setAttribute("y2",pos[t].y);svg.appendChild(ln);L[k]=ln})));
+  c.steps.forEach((s,i)=>{const r=document.createElement("button");r.textContent=`${i+1}. ${s.short||s.title}`;r.onclick=()=>{halt();go(i,true)};rail.appendChild(r)});
+  let cur=-1,tm=[],auto=false,max=-1,sp=1;
+  const T=(fn,ms)=>{const id=setTimeout(fn,ms);tm.push(id);return id};
+  const clr=()=>{tm.forEach(clearTimeout);tm=[];$$(".v-packet",layer).forEach(p=>p.remove())};
+  function states(i){
+    c.actors.forEach(a=>setSt(a.id,a.state||"",a.badge||""));
+    for(let k=0;k<=i;k++){const st=c.steps[k].set||{};for(const id in st){const v=st[id];Array.isArray(v)?setSt(id,v[0],v[1]||""):setSt(id,v,"")}}}
+  function setSt(id,s,badge){const d=A[id];if(!d)return;d.className=d.className.replace(/\bs-\w+/g,"").trim();if(s)d.classList.add("s-"+s);$(".v-badge",d).textContent=badge}
+  function fire(s){
+    const dur=reduce?1:900*sp,n=s.count||1;let d=0;
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{ if(f===t)return;
+      for(let k=0;k<n;k++){T(()=>{const a=pos[f],z=pos[t],p=document.createElement("div");p.className="v-packet";p.style.cssText=`left:${a.x}%;top:${a.y}%;--dur:${dur}ms`;
+        p.innerHTML=(s.packet||"✉️")+(s.label&&k===0?`<span class="v-plabel">${esc(s.label)}</span>`:"");layer.appendChild(p);void p.offsetWidth;
+        p.style.left=z.x+"%";p.style.top=z.y+"%";T(()=>{p.style.opacity=0;T(()=>p.remove(),320)},dur)},d+k*240*sp)}
+      d+=90*sp}));
+    return dur+(n-1)*240*sp+d}
+  function go(i,animate){
+    if(i<0||i>=c.steps.length)return;clr();cur=i;max=Math.max(max,i);const s=c.steps[i];
+    states(i-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));
+    arr(s.from).forEach(f=>arr(s.to).forEach(t=>{const l=L[f+">"+t];if(l){l.classList.add("on");if(s.bad)l.classList.add("bad")}}));
+    arr(s.from).forEach(f=>{A[f]&&A[f].classList.add("s-active")});
+    const after=animate?fire(s):0;
+    T(()=>{states(i);arr(s.from).forEach(f=>{});},animate?Math.min(after,1100*sp):0);
+    $$("button",rail).forEach((r,k)=>{r.classList.toggle("on",k===i);r.classList.toggle("seen",k<i||k<=max&&k!==i)});
+    cap.innerHTML=`<span class="v-num">Langkah ${i+1} / ${c.steps.length}</span><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p>`
+      +((s.law||s.tip||s.risk)?`<div class="v-chips">${s.risk?`<span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span>`:""}${s.law?`<span class="v-chip law"><b>Dasar hukum</b>${esc(s.law)}</span>`:""}${s.tip?`<span class="v-chip tip"><b>Tips</b>${esc(s.tip)}</span>`:""}</div>`:"")
+      +(i===c.steps.length-1&&c.outcome?`<div class="v-outcome">${esc(c.outcome)}</div>`:"");
+    if(i===c.steps.length-1&&!opt.silent)markDone(el.id);
+    return after}
+  function halt(){auto=false;play.textContent="Putar otomatis"}
+  function step(){if(!auto)return;if(cur>=c.steps.length-1){halt();return}const after=go(cur+1,true);T(step,after+2600*sp)}
+  b.addEventListener("click",e=>{const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+    if(a==="rs"){halt();clr();cur=-1;states(-1);$$("line",svg).forEach(l=>l.classList.remove("on","bad"));$$("button",rail).forEach(r=>r.className="");cap.innerHTML="<span class=\"v-num\">Siap</span><h4>Tekan “Putar otomatis” atau “Lanjut”</h4><p>Setiap langkah menampilkan apa yang terjadi, dasar hukumnya, dan cara memutus rantainya.</p>"}
+    if(a==="nx"){halt();go(Math.min(cur+1,c.steps.length-1),true)}
+    if(a==="pv"){halt();go(Math.max(cur-1,0),false)}
+    if(a==="pl"){if(auto){halt();return}auto=true;play.textContent="Jeda";if(cur>=c.steps.length-1){cur=-1}step()}
+  });
+  $("[data-a=sp]",b).onchange=e=>{sp=+e.target.value};
+  b.querySelector("[data-a=rs]").click();
+}
+
+/* =============== EXPLORER: peta jenis / konsep dengan detail =============== */
+/* cfg: {title, intro, items:[{id,icon,name,tag,summary,how[],ex,impact,law,prev[],flow:'kunciFlow'}]} */
+function explorer(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3>${c.intro?`<p>${esc(c.intro)}</p>`:""}<div class="v-grid"></div><div class="v-detail-wrap"><p class="v-hintp"><em>Klik salah satu kartu untuk membuka penjelasan, contoh, dasar hukum, dan cara pencegahannya.</em></p></div>`;
+  const grid=$(".v-grid",b),wrap=$(".v-detail-wrap",b);
+  c.items.forEach((it,i)=>{const t=document.createElement("button");t.className="v-tile"+(seen.has(i)?" seen":"");t.innerHTML=`<span class="ic">${it.icon}</span><b>${esc(it.name)}</b><small>${esc(it.tag||"")}</small>`;t.onclick=()=>open(i);grid.appendChild(t)});
+  function open(i,tab){const it=c.items[i];seen.add(i);store.set(el.id,[...seen]);
+    $$(".v-tile",grid).forEach((t,k)=>{t.classList.toggle("sel",k===i);if(seen.has(k))t.classList.add("seen")});
+    const tabs=[["ap","Apa itu",true],["how","Cara kerja",it.how],["ex","Contoh",it.ex],["im","Dampak",it.impact],["law","Dasar hukum",it.law],["pv","Pencegahan",it.prev]].filter(x=>x[2]);
+    tab=tab||"ap";
+    const pane={ap:()=>`<p>${esc(it.summary)}</p>`,how:()=>list(it.how,"ol"),ex:()=>Array.isArray(it.ex)?list(it.ex):`<p>${esc(it.ex)}</p>`,im:()=>Array.isArray(it.impact)?list(it.impact):`<p>${esc(it.impact)}</p>`,law:()=>Array.isArray(it.law)?list(it.law):`<p>${esc(it.law)}</p>`,pv:()=>list(it.prev)};
+    wrap.innerHTML=`<div class="v-detail"><h3><span style="font-size:1.8rem">${it.icon}</span>${esc(it.name)}</h3><div class="v-tabs">${tabs.map(t=>`<button data-t="${t[0]}" class="${t[0]===tab?"on":""}">${t[1]}</button>`).join("")}</div><div class="v-pane">${pane[tab]()}</div>${it.flow&&PAGE[it.flow]?`<div class="v-sub"><button class="btn" data-f="1">Lihat animasi prosesnya</button><div class="v-flowbox"></div></div>`:""}</div>`;
+    wrap.onclick=e=>{const t=e.target.dataset.t;if(t){open(i,t)}if(e.target.dataset.f){e.target.style.display="none";flow($(".v-flowbox",wrap),PAGE[it.flow],{silent:true})}};
+    if(seen.size===c.items.length)markDone(el.id)}
+  if(seen.size===c.items.length)markDone(el.id)
+}
+
+/* =============== MOCK: layar HP / email / web / postingan dengan titik klik =============== */
+/* cfg: {title, kind:'chat|email|web|post', header:{name,sub,avatar,from,to,subject,url}, messages:[{from,time,parts}], cta, stats,
+         hotspots:[{id,label,why,decoy}], instruct}
+   parts: array string | {t:'teks', h:'idHotspot'} */
+function mock(el,c){
+  const b=body(el);const found=new Set(store.get(el.id,[]));const real=c.hotspots.filter(h=>!h.decoy);const H={};c.hotspots.forEach(h=>H[h.id]=h);
+  const P=parts=>arr(parts).map(p=>typeof p==="string"?esc(p):`<span class="v-hot" data-h="${p.h}" tabindex="0" role="button">${esc(p.t)}</span>`).join("");
+  const h=c.header||{};let inner="";
+  if(c.kind==="email"){inner=`<div class="v-bar"><span>✉️</span><b>Kotak masuk</b></div><div class="v-meta"><div><b>Dari:</b> ${P(h.from)}</div><div><b>Kepada:</b> ${P(h.to)}</div><div><b>Subjek:</b> ${P(h.subject)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="web"){inner=`<div class="v-bar"><span>🔒</span><div class="v-url">${P(h.url)}</div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}${c.cta?`<span class="v-cta">${P(c.cta)}</span>`:""}</div>`}
+  else if(c.kind==="post"){inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-body">${c.messages.map(m=>`<p>${P(m.parts)}</p>`).join("")}</div><div class="v-stats">${esc(c.stats||"")}</div>`}
+  else{inner=`<div class="v-bar"><div class="av">${h.avatar||"👤"}</div><div><b>${P(h.name)}</b><small>${esc(h.sub||"")}</small></div></div><div class="v-msgs">${c.messages.map(m=>`<div class="v-msg ${m.from==="me"?"me":""}">${P(m.parts)}${m.time?`<time>${esc(m.time)}</time>`:""}</div>`).join("")}</div>`}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.instruct||"Klik bagian yang menurutmu mencurigakan. Hati-hati: ada juga bagian yang tampak janggal tetapi wajar.")}</p>
+  <div class="v-mockwrap"><div class="v-phone"><div class="v-screen ${c.kind||"chat"}">${inner}</div></div>
+  <div><div class="v-spec-lbl"><span>Tanda bahaya ditemukan</span><span class="cnt"></span></div><div class="v-prog"><i></i></div><p><button class="btn ghost" data-a="hint">Tampilkan petunjuk</button> <button class="btn ghost" data-a="reset">Ulangi</button></p><div class="v-finds"></div></div></div>`;
+  const scr=$(".v-phone",b),fin=$(".v-finds",b);
+  function upd(){const n=[...found].filter(id=>!H[id].decoy).length;$(".cnt",b).textContent=`${n} / ${real.length}`;$(".v-prog i",b).style.width=(n/real.length*100)+"%";if(n===real.length)markDone(el.id)}
+  function mark(id){const hs=H[id];if(!hs)return;found.add(id);store.set(el.id,[...found]);$$(`[data-h="${id}"]`,b).forEach(x=>x.classList.add(hs.decoy?"decoy":"found"));
+    if(!$(`[data-f="${id}"]`,fin)){const d=document.createElement("div");d.className="v-find"+(hs.decoy?" ok":"");d.dataset.f=id;d.innerHTML=`<b>${hs.decoy?"Ini wajar":"Tanda bahaya: "+esc(hs.label)}</b>${esc(hs.why)}`;fin.appendChild(d)}upd()}
+  b.addEventListener("click",e=>{const x=e.target.closest(".v-hot");if(x){mark(x.dataset.h);return}if(e.target.dataset.a==="hint"){scr.classList.toggle("v-hint")}if(e.target.dataset.a==="reset"){found.clear();store.set(el.id,[]);$$(".v-hot",b).forEach(x=>x.classList.remove("found","decoy"));fin.innerHTML="";scr.classList.remove("v-hint");upd()}});
+  b.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList.contains("v-hot"))mark(e.target.dataset.h)});
+  found.forEach(id=>mark(id));upd();
+}
+
+/* =============== TIMELINE =============== */
+/* cfg: {title, events:[{when,title,text,icon,law}]} */
+function timeline(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));let cur=0;
+  b.innerHTML=`<h3>${esc(c.title)}</h3><div class="v-tl"><div class="v-tl-track"></div></div><div class="v-cap"></div><p><button class="btn ghost" data-a="p">‹ Sebelumnya</button> <button class="btn" data-a="n">Berikutnya ›</button></p>`;
+  const tr=$(".v-tl-track",b),cap=$(".v-cap",b);
+  c.events.forEach((ev,i)=>{const p=document.createElement("button");p.className="v-tl-pt";p.innerHTML=`<span class="dot">${ev.icon||"•"}</span><span class="when">${esc(ev.when)}</span><span class="tt">${esc(ev.title)}</span>`;p.onclick=()=>show(i);tr.appendChild(p)});
+  function show(i){cur=i;seen.add(i);store.set(el.id,[...seen]);const ev=c.events[i];
+    $$(".v-tl-pt",tr).forEach((p,k)=>{p.classList.toggle("on",k===i);p.classList.toggle("seen",seen.has(k))});
+    const pt=$(".v-tl-pt",tr)[i],sc=tr.parentElement;if(pt&&sc&&sc.scrollTo){sc.scrollTo({left:pt.getBoundingClientRect().left-sc.getBoundingClientRect().left+sc.scrollLeft-sc.clientWidth/2+pt.offsetWidth/2,behavior:reduce?"auto":"smooth"})}
+    cap.innerHTML=`<span class="v-num">${esc(ev.when)}</span><h4>${esc(ev.title)}</h4><p>${esc(ev.text)}</p>${ev.law?`<div class="v-chips"><span class="v-chip law"><b>Dasar hukum</b>${esc(ev.law)}</span></div>`:""}`;
+    if(seen.size===c.events.length)markDone(el.id)}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="n")show(Math.min(cur+1,c.events.length-1));if(a==="p")show(Math.max(cur-1,0))});
+  show(0);
+}
+
+/* =============== SPECTRUM: geser untuk melihat trade-off =============== */
+/* cfg: {title, prompt, left, right, stops:[{at,label,text,risk}]} */
+function spectrum(el,c){
+  const b=body(el);const seen=new Set(store.get(el.id,[]));
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"")}</p><div class="v-spec"><div class="v-spec-lbl"><span>‹ ${esc(c.left)}</span><span>${esc(c.right)} ›</span></div><input type="range" min="0" max="100" value="50" aria-label="${esc(c.title)}">
+  <div class="v-spec-bars"><div><small>${esc(c.left)}</small><div class="bar"><i></i></div></div><div><small>${esc(c.right)}</small><div class="bar r"><i></i></div></div></div></div><div class="v-cap"></div>`;
+  const rg=$("input",b),cap=$(".v-cap",b),bl=$(".bar i",b),br=$(".bar.r i",b);
+  function upd(){const v=+rg.value;bl.style.width=(100-v)+"%";br.style.width=v+"%";
+    let best=0,d=1e9;c.stops.forEach((s,i)=>{const x=Math.abs(s.at-v);if(x<d){d=x;best=i}});const s=c.stops[best];
+    cap.innerHTML=`<span class="v-num">${esc(s.label)}</span><p>${esc(s.text)}</p>${s.risk?`<div class="v-chips"><span class="v-chip risk"><b>Risiko</b>${esc(s.risk)}</span></div>`:""}`;
+    seen.add(best);store.set(el.id,[...seen]);if(seen.size>=Math.min(3,c.stops.length))markDone(el.id)}
+  rg.oninput=upd;upd();
+}
+
+/* =============== ORDER: urutkan langkah =============== */
+/* cfg: {title, prompt, items:[{t,why}]} dalam urutan benar */
+function order(el,c){
+  const b=body(el);const n=c.items.length;
+  const idx=c.items.map((_,i)=>i);const sh=idx.map((_,i)=>idx[(i*3+2)%n]).filter((v,i,a)=>a.indexOf(v)===i);idx.forEach(i=>{if(!sh.includes(i))sh.push(i)});
+  let pool=sh.slice(),ans=[];if(pool.every((v,i)=>v===i)){pool.reverse()}
+  b.innerHTML=`<h3>${esc(c.title)}</h3><p>${esc(c.prompt||"Klik langkah satu per satu sesuai urutan yang benar. Klik langkah di kolom jawaban untuk membatalkannya.")}</p><div class="v-ord"><div><h4>Langkah acak</h4><div class="col pool"></div></div><div><h4>Urutan kamu</h4><div class="col ans"></div></div></div><p><button class="btn" data-a="chk" disabled>Periksa urutan</button> <button class="btn ghost" data-a="rst">Ulangi</button></p><div class="fb"></div>`;
+  const P=$(".pool",b),Aw=$(".ans",b),chk=$("[data-a=chk]",b),fb=$(".fb",b);
+  function draw(res){P.innerHTML="";Aw.innerHTML="";pool.forEach(i=>{const x=document.createElement("button");x.className="it";x.textContent=c.items[i].t;x.onclick=()=>{ans.push(i);pool=pool.filter(v=>v!==i);fb.className="fb";draw()};P.appendChild(x)});
+    ans.forEach((i,k)=>{const x=document.createElement("button");x.className="it"+(res?(i===k?" right":" wrong"):"");x.innerHTML=`<i>${k+1}</i>`+esc(c.items[i].t);x.onclick=()=>{if(res)return;ans=ans.filter(v=>v!==i);pool.push(i);draw()};Aw.appendChild(x)});
+    chk.disabled=pool.length>0}
+  b.addEventListener("click",e=>{const a=e.target.dataset.a;if(a==="rst"){pool=sh.slice();ans=[];fb.className="fb";draw()}
+    if(a==="chk"){const ok=ans.filter((v,k)=>v===k).length;draw(true);fb.className="fb show"+(ok===n?" ok":"");fb.innerHTML=`<b>${ok}/${n} posisi tepat.</b><ol>${c.items.map(x=>`<li>${esc(x.t)}${x.why?`: ${esc(x.why)}`:""}</li>`).join("")}</ol>`;markDone(el.id)}});
+  draw();
+}
+
+/* ---------- registrasi ---------- */
+const V={flow,explorer,mock,timeline,spectrum,order};
+$$(".w[data-widget]").forEach(el=>{const t=el.dataset.widget;if(V[t]&&PAGE[el.id])V[t](el,PAGE[el.id])});
+/* reveal on scroll */
+if(!reduce&&"IntersectionObserver" in window){document.documentElement.classList.add("reveal-on");
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{rootMargin:"0px 0px -8% 0px"});
+  $$(".seg").forEach(s=>io.observe(s));
+  setTimeout(()=>$$(".seg").forEach(s=>s.classList.add("in")),2500)}
+})();
+/* ===== [/SHARED:VIZ-JS] ===== */
+</script>
+
+</body>
+</html>
